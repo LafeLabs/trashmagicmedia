@@ -1,23 +1,24 @@
-# [CRUST WEB](https://github.com/LafeLabs/crustweb)
+# [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
 
 ## [http://localhost/](http://localhost/)
 
-![](https://raw.githubusercontent.com/LafeLabs/crustweb/main/images/replicator.jpg)
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg)
 
 ### *Local media on local networks*
 
 - [download XAMPP](https://www.apachefriends.org/index.html) and install, 
 - go to the directory xampp/htdocs and delete the file index.php
-- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/crustweb/main/replicator.php)(right click, "save link as") and save it in the directory htdocs
+- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/replicator.php)(right click, "save link as") and save it in the directory htdocs
 - start the xampp server either by searching for the program or manually starting it from the xampp directory on your hard drive
-- go to [http://localhost/replicator.php](http://localhost/replicator.php) to replicate the server, click the link to go to the local CRUST WEB
+- go to [http://localhost/replicator.php](http://localhost/replicator.php) to replicate the server, click the link to go to the local TRASH MAGIC MEDIA NETWORK
 - or navigate there with this link to [http://localhost/](http://localhost/)
 - create desktop shortcuts to media/ and images/ folders in the xampp/htdocs folder
 - put sub-folders in the media folder for different kinds of media, put media you want to share in those folders, make a "books" and "music" folder and put pdfs of books in the books folder and .mp3's of songs in the music folder
 - find your ip address from your wifi settings and put it in the input at the bottom of the screen as indicated(http://[your ip address]/) and hit "enter" to update the permanent value of the server url
- - point [Web 1.0](https://github.com/LafeLabs/web) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
- - point cardboard signs to [web 1.0](https://github.com/LafeLabs/web) pages
+ - point [Web 1.0 hyperlink](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
+ - point cardboard signs to web 1.0 pages
  - post ads in the form of images from the main page
+ - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
 
 This is local media.  We can install web servers on *everything*: mac and Windows laptops and desktops, Raspberry Pi, and Android and iOS Devices.  Any device can be a server, and we drop files on it to share with others on the same wireless network.  When every device is a server as well as a client, people who share wireless networks can media without the Cloud.  
 
@@ -91,7 +92,7 @@ sudo apt install php libapache2-mod-php -y
 ```
 cd /var/www/html
 sudo rm index.html
-sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/crustweb/main/php/replicator.txt
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
 cd ..
 sudo chmod -R 0777 *
 cd html
