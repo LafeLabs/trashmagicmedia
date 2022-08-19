@@ -47,7 +47,6 @@
     "scrolls": [
         "books",
         "cards",
-        "cloud",
         "cubes",
         "hardware",
         "home",
@@ -64,7 +63,8 @@
         "scrollsets",
         "servers",
         "shapes",
-        "simplecube"
+        "simplecube",
+        "southplatte"
     ],
     "web": [
         "arduino.html",

@@ -19,6 +19,7 @@
         "scrollsets",
         "servers",
         "shapes",
-        "simplecube"
+        "simplecube",
+        "southplatte"
     ]
 }
