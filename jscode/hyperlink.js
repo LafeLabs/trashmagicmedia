@@ -24,10 +24,6 @@ hyperlink = {
             "text": "www.trashrobot.org"
         },
         {
-            "href": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt",
-            "text": "replicator"
-        },
-        {
             "href": "https://www.southplatte.net",
             "text": "southplatte.net"
         }

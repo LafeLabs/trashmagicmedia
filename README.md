@@ -146,5 +146,9 @@ Use the Editor built into the system to create a new file called replicator.php 
  - [twitter:@trashrobot0](https://twitter.com/trashrobot0)
  - [youtube:@trash_robot](https://www.youtube.com/channel/UCLyeOlfnEBCnRTAH8rppEFw)
 
-
+# Trash Robot Books
+ 
+ - [First Book of Geometron](https://www.trashrobot.org/bookofgeometronfirst/)
+ - [Geometron Magic](https://www.trashrobot.org/geometronmagic/)
+ - [Trash Magic Books](https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks)
 
