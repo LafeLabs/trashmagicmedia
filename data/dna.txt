@@ -67,10 +67,14 @@
         "southplatte"
     ],
     "web": [
+        "alignicons.js",
+        "alignimage.html",
+        "alignimage.txt",
         "arduino.html",
         "calculator.html",
         "chaosfeed.html",
         "chaosfeed.txt",
+        "coin.txt",
         "currentjson.js",
         "currentjson.txt",
         "duality.html",
@@ -78,10 +82,12 @@
         "dualityeditor.html",
         "generalicon.html",
         "geometron.js",
+        "globalimagefeed.html",
         "homebrew.html",
         "iconjson.js",
         "iconpage.html",
         "iconset.html",
+        "imagefeed.txt",
         "index.html",
         "innernette.html",
         "mapfactory.js",
@@ -92,6 +98,7 @@
         "poetryengine.html",
         "printer.txt",
         "robotfeed.js",
-        "symbol.html"
+        "symbol.html",
+        "traceicon.html"
     ]
 }
