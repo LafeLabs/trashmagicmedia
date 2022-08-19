@@ -1,0 +1,14 @@
+
+## [HOME](scrolls/home)
+
+# replicators
+ 
+ - [Scroll set replicator page](scrollset.html)
+ - [Copy the Geometron hypercube replicator over the local replicator](copy.php?from=https://raw.githubusercontent.com/LafeLabs/hypercube/main/php/replicator.txt&to=replicator.php)
+ - [global replicator for Web 1.0](https://raw.githubusercontent.com/LafeLabs/web/main/php/replicator.txt)
+ - [Web 1.0 Github Repo](https://github.com/lafeLabs/web)
+ - [copy scroll.html over index.html](copy.php?from=scroll.html&to=index.html)
+ - [dnagenerator.php](dnagenerator.php)
+ - [Scroll set replicator page](scrollset.html)
+ - [php/replicator.txt](php/replicator.txt)
+ - [run replicator.php](replicator.php)

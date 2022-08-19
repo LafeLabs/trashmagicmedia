@@ -1,0 +1,25 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/picrust/main/trashmagic/",
+    "scrolls": [
+        "books",
+        "cards",
+        "cloud",
+        "cubes",
+        "hardware",
+        "home",
+        "icons",
+        "links",
+        "localmedia",
+        "medical",
+        "mobile",
+        "music",
+        "operators",
+        "picrust",
+        "printers",
+        "replicators",
+        "scrollsets",
+        "servers",
+        "shapes",
+        "simplecube"
+    ]
+}

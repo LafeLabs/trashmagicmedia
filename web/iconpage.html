@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAREAAAAAAiAAEAAAAAACIAAQAAAAAAACABAAAAAAAAAgEAAAAAAwAAIQAAADAzMzMwMzMzMwMAAAEgAAAwAAAAAQIAAAAAAAABACAAAAAAAAEAAgAAAAAAAQAAIgAAAAABAAAiAAAAABEQAAAAAAAAAQAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="geometron.js"></script>
+
+    <script src="robotfeed.js"></script>
+    
+</head>
+<body>
+    
+    
+<div id  = "mainbox"><canvas id = "maincanvas"></canvas></div>
+    
+
+<div id = "header">
+    <input id = "glyphinput"/>
+</div>
+<div id = "feed"></div>
+
+<table id = "linktable">
+    <tr>
+        <td>
+            <a href = "index.html">HOME</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href = "iconpage.svg">iconpage.svg</a>
+        </td>
+    </tr>
+
+    <tr>
+        <td class=  "button" id  = "savebutton">SAVE</td>
+    </tr>
+</table>
+<script>
+
+glyph = "";
+feedwidth = 100;
+feedlinkwidth  = feedwidth;
+mainsize = 0.5*innerWidth - 10;
+
+maincanvas = document.getElementById("maincanvas");
+
+//8.5 x 11 letter size paper, make it 50 px per inch so 425x550
+var mainGVM = new GVM(maincanvas,425,550);
+mainGVM.unit = 75;//1.5 inches is 1 unit
+mainGVM.style.fill1 = "white";
+mainGVM.style.color1 = "black";
+mainGVM.style.line1 = 0.5;
+mainGVM.x0 = 25;//half inch
+mainGVM.y0 = 12;//quarter inch, rounded down
+
+mainGVM.drawGlyph("0300,");
+
+gvmArray = [];
+
+mainGVM.importbytecode(hypercube);    
+mainGVM.hypercube[0221] = "0320,0370,0331,0333,0200,0336,0330,0332,0336,0336,0210,0210,0220,0371,";
+mainGVM.hypercube[0222] = "0221,0333,0221,0333,0221,0333,0221,0333,0221,0331,0332,0332,0332,0332,";
+mainGVM.hypercube[0223] = "0222,0222,0222,0222,0222,0222,0222,";
+            
+    
+loadfeed();
+
+
+
+
+
+
+
+function loadfeed(){
+    gvmArray = [];
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            document.getElementById("glyphinput").value = glyph;
+            mainGVM.hypercube[0220] = glyph;
+            mainGVM.drawGlyph("0300,0223,");
+            //make this the coin for coin studio
+            coin = glyph;
+            
+
+        }
+        
+        
+    }    
+}
+
+
+document.getElementById("savebutton").onclick = function(){
+    savesvg();
+}
+
+function savesvg(){
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST","../filesaver.php", true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(mainGVM.svgString) +"&filename=web/iconpage.svg");//send text to filesaver.php
+}
+
+
+</script>
+<style>
+#savebutton,#mapsavebutton{
+    border:solid;
+}
+body{
+    overflow:hidden;
+}
+#linktable{
+    position:absolute;
+    right:0px;
+    top:3em;
+}
+.deletebutton{
+    width:20px;
+    z-index:2;
+    position:relative;
+    left:-100px;
+    top:-80px;
+}
+.feedelement{
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:100px;
+}
+#footer{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:150px;
+}
+#textio{
+    position:absolute;
+    left:0px;
+    width:100%;
+    bottom:0px;
+    height:100px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:50%;
+    top:100px;
+    bottom:0px;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#glyphinput{
+    width:90%;
+    font-family:courier;
+    font-size:12px;
+}
+
+#mainbox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    border:solid;
+}
+</style>
+</body>
+</html>

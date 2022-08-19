@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+    <head>
+             <meta charset="utf-8"/>
+
+<!--
+NO MONEY
+NO MINING
+NO PROPERTY
+EVERYTHING IS PHYSICAL 
+EVERYTHING IS RECURSIVE
+EVERYTHING IS FRACTAL
+LOOK AT THE INSECTS
+LOOK AT THE FUNGI
+LANGUGE IS HOW THE MIND PARSES REALITY
+
+-->
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAABEAAREQAAABERABERAAAAEREAAREAAAAREAAAABAAAQAAAAAAAQAQAAAAAAAAEQAAAAAAAAEREAAAAAAAAREQAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAM/zAACH4QAAh+EAAMfjAAD73wAA/b8AAP5/AAD8PwAA/D8AAP5/AAD//wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+<!--Stop Google:-->
+<META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+        <a href = "../">UP</a>
+
+        <p></p>
+        <a href = "index.html">
+            HOME
+        </a>
+        
+<table id = "newtable">
+    <tr>
+        <td>new page name:</td>
+        <td><input/><a id = "dirlink"></a></td>
+    </tr>
+    <tr id = "replicatorline">
+        <td>external replicator url</td>
+        <td><input/></td>
+    </tr>
+</table>
+
+<ul id = "mainlist">
+
+</ul>
+<div id = "deleteonbutton">DELETE MODE ON</div>
+<script>
+
+deleteprotect = true;//set to false to enable deletion of directories
+
+//deleteprotect = false;//set to ture to disable deletion of directories
+
+
+directories = [];
+var httpc2 = new XMLHttpRequest();
+    httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        directories = JSON.parse(this.responseText);
+        for(var index = 0;index < directories.length;index++) {
+            var newa = document.createElement("A");
+            newa.innerHTML = directories[index] + "/";
+            newa.href = directories[index] + "/";
+            var newli = document.createElement("LI");
+            newli.appendChild(newa);
+            document.getElementById("mainlist").appendChild(newli);
+        }
+        if(!deleteprotect){
+            addDeleteButtons();
+        }
+    }
+};
+
+httpc2.open("GET", "dir.php?type=dir", true);
+httpc2.send();
+
+
+
+
+inputs = document.getElementById("newtable").getElementsByTagName("input");    
+
+inputs[0].onchange = function() {
+    var newa = document.getElementById("dirlink");
+    newa.innerHTML = "mkdir.php?dir=" + this.value;
+    newa.href = "mkdir.php?dir=" + this.value;
+}
+
+inputs[0].value = "";    
+inputs[1].value = "";
+
+inputs[1].onchange = function(){
+    var newa = document.getElementById("dirlink");
+    newa.innerHTML += "&replicator=" + this.value; 
+    newa.href += "&replicator=" + this.value; 
+}
+
+
+
+function addDeleteButtons(){
+    dirlist = document.getElementById("mainlist").getElementsByTagName("LI");
+    for(var index = 0;index < dirlist.length;index++){
+
+        var newdeletebutton = document.createElement("span");
+        newdeletebutton.innerHTML = "DELETE";
+        newdeletebutton.className = "button";
+        dirlist[index].appendChild(newdeletebutton);
+    }
+    
+    deletebuttons = document.getElementById("mainlist").getElementsByClassName("button");
+
+    for(var index = 0;index < deletebuttons.length;index++){
+        deletebuttons[index].onclick = function() {
+            thisdir = this.parentNode.getElementsByTagName("A")[0].innerHTML;
+            var httpc = new XMLHttpRequest();
+            var url = "rdelete.php";         
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            httpc.send("filename=" + thisdir);//send text to deletefile.php
+            this.parentNode.parentNode.removeChild(this.parentNode);
+
+        }
+    }
+
+}
+
+document.getElementById("deleteonbutton").onclick = function(){
+    addDeleteButtons();
+    this.style.display  = "none";
+}
+
+</script>
+<style>
+    body{
+        font-size:2em;
+    }
+    table{
+        font-family:courier;
+    }
+    .button{
+        cursor:pointer;
+    }
+    .button:hover{
+        background-color:green;
+    }
+    .button:active{
+        background-color:yellow;
+    }
+    
+    .button{
+        cursor:pointer;
+        color:red;
+        font-family:courier;
+        font-size:1.5em;
+    }
+    #deleteonbutton{
+        cursor:pointer;
+        font-family:arial;
+        border:solid;
+        border-radius:0.3em;
+        width:10em;
+    }
+
+</style>
+</body>
+</html>

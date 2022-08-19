@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="geometron.js"></script>
+    <script src="iconjson.js"></script>
+
+</head>
+<body>
+
+    <a href = "index.html">HOME</a>        
+    
+    <div id = "geometronbox">
+        <canvas id = "maincanvas"></canvas>
+    </div>
+
+<script>
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+mainGVM.importbytecode(hypercube);    
+mainGVM.importbytecode(currentjson.shapes);
+mainGVM.glyph = currentjson.glyph;
+mainGVM.x0 = currentjson.x0;
+mainGVM.y0 = currentjson.y0;
+mainGVM.unit = currentjson.unit;
+mainGVM.width = currentjson.width;
+mainGVM.height = currentjson.height;
+mainGVM.style = currentjson.style;
+document.getElementById("maincanvas").width = currentjson.width;
+document.getElementById("geometronbox").style.width = currentjson.width.toString() + "px";         
+document.getElementById("maincanvas").height = currentjson.height;
+document.getElementById("geometronbox").style.height = currentjson.height.toString() + "px";        
+mainGVM.clean();
+mainGVM.drawGlyph(mainGVM.glyph);
+
+
+</script>
+<style>
+
+</style>
+</body>
+</html>

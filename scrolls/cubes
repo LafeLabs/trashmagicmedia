@@ -1,0 +1,77 @@
+
+## [HOME](scrolls/home)
+
+# Cubes
+
+Cubes are 4 inches on a side, and are used to store things and grow things and build things.  They can be stacked to build machines and structures.  They can be used as bins to hold art or office supplies while we work with them, including the supplies we use to make more cubes(making them part of the means of their own replication).  They are made from cardboard trash which we ultimately compost or use as a growing medium for fungi or some similar organism.  Cubes are also used to house other growing things, including plants, mushrooms, and worms.   We decorate the cube bodies similarly, and use different lids to represent different cube applications.  We can also print [Geometron Icons](scrolls/icons) on the cubes using the [Trash Robot Printer](scrolls/printers), which is itself made from still more Cubes.
+
+Cubes are part of the Geometron system of self-replicating geometric constructions.  They also are used to contain the [Trash Magic Cards](scrolls/cards) which make up a physical layer of the Trash Magic Network.  The [Geometron Hypercube](https://github.com/LafeLabs/hypercube) is the set of *all* cubes we create in our Network.  Every physical cube is part of it, as well as every abstract geometric construction based on cubes.
+ 
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-finished.jpg)
+
+The Tools we need to replicate the Cube are:
+ 
+ - Pens or markers
+ - The [Shapes of Action Geometry](scrolls/shapes)
+ - Box cutter or xacto knife
+ - Optional cutting board
+ - Elmer's Glue
+ - Rubber bands
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/tools.jpg)
+
+We want lots of raw corrugated cardboard:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/raw-cardboard-trash.jpg)
+
+From which we cut out 15 squares, each 4x4 inches, and one square that is 3x3 inches:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/big-squares.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/small-square.jpg)
+
+The lid is assembled by gluing the 3 inch square into the center of one of the painted faces.  The painted side of this lid can get decorated with specialized information based on what that cube happens to be used for.
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/lid-assembly.jpg)
+
+We cut out 6 squares for the 6 faces that are all 4x4 inches from some kind of painted cardboard that will show color better when we use markers on them.  
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/painted-faces.jpg)
+
+We use the [Shapes of Action Geometry](scrolls/shapes) to create fractal patterns based on 
+
+ - Fourfold symmetry and the [square root of two](https://en.wikipedia.org/wiki/Square_root_of_2)
+ - Fivefold symmetry and the [Golden Ratio](https://en.wikipedia.org/wiki/Golden_ratio)
+ - Sixfold symmetry and the [square root of three](https://en.wikipedia.org/wiki/Square_root_of_3)
+ - [Cube Side layout](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)
+ - [Cube Base layout](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-faces.jpg)
+
+Note the dimensions of the pieces.  With a ruler and square you can trace out the pattern on one piece of cardboard, then cut that out and use it to trace more of them from the 4 inch squares.
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-templates.jpg)
+
+.svg file links for use with laser cutters(print out 4 inches wide):
+
+ [![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)
+
+ [![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)
+
+Stack pieces three elements thick, with glue:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-pieces-layout.jpg)
+
+apply glue and assemble into a finished cube, let glue dry.
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-rough.jpg)
+
+Apply the outer panels with glue, hold them on with rubber bands until they dry, and we are back to a completed cube:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/trashmagic/scroll-images/cube-finished.jpg)
+
+
+[return HOME](scrolls/home)
+
+
+

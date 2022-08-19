@@ -1,0 +1,34 @@
+
+## [HOME](scrolls/home)
+
+# [Action Geometry](https://www.trashrobot.org/bookofgeometronfirst/) Shapes
+  
+ - 3" square with factor of 2 fractal scaling
+ - Isosceles right triangle with 3 inch legs and square root of two fractal scaling
+ - 3" Equilateral triangle four sub-triangles
+ - Isosceles 120 degree triangle with 3 inch base and square root of three scaling
+ - [30-60-90 triangle](https://en.wikipedia.org/wiki/Set_square#30-60-90_set_square) with longer leg of three inches and square root of three scaling
+ - [Golden Triangle](https://en.wikipedia.org/wiki/Golden_triangle_(mathematics)) with 3 inch legs and [Golden Ratio](https://en.wikipedia.org/wiki/Golden_ratio) scaling
+ - Golden Gnomon with three inch base and [Golden Ratio](https://en.wikipedia.org/wiki/Golden_ratio) scaling
+ - 6x1 inch ruler with tenths on one side and eights on the other
+
+These can be constructed any of a number of ways using protractors, rulers, compass, or computer software.  Once they have been constructed in any one material they can be replicated in thin cardboard trash for further replication to more cardboard trash and use in creating more self-replicating trash-based geometric constructions.
+
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/shapes.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/shapes2.jpg)
+ 
+.svg file for use in laser cutter.  Each shape has side of 3 inches, so this is a 6 inch wide file:
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/shapes.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/shapes.svg)
+
+Rulers
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/rulers.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/rulers.svg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/rulerphoto.jpg)
+
+To get these made commercially use [ponoko.com/](https://www.ponoko.com/) and get the neon green laser cut acrylic for best aesthetic results.  Add your own branding to your order!  There are eight shapes including the ruler, and you can put icons on all of them to make them be yet another form of self-replicating language imprinted in physical matter(either trash or laser cut acrylic).
+
+As you produce more and more of these shapes you can store them in the Geometron Hypercube, the set of all [Cubes we make from cardboard](scrolls/cubes).
