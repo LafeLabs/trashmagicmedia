@@ -4,10 +4,6 @@ hyperlink = {
     "alt": "cardboard sign linking to page",
     "list": [
         {
-            "href": "../",
-            "text": "up a level ../"
-        },
-        {
             "href": "https://www.trashrobot.org",
             "text": "www.trashrobot.org"
         },

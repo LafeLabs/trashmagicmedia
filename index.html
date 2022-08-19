@@ -25,57 +25,39 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
     All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
 
 
+
     -->
     
-<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD+fwAA/n8AAOfnAADzzwAAuB0AAJ/5AADH4wAAcY4AADw8AACf+QAAz/MAAOPHAAD4HwAA" rel="icon" type="image/x-icon" />
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+
 
    <title>TRASH MAGIC MEDIA</title>    
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "jscode/hyperlink.js"></script>
 
 </head>
 <body>    
-<h1><a href = "https://www.github.com/lafelabs/trashmagicmedia/">TRASH MAGIC MEDIA</a></h1>
-<p>
-    Physically Local Digital Media
-</p>
+<a href = "hyperlinkeditor.html" id = "linkeditorlink">*</a>
+<img id = "mainimage"/>
 
-
-<img style = "max-width:40%;display:block;margin:auto" src="https://raw.githubusercontent.com/LafeLabs/crustweb/main/images/replicator.jpg"/>
-
-<ul>
-    <li>
-        <a href = "web/">Learn to Weave the Web</a>
-    </li>
-    <li>
-        <a href = "https://www.github.com/lafelabs/crustweb/">Replicate CRUST WEB server</a>
-    </li>
-    <li>
-        <a href = "images.html">Images</a>
-    </li>
-    <li>
-        <a href = "media.html">Media</a>
-    </li>
-    <li>
-        <a href = "scroll.html">Trash Magic Books</a>
-    </li>
-</ul>
+<h1><a id=  "serverlink"></a></h1>
 
 <div id = "qrcode"></div>
-<h3><a id=  "serverlink"></a></h3>
-<table>
-    <tr>
-        <td>Server URL(http://[your ip address]/):</td><td><input id = "serverurlinput"/></td>
-    </tr>
-</table>
+
+<ul id = "linklist">
+</ul>
 
 <script>
 
-serverurl = "http://localhost/";
 
 codesquaresize = 200;
-document.getElementById("qrcode").style.width = codesquaresize.toString() + "px";
+document.getElementById("qrcode").style.width = codesquaresize.toString()  + "px";
+
 qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: serverurl,
+	text: hyperlink.url,
 	width: codesquaresize,
 	height: codesquaresize,
 	colorDark : "#000000",
@@ -84,53 +66,47 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 
 
-var httpc666 = new XMLHttpRequest();
-httpc666.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            serverurl = this.responseText;
-            loadserver();
-        }
-    };
-httpc666.open("GET", "fileloader.php?filename=data/serverurl.txt", true);
-httpc666.send();
 
+qrcode.makeCode(hyperlink.url);
+document.getElementById("serverlink").href = hyperlink.url;
+document.getElementById("serverlink").innerHTML = hyperlink.url;
+document.getElementById("mainimage").src = hyperlink.src;
+document.getElementById("mainimage").alt = hyperlink.alt;
 
-
-document.getElementById("serverurlinput").onchange = function(){
-    serverurl = this.value;
-    loadserver();
-    saveserver();
-}
-
-
-function loadserver(){
-    document.getElementById("serverlink").href = serverurl;
-    document.getElementById("serverlink").innerHTML = serverurl;
-    document.getElementById("serverurlinput").value = serverurl;
-    qrcode.makeCode(serverurl);
-}
-
-function saveserver(){
-
-    var httpc = new XMLHttpRequest();
-    var url = "filesaver.php";        
-    httpc.open("POST", url, true);
-    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-    httpc.send("data="+serverurl+"&filename=data/serverurl.txt");//send text to filesaver.php
+for(var index = 0;index < hyperlink.list.length;index++){
+    var newli = document.createElement("LI");
+    document.getElementById("linklist").appendChild(newli);
+    var newa = document.createElement("A");
+    newli.appendChild(newa);
+    newa.href = hyperlink.list[index].href;
+    newa.innerHTML = hyperlink.list[index].text;
 }
 
 
 </script>
 <style>
+#linkeditorlink{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
 input{
     background-color:black;
     color:#00ff00;
     font-family:courier;
     border-color:#00ff00;
+    width:40em;
 }
 table{
     font-family:courier;
     font-size:14px;
+    display:block;
+    margin:auto;
+    border:solid;
+    border-color:#00ff00;
+}
+td{
+    text-align:right;
 }
 body{
     font-size:2em;
@@ -139,12 +115,20 @@ body{
     background-color:black;
     color:#00ff00;
 }
+#mainimage{
+    max-width:40%;
+    display:block;
+    margin:auto
+}
 #qrcode{
     border:solid;
     border-width:20px;
     border-color:#808080;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
 }
-h1{
+h1,h2,h3{
     text-align:center;
 }
 a{
@@ -153,3 +137,5 @@ a{
 </style>
 </body>
 </html>
+
+

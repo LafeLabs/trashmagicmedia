@@ -3,6 +3,7 @@
         "README.md",
         "dumbscroll.html",
         "fork.html",
+        "hyperlinkeditor.html",
         "images.html",
         "index.html",
         "media.html",
@@ -21,6 +22,9 @@
         "dna.txt",
         "scrollset.txt",
         "serverurl.txt"
+    ],
+    "javascript": [
+        "hyperlink.js"
     ],
     "php": [
         "copy.txt",

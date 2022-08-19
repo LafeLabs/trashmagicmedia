@@ -17,7 +17,7 @@ mkdir("images");
 mkdir("media");
 mkdir("web");
 mkdir("scrolls");
-
+mkdir("jscode");
 
 copy("https://raw.githubusercontent.com/LafeLabs/crustweb/main/php/replicator.txt","replicator.php");
 
@@ -52,6 +52,10 @@ foreach($dna->web as $value){
     
     copy($baseurl."web/".$value,"web/".$value);
     
+}
+    
+foreach($dna->javascript as $value){
+    copy($baseurl."jscode/".$value,"jscode/".$value);
 }
 
 
