@@ -3,7 +3,6 @@
     "scrolls": [
         "books",
         "cards",
-        "cloud",
         "cubes",
         "hardware",
         "home",

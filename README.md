@@ -136,9 +136,7 @@ Use the Editor built into the system to create a new file called replicator.php 
  - after you've edited the code, click [text2php.php](text2php.php) to convert that to php
  - push your code to your github repo
  - use the new replicator code on your github repo to replicate out that instance to all other servers(linux, windows, mac, android) and forks
- - when you figure this out, make youtube videos showing other people how to copy the whole system 
-
-### [Replicate Web 1.0 Pages](https://github.com/lafeLabs/web)
+ - when you figure this out, make youtube videos showing other people how to copy the whole system, tell someone about those videos so that we can all link to them
 
 
 ### Socials
