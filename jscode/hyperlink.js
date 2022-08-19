@@ -1,5 +1,5 @@
 hyperlink = {
-    "url": "http://10.0.0.27/",
+    "url": "http://10.0.0.138/",
     "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg",
     "alt": "cardboard sign with trash magic logo",
     "list": [

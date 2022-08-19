@@ -87,7 +87,7 @@ sudo apt install apache2 -y
 sudo apt install php libapache2-mod-php -y
 ```
 
-## Install PI CRUST 
+## Install TRASH MAGIC MEDIA server
 
 ```
 cd /var/www/html
