@@ -4,12 +4,16 @@ hyperlink = {
     "alt": "cardboard sign linking to page",
     "list": [
         {
-            "href": "https://www.trashrobot.org/",
+            "href": "https://www.trashrobot.org",
             "text": "www.trashrobot.org"
         },
         {
-            "href": "https://www.trashrobot.org/",
-            "text": "www.trashrobot.org"
+            "href": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt",
+            "text": "replicator"
+        },
+        {
+            "href": "https://www.southplatte.net",
+            "text": "southplatte.net"
         }
     ]
 };

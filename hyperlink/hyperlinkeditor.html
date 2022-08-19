@@ -54,12 +54,9 @@
 
 <ul id = "linklist">
 </ul>
+<div id ="importbutton" class = "button">IMPORT</div>
 
-<h3><a href = "php/replicator.txt">SELF-REPLICATING CODE</a></h3>
-
-<h3><a href = "fork.html">FORK</a></h3>
-
-
+<textarea id = "textio"></textarea>
 
 <script>
 
@@ -95,6 +92,12 @@ document.getElementById("srcinput").onchange = function(){
 
 }
 
+document.getElementById("altinput").onchange = function(){
+    hyperlink.alt = this.value;
+    loadimage();
+    savejson()
+    
+}
 
 function loadserver(){
     document.getElementById("serverlink").href = hyperlink.url;
@@ -106,7 +109,8 @@ function loadserver(){
 function loadimage(){
     document.getElementById("mainimage").src = hyperlink.src;
     document.getElementById("srcinput").value = hyperlink.src;
-
+    document.getElementById("altinput").value = hyperlink.alt;
+    document.getElementById("mainimage").alt = hyperlink.alt;
 }
 
 loadlinks();
@@ -124,7 +128,34 @@ function loadlinks(){
         newbutt.innerHTML = "UP";
         newbutt.id = "up" + index.toString();
         newli.appendChild(newbutt);
-
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(2));
+            if(localindex != 0){
+                var temparray = [];
+                
+                for(var tempindex = 0;tempindex < localindex - 1;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[localindex]);
+                temparray.push(hyperlink.list[localindex - 1]);
+                for(var tempindex = localindex + 1;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }                
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+            else{
+                var temparray = [];
+                for(var tempindex = 1;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[0]);
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+        }
 
         var newbutt = document.createElement("SPAN");
         newbutt.className = "button";
@@ -132,20 +163,54 @@ function loadlinks(){
         newbutt.id = "down" + index.toString();
         newli.appendChild(newbutt);
     
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(4));
+            if(localindex != hyperlink.list.length-1){
+                var temparray = [];
+                for(var tempindex = 0;tempindex < localindex;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[localindex + 1]);
+                temparray.push(hyperlink.list[localindex]);
+                for(var tempindex = localindex + 2;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }                
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+            else{
+                var temparray = [];
+                temparray.push(hyperlink.list[hyperlink.list.length - 1]);
+                for(var tempindex = 1;tempindex < hyperlink.list.length - 1;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+        }    
+    
+    
         var newbutt = document.createElement("SPAN");
+        //reusing the same variable name is a form of recycling;#dealwithit
         newbutt.className = "button";
         newbutt.innerHTML = "DELETE";
         newbutt.id = "delete" + index.toString();
         newli.appendChild(newbutt);
         newbutt.onclick = function(){
             var localindex = parseInt(this.id.substring(6));
-            var temparray = [];
-            for(var tempindex = 0;tempindex < hyperlink.list.length;tempindex++){
-                
+            if(hyperlink.list.length > 1){
+                var temparray = [];
+                for(var tempindex = 0;tempindex < hyperlink.list.length;tempindex++){
+                    if(tempindex != localindex){
+                        temparray.push(hyperlink.list[tempindex]);
+                    }
+                }
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
             }
-
-            savejson();
-            loadlinks();
         }
     
         var newbutt = document.createElement("SPAN");
@@ -220,11 +285,22 @@ function savejson(){
 }
 
 
+document.getElementById("textio").value = JSON.stringify(hyperlink,null,"    ");
 
+document.getElementById("importbutton").onclick = function(){
+    hyperlink = JSON.parse(document.getElementById("textio").value);
+    loadimage();
+    loadserver();
+    loadlinks();
+    savejson();
+}
 
 </script>
 <style>
-input{
+#importbutton{
+    width:6em;
+}
+input,textarea{
     background-color:black;
     color:#00ff00;
     font-family:courier;
