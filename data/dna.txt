@@ -99,6 +99,7 @@
         "printer.txt",
         "robotfeed.js",
         "symbol.html",
-        "traceicon.html"
+        "traceicon.html",
+        "trashmagicicon.html"
     ]
 }
