@@ -1,34 +1,4 @@
-## [HOME](scrolls/home)
-
-# Trash Robot Books
-
-## [up a level](../)
-
-# Geometron Magic
-
-![](geometronmagic.png)
-
-[buy hardcopy to support TRASH ROBOT](https://www.lulu.com/en/us/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html)
-
-[letter size pdf](https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/main-large.pdf)
-
-by Trash Robot
-
- 1. [Magic](scrolls/magic)
- 2. [Trash Magic](scrolls/trashmagic)
- 3. [The Pibrary](scrolls/pibrary)
- 4. [The Magic Books](scrolls/magicbooks)
- 5. [The People of the Network](scrolls/people)
- 7. [Cybermagic](scrolls/cybermagic)
- 7. [Geometric Programming](scrolls/geometricprogramming)
- 8. [Symbol Magic](scrolls/symbolmagic)
- 9. [Action Geometry](scrolls/actiongeometry)
- 10. [Icon Magic](scrolls/iconmagic)
- 11. [Full Geometron](scrolls/fullgeometron)
- 12. [Community Actions](scrolls/actions)
- 13. [The Path of Geometron](scrolls/path)
-
-[links](scrolls/links)
+[home scroll](scrolls/home)
 
 #  <span style = "color:red">Γ</span><span style = "color:orange">ε</span><span style = "color:yellow">ω</span><span style = "color:green">μ</span><span style = "color:blue">ε</span><span style = "color:purple">τ</span><span style = "color:red">ρ</span><span style = "color:orange">ο</span><span style = "color:yellow">ν</span>
 
