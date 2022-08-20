@@ -337,7 +337,7 @@ input{
     max-width:80%;
     display:block;
     margin:auto;
-    background-color:none;
+    background-color:#808080;
 }
 #mainmap{
     position:absolute;

@@ -4,6 +4,10 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/README.md",
+            "text": "BUILD TRASH MAGIC MEDIA SERVER"
+        },
+        {
             "href": "scroll.html",
             "text": "TRASH MAGIC SCROLLS"
         },
