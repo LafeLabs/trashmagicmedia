@@ -29,12 +29,8 @@ LANGUGE IS HOW THE MIND PARSES REALITY
         
 <table id = "newtable">
     <tr>
-        <td>new page name:</td>
+        <td>new fork name:</td>
         <td><input/><a id = "dirlink"></a></td>
-    </tr>
-    <tr id = "replicatorline">
-        <td>external replicator url</td>
-        <td><input/></td>
     </tr>
 </table>
 
@@ -83,13 +79,7 @@ inputs[0].onchange = function() {
 }
 
 inputs[0].value = "";    
-inputs[1].value = "";
 
-inputs[1].onchange = function(){
-    var newa = document.getElementById("dirlink");
-    newa.innerHTML += "&replicator=" + this.value; 
-    newa.href += "&replicator=" + this.value; 
-}
 
 
 
@@ -130,16 +120,17 @@ document.getElementById("deleteonbutton").onclick = function(){
     body{
         font-size:2em;
         background-color:black;
+        font-family:courier;
         color:#00ff00;
+    }
+    input{
+        background-color:black;
+        font-family:courier;
+        color:#00ff00;
+        border-color:#00ff00;
     }
     a{
         color:#ff2cb4;
-    }
-    input{
-        border-color:#00ff00;
-        color:#00ff00;
-        background-color:black;
-        font-family:courier;
     }
     table{
         font-family:courier;
