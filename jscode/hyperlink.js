@@ -12,6 +12,10 @@ hyperlink = {
             "text": "TRASH MAGIC SCROLLS"
         },
         {
+            "href": "hyperlink/",
+            "text": "HYPERLINK PAGE BUILDER"
+        },
+        {
             "href": "web/",
             "text": "WEB"
         },
