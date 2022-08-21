@@ -4,6 +4,10 @@ hyperlink = {
     "alt": "flags",
     "list": [
         {
+            "href": "https://www.eventbrite.com/e/anarchist-book-distro-on-the-trash-magic-network-tickets-405907990727",
+            "text": "ANARCHIST BOOK DISTRO EVENTBRITE CLASS WEDENSDAY AUGUST 24TH 2022, 8:30 PM FREE ONLINE CLASS"
+        },
+        {
             "href": "https://www.lulu.com/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html",
             "text": "buy geometron magic book from Lulu press"
         },
