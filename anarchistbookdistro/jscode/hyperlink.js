@@ -1,6 +1,6 @@
 hyperlink = {
     "url": "http://10.0.0.27/",
-    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/replicator.svg",
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
