@@ -4,7 +4,15 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
-            "href": "https://www.eventbrite.com/",
+            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/README.md",
+            "text": "TRASH MAGIC MEDIA REPLICATOR"
+        },
+        {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md",
+            "text": "ANARCHIST BOOK DISTRO REPLICATOR"
+        },
+        {
+            "href": "https://www.eventbrite.com/e/anarchist-book-distro-on-the-trash-magic-network-tickets-405907990727",
             "text": "EVENTBRITE CLASS"
         },
         {
@@ -14,10 +22,6 @@ hyperlink = {
         {
             "href": "media.html",
             "text": "BOOK DEPOSITORY"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md",
-            "text": "Replicate anarchist book distro server"
         }
     ]
 };
