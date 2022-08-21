@@ -12,16 +12,36 @@ Click this link to copy the solar station home scroll to your main trash magic h
 
 Mutual Aid station.
 
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/battery.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/charger.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/connectors.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/dvm.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/hangingbattery.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/hangingsolarpanel.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/solarpanellabel.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/images/usb.png)
+
  - 12 volt lead acid battery
  - volt meter
  - standard training session in use of volt mater care of battery
  - 20 watt solar panel
  - battery charger/regulator
+ - USB charger with appropriate 12 volt connectors
+ - converters to 12 volt barrel connectors so you can drive Raspberry Pi
 
 ### Links
 
  - [images](images.html)
  - [media](media.html)
+
 
 ### Socials
 
