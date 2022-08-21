@@ -2,6 +2,8 @@
 
 ## [TRASH MAGIC MEDIA](https://github.com/LafeLabs/trashmagicmedia/blob/main/README.md)
 
+## [EVENTBRITE CLASS AUGUST 24, 2022, 8:30 PM EASTERN TIME](https://www.eventbrite.com/e/anarchist-book-distro-on-the-trash-magic-network-tickets-405907990727)
+
 # [ANARCHIST BOOK DISTRO](https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md)
 
 - [download XAMPP](https://www.apachefriends.org/index.html) and install, 
