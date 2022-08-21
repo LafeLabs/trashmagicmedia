@@ -18,6 +18,9 @@ mkdir("media");
 mkdir("web");
 mkdir("scrolls");
 mkdir("jscode");
+mkdir("hyperlink");
+copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt","hyperlink/replicator.php");
+
 
 copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt","replicator.php");
 
