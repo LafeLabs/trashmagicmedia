@@ -1,6 +1,12 @@
 # [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
 
-## [copy.php?from=
+Click this link to make your trash magic media home page the scroll page:
+
+## [http://localhost/copy.php?from=scroll.html&to=index.html](http://localhost/copy.php?from=scroll.html&to=index.html)
+
+Click this link to copy the solar station home scroll to your main trash magic home scroll on your server.
+
+## [http://localhost/copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/scrolls/home&to=scrolls/home](http://localhost/copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/solarstation/scrolls/home&to=scrolls/home)
 
 # Solar Station
 
