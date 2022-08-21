@@ -1,3 +1,5 @@
+## [HOME](index.html)
+
 ## [TRASH MAGIC MEDIA](https://github.com/LafeLabs/trashmagicmedia/blob/main/README.md)
 
 # [ANARCHIST BOOK DISTRO](https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md)
@@ -10,13 +12,8 @@
 - or navigate there with this link to [http://localhost/](http://localhost/)
 - create desktop shortcuts to media/ and images/ folders in the xampp/htdocs folder
 - put sub-folders in the media folder for different kinds of media, put media you want to share in those folders, make a "books" and "music" folder and put pdfs of books in the books folder and .mp3's of songs in the music folder
-- [copy jscode/hyperlink.js]()
+- [copy jscode/hyperlink.js](http://localhost/copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/jscode/hyperlink.js&to=jscode/hyperlink.js)
 - find your ip address from your wifi settings and put it in the input at the bottom of the screen as indicated(http://[your ip address]/) and hit "enter" to update the permanent value of the server url
- - point [Web 1.0 hyperlink](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
  - build your own public self replicating hyperlink by first creating a [hyperlink server here by clicking this link](http://localhost/hyperlink/replicator.php), then click through to see it or
  - [click on https://localhost/hyperlink/ to see the hyperlink](https://localhost/hyperlink/) 
  - click the little asterisk in the upper left corner to edit.  Copy and paste the [JSON code](http://localhost/jscode/hyperlink.js) from the bottom of the screen into any other hyperlink page to replicate your page.  [Fork down](http://localhost/hyperlink/fork.html) to make more hyperlink pages. 
- - point cardboard signs to web 1.0 pages
- - post ads in the form of images from the main page
- - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
- - [to make the page into the solar station page go to that README by clicking this link](https://github.com/LafeLabs/trashmagicmedia/tree/main/solarstation) and the links theirein.
