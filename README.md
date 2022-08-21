@@ -16,9 +16,13 @@
 - put sub-folders in the media folder for different kinds of media, put media you want to share in those folders, make a "books" and "music" folder and put pdfs of books in the books folder and .mp3's of songs in the music folder
 - find your ip address from your wifi settings and put it in the input at the bottom of the screen as indicated(http://[your ip address]/) and hit "enter" to update the permanent value of the server url
  - point [Web 1.0 hyperlink](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
+ - build your own public self replicating hyperlink by first creating a [hyperlink server here by clicking this link](http://localhost/hyperlink/replicator.php), then click through to see it or
+ - [click on https://localhost/hyperlink/ to see the hyperlink](https://localhost/hyperlink/) 
+ - click the little asterisk in the upper left corner to edit.  Copy and paste the [JSON code](http://localhost/jscode/hyperlink.js) from the bottom of the screen into any other hyperlink page to replicate your page.  [Fork down](http://localhost/hyperlink/fork.html) to make more hyperlink pages. 
  - point cardboard signs to web 1.0 pages
  - post ads in the form of images from the main page
  - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
+ - [to make the page into the solar station page go to that README by clicking this link](https://github.com/LafeLabs/trashmagicmedia/tree/main/solarstation) and the links theirein.
 
 This is local media.  We can install web servers on *everything*: mac and Windows laptops and desktops, Raspberry Pi, and Android and iOS Devices.  Any device can be a server, and we drop files on it to share with others on the same wireless network.  When every device is a server as well as a client, people who share wireless networks can media without the Cloud.  
 
