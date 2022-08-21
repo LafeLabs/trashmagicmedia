@@ -125,6 +125,7 @@
         "simplecube",
         "skeletron",
         "skeletron.md",
+        "solarstation",
         "southplatte",
         "srs.md",
         "srwp",
