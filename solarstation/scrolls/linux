@@ -1,0 +1,113 @@
+## [home](scrolls/home)
+
+#  Linux
+
+As with all sections of the pi repo we must re-evaluate the *absolute minimum* set of things to put in here and still get the system we want.  Operators must be able to be responsible for the whole system so that system has to be as simple as possible.
+
+## Topics
+
+ - users
+ - basic file and directory movement and manipulation
+ - permissions
+ - text editors
+ - file system structure, system files
+ - GPIB
+ - installation of packages
+ - shell scripts
+ - python
+ - php
+
+
+## What we want to know how to do
+
+ - Open a file in all major text editors, edit, close.
+ - create a new file, copy it, destroy it
+ - create a new directory, destroy it
+ - list files in a directory, change their permissions
+ - install a new python package and new general package with pip and apt-get
+ - create a little .php script and run it
+ - create a little python script and run it
+ - use ifconfig to see network information
+ - write a shell script to do stuff, call it from php, call php from shell script, python to php php to python etc
+ - make a thing happen on bootup
+ - file completion(use tab)
+
+
+## external links
+
+ - [linux wikipedia](https://en.wikipedia.org/wiki/Linux)
+ - [Raspbian Raspberry pi OS](https://en.wikipedia.org/wiki/Raspberry_Pi_OS)
+ - [ubuntu guide](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+ - [free software foundation](https://www.fsf.org/)
+ - [raspberrypi.org](https://www.raspberrypi.org/)
+
+## commands
+
+ - `cd`: change directory
+ - `ls`: list files in a directory
+ - `mkdir`: make new directory
+ - `rmdir`: remove directory(delete)
+ - `pwd`: present working directory(where am I?)
+ - `whoami`: who am I(identify current user identity)? 
+ - `cp`: copy file
+ - `rm`: remove file(delete)
+ - `more`: list contents of a file
+ - `emacs, nano, vim, vi`:text editors
+ - `pip`: package installer for Python
+ - `apt-get`:Linux package manager used to install things on the Raspberry Pi
+ - `ssh`:secure shell, used for logging into Raspberry Pi remotely
+ - `chmod`:command used to change the "permissions" of a file
+ - `rm`: "remove", the command to delete files on Linux
+ - `touch`: create a new empty file 
+ - `curl`: utility for transferring files from a server, used to copy the replicator scripts of the initial server, stands for "Client URL"
+ - `sudo`: run a command as "super user" or "root", the user with maximum power on the system
+ - `passwd`: set password for an account
+ - `alias`: map a command name to another command
+ - `php`: use the php command to run php scripts. PHP is the only language used in our system for manipulating files on servers from the web browser. Files all end in .php
+ - `python`: run a program in the Python language, which ends with .py
+ - `grep`: utility used to search for regular expressions in a file ("get regular expression")
+ - `top, ps, jobs, kill`: commands used to see what jobs are running on the system and kill them
+ - `ifconfig`: configure the network interface. Used to see and modify networking information
+ - `man`: access the Linux manual entry for a command
+ 
+
+## Working with files
+
+
+Open a terminal by clicking the black rectangle in the menu bar.  See your present working directory by typing 
+
+```
+pwd
+```
+
+Then move into the web directory on the Raspberry pi using 
+
+```
+cd /var/www/html
+```
+
+Notice that in linux we use forward slashes just like in web addresses, rather than back slashes used in Microsoft systems.
+
+List the files in the directory by typing 
+```
+ls
+```
+Now to read out the contents of a file type 
+```
+more index.html
+```
+and you will see the contents of the file index.html which is the top level home page of the main Geometron web server on the Pi.  
+
+Now move into your home directory, denoted by a tilde:
+```
+cd ~
+```
+and create a new file using "touch"
+```
+touch foo
+```
+Now you want to list the files and see how big they all are using the -l extension(long) as follows:
+```
+ls -l
+```
+This should show the files along a bunch more information, including permissions, edit dates, the owner, the file size in bytes, 

@@ -1,0 +1,111 @@
+## [home](scrolls/home)
+
+What is this all about? Why is there an Arduino section here?  What is this for?  This is not for robotics or general interest.  It is all focused on the pi which means it is about ONE thing, measuring the environment.  We will measure sensor outputs or analog inputs, turn it into JSON, send it down the serial, then use python to read it and save it to a file which can then be processed with javascript, using p5.js
+
+This is the work flow here, and both arduino and python exist for the sole purpose of supporting this:
+
+sensor &rarr; arduino &rarr; serial &rarr; python &rarr; data/data.txt &rarr; p5js &rarr; html
+
+[open arduino class](https://github.com/LafeLabs/openarduino)
+
+## Data logging:
+
+ - water level
+ - air and water temperature
+ - water clarity
+ - water chemical sensors with slimezistor
+ - battery voltage
+ - solar panel voltage
+
+All these go into JSON objects which are put down the serial.  Python reads multiple lines, takes one from the middle to prevent partial JSON objects, parses it, stores it as a data file.  JavaScript takes that data file, turns it into JSON and saves it. Then JavaScript with p5js and html makes plots visible on the rest of the network.
+
+[dataloggercode/](dataloggercode/)
+
+
+## Control
+
+Serial commands drive  a motor
+
+Serial commands drive a neopixel array.
+
+## Trash Robot
+
+button controller construction, shield boards with motor drivers, geometron to control arbitrary movements to draw generalized symbols.
+
+## Motor speed control
+
+## Generic neopixel illumination
+
+## sensor to motor or neopixel
+
+
+
+how to do the tar ball thing to get a later version of arduino which has the plotting
+
+```
+cd ~
+cd Downloads
+ls
+tar -xf arduino-####-linuxarm.tar.xz
+sudo mv arduino-#### /opt
+sudo /opt/arduino-####/install.sh
+```
+
+[https://www.raspberrypi-spy.co.uk/2020/12/install-arduino-ide-on-raspberry-pi/](https://www.raspberrypi-spy.co.uk/2020/12/install-arduino-ide-on-raspberry-pi/)
+
+trying to get data from the arduino to python
+
+
+### batteryvoltage.ino
+
+```
+#include <ArduinoJson.h>
+
+int x;
+float voltsperpoint = 12.73/428.0;//based on measuring with DVM fully charged battery
+float v = 0.0;
+
+void setup() {
+ Serial.begin(9600);
+}
+
+void loop() {
+
+  x = analogRead(A1);
+  v = voltsperpoint*x;//convert to volts
+  DynamicJsonDocument measurement(200);
+  measurement["x"] = x;
+  measurement["v"] = v;
+  serializeJson(measurement, Serial);
+  Serial.println();
+
+}
+```
+
+### batteryvoltage.py
+
+```
+import serial
+import json
+import time
+ser = serial.Serial('/dev/ttyUSB0', 9600)
+data = ""
+for x in range(4):
+    data += ser.readline()
+cleandatastring = data.decode('latin1')
+dataarray = cleandatastring.split('\n')
+secondelement = dataarray[1];
+jsondata = json.loads(secondelement)
+timestamp = round(time.time())
+jsondata['timestamp'] = timestamp
+jsondatastring = json.dumps(jsondata) + ",\n"
+file = open("datafile.txt", "a")
+file.write(jsondatastring)
+file.close()
+#print(jsondatastring)
+ser.close()
+```
+
+
+
+

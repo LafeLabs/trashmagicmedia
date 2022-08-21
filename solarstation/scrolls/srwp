@@ -1,0 +1,27 @@
+[home](index.html)
+
+# Web Page Factory
+
+1. Choose a domain and buy it, and get hosting, and get a free certificate to use https
+2. Replicate Geometron Thing from [github.com/lafelabs/thing/](https://github.com/lafelabs/thing/) to the domain
+3. On a Raspberry Pi Geometron server, create a scroll for the new page
+4. Scroll begins with the title which is the domain, with a link to the domain
+5. Use [qrcode.html](qrcode.html) to generate a QR code for the address, being sure to put in the full address starting with http:// or https://
+6. Save the QR code to the local hard drive, then upload to [imgur.com](https://www.imgur.com), copy the link, and insert it as an image into the scroll for the web page
+7. Use the [symbol factory at symbol.html](symbol.html) to create a spray paint stencil of the domain name with an outer border for cutting from a laser cutter or by hand tracing with an xacto knife. Change the font to the laser cut font using the font tool, first clicking the button for "LASER FONT", then "IMPORT" and then "SAVE" and then returning to the main screen. Hit enter to switch to Geometron font mode, type out the domain, and hit enter two more times to get back to the Geometron Action cursor, then edit the glyph to make the words have a good balance and draw a geometric border.  Save.  Go to the [symbol feed](symbolfeed.html), right click the .svg symbol(not .png), and "open image in new tab", and then use developer tools to "view source".  Copy the entire source of the .svg file to the clipboard, and paste in a pastebin, naming the pastebin based on the name of the domain.  
+8. Get the url for the RAW version of the pastebin, copy that to the clipboard, and open the [set editor at set.html](set.html), then delete all existing set elements and drop the pastebin url from the clipboard into the "URL" field.  Then put "iconsymbols/laserstencil.svg" into the "NAME" field, and hit the "PUBLISH" button to add that element to the set.  Once this is added, click on the link to setreplicator.php, and then go back to editing the main scroll for the page, and add an image which has as its url "iconsymbols/laserstencil.svg".
+9. Create a [flag](maps/flag), photograph it, post the photograph to imgur, and drop the image into the main scroll.
+10. Think of a logo for the page, and capture that logo as an icon using the [Icon Factory](scrolls/iconfactory.md).  Save the glyph for the icon in a paste bin and link to it from the scroll.  
+11. Save the icon to the [symbol feed](symbolfeed.html) using [lasericon.html](lasericon.html), then again right click on the .svg file open it in a new tab, view source, copy the code to the clipboard, paste in pastebin, get the RAW link, and copy that link to the clipboard. 
+12. With the RAW link to the source code of the .svg file, add that to the [set](set.html) as the URL, with the NAME pointing to "iconsymbols/lasericon.svg", then hit PUBLISH, click on setreplicator.php again and add an image to the main scroll which points to that location.
+13. Use [icon3d.html](icon3d.html) to create a 3d model of the icon in relief. When it loads into the screen, hit the SAVE button, and then click the link to [threejs.html](threejs.html) to create an .stl file.  Select all the text in the text area in the upper right corner of the screen, then copy all of it to the clipboard, and paste it in a pastebin.  Copy the address of the RAW of the pastebin to the clipboard.
+14. Enter the RAW pastebin address from the clipboard in the "URL" field in [set.html](set.html), and put "iconsymbols/icon3d.stl" in the "NAME" field.  Hit the "PUBLISH" button, then click the link to setreplicator.php and return to the editor of the main scroll, and add a link to "iconsymbols/icon3d.stl" with the text also reading that.
+15. Go to [threejsinvert.html](threejsinvert.html) to get the inverted 3d model, and repeat the step from 13, copy/pasting the .stl code into a pastebin, and copying the RAW url of the pastebin to the clipboard
+16. Repeat step 14, adding the url for the RAW pastebin in URL and putting "iconsymbols/icon3dstap.stl" in NAME, then hitting the PUBLISH button and clicking setreplicator.php, and going back to the main scroll and adding a link to "iconsymbols/icon3dstamp.stl" for people to download.
+17. View the model at [three.html](three.html) and screen shot a nice view of it, upload that to imgur., and paste that image into the main scroll.
+18. Copy entire scroll to a pastebin. Get the url of the RAW of that pastebin.
+19. Add the RAW to the URL in [set.html](set.html), with "scrolls/home" in the NAME and PUBLISH it.  Copy the contents of the text area in set.html to the clipboard.  Save those somewhere.  Now those can be pasted into the textarea in your hosted domain, IMPORTed, and then refresh the browser to make sure it took.  If it did, hit setreplicator.php to copy everything over.  Then go home, and you should see the scroll for the page as the home scroll.
+20. Distribute all media until they replicate. 
+
+
+
