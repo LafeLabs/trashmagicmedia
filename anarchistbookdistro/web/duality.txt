@@ -1,0 +1,17 @@
+{
+    "top": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Fluorite_octahedron.jpg/2560px-Fluorite_octahedron.jpg",
+        "x": 0.0515676761513968,
+        "y": 0.056236103384954064,
+        "w": 0.6549707602339182,
+        "angle": 218.02653015913165
+    },
+    "bottom": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Selpologne.jpg/1920px-Selpologne.jpg",
+        "x": 0.07078349812478693,
+        "y": 0.042164336856460996,
+        "w": 0.549254688032731,
+        "angle": 0
+    },
+    "theta": 0.785398
+}

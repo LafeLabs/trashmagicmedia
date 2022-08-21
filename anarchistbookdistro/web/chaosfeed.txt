@@ -1,0 +1,9 @@
+[
+    "<span style = \"font-size:1em;color:#00ff00;background-color:black;font-family:courier\">HTML CAN BE USED IN THE TEXT BOXES</span>",
+    "<span style = \"font-size:1em;color:#00ff00;background-color:black;\">HTML CAN BE USED IN THE TEXT BOXES</span>",
+    "<span style = \"font-size:1em;color:pink;\">HTML CAN BE USED IN THE TEXT BOXES</span>",
+    "this is not like twitter, there are no users. no data. things are created and destroyed constantly.",
+    "just type and hit enter",
+    "Chaos Feed!! Type in box and hit enter to post. Red x's delete.💥 button resets feed.  Let the chaos ensue. 🔄 or enter refreshes feed to see what other people have posted.",
+    "<a href = \"index.html\">home</a>"
+]

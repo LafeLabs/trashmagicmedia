@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+Energy Calculator
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+</head>
+<body>    
+
+<a href = "index.html">HOME</a>
+
+<div id ="pet">$$P = \frac{E}{t}$$</div>
+<h2>Energy</h2>
+<table id = "ejtable">
+    <tr>
+        <td>J:</td>
+        <td><input/></td>
+        <td>kJ:</td>
+        <td><input/></td>
+        <td>MJ:</td>
+        <td><input/></td>
+        <td>GJ:</td>
+        <td><input/></td>
+        <td>TJ:</td>
+        <td><input/></td>
+    </tr>
+    <tr>
+        <td>kWh:</td>
+        <td><input/></td>
+        <td>MWh:</td>
+        <td><input/></td>
+        <td>GWh:</td>
+        <td><input/></td>
+        <td>BTU:</td>
+        <td><input/></td>
+    </tr>
+</table>
+<table id = "eqtable">
+    <tr>
+        <td>Barrels of Oil Equivalent[BOE]:</td>
+        <td><input id = "BOEinput"></td>
+    </tr>
+    <tr>
+        <td>Gallons of Gasoline:</td>
+        <td><input id = "gasolinegallonsinput"></td>
+    </tr>
+    <tr>
+        <td>Liters of Gasoline:</td>
+        <td><input id = "gasonlinelitersinput"></td>
+    </tr>
+    <tr>
+        <td>Cubic Feet of Natural Gas:</td>
+        <td><input id = "naturalgascubicfeetinput"></td>
+    </tr>
+    <tr>
+        <td>Cubic meters of natural gas:</td>
+        <td><input id = "naturalgascubicmetersinput"></td>
+    </tr>
+</table>
+
+<h2>Time</h2>
+<table id = "ttable">
+    <tr>
+        <td>s:</td>
+        <td><input/></td>
+        <td>min:</td>
+        <td><input/></td>
+        <td>hrs:</td>
+        <td><input/></td>
+        <td>days:</td>
+        <td><input/></td>
+        <td>years:</td>
+        <td><input/></td>
+    </tr>
+</table>
+
+<h2>Power</h2>
+<table id = "ptable">
+    <tr>
+        <td>W:</td>
+        <td><input/></td>
+        <td>kW:</td>
+        <td><input/></td>
+        <td>MW:</td>
+        <td><input/></td>
+        <td>GW:</td>
+        <td><input/></td>
+        <td>TW:</td>
+        <td><input/></td>
+        <td>hp:</td>
+        <td><input/></td>
+    </tr>p
+</table>
+<table id = "suntable">
+    <tr>
+        <td>square meters direct sun:</td>
+        <td><input id = "solarm2"/></td><td>$($<span id = "sunside"></span> m$)^2$</td>
+    </tr>
+    <tr>
+        <td>square feet direct sun:</td>
+        <td><input id = "solarft2"/></td>
+    </tr>
+    <tr>
+        <td>square inches direct sun:</td>
+        <td><input id = "solarin2"/></td>
+    </tr>
+
+</table>
+<script>
+
+E = 1.0;
+t = 1.0;
+P = 1.0;
+
+ejinputs = document.getElementById("ejtable").getElementsByTagName("INPUT");
+
+updateejinputs(E);
+function updateejinputs(J){
+    ejinputs[0].value = (J).toPrecision(2);//J
+    ejinputs[1].value = (J/1000).toPrecision(2);//kJ
+    ejinputs[2].value = (J/1e6).toPrecision(2);//MJ
+    ejinputs[3].value = (J/1e9).toPrecision(2);//GJ
+    ejinputs[4].value = (J/1e12).toPrecision(2);//TJ
+    ejinputs[5].value = (J/3.6e6).toPrecision(2);//kWh
+    ejinputs[6].value = (J/3.6e9).toPrecision(2);//MWh
+    ejinputs[7].value = (J/3.6e12).toPrecision(2);//GWh
+    ejinputs[8].value = (J/1055.06).toPrecision(2);//BTU
+    
+}
+
+ejinputs[0].onchange = function(){
+    E = parseFloat(this.value);//J
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+ejinputs[1].onchange = function(){
+    E = parseFloat(this.value*1000);//kJ
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+   
+}
+ejinputs[2].onchange = function(){
+    E = parseFloat(this.value*1e6);//MJ
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+ejinputs[3].onchange = function(){
+    E = parseFloat(this.value*1e9)//GJ
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+ejinputs[4].onchange = function(){
+    E = parseFloat(this.value*1e12)//TJ
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+
+}
+
+
+ejinputs[5].onchange = function(){
+    E = parseFloat(this.value*3.6e+6)//kWh
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+
+ejinputs[6].onchange = function(){
+    E = parseFloat(this.value*3.6e+9)//MWh
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+
+ejinputs[7].onchange = function(){
+    E = parseFloat(this.value*3.6e+12)//GWh
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+
+ejinputs[8].onchange = function(){
+    E = parseFloat(this.value*1055.06)//BTU
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+
+
+eqinputs = document.getElementById("eqtable").getElementsByTagName("INPUT");
+
+updateeqinputs(1.0);
+function updateeqinputs(J){
+    eqinputs[0].value = (J/6.118e+9).toPrecision(2);//BOE
+    eqinputs[1].value = (19*J/6.118e+9).toPrecision(2);//gallon gas
+    eqinputs[2].value = (72*J/6.118e+9).toPrecision(2);//liters gas
+    eqinputs[3].value = (5800*J/6.118e+9).toPrecision(2);//ft^3 nat gas
+    eqinputs[4].value = (164*J/6.118e+9).toPrecision(2);//m^3 nat gas
+}
+
+eqinputs[0].onchange = function(){
+    E = parseFloat(this.value*6.118e+9);//BOE
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+eqinputs[1].onchange = function(){
+    E = parseFloat(this.value*6.118e+9/19);//gallon gas
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+
+    
+}
+eqinputs[2].onchange = function(){
+    E = parseFloat(this.value*6.118e+9/72);//liters gas
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+
+    
+}
+eqinputs[3].onchange = function(){
+    E = parseFloat(this.value*6.118e+9/5800);//ft^3 nat gas
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+eqinputs[4].onchange = function(){
+    E = parseFloat(this.value*6.118e+9/164);//m^3 nat gas
+    updateejinputs(E);
+    updateeqinputs(E);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+   
+}
+
+
+
+
+tinputs = document.getElementById("ttable").getElementsByTagName("INPUT");
+updatetinputs(1.0);
+
+function updatetinputs(t){
+    tinputs[0].value = (t).toPrecision(2);//s   
+    tinputs[1].value = (t/60).toPrecision(2);//min   
+    tinputs[2].value = (t/3600).toPrecision(2);//hrs   
+    tinputs[3].value = (t/86400).toPrecision(2);//days   
+    tinputs[4].value = (t/3.154e+7).toPrecision(2);//years   
+}
+
+tinputs[0].onchange = function(){
+    t = parseFloat(this.value);//s
+    updatetinputs(t);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+tinputs[1].onchange = function(){
+    t = parseFloat(this.value*60);//min
+    updatetinputs(t);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+tinputs[2].onchange = function(){
+    t = parseFloat(this.value*3600);//hrs
+    updatetinputs(t);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+tinputs[3].onchange = function(){
+    t = parseFloat(this.value*86400);//days
+    updatetinputs(t);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+    
+}
+tinputs[4].onchange = function(){
+    t = parseFloat(this.value*3.15e7);//years
+    updatetinputs(t);
+    P = E/t;
+    updatepinputs(P);
+    updatesuninputs(P);
+}
+
+
+
+pinputs = document.getElementById("ptable").getElementsByTagName("INPUT");
+updatepinputs(1.0);
+function updatepinputs(p){
+    pinputs[0].value = (p).toPrecision(2);//W   
+    pinputs[1].value = (p/1e3).toPrecision(2);//kW   
+    pinputs[2].value = (p/1e6).toPrecision(2);//MW   
+    pinputs[3].value = (p/1e9).toPrecision(2);//GW   
+    pinputs[4].value = (p/1e12).toPrecision(2);//TW   
+    pinputs[5].value = (p/745.7).toPrecision(2);//hp
+}
+
+suninputs = document.getElementById("suntable").getElementsByTagName("INPUT");
+updatesuninputs(1.0);
+function updatesuninputs(p){
+    suninputs[0].value = (p/1000).toPrecision(2);//m2 sun   
+    suninputs[1].value = (10.76*p/1000).toPrecision(2);//ft2 sun   
+    suninputs[2].value = (1550*p/1000).toPrecision(2);//in2 sun   
+    document.getElementById("sunside").innerHTML = (Math.sqrt(p/1000)).toPrecision(2);
+}
+
+
+
+
+
+</script>
+<style>
+    a{
+        color:#ff2cb4;
+    }
+
+td{
+    text-align:right;
+}
+body{
+    color:#00ff00;
+    font-family:courier;
+    background-color:black;
+    border-color:#00ff00;
+    font-size:36px;
+}
+input{
+    color:#00ff00;
+    font-family:courier;
+    background-color:black;
+    border-color:#00ff00;
+    font-size:24px;
+    width:4em;   
+}
+</style>
+</body>
+</html>
