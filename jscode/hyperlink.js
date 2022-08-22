@@ -1,10 +1,10 @@
 hyperlink = {
     "url": "http://10.0.0.27/",
-    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.svg",
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/README.md",
+            "href": "https://github.com/LafeLabs/trashmagicmedia",
             "text": "BUILD TRASH MAGIC MEDIA SERVER"
         },
         {
