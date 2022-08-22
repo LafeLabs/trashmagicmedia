@@ -1,7 +1,7 @@
 hyperlink = {
     "url": "https://www.trashrobot.org",
-    "src": "https://i.imgur.com/kHYleZH.jpg",
-    "alt": "flags",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
+    "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
             "href": "https://www.eventbrite.com/e/anarchist-book-distro-on-the-trash-magic-network-tickets-405907990727",
