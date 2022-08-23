@@ -1,10 +1,8 @@
 ## [http://localhost/](http://localhost/)
 
-# Trash Magic Media
+# [Trash Magic Media](https://github.com/LafeLabs/trashmagicmedia)
 
-# Blart self-replicating fan web page
-
-
+# [Blart self-replicating fan web page](https://github.com/LafeLabs/trashmagicmedia/tree/main/blart)
 
 # Replicator
 

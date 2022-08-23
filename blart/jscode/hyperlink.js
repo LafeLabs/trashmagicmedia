@@ -4,8 +4,8 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
-            "href": "media.html",
-            "text": "MEDIA"
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
+            "text": "REPLICATOR"
         },
         {
             "href": "media.html",
