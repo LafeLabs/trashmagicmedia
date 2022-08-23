@@ -1,0 +1,100 @@
+[home](scrolls/home)
+
+# FAQ
+
+### What is our goal?
+
+Our goal is to build a collection of easy-to-copy technologies which can create all the elements of a good life freely to all people using only trash and the sun.  Geometron was created to act as the medium by which this technology is transmitted as it is invented.
+
+### What is Geometron?
+
+Two things: the Geometron language and the Geometron system.
+
+### What is the System?
+
+The Geometron system is a decentralized social media system consisting of self-replicating documents(they contain code which replicates them across the Web), intended to share all kinds of written and graphical information.  
+
+### What kinds of documents exist in the system?
+
+Text documents, "feeds" equivalent to feeds in social media, images, annotated images, symbols, icons, custom geometric constructions, web applications.  
+
+### Why did we create the Geometron System?
+
+The system exists to build the infrastructure for a true "sharing economy"(as opposed to the predatory model of Silicon Valley).  As with predatory apps like Uber and AirBnB this is intended for sharing of *physical* things.  Both exchange of existing things and detailed documentation of how to replicate a physical thing.  
+
+### What is the Geometron language?
+
+Geometron is a language for controlling machines using only geometry.  Geometry is used to construct symbols, which the human operator uses to create programs to do geometry.  This is how all the graphics are created, but is also how machines are directly controlled for robotics, automation, and fabrication.  
+
+### Why did we create the Geometron language?
+
+We created Geometron to democratize the control of machines.  All machines.  Machines we build, machines we hack, machines we use.  Media machines, production machines, agricultural machines, art machines.
+
+### What can Geometron do for you?
+
+Build connections, make money, create post-capitalist industrial base.  Sharing documents is fundamentally what everything you do online is.  Our network is based on local physical connections, which enables both monetary and non-monetary transactions of all kinds to be aided in the same way the Internet aids them now.  Sell things, buy things, do labor for money, hire people, promote a business, run a market, find friends and community, coordinate mutual aid distribution.  All elements of a local economy can be facilitated with Geometron.  Geometron can therefore be used to get all the benefits of an economy: find the things you need to live, make a living under the current system, and build dual power to help people or get help outside the current system.
+
+### What can you do for Geometron?
+
+Build and share content on existing Geometron servers, install your own Geometron servers and share with others, tell people about Geometron.
+
+### How does user data work in Geometron?
+
+There is no user data in Geometron.  There are no users, no usernames, no logins, no passwords.  There is simply a universe of freely replicating documents, detached from any kind of personal identification of any kind.  
+
+### Is Geometron encrypted?
+
+By default, no.  Documents are designed to replicate freely, meaning anyone can read them, and nothing is published that is not intended for maximum distribution. That said, documents can *contain* encrypted information which is encrypted and decrypted outside of the system.
+
+### What about cybersecurity?
+
+Cybersecurity is designed to protect secret information and private property.  If there is neither private nor personal nor secret information on a network, there is no such thing as "security".  Since all interaction is via browsers, it is not difficult to separate geometron function from other functions on a private machine.  
+
+### What about privacy?
+
+The purpose of this network is to share information. If you want something private, do not use Geometron, use a private  network.  Privacy is also based on links between individuals and information, which are completely severed in Geometron.
+
+### What is a web server?
+
+When you load a web page in a browser, the server is the computer on which the information is stored which transfers to your computer when the browser loads.  Huge data centers filled with many servers are what makes up the Internet.  However a server can be run on any machine, and can serve files just over a local network instead of the whole Internet.    
+
+### What is a Geometron server?
+
+A Geometron server is a web server on which the Geometron software has been copied.  This software includes a collection of self-editing and self-replicating files.  That is to say, there are programs for editing all the files on the server which run on the server, allowing any user on the local network to edit all the files, as well as a simple script which can be copied to any other web server which copies over all the files in the Geometron server.  
+
+### How do I install my own Geometron server?
+
+Geometron can be installed using a private web server which can be installed on all platforms: Windows, MacOS, iOS, Android, Linux, and Raspberry Pi(which is also Linux).  It can also be installed on commercial or free remote web servers.   In addition to basic web server capability, we need the server-side scripting language PHP to be installed on the web server.  If you have a web server set up with PHP, go to the main web directory and create a new file named "replicator.php" and paste the code in the [replicator.txt file found here](php/replicator.txt) into it, and save it.  Then point a browser on the same local network as the server to the IP address or domain of the server, followed by "/replicator.php" to run the replicator.  This will clone the system. 
+
+### Isn't this just Google docs?
+
+Google docs are always tied to a user, this is not.  google docs relies on data centers, this relies on physical infrastructure of users.  Google docs are just text and numbers, and do not have the machine control, applications, or more complex graphical programming capabilities.  Google docs can't be viewed without logging into Google services, restricted by Google terms of service.  This system has no central control or even central organization.  There is not even centralized code.  It will evolve in the wild to become functionally different as it goes along.
+
+### Where can I learn more about Geometron?
+
+Read the Book of Geometron, at http://www.trashrobot.org. It is already outdated but it goes over the whole system and language.  Also see the Github repository at [https://github.com/lafelabs/thing/](https://github.com/lafelabs/thing/)
+
+### What is Trash Robot?
+
+Trash robot is an autonomous swarm of people and technologies. Trash Robot created Geometron and a number of associated technologies.
+
+### What is "magic" as used in this work?
+
+We use the word "magic" to refer to the replication of desire or intent.  When someone wants to build a robot and share it and they convince another person to also want to build the same robot and share it, that replication of the desire to replicate from one person to the next is what we call "magic".  Art is magic.  All technology from before the rise of modern centralized industry was magic.  Magic by this definition is the default state for human technology, and it is only the rise of industrial capitalism which has made technology which is explicitly *not* magic, by replacing replication with consumption.
+
+### What is Trash Magic?
+
+Trash Magic is magic made from trash.  That is, useful things made from trash along with the cultural framework to convince other people to also make the same things from trash.  When we combine organic media like Geometron with building things from trash, we can create a whole ecosystem of free objects which are freely shared across the world.  When we build things from the products of mines, they cannot be magic, as the objects cannot replicate without also consuming more raw material.  Replicating a thing made from mined materials requires long distance projection of hard power(imperialism) to function.  It has to be centrally controlled in order to function.  But replication of objects from material already in our environment only requires the transmission of information.  With Geometron as the media to transmit this information, we can build a global network of physical technology without any physical supply chains.  
+
+### Isn't this just mining the dumps? Won't we run out of trash?
+
+What makes Trash Magic different from the existing modes of production is that, like all living things, we consume our own waste.  Our industry will still make waste.  Our products will fall apart and become trash again. Trash is a renewable resource.  Just as water flows downhill, evaporates, and comes back as rain, trash gets made into products, used, thrown away, and rebuilt again and again.  If we can get the rate of evolution to be high enough, we can innovate much faster than in the existing system and build whatever we need to.  
+
+### Isn't Trash Magic just recycling?  What about the "circular economy"?
+
+In Trash Magic, we follow a set of rules which differ fundamentally from the existing system.  We believe clean water, good food, good shelter, medicine, and the other basic elements of a good life are human rights which we aim to provide to all people in our local(on the scale of under 10 miles and/or under 10,000 people) communities.  We also believe in local self-sufficiency. This rules out things like giant new "green" megaprojects like large wind turbines and hydroelectric dams.  Yes, technically we are recycling, but the recycling industry as it exists today is part of the global supply web we aim to totally eliminate.  Trash Magic assumes the building blocks of our technology are already in our immediate environment, including the people with the skills to replicate that technology.  Replication is what makes it magic rather than industry.  Recycling and the "circular economy" are just subsets of the existing global industrial system.
+
+
+
+
+

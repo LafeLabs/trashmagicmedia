@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+<!--un-comment to add math: -->
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+-->
+
+</head>
+<body>    
+<div id = "header">
+
+    
+    <!--
+    <a id = "uplink" href = "index.html"><img src = "iconsymbols/home.svg"/></a>
+-->
+    <span class = "button" id = "refresh">↻</span>
+    <input id = "textinput"/>
+    <span class  = "button" id = "nuke">!💥!</span>
+</div>
+<div id = "feed"></div>
+<script>
+
+feed = [];
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        feed = JSON.parse(this.responseText);
+        redraw();
+    }
+};
+httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+httpc.send();
+
+
+
+text = "";
+document.getElementById("textinput").onchange = function(){
+    text = this.value;
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            feed = JSON.parse(this.responseText);
+            feed.unshift(text);
+            redraw();
+            savejson();
+            document.getElementById("textinput").value = "";    
+        }
+    };
+    httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+    httpc.send();   
+}
+
+
+
+function savejson(){
+    var url = "../filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(feed,null,"    "))+"&filename=web/chaosfeed.txt");//send text to filesaver.php
+}
+
+boxindex = 0;
+
+function redraw(){
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < feed.length;index++){
+        var newbox = document.createElement("DIV");
+        document.getElementById("feed").appendChild(newbox);
+        newbox.className = "box";
+        newbox.id = "box" + index.toString();
+        var deletebutton = document.createElement("SPAN");
+        deletebutton.className = "deletebutton";
+        deletebutton.innerHTML = "X";
+        
+        newbox.appendChild(deletebutton);
+        deletebutton.onclick = function(){
+            boxindex = parseInt(this.parentElement.id.substring(3));
+            deletetext();
+        }
+        var textspan = document.createElement("span");
+        textspan.className = "textspan";
+        textspan.innerHTML = feed[index];
+        newbox.appendChild(textspan);
+    }
+    document.getElementById("textinput").select();
+}
+
+oldfeed =[];
+function deletetext(){
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            oldfeed = feed;
+            feed = JSON.parse(this.responseText);
+            var tempfeed = [];
+            for(var index = 0;index < feed.length;index++){
+                if(feed[index] != oldfeed[boxindex]){
+                    tempfeed.push(feed[index]);
+                }
+            }
+            feed = tempfeed;
+            redraw();
+            savejson();
+        }
+    };
+    httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+    httpc.send();            
+}
+
+function loadfeed(){
+        var httpc = new XMLHttpRequest();
+        httpc.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                feed = JSON.parse(this.responseText);
+                redraw();
+            }
+        };
+        httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+        httpc.send();            
+
+}
+
+resetfeed = [
+    "Chaos Feed!! Type in box and hit enter to post. Red x's delete.💥 button resets feed.  Let the chaos ensue. 🔄 or enter refreshes feed to see what other people have posted.",
+    "<a href = \"index.html\">home</a>"
+];
+
+document.getElementById("nuke").onclick = function(){
+    feed = resetfeed;
+    redraw();
+    savejson();
+}
+
+document.getElementById("refresh").onclick = function(){
+    loadfeed();
+}
+
+document.getElementById("textinput").value = "";
+document.getElementById("textinput").select();
+
+textfieldindex = 0;
+
+document.getElementById("textinput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode == 015){
+            loadfeed();
+    }
+    if(charCode == 046){
+        //up arrow: next
+        textfieldindex++;
+        if(textfieldindex >= feed.length){
+            textfieldindex = -1;
+        }
+        if(textfieldindex != -1){
+            this.value = feed[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+    if(charCode == 050){
+        //down arrow: prev
+        textfieldindex--;
+        if(textfieldindex < -1){
+            textfieldindex = feed.length - 1;
+        }
+        if(textfieldindex != -1){
+            this.value = feed[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+}
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    font-family:arial;
+}
+a{
+    color:blue;
+}
+.box{
+    border:solid;
+    margin-top:1em;
+    border-width:0.1px;
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:80px;
+    border-bottom:solid;
+    border-color:purple;
+}
+#textinput{
+    width:80%;
+    height:50px;
+    border:solid;
+    border-color:#f9429e;
+    font-size:26px;
+    font-family:courier;
+    display:block;
+    margin:auto;
+    margin-top:5px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:100px;
+    bottom:0px;
+    overflow:scroll;
+    font-size:2em;
+    padding:1em 1em 1em 1em;
+}
+.deletebutton{
+    border:solid;
+    border-color:#00ff00;
+    width:1em;
+    cursor:pointer;
+    border-radius:0.2em;
+    color:red;
+}
+.deletebutton:hover{
+    background-color:#00a000;
+}
+.deletebutton:active{
+    background-color:yellow;
+}
+.textspan{
+}
+#nuke{
+    position:absolute;
+    right:0px;
+    top:0px;
+    font-size:40px;
+    border:solid;
+    border-color:red;
+    color:red;
+    cursor:pointer;
+}
+#refresh{
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:40px;
+    border:solid;
+    border-color:red;
+    color:red;
+    cursor:pointer;
+}
+.button:hover{
+    background-color:#800000;
+}
+.button:active{
+    background-color:yellow;
+}
+#uplink{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+#uplink img{
+    width:40px;
+}
+
+</style>
+</body>
+</html>

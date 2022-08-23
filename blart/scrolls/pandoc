@@ -1,0 +1,28 @@
+
+## [HOME](scrolls/home)
+
+# pandoc
+
+do not forget to remove the unused links back to home
+
+```
+pandoc magic -f markdown -t latex -o magic.tex
+pandoc trashmagic -f markdown -t latex -o trashmagic.tex
+pandoc pibrary -f markdown -t latex -o pibrary.tex
+pandoc magicbooks -f markdown -t latex -o magicbooks.tex
+pandoc people -f markdown -t latex -o people.tex
+pandoc cybermagic -f markdown -t latex -o cybermagic.tex
+pandoc geometricprogramming -f markdown -t latex -o geometricprogramming.tex
+pandoc symbolmagic -f markdown -t latex -o symbolmagic.tex
+pandoc actiongeometry -f markdown -t latex -o actiongeometry.tex
+pandoc iconmagic -f markdown -t latex -o iconmagic.tex
+pandoc fullgeometron -f markdown -t latex -o fullgeometron.tex
+pandoc actions -f markdown -t latex -o actions.tex
+pandoc path -f markdown -t latex -o path.tex
+
+```
+
+
+lulu press size guide(note pocket book):
+
+[https://xpress.lulu.com/our-products](https://xpress.lulu.com/our-products)

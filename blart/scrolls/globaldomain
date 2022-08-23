@@ -1,0 +1,26 @@
+# How to edit a domain 
+
+How to use the free Raspberry Pi terminal to update a public page like crustbus.org.
+
+This is to work with a network with no property.  We avoid any logins or passwords or private data of any kind. There are no users. Only documents, which we spread freely as we wish.  
+
+To begin, you want to copy the *current* scroll of the page to the scrolls/remote scroll.  This sounds complicated, but it's just clicking on a link formed like this:
+
+[scrolleditor.php?scroll=https://www.crustbus.org/README.md](scrolleditor.php?scroll=https://www.crustbus.org/README.md)
+
+You can just copy/paste over the domain above with whatever domain you are working with.  After clicking that link, you will be editing a local copy of the file in the location scrolls/remote.  
+
+To edit the scroll, you need to understand the ways what you type in the scroll affect the final document([see markdown tutorial](scrolls/markdown.md)). 
+
+When you are happy with the document, select the whole text in the editor, copy it to the clipboard either by right clicking and selecting "copy" or use control-C or command-C(control-A or command-A will select all).  Go to [https://pastebin.com/](https://pastebin.com/) and paste the scroll in there.  Select "unlisted" for the exposure, and create a new paste.  Now after you "create paste", select "raw" to get a link which looks like this:
+
+[https://pastebin.com/raw/wM0pNgZH](https://pastebin.com/raw/wM0pNgZH)
+
+Copy that link.  Save it. Share it.  This link effectively is the document.  You can text message or email that to someone and they will be able to use it to replicate the scroll on another Geometron server.  
+
+Once you have the pastebin link for the scroll saved, you can use the program "pastebin.html" to copy the contents of the pastebin to *any* Geometron server. Unless you change the name of the scroll, it will default to replacing the README.md file. which is the default start page.  So to edit a local named copy of the paste bin, go to [pastebin.html](pastebin.html) on a Raspberry Pi server, put in the pastebin, change the name of the scroll from README.md to something like "my_new_article", and click the hyperlink which starts with "copy.php".  Copy.php is a program which does exactly what it says: copies files from anywhere on the Internet including a local server to any server running the Geometron software.
+
+This will in general work on the first try when copying a pastebin to a local Raspberry Pi server  
+
+[this will copy this pastebin into the scroll named "editdomain2"](copy.php?from=https://pastebin.com/raw/wM0pNgZH&to=scrolls/editdomain2)
+

@@ -1,0 +1,68 @@
+[home](scrolls/home)
+
+# sets
+ 
+```
+{
+   action geometry,
+   software, 
+   raspberry pis,
+   icon printer robot,
+   hosted domains,
+   curriculum
+}
+software:{
+  markdown, 
+  json, 
+  javascript, 
+  php, 
+  html, 
+  css, 
+  geometron, 
+  apache,
+  linux
+}
+geometron:{
+  replicators,
+  symbolic programming, 
+  editors,
+  servers,
+  documents, 
+  domains, 
+  book of geometron, elements theirein
+}
+pi station hardware:{
+  raspberry pi terminal,
+  lead acid battery and solar panel,
+  wall plug, 
+  home headless server
+}
+network:{
+  wireless networking in the developing world book,
+  network extenders and hotspots,
+  network bases with Internet to extend
+}
+
+action geometry:{
+  flags,
+  bags,
+  tape snake,
+  skeletron poles,
+  trash ties,
+  artbox,
+  book of geometron,
+  s hooks,
+  shape sets, rulers, protractors etc
+}
+curriculum:{
+  wireless networking,
+  web development,
+  geometron server and document replication,
+  python science,
+  arduino robotics,
+  learning geometry with geometron
+}
+
+``` 
+
+

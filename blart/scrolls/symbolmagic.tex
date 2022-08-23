@@ -1,0 +1,194 @@
+
+Symbol Magic, like all the ``magics'' of this work, refers to
+self-replicating symbols, which people freely copy using the media
+network we are building. All our media is designed to be created,
+edited, and replicated entirely in a web browser. The media we use to
+control \emph{all} machines in full Trash Magic is to be built this way.
+Be it a cutting tool, a laser, an agricultural robot, pixels on a
+screen, or any other movement of any machine used to impart form onto
+matter, we aim to create all the programs to control this in the browser
+using symbols also made in this system.
+
+As with all our systems, this begins with the ability of the system to
+create itself. This means we need to be able to make the web graphics
+used for buttons and links in our web-based media. If you're using this
+system to read this book, you have already seen these. Using simple
+square symbols to represent things they link to or actions they cause to
+happen is a fundamental element of what makes the web work.
+
+We also must now take a moment to define ``symbol'' in the broad sense
+used in this work. We define ``symbol'' to be \emph{any} geometric
+construction which has meaning to people. This means a building is a
+symbol. A pie is a symbol. A culvert or dam is a symbol. A
+microelectronic circuit is a symbol. All of these things have meaning to
+people and are constructed with geometry. If the materials used to make
+a symbol are available locally everywhere in the world and the symbol
+can be replicated from one web browser to the next, those things can all
+be replicated. If the system of symbols, which we can think of as a
+language, also impart the \emph{desire} to replicate a thing, that is
+where the magic happens, where the things can spread freely from one
+local community of people to the next across the globe.
+
+The language of Geometron in the web browser is more completely
+documented in the First Book of Geometron. Here we just discuss how it
+works and what it can do and what we plan to do with it as the system
+grows.
+
+Symbols used to represent geometric actions are generally in a square.
+The symbol itself is a sequence of geometric actions. So for instance
+the action ``draw a circle'' is denoted by a square with a circle and
+dot inside it. In order to draw that symbol, we must instruct a browser
+to draw pixels representing this geometry. We do that by breaking down
+the construction into actions which can be described in a purely
+geometric way, without direct reference to numbers. For the symbol for
+circle, for example, the construction is: move to the right, draw a
+square, shrink the unit by two, move left and up, draw circle and dot,
+move down and right, then increase the unit by two. This unit is of
+course some number of pixels in practice, but the construction uses
+language independent of the actual value of that unit. This makes our
+language independent of specific numbers. It is a sequence of discrete
+geometric transformations, which can be carried out with any physical
+medium at any scale in any coordinates. This abstraction is incredibly
+powerful because it means that we can very quickly and easily create a
+new implementation in any language or format, and transfer a symbol over
+without changing the code. This is how a symbol designed in a web
+browser can be converted to a physical thing made in a laser cutter, 3d
+printer, clay printing robot, spray paint robot or microscopic
+lithography tool.
+
+The basis for all the discrete geometric actions are scales and
+symmetries. We do not refer to angles in degrees or distance in pixels,
+but in rotations and resize operations based on the natural structure of
+the world. This means we start with fourfold symmetry, fivefold symmetry
+and sixfold symmetry. Rotations are combined with angle manipulations
+like doubling or bisecting an angle, or tripling, or dividing by three.
+This approach uses numbers in any given implementation, and can be used
+to represent numbers but again is not actually based in numbers. The
+symbols we use denote actions based on symmetries, rather than any
+specific reference to angles in numbers. The scaling is based on the
+symmetries. For example, everything based on the pentagon and pentagram
+have natural scaling based on the Golden Ratio, which is the ratio of
+the side of a pentagon to the longer distance between points across the
+pentagon. The same relationship exists for the hexagon and square root
+of three scaling, and the 45 degree right triangle and the square root
+of two. So rather than using numbers to re-scale units, we use these
+universal scale factors based on symmetry, like ``multiply unit by the
+square root of three'' or ``divide by the Golden Ratio''.
+
+We use this system of drawing and moving a drawing tool around to create
+\emph{everything}. This can be used as a replacement for both art and
+engineering software, creating plans that people can read to build
+things with their hands. In its most basic form, it is used to
+manipulate pixels in a web browser using the ``canvas'' element which is
+part of the basic standard available in all web browsers via HTML and
+JavaScript. We can interact with Geometron with a touch screen, a
+keyboard, or other hardware interfaces we build based on Arduino. In the
+touch screen, we work in the web browser as always, and use buttons
+created out of canvas elements which have events tied to them which
+control the ``Geometron virtual machine'', or GVM, which is part of the
+code in our system. We can also use a keyboard to control the actions of
+the GVM by putting the cursor in a text input and writing keystroke
+events which call our code and do things to the GVM and ultimately
+symbols in canvas elements. This shows how everything in our system
+points back to itself(everything is recursive). A canvas displays a
+sequence of symbols, each of which is drawn with a piece of software
+which replicates with scripts which also run in the browser. This
+sequence is edited by hitting keys on a keyboard painted with symbols or
+canvas elements which use the same software to display the symbol of the
+geometric action in our program. Any sequence of Geometron actions can
+be called a ``glyph''.
+
+A Geometron glyph is a magic symbol in the sense that it replicates
+itself with human control. We edit the symbols which control all our
+geometry using symbols made of symbols and so on. All this can happen in
+a web browser using applications which replicate via the cybermagic
+system discussed earlier in this work. All the information required to
+make a GVM for a canvas and edit glyphs is contained in a JavaScript
+library called geometron.js, which we replicate and edit as part of our
+system.
+
+The software which we use for all the work with canvas elements can also
+export to the vector graphics format SVG(for Scalable Vector Graphics),
+as well as the bitmap format PNG(Portable Network Graphics). The icons
+used as links and buttons in our system are in the SVG format and are
+all stored in a directory which gets listed and copied using dna.txt and
+replicator.php in the cybermagic system. These can also be used as
+technical illustrations and art in books in our system. Collections of
+these files are in a feed which we generate using web based applications
+in cybermagic, and these collections are themselves self-replicating
+sets. Replicator scripts can be run from in a browser on any server
+which will replicate a set of SVG files from any other server on the
+entire Internet. This set can then all be edited live in the browser on
+the new server, and then replicated out to yet another server and so on.
+This is the power of Geometron Symbol Magic: to have symbols be edited
+live in any browser on the planet from any server, and then replicated
+from server to server again and again, evolving freely. Every icon in
+our system is like this, and can be edited and changed as the system
+evolves.
+
+These SVG and PNG files are also the basis of physical fabrication. They
+can be used to create physical objects using laser cutters. This can be
+done on a wide variety of laser cutters, or they can be uploaded to a
+print-on-demand laser cutter service like Ponoko.com or a public library
+maker space. Laser cutters can cut and etch a huge range of materials,
+including a lot of waste materials. Cardboard, plastic, sheet metal and
+wood can all be cut into shapes in a laser cutter. This means we already
+have a system here by which self-replicating files entirely managed from
+inside a web browser can create physical objects out of trash! This is
+trash magic! The SVG file format can also be imported into other
+software used to control machines which make physical things, like
+electron beam lithography for making very small electronic circuits or
+embroidery machines for making textile patterns.
+
+This system of discrete geometric movements and constructions can also
+be used to construct three dimensional files from a web browser. We use
+several three dimensional web-based file formats to do this. The same
+canvas element we use for all our two dimensional graphics editing in
+the browser also has a three dimensional mode which we can control with
+Geometron for live editing. The format formerly known as VRML for
+Virtual Reality Markup Language, is now called x3d, and a Geometron
+glyph created in the canvas can be exported to this format, which can
+then be imported into numerous types of 3d software like virtual
+reality, augmented reality and games. There are also web libraries which
+export to the STL format used by 3d printers. With these standard file
+formats we can get from the web browser to numerous engineering software
+systems which allow things designed in our system in the browser to turn
+into physical objects using numerous machines.
+
+When we build our own fabrication machines from trash, we control them
+all using the open source hardware platform Arduino(for now). In order
+to be able to do all programming from the browser, our system includes
+the ability to generate Arduino code from the symbol glyphs we create in
+the canvas element which is printed in a text area by our software and
+which can be copy/pasted into the Arduino software to load onto the
+board without ever having to interact directly with the Arduino code.
+This makes the machines we build much more accessible to far more people
+than is ever possible in existing systems of machine control. Rather
+than learning to control a machine with either low level code made of
+numbers and broken English or some high level system based on
+specialized applications for some specific hardware, we allow anyone
+anywhere on the Internet to create, edit and share the glyphs made up of
+symbols which determine what a machine will do.
+
+As an example we imagine a machine in which a winch is on a rail moving
+side to side across the top of the wall of a high rise apartment
+building. We build a language of symbols which denote ``move left one
+unit'', ``move right one unit'', ``double unit'', ``halve unit'', and so
+on, all of which display in a canvas element in the browser. These
+symbols are also painted on keys on a physical keyboard used to input
+keystrokes into the browser. A non expert can write a sequence of
+symbols which create a sequence of physical actions in an intuitive way.
+Then, if the robot is rebuilt with a totally different motor and control
+technology, whoever builds the new system only needs to find a way to
+implement ``move right one unit'' and so on into the new system and the
+glyphs written in the old system will work on the new one with no
+modification.
+
+As our system develops we will replace more and more parts with
+Geometron, until all of our machines are based on self-replicating
+symbols, whether they are for communication or fabrication or machines
+which carry out some other task. Ultimately we will build a system by
+which symbols are the medium of replication we as humans use to
+replicate all technology from trash and living material forever. The
+path into the future of this development will be developed in a later
+chapter in this work.

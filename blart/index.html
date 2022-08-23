@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+TRASH MAGIC MEDIA NETWORK
+
+EVERYTHING IS PHYSICAL
+EVERYTHING IS FRACTAL
+EVERYTHING IS RECURSIVE
+
+NO MONEY
+NO MINING
+NO PROPERTY
+
+LOOK AT THE FUNGI
+LOOK AT THE INSECTS
+LANGUAGE IS HOW THE MIND PARSES REALITY
+
+
+    github.com/lafelabs/trashmagicmedia
+    
+    All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
+
+
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+
+
+   <title>TRASH MAGIC MEDIA</title>    
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "jscode/hyperlink.js"></script>
+
+</head>
+<body>    
+<a href = "hyperlinkeditor.html" id = "linkeditorlink">*</a>
+<img id = "mainimage"/>
+
+<h1><a id=  "serverlink"></a></h1>
+
+<div id = "qrcode"></div>
+
+<ul id = "linklist">
+</ul>
+
+<script>
+
+
+codesquaresize = 200;
+document.getElementById("qrcode").style.width = codesquaresize.toString()  + "px";
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: hyperlink.url,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+
+qrcode.makeCode(hyperlink.url);
+document.getElementById("serverlink").href = hyperlink.url;
+document.getElementById("serverlink").innerHTML = hyperlink.url;
+document.getElementById("mainimage").src = hyperlink.src;
+document.getElementById("mainimage").alt = hyperlink.alt;
+
+for(var index = 0;index < hyperlink.list.length;index++){
+    var newli = document.createElement("LI");
+    document.getElementById("linklist").appendChild(newli);
+    var newa = document.createElement("A");
+    newli.appendChild(newa);
+    newa.href = hyperlink.list[index].href;
+    newa.innerHTML = hyperlink.list[index].text;
+}
+
+
+</script>
+<style>
+#linkeditorlink{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+input{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    border-color:#00ff00;
+    width:40em;
+}
+table{
+    font-family:courier;
+    font-size:14px;
+    display:block;
+    margin:auto;
+    border:solid;
+    border-color:#00ff00;
+}
+td{
+    text-align:right;
+}
+body{
+    font-size:2em;
+    padding:0em 4em 4em 4em;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+}
+#mainimage{
+    max-width:90%;
+    display:block;
+    margin:auto;
+    background-color:#808080;
+}
+#qrcode{
+    border:solid;
+    border-width:20px;
+    border-color:#808080;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+h1,h2,h3{
+    text-align:center;
+}
+a{
+    color:#ff2cb4;
+}
+</style>
+</body>
+</html>
+
+
