@@ -12,7 +12,7 @@
 1. Navigate to the folder c:\xampp\htdocs\(or mac equivalent) and delete the file index.php
 1. Copy the file [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/blart/replicator.php) to c:\xampp\htdocs\
 1. Navigate to [http://localhost/replicator.php](http://localhost/replicator.php) in your browser on the same machine to replicate the self-replicating code set(cybermagic), and click on the link after the files copy(this will take a few seconds at least)
-1. Go buy the song "[blart]" from [thiiirperson.bandcamp.com/](https://thiiirdperson.bandcamp.com/album/blart-in-looper-kimble-iii) for $4.20(it's officially $3 but pay 4.20 to send signal)
+1. Go buy the song "Blart" from [thiiirperson.bandcamp.com/](https://thiiirdperson.bandcamp.com/album/blart-in-looper-kimble-iii) for $4.20(it's officially $3 but pay 4.20 to send signal)
 1. Download the .mp3 files(there are four) into the folder c:\xampp\htdocs\media\ on your machine
 1. Find the IP address of your machine by looking at the wifi settings, and looking for a sequence of four numbers separated by periods(there might be other ip addresses with more numbers but we want the one with four numbers)
 1. go to [http://localhost/hyperlinkeditor.html](http://localhost/hyperlinkeditor.html) and put the url into the input "http://[your ip address]" and hit enter to update the hyperlink value and the QR code which points to it.  Scan onto your Innernette page from a mobile device which is *on the same wifi network* using the QR code or just go to [http://localhost/](http://localhost/), now you can share your Innernette
