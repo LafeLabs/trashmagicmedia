@@ -4,6 +4,26 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
+            "href": "https://thiiirdperson.bandcamp.com/album/blart-in-looper-kimble-iii",
+            "text": "Buy blart on bandcamp for $4.20"
+        },
+        {
+            "href": "http://tiktok.com/@thiiirdperson",
+            "text": "Thiiirdperson on Tiktok"
+        },
+        {
+            "href": "https://www.patreon.com/thiiirdperson/",
+            "text": "Thiiirdperson on Patreon"
+        },
+        {
+            "href": "https://thiiirdperson.bandcamp.com/",
+            "text": "Thiiirdperson on Bandcamp"
+        },
+        {
+            "href": "http://twitter.com/thiiirdperson",
+            "text": "Thiiirdperson on Twitter"
+        },
+        {
             "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
             "text": "REPLICATOR"
         },
@@ -22,10 +42,6 @@ hyperlink = {
         {
             "href": "web/",
             "text": "Go onto the Innernette"
-        },
-        {
-            "href": "https://thiiirdperson.bandcamp.com/album/blart-in-looper-kimble-iii",
-            "text": "buy blart on bandcamp for $4.20"
         },
         {
             "href": "web/",
