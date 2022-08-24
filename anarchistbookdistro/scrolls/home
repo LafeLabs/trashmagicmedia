@@ -4,6 +4,7 @@
 
 # [ANARCHIST BOOK DISTRO](https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md)
 
+- [Learn what the Innernette is by clicking this youtube.com link to a skit by Tim Heidecker and Eric Wareheim](https://www.youtube.com/embed/Y5BZkaWZAAA)
 - [download XAMPP](https://www.apachefriends.org/index.html) and install, 
 - go to the directory xampp/htdocs and delete the file index.php
 - download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/replicator.php)(right click, "save link as") and save it in the directory xampp/htdocs
