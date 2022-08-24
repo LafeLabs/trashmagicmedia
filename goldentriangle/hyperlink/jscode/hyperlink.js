@@ -4,8 +4,16 @@ hyperlink = {
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
+            "text": "REPLICATOR"
+        },
+        {
             "href": "../",
             "text": "../"
+        },
+        {
+            "href": "https://www.rhombi.xyz",
+            "text": "www.rhombi.xyz"
         },
         {
             "href": "https://www.ponoko.com",
