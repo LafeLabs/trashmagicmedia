@@ -32,6 +32,7 @@
  - when you see trash magic in the wild that you have not seen before, record it, post it on hashtag #trashmagic and screen shot the images from social media into the "images" folder on your server, or any other servers you find
  - move media around town on foot, car, bike, wheelchair, bus, train, etc. via thumb drives and small laptops in backpacks, collecting more and more media from the public
  - replicate the system to more and more people who share media directly, both trash and web
+ - print out the QR code below to point to this document on Github
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/replicator.png)
 
