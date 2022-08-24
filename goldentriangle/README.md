@@ -1,11 +1,8 @@
-## [index.html](index.html)
+## [README github editor](http://localhost/goldentriangle/scrolleditor.php?scroll=README.md)
 
-## [http://localhost/](http://localhost/)
+## [Trash Magic Media](https://github.com/LafeLabs/trashmagicmedia/)
 
-## Trash Magic Media
-
-# Golden Triangle
-
+# [Golden Triangle Replicator](https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/qrcode.png)
 
@@ -15,8 +12,8 @@
 
 # Replicator 
 
-1. [Learn what the Innernette is by clicking this youtube.com link](https://www.youtube.com/embed/Y5BZkaWZAAA)
-1. [download XAMPP](https://www.apachefriends.org/index.html) to a windows or mac laptop and install, pin it to the taskbar or shortcut it in the desktop so you can find it again
+1. [Learn what the Innernette is by clicking this youtube.com link to a skit by Tim Heidecker and Eric Wareheim](https://www.youtube.com/embed/Y5BZkaWZAAA)
+1. [download XAMPP](https://www.apachefriends.org/index.html) home web server to a windows or mac laptop and install, pin it to the taskbar or shortcut it in the desktop so you can find it again
 1. Start the XAMPP server
 1. Navigate to the folder c:\xampp\htdocs\(or mac equivalent) and delete the file index.php
 1. Copy the file [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/replicator.php) to c:\xampp\htdocs\
@@ -24,9 +21,9 @@
 1. Find the IP address of your machine by looking at the wifi settings, and looking for a sequence of four numbers separated by periods(there might be other ip addresses with more numbers but we want the one with four numbers)
 1. go to [http://localhost/hyperlinkeditor.html](http://localhost/hyperlinkeditor.html) and put the url into the input "http://[your ip address]" and hit enter to update the hyperlink value and the QR code which points to it.  Scan onto your Innernette page from a mobile device which is *on the same wifi network* using the QR code or just go to [http://localhost/](http://localhost/), now you can share your Innernette
 1. Watch [Donald in Mathemagic Land on Youtube](https://www.youtube.com/watch?v=U_ZHsk0-eF0) to learn about the [Golden Ratio](https://en.wikipedia.org/wiki/Golden_ratio) and the [pentagram](https://en.wikipedia.org/wiki/Pentagram)
+1. Either create with a laser cutter on acrylic or print on paper the [array of Golden Triangles](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/golden-triangle-array.svg) and cut them out so you have lots of Golden Triangles. To get large numbers of triangles, you can order them online from [www.ponoko.com](https://www.ponoko.com) and get the 1/8 inch neon green acrylic.  Be sure to make the black lines cuts and red lines etches.
 1. Find cardboard trash and a sharpie
-1. Either create with a laser cutter on acrylic or print on paper the [array of Golden Triangles](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/golden-triangle-array.svg) and cut them out so you have lots of Golden Triangles. 
-1. Replicate the cardboard replicator shown in this document using the Golden Triangles to get all the fivefold symmetry right.  Resize the triangles as needed for your aesthetic tastes
+1. Replicate the cardboard replicator shown in this document using the Golden Triangles to get all the fivefold symmetry right.  Resize the triangles as needed for your aesthetic tastes, create a fractal of pentagrams, color them in as you see fit, and make the trash can with the eight arrows of chaos as shown
 1. Take a picture of each piece of cardboard art, crop them to just be the cardboard, upload them all to social media somewhere(instagram works, or imgur, or any image board or public message board)
 1. Navigate your laptop to whatever social media account has those images and screen shot each one, then save them all to the folder c:\xampp\htdocs\images\ and crop them to be just the cardboard(and not whatever random bits of your laptop screen and social media got captured).
 1. See the images on your local Innernette by clicking on the "IMAGES" link from the main page or going to [http://localhost/images.html](http://localhost/images.html), share and enjoy!
