@@ -37,9 +37,8 @@
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/qrcode.png)
  
-![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealface.png)
-
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealback.png)
  
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealface.png)
+
 ### [http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md](http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md)
