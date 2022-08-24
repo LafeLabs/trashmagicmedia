@@ -1,0 +1,20 @@
+
+## [HOME](scrolls/home)
+
+# replicators
+  
+ - [link scroll](scrolls/links)
+ - [global replicator link](https://raw.githubusercontent.com/LafeLabs/pibrary/main/php/replicator.txt)
+ - [pibraryreplicator.php](pibraryreplicator.php)
+ - [pibrarygenerator.php](pibrarygenerator.php)
+ - [fileset/replicator.php](fileset/replicator.php)
+ - [iconset/replicator.php](iconset/replicator.php)
+ - [codeset/replicator.php](codeset/replicator.php)
+ - [imageset/replicator.php](imageset/replicator.php)
+ - [mapbook/replicator.php](mapbook/replicator.php)
+ - [symbolset/replicator.php](symbolset/replicator.php)
+ - [create shapeset directory](http://localhost/geometronmagic/mkdir.php?dir=shapeset&replicator=https://raw.githubusercontent.com/LafeLabs/pibrary/main/symbolset/php/replicator.txt)
+ - [copy shape set JSON](copy.php?from=https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/shapeset/data/symbolset.txt&to=shapeset/data/symbolset.txt)
+ - [copy geometron magic image set](copy.php?from=https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/imageset/data/imageset.txt&to=imageset/data/imageset.txt)
+ - [map book replicator global url](https://raw.githubusercontent.com/LafeLabs/pibrary/main/mapbook/php/replicator.txt)
+ - [php/replicator.txt](php/replicator.txt)

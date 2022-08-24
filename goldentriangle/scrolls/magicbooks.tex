@@ -1,0 +1,194 @@
+
+
+The media which drives this network is the Magic Book. The Magic Book is
+a format for electronic books which lends itself to easy replication
+across the Internet and easy editing. We use the term ``magic'' as in
+all other places in this work to mean that people replicate them
+themselves. That is, with simply copy/pasting links and clicking on them
+in browsers anyone on a network can copy any book from any server to any
+other server.
+
+This is not like Google Docs where documents are attached to ``users''
+who log into a cloud server controlled by Google. We use cloud hosting
+for public-facing web pages, but they are all able to be read by anyone
+anywhere in the world freely without any log ins or passwords. And all
+these books are created, edited, and shared on the local Pibrary
+networks hosted on physical Raspberry Pi based web servers which are
+shared freely in our local physical community.
+
+Also, we are using ``book'' as a metaphor. What is a book exactly? How
+is it different from other media? A book can be physical or digital, can
+be a private document or public. But what distinguishes it from things
+like articles or news is that it is self-contained and encapsulates a
+large body of knowledge in a coherent whole. A book can evolve over time
+and can get re-written but it has a fundamentally different structure
+from the news feeds which dominate social media today. Also, we
+distinguish these books from wiki's like Wikipedia. Wikis are databases
+of articles. These articles are the fundamental element of the whole
+thing, and are not organized into book structures. It is hard to write
+down a clear definition which distinguishes an article from a book, but
+for our purposes a book is a collection of chapters, each of which is a
+text document, and all of which add up to some coherent whole.
+
+All books are released by their authors into the Public Domain with no
+restrictions whatsoever. We do not use the kind of restricted licenses
+favored by Creative Commons or the Free Software Foundation, but
+explicitly release books under the Public Domain.
+
+Books, like everything else in the work described here, are
+self-replicating sets. That is, collections of things which all
+replicate as a set easily by anyone on the network. The main element of
+these sets are called scrolls and these are just text documents in the
+Markdown format. Markdown is a very simple text format which is used in
+a wide range of online content, which in its simplest form is just raw
+text, but has a few simple additions like using asterisks for italic,
+double asterisks for bold, and number signs for headings. While using a
+markup language like this with a little bit of syntax is in some ways
+more complex than the completely point-and-click driven editors like
+Word or Google Docs, this is designed to make the documents compatible
+with pure-text formats, which is important for making them easy to
+replicate and edit as we move them freely across our network. We believe
+that the usability cost of Markdown is worth it for the usability gain
+of being plain human readable text. The Scroll format used in this work
+is Markdown converted on-the-fly into HTML using the open source
+JavaScript library showdown.js. This allows us to set format parameters
+like font, size, color, and how text fits in a screen using standard web
+development methods, adapting the same text document to any look and
+feel or screen size we want(a huge advantage over pdf). This reliance on
+standard web development methods allows us to have our format work well
+on all web enabled devices from mobile to tablet to desktop to big
+screens and of course our free public Raspberry Pi computers without any
+software other than the browser.
+
+While our primary media format is in the web browser, it is also useful
+to be able to generate physical bound books, also for free distribution.
+There are a number of ways to do this, but the one we recommend and are
+using for this work is LaTeX(pronounced LAY-TECH or LAH-TECH, the ``X''
+is meant to represent the Greek letter ``Chi''), and document formatting
+system developed for the typesetting of technical work. Like Markdown,
+this is a human-readable text format in which standard text characters
+are used to indicate to the computer how format will work. For example,
+while Markdown uses asterisks around a word for italic, LaTeX uses a
+backslash command ``\emph" along with curly brackets around whatever
+goes in italic. The most important thing about using LaTeX is that for
+when we create more technical works diving into the physics, engineering
+and math needed to build the world of full Trash Magic that it makes
+that easy. This system is already widely used by technology creators and
+scientists so while it has a steep learning curve it is useful for the
+experts we are inviting into this system to create technical books.
+Also, it is compatible with a number of other web-based systems of
+technical documentation like the Jupyter Notebooks which are an almost
+universal means of communication now in applied sciences where
+calculations are done on data using Python or other popular data science
+languages like R. Another widely used and open source Javascript
+library(Mathjax.js) allows us to optionally turn on this math
+typesetting in the Markdown-driven scroll documents as well, so
+technical books can be written entirely in the Pibrary format and then
+moved to LaTeX with the math formatting staying the same. Conversion
+from Markdown to LaTeX can be enabled with Pandoc, the''swiss army
+knife" of document formats(see pandoc.org for details). Once a book is
+in the LaTeX format it is compiled into .pdf in whatever book size is
+appropriate. We generally use this to compile to two formats: the letter
+size in the US or A4 in metric countries for printing on standard home
+or office printers to bind in three ring binders and the 6x9 inch format
+for binding from print-on-demand publishers. We use Lulu Press(lulu.com)
+to create the bound copies in various formats.
+
+The exact means by which books are replicated will be discussed
+elsewhere, but essentially it is all based on building links to scripts
+which can be run from a browser which fetch lists of files and use that
+list to fetch all the files. The best way to learn how to do this is by
+example, and the replication of this work will involve directly showing
+people how to do this in person, via video, and via real time online
+communication we will be setting up in the coming months.
+
+So far we have discussed the format of the Magic Books but not the
+purpose or what books we will share first. The purpose of the library of
+books we are creating here is to be a repository of all the knowledge
+needed to build full Trash Magic. This means we need to create a culture
+with everything that goes along with that: history, philosophy,
+politics, technology, science, math, and all the wisdom required to be
+stewards of the land we are a part of. This system of books also needs
+to self-support. This means that as a social media platform it needs to
+generate economic value measured initially in money which can provide
+material support to those of us creating and replicating the network.
+
+The beginning of this library is the books created by the author of this
+book, Trash Robot. This includes the Trash Magic Manifesto, the Trash
+Magic Action Coloring Book, and the first Book of Geometron, as well as
+this book, Geometron Magic. Trash Robot is also in the process of
+creating another book, Trash Physics, which is part memoir, part
+criticism of the structure of modern physics, and partly the start of a
+whole library of physics texts based on the principles here.
+
+The way the library of Magic Books we describe here will become
+self-sustaining is by documenting the commerce in local communities in a
+deep and organized way that no existing resource does. This is not just
+a business directory. It is the creation of a new level of social
+networking in physically local spaces that does not exist on today's
+Internet. We will work with local people to create books on local
+history, local culture, the local economy, the local government, local
+mutual aid and outreach organizations, local libraries, local religious
+institutions, and compile all of into books which are shared on our
+system. Again, this is not a wiki covering existing things. This is a
+library, creating new deeper connections than exist today, diving deeper
+into history and culture than the existing Web does. It is also not
+news. We aim to create new social links in physically local spaces with
+our system which enable people to engage in new commerce with each other
+locally. We call these books the Books of the Street, where the
+``street'' here refers to a local public space where we site the Pibrary
+discussed in the previous chapter.
+
+The Books of the Street are doing more than documenting existing
+networks and businesses and people. They are \emph{creating} social
+networks of actual humans in a physical space which do not exist in
+today's globalized world of cars, planes, and long distance
+communications. They represent a cultural shift to extreme localization
+of communities localized to just a couple of miles across, which still
+maintain the flow of global information across the entire human race.
+
+Creating connections between people which did not exist before can
+enable commerce. Enabling commerce creates cash flow in exactly the same
+way it does in centralized commercial social media. This cash flow
+generated by the network creates a strong incentive for network
+participants to materially support network creators. Supporting us, the
+network creators, allows us to spread the network, and if that spread
+generates more value wherever it goes, that becomes self-sustaining in
+growth. Initially, this network is simply a social media platform which
+provides a totally free, non-capitalist (no money, no property) resource
+to those in the existing capitalist economy. If we can scale with
+positive cash flow in each local node, this creates a much more
+efficient scaling mechanism than existing venture capital backed
+technology startup companies, which generally scale at a loss in order
+to gain market dominance. Without the billions of dollars of venture
+capital money required to scale, we can move faster and be more
+adaptable than those networks, enabling us to ultimately take away all
+their market share bit by bit from a bottom-up approach.
+
+Consider any ``technology'' company today which makes its money on
+creating links between people. From ride share to dating to advertising,
+all these companies are simply connectors. They connect people with
+other people and then demand rent from us for doing so. A free network
+driven locally from the bottom up with community owned hardware and no
+intellectual property can easily defeat this network one street corner
+at a time. We can take Silicon Valley down to zero if we can get the
+right growth model of our network, and it is in the best interest of all
+people that this happen as soon as possible, since the predatory model
+of Silicon Valley is destroying us all. We are asking people with great
+urgency to contribute to this campaign.
+
+A final note on what books we choose to replicate on any given Pibrary.
+In a traditional library, more is always considered to be better. The
+more resources a library has the more books they buy, and it is assumed
+that readers use search and browsing to find what they need with no core
+specific purpose. This is not the case of the Pibrary. The Pibrary has a
+purpose, our purpose is to create self-replicating media which can
+transmit self-replicating technology made from trash which can provide
+for all human needs for free. We therefore are very specifically
+\emph{not} trying to just add more and more books. We want the selection
+of books to be very aggressively curated by the caretakers of the
+Network to specifically carry out whatever the next task is in any given
+community to bring all of humanity closer to full Trash Magic. In some
+cases, this might mean an individual person carries an individual
+Raspberry Pi with just one or two books, specifically fro the exactly
+actions of mutual aid and direct action in which we are engaged.

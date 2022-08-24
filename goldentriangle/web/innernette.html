@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<title>innernette</title>
+    <meta charset="utf-8">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+    
+</head>
+<body>
+    <div id = "page">
+        <h1>Innernette</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y5BZkaWZAAA" title="YouTube video player" frameborder="0" ></iframe>
+
+        <p>
+            Say goodbye to e-worms!
+        </p>
+        <ul>
+            <li>
+                <a href = "index.html">home page</a>
+            </li>               
+            <li>
+                <a href = "../webeditor.html">Web Page Editor</a>
+            </li>               
+        </ul>
+    </div>
+    <div id = "linkbox"></div>
+<script>
+
+
+media = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        media = JSON.parse(this.responseText);
+        loadmediafeed();
+    }
+};
+httpcUpload.open("GET", "../dir.php?filename=media", true);
+httpcUpload.send();
+
+mediadir = [];
+dirname = "";
+
+function loadmediafeed(){
+    for(var index = 0;index < media.length;index++) {
+        
+        if(media[index].substr(-5) == ".html"){
+            var newa = document.createElement("A");
+            newa.innerHTML = media[index];
+            newa.href = media[index];
+            document.getElementById("linkbox").appendChild(newa);
+            
+        }
+    }    
+
+}
+
+
+</script>
+</body>
+<style>
+    body{
+        background-color:black;
+        color:#00ff00;
+        font-family:courier;
+    }
+    h1,h2,h3,h4{
+        text-align:center;
+    }
+    a{
+        color:#ff2cb4;
+    }
+    img{
+        max-width:50%;
+        display:block;
+        margin:auto;
+    }
+    #page{
+        position:absolute;
+        left:10px;
+        top:10px;
+        overflow:scroll;
+    }
+    #linkbox{
+        position:absolute;
+        right:10px;
+        bottom:10px;
+        background-color:#4040ff80;
+    }
+    #linkbox a{
+        font-family:Comic Sans MS;
+        color:yellow;
+        display:block;
+        padding-bottom:1em;
+        padding-left:1em;
+        font-size:2em;
+    }
+    #qrcode{
+        border:solid;
+        border-color:#808080;
+        background-color:#808080;
+        border-width:10px;
+    }
+    @media only screen and (orientation: portrait) {
+        #linkbox{
+            width:90%;
+            bottom:10px;
+            height:40%;
+        }   
+        #page{
+            height:48%;
+            width:100%;
+        }
+    }
+    @media only screen and (orientation: landscape) {
+        #linkbox{
+            top:10px;
+            width:40%;
+            bottom:10px;
+            height:90%;
+        }   
+        #page{
+            bottom:10px;
+            right:50%;
+        }
+    }
+</style>
+</html>

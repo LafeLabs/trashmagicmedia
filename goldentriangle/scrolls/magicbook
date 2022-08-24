@@ -1,0 +1,28 @@
+## [RECURSIVE SCROLLS](scrolls/recursivescrolls)
+
+## [HOME](scrolls/home)
+
+# MAGIC BOOK
+ 
+**Action:** Replicate this book.  Print out the [pdf of the booklet](https://github.com/LafeLabs/trashmagic/raw/main/booklettersizebooklet.pdf), fold, punch holes, stitch, and distribute.
+
+A magic book is a self-replicating book.  This book consists of a digital and physical layer.  The digital book is a self-replicating set of "scrolls", which are web-based text documents.  
+
+Scrolls are replicated using the scroll set replicators linked via the Chaos Magic symbol:
+
+[![](iconsymbols/chaos.svg)](scrollset.html)
+
+The url to put in there to access the scroll set server to replicate the scroll set for the Trash Magic Action Coloring Book is this address:
+
+https://raw.githubusercontent.com/LafeLabs/trashmagic/main/
+
+The physical layer is created by printing out the pdf found here:
+
+[booklettersizebooklet.pdf](https://github.com/LafeLabs/trashmagic/raw/main/booklettersizebooklet.pdf)
+
+Print this out double sided, and FLIP ON THE SHORT EDGE in the printer mode.  Fold down the spine, punch a sequence of hole spaced every 1/2 inch down the spine with a thumb tack, and back stitch the whole thing.  Fill out the book and color it in.  Share with others, show them how to replicate.
+
+The digital layers are the collection of scrolls of which this scroll is one and the various other servers.  All the graphics for the coloring book are made with Geometron using the [symbolserver/](symbolserver/).  These graphics form yet another self-replicating set, and they are copied from one machine to another across the web.  The graphics are saved as both .svg(vector) files and .png files(bitmap).  The .png files are imported into a LaTeX document which generates a pdf. That pdf is converted to a booklet format using "print to pdf" in Adobe Acrobat reader.
+
+## [WEB](scrolls/web)
+

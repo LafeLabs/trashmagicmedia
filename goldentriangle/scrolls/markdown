@@ -1,0 +1,51 @@
+# [home](scrolls/home)
+
+# Markdown example document showing the syntax
+
+## Links about Markdown
+
+ - [wikipedia](https://en.wikipedia.org/wiki/Markdown)
+ - [markdown guide](https://www.markdownguide.org/)
+ - [markdown home](https://daringfireball.net/projects/markdown/)
+ - [Global link to this file on Github, formatted](https://github.com/LafeLabs/pi/blob/main/markdown/README.md)
+ - [Global link to raw markdown of this file on github](https://raw.githubusercontent.com/LafeLabs/pi/main/markdown/README.md)
+
+
+
+click the edit link to edit this document and see how markdown works:
+
+[![](iconsymbols/edit.svg)](scrolleditor.php)
+
+Then click the home icon to get back to seeing the scroll displayed in html mode.
+
+# big heading
+
+## smaller heading
+
+### smaller heading
+
+text with *emphasis* 
+
+- list
+- of items
+- without numbers
+
+1. numbered list
+2. with numbered items
+3. which keep getting numbered
+
+global link:
+
+[trash robot web site](http://trashrobot.org/)
+
+local link to a scroll:
+
+[box scroll](scrolls/box.md)
+
+Image:
+
+![](iconsymbols/home.svg)
+
+Image in a link:
+
+[![](iconsymbols/home.svg)](index.html)

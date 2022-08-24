@@ -1,0 +1,77 @@
+## [HOME](scrolls/home)
+
+# printers
+
+You need at least 3 [Cubes](scrolls/cubes) to build this, as well as some extra squares.
+
+## Things to buy for the electronics kit:
+
+ - [3 motor controller boards from Pololu(10x3=$30)](https://www.pololu.com/product/2966)
+ - [Custom printed circuit board to connect Arduino to controllers and connectors($2/ea in lots of 20 with shipping)](https://www.pcbway.com/project/shareproject/Trash_Robot_main__brain__board.html)
+ - [straight 0.1 inch headers from Digikey(buy about 2 per kit at about 60 cents each)](https://www.digikey.com/en/products/detail/chip-quik-inc/HDR100IMP40M-G-V-TH/5978197)
+ - [Ribbon cable from Digikey(about $8 for about 6 kits worth for about $2/kit rounding up )](https://www.digikey.com/en/products/detail/assmann-wsw-components/AWG28-20-F-1-300-R/2391636)
+ - [8 buttons for controller from Digikey(about $1 for all 8)](https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/FSM2JRT/529664)
+ - [Cables from Digikey to connect stepper motors in DVD drive stages to circuit board(about $10 for 3 of them)](https://www.digikey.com/en/products/detail/molex/2177971043/14637940)
+ - [Arduino Uno from Sparkfun($25, some off brand UNOs have power supply problems for this application, test any new board to see if it stalls out)](https://www.sparkfun.com/products/11021)
+ - [9 pin socket headers](https://www.digikey.com/en/products/detail/samtec-inc/SSQ-109-03-T-S/1111949)
+
+## Kit Photo:
+
+![](https://raw.githubusercontent.com/LafeLabs/geometronmagic/main/cube/uploadimages/kit.jpg)
+
+## Control Panel Geometry
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/controller.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/controller.svg)
+
+![](https://raw.githubusercontent.com/LafeLabs/geometronmagic/main/cube/uploadimages/controller-outside.jpg)
+
+## Assembled Electronics Kit Photo
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/assembledkit.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/geometronmagic/main/cube/uploadimages/brain-assembly.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/bottomcutout,jpg)
+
+![](https://i.imgur.com/hz4C54Y.jpg)
+
+![](https://i.imgur.com/hz4C54Y.jpg)
+
+##  DVD drive cables
+
+[Cables from Digikey to connect stepper motors in DVD drive stages to circuit board(about $10 for 3 of them)](https://www.digikey.com/en/products/detail/molex/2177971043/14637940)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/stagesraw.png)
+
+![](https://i.imgur.com/zvVKp6T.jpg)
+
+![](https://i.imgur.com/7KoLTuc.jpg)
+
+
+## Z axis Stage Assembly
+
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/zbase.jpg)
+
+## X and Y axis stage assemblies
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/xystages.jpg)
+
+## Sproing
+
+Two each of a 0.5 inch by 4 inch thin HDPE sheet and two 0.5 inches by 3 inches thick stiffer plastic.  All held on by rubber bands as shown, as well as attached to the Z stage.
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/sproing.jpg)
+ 
+
+## Full assembly
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/printertower.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/fullprinter.jpg)
+
+[link to icon design scroll](scrolls/icons)
+
+[link back to home scroll](scrolls/home)
+
+ 
