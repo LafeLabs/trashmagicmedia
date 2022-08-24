@@ -28,7 +28,18 @@
  - get files of books, articles, zines, songs, videos, or any other file from people in the community and distribute.  Images can be saved to the images folder and viewed with the image viewer from the main page
  - everything can be deleted, copied and ready by anyone at any time.  Back everything up.  Publish nothing you don't want replicated.  This network makes a total disconnect between people and files. There is no file ownership, just folders and files, exchanged based on trust in physical spaces with shared wifi networks and trash magic media out in public.
  - when you have the hang of the system make a tutorial video of replicating it and share it on your media folder on your server as well as on public social media on the hashtag "#trashmagic"
+ - build trash magic exchanges to get old laptops, wipe their hard drives completely of all data, install linux on them, install the Apache web server and trash magic as you would on a raspberry pi, and donate them into public spaces as public media servers
+ - when you see trash magic in the wild that you have not seen before, record it, post it on hashtag #trashmagic and screen shot the images from social media into the "images" folder on your server, or any other servers you find
+ - move media around town on foot, car, bike, wheelchair, bus, train, etc. via thumb drives and small laptops in backpacks, collecting more and more media from the public
+ - replicate the system to more and more people who share media directly, both trash and web
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/replicator.png)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/qrcode.png)
+ 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealface.png)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealback.png)
+ 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealface.png)
 ### [http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md](http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md)
