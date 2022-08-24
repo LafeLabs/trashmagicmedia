@@ -1,19 +1,19 @@
 hyperlink = {
     "url": "http://10.0.0.27/",
-    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/replicator.jpg",
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
-            "href": "https://github.com/LafeLabs/trashmagicmedia",
-            "text": "BUILD TRASH MAGIC MEDIA SERVER"
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
+            "text": "REPLICATOR"
         },
         {
             "href": "scroll.html",
-            "text": "TRASH MAGIC SCROLLS"
+            "text": "SCROLLS"
         },
         {
             "href": "hyperlink/",
-            "text": "HYPERLINK PAGE BUILDER"
+            "text": "HYPERLINK"
         },
         {
             "href": "web/",
