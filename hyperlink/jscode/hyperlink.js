@@ -40,16 +40,20 @@ hyperlink = {
             "text": "tiktok:@trash_robot"
         },
         {
-            "href": "https://github.com/LafeLabs/",
-            "text": "github:@lafelabs"
-        },
-        {
             "href": "https://www.instagram.com/lafelabs/",
             "text": "instagram:@lafelabs"
         },
         {
             "href": "https://www.youtube.com/channel/UCLyeOlfnEBCnRTAH8rppEFw",
             "text": "youtube:@trash_robot"
+        },
+        {
+            "href": "https://github.com/LafeLabs/",
+            "text": "github:@lafelabs"
+        },
+        {
+            "href": "copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/jscode/hyperlink.js&to=jscode/hyperlink.js",
+            "text": "UPDATE THIS HYPERLINK PAGE"
         }
     ]
 };
