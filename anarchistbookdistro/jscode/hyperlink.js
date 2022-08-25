@@ -26,6 +26,10 @@ hyperlink = {
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md",
             "text": "ANARCHIST BOOK DISTRO REPLICATOR"
+        },
+        {
+            "href": "https://rainclouddev.com/trashmagic/trash.html",
+            "text": "RAINCLOUD DEV PAGE WITH REPLICATION"
         }
     ]
 };
