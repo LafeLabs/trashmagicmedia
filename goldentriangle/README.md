@@ -6,6 +6,8 @@ Self-replicating media from trash and hypertext.
 
 # [Golden Triangle Replicator](https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle)
 
+## [tiktok of replicator](https://www.tiktok.com/t/ZTRfCcDRR/)
+
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/qrcode.png)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/replicator.jpg)
