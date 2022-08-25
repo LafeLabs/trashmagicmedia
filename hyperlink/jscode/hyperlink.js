@@ -4,12 +4,16 @@ hyperlink = {
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
-            "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
+            "text": "TRASH MAGIC MEDIA NETWORK GOLDEN TRIANGLE"
         },
         {
-            "href": "https://www.eventbrite.com/e/anarchist-book-distro-on-the-trash-magic-network-tickets-405907990727",
-            "text": "ANARCHIST BOOK DISTRO EVENTBRITE CLASS WEDENSDAY AUGUST 24TH 2022, 8:30 PM FREE ONLINE CLASS"
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/anarchistbookdistro",
+            "text": "TRASH MAGIC MEDIA NETWORK ANARCHIST BOOK DISTRO"
+        },
+        {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
+            "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia",
