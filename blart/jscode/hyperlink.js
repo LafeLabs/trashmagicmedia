@@ -1,5 +1,5 @@
 hyperlink = {
-    "url": "http://10.0.0.7/",
+    "url": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
     "src": "https://f4.bcbits.com/img/a1743870227_16.jpg",
     "alt": "cardboard sign with trash magic logo",
     "list": [

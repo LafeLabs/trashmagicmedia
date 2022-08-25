@@ -25,6 +25,6 @@
 1. The cardboard trash art can now become both augmented reality and [hypertext](https://en.wikipedia.org/wiki/Hypertext).  Put links on it to your web pages, hashtags, trash exchange locations, phone numbers, emails, fundraising links, poems, links back to this media or any other self-replicating media you wish to cast into the world([trash magic](https://www.trashrobot.org)). Move cardboard from place to place, adding physical hypertext to physical spaces, activating those spaces into an emergent community based on these shared stories
 1. Record a video of a whole install in your own words and share it with the world, showing your own [Innernette](https://www.youtube.com/embed/Y5BZkaWZAAA), send the video to the steward of this repository who will add a hyperlink to it here
 
-
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/blart/images/qrcode.png)
 
 

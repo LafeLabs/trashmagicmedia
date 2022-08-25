@@ -4,6 +4,10 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/goldentriangle/README.md",
+            "text": "GOLDEN TRIANGLE REPLICATOR"
+        },
+        {
             "href": "media.html",
             "text": "MEDIA"
         },
@@ -22,6 +26,10 @@ hyperlink = {
         {
             "href": "https://www.tiktok.com/@trash_robot",
             "text": "tiktok:@trash_robot"
+        },
+        {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/blart/README.md",
+            "text": "BLART SONG REPLICATOR"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia/blob/main/anarchistbookdistro/README.md",
