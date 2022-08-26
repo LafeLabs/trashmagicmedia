@@ -1,7 +1,13 @@
 {
     "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
     "scrolls": [
+        "alfrednorthwhitehead.txt",
+        "bookofthedead.txt",
         "home",
-        "kingjames.txt"
+        "kingjames.txt",
+        "koran.txt",
+        "paganismsurviving.txt",
+        "siddhartha.txt",
+        "upanishads.txt"
     ]
 }
