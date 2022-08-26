@@ -16,6 +16,10 @@ hyperlink = {
             "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
         },
         {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/scripture",
+            "text": "TRASH MAGIC MEDIA NETWORK GEOMETRON SCRIPTURE"
+        },
+        {
             "href": "https://github.com/LafeLabs/trashmagicmedia",
             "text": "BUILD TRASH MAGIC MEDIA SERVER"
         },
