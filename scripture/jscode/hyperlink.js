@@ -1,5 +1,5 @@
 hyperlink = {
-    "url": "http://10.0.0.27/",
+    "url": "https://github.com/LafeLabs/trashmagicmedia/tree/main/scripture",
     "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
     "alt": "cardboard sign with trash magic logo",
     "list": [
