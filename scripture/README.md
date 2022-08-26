@@ -1,14 +1,18 @@
 # [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
 
+# [SCRIPTURE](https://github.com/LafeLabs/trashmagicmedia/blob/main/scripture/README.md)
+
 ## [http://localhost/](http://localhost/)
 
-![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg)
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/images/qrcode.png)
 
-### *Local media on local networks*
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/images/replicator.png)
+
+### Self-replicating media
 
 - [download XAMPP](https://www.apachefriends.org/index.html) and install, 
 - go to the directory xampp/htdocs and delete the file index.php
-- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/replicator.php)(right click, "save link as") and save it in the directory htdocs
+- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/replicator.php)(right click, "save link as") and save it in the directory htdocs
 - start the xampp server either by searching for the program or manually starting it from the xampp directory on your hard drive
 - go to [http://localhost/replicator.php](http://localhost/replicator.php) to replicate the server, click the link to go to the local TRASH MAGIC MEDIA NETWORK
 - or navigate there with this link to [http://localhost/](http://localhost/)
@@ -23,50 +27,6 @@
  - post ads in the form of images from the main page
  - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
  - [to make the page into the solar station page go to that README by clicking this link](https://github.com/LafeLabs/trashmagicmedia/tree/main/solarstation) and the links theirein.
-
-This is local media.  We can install web servers on *everything*: mac and Windows laptops and desktops, Raspberry Pi, and Android and iOS Devices.  Any device can be a server, and we drop files on it to share with others on the same wireless network.  When every device is a server as well as a client, people who share wireless networks can media without the Cloud.  
-
-Digital media content creators are supported by brick and mortar venues.  When a wireless network is the source of a constant stream of interesting and original media content, that brings people into that space.  Creators can both get sponsorships from venues and direct material support.  
-
-This is a way to share media on the Web without the Internet, without the Cloud, without e-commerce, without algorithms or apps or the app store.  There is no user data because there are no users, just files in folders which everyone on the network can download.  The only information we ever put on the network is information we want to share freely.  
-
-The construction of this network represents the building of digital community that is always centered on physically shared spaces.  
-
-
-## Use Cases
-
- - music and art publication/distribution in venues like bars, art galleries, and coffee shops(artists compensated by venues to produce content)
- - medical literature .pdf's in medical waiting rooms
- - local web pages shared from server to server of local organizations, people, places, businesses, artists, etc.(local web)
- - local classifieds and personals ads
- - media for exchange of physical goods: share, give away, buy, and sell crafts, technology, food, locally made goods and unwanted objects, facilitate upcycling 
- - local financial markets, moderating deals between physically local business people
- - music sharing in religious communities(record audio and post to wifi) 
- - local plant, animal, fungus, soil, weather and water knowledge sharing 
- - creating foundational documents for local organizations whose existence is primarily on these local wifi-based networks
- - Documenting self-replicating things made from trash: trash magic
- - Free sharing of books, local library infrastructure, extension of Public Library system
- - free private library of banned books
- - censorship-resistant news distribution, local news
- - rapid creation of historical documents during historical events on location for replication to archives afterward
- - immersive text-based games, mixed reality
-
-
-A very simple way to make a local media server on which people can share simple advertisements for literally anything is to host images of small screenshots and photographs.  We do this with the image feed, linked from the main page via the "Images" link.  The Image Feed has buttons to select an image to upload, then upload the image to the server.  Any image larger than about 1 megabyte won't upload.  For large images, either crop them or screen shot them and then crop the screenshot(this reduces the resolution and makes smaller files).
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images.png)
-
-Anyone can delete any image by turning "delete mode"  on, and then clicking the "DELETE" buttons.  Deletion is forever! Backup everything you care about!  Don't want to lose a thing? Copy it again and again.
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images-delete.png)
-
-In general, media files we want to share can be dropped into folders which are placed in the "media" folder on the servers.
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/media.png)
-
-The entire system is self-editing, self-replicating, and self-contained.  Each server contains a code editor which can edit the whole system including itself.  Among the set of files on each system is also a set of scripts which clone the whole system.  Files are cataloged using the script [dnagenerator.php](php/dnagenerator.txt), which creates a file called [data/dna.txt](data/dna.txt) which is finally used by [replicator.php](php/replicator.txt) to copy all the code in the system from one server to the next.  Because all this is free Public Domain code we can host it on Github for free and replicate from there, but once it's replicating out in the wild, we can replicate from one server to another without referencing back to Github if we want. At any time, any instance can then be cloned to a local directory which is pushed out to a public Github repository which can the replicate out globally.  Thus we can move smoothly between totally local private replication and public replication to potentially billions of devices using Github's free hosting of open source projects(or anyone's random personal home pages on the public World Wide Web).
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/editorphp.png)
 
 
 ### Install on Pi
@@ -96,7 +56,7 @@ sudo apt install php libapache2-mod-php -y
 ```
 cd /var/www/html
 sudo rm index.html
-sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/php/replicator.txt
 cd ..
 sudo chmod -R 0777 *
 cd html
