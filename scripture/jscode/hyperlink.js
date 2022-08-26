@@ -1,8 +1,12 @@
 hyperlink = {
     "url": "https://github.com/LafeLabs/trashmagicmedia/tree/main/scripture",
-    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/images/replicator.png",
     "alt": "cardboard sign with trash magic logo",
     "list": [
+        {
+            "href": "https://gutenberg.org/",
+            "text": "GET MORE FREE BOOKS AT PROJECT GUTENBERG"
+        },
         {
             "href": "scroll.html",
             "text": "TRASH MAGIC SCROLLS"
