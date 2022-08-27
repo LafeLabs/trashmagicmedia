@@ -1,6 +1,8 @@
 {
     "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
     "scrolls": [
-        "home"
+        "aswemaythink.txt",
+        "home",
+        "parts"
     ]
 }

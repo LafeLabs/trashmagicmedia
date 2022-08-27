@@ -4,4 +4,7 @@
 
  - [as we may think wikipedia](https://en.wikipedia.org/wiki/As_We_May_Think)
  - [as we may think pdf](https://web.mit.edu/STS.035/www/PDFs/think.pdf)
- - [trash memex replicator.php global link]()
+ - [trash memex replicator.php global link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/replicator.php)
+
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/probe.png)
