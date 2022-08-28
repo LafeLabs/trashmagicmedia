@@ -2,8 +2,10 @@
     "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
     "scrolls": [
         "aswemaythink.txt",
+        "cubes",
         "geometron",
         "home",
-        "parts"
+        "parts",
+        "sharpieprinter"
     ]
 }

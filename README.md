@@ -4,7 +4,9 @@
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg)
 
-### *Local media on local networks*
+### *self-replicating media*
+
+### Installing on a windows or mac private machine
 
 - [download XAMPP](https://www.apachefriends.org/index.html) and install, 
 - go to the directory xampp/htdocs and delete the file index.php
@@ -106,6 +108,28 @@ sudo chmod -R 0777 *
 
 Check the IP address by hovering over the wifi icon, put that into the browser on another machine on the same local wifi network to see and edit the server.  Or open a browser on the pi and point it to [http://localhost](http://localhost)
 
+### Ubuntu Install
+
+You will need a thumb drive.
+
+[https://ubuntu.com instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
+
+open a command line and type:
+
+```
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+cd /var/www/html
+sudo rm index.html
+sudo apt install curl
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
+cd ..
+sudo chmod -R 0777 *
+cd html
+php replicator.php
+sudo chmod -R 0777 *
+```
  
 ### Install on Android
 
