@@ -3,6 +3,9 @@
 
 # parts
  
+All parts are donated by community members or bought on existing STEM education budget in some public space like a library maker space.
+
+ - 2 DVD drives 
  - 2 [stepper motor control boards from pololu robotics](https://www.pololu.com/product/2966)
  - 1 [dual H bridge controller from Adafruit](https://www.adafruit.com/product/2448) 
  - TRASH MAGIC MEDIA server to run Arduino, host software and media, donated old mac or pc laptop with memory wiped running Ubuntu
@@ -23,3 +26,5 @@
  - audio cable with bare solder ends 
  - [8 buttons for controller from Digikey(about $1 for all 8)](https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/FSM2JRT/529664)
  - [straight 0.1 inch headers from Digikey(buy about 2 per kit at about 60 cents each)](https://www.digikey.com/en/products/detail/chip-quik-inc/HDR100IMP40M-G-V-TH/5978197)
+ - electrolytic fluid
+ - magnetically detachable electrodes of various materials, shapes

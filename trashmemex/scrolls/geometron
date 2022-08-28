@@ -1,0 +1,10 @@
+
+## [HOME](scrolls/home)
+
+# geometron
+ 
+Geometron is a geometric metalanguage for constructing languages for machine control.  We use Geometron to program the movement of the probe, both to read and to write. 
+
+In write mode, a sequence of actions which includes both moving the electrode(possibly with feedback on the signal to keep z position the same) and changing the electrical behavior is run when the run button is pressed.  
+
+In read mode, a raster scan is performed. again possibly with feedback, 

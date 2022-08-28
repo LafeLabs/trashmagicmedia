@@ -45,7 +45,9 @@
         "uploadmedia.txt"
     ],
     "scrolls": [
-        "home"
+        "aswemaythink.txt",
+        "home",
+        "parts"
     ],
     "web": [
         "alignicons.js",
