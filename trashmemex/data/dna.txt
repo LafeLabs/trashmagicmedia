@@ -46,8 +46,12 @@
     ],
     "scrolls": [
         "aswemaythink.txt",
+        "cubes",
+        "email",
+        "geometron",
         "home",
-        "parts"
+        "parts",
+        "sharpieprinter"
     ],
     "web": [
         "alignicons.js",

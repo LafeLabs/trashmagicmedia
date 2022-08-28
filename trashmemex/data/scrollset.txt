@@ -3,6 +3,7 @@
     "scrolls": [
         "aswemaythink.txt",
         "cubes",
+        "email",
         "geometron",
         "home",
         "parts",
