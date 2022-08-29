@@ -44,3 +44,9 @@
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/anarchistbookdistro/images/cerealface.png)
 
 ### [http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md](http://localhost/anarchistbookdistro/scrolleditor.php?scroll=README.md)
+
+## [Library Genesis](https://en.wikipedia.org/wiki/Library_Genesis)
+
+## [scihub](https://en.wikipedia.org/wiki/Sci-Hub)
+
+## [Guerilla Open Access Manifesto](https://en.wikipedia.org/wiki/Guerilla_Open_Access_Manifesto)
