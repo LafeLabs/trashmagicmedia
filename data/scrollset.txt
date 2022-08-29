@@ -2,6 +2,7 @@
     "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
     "scrolls": [
         "home",
-        "trashmagic"
+        "trashmagic",
+        "ubuntu"
     ]
 }

@@ -46,7 +46,8 @@
     ],
     "scrolls": [
         "home",
-        "trashmagic"
+        "trashmagic",
+        "ubuntu"
     ],
     "web": [
         "alignicons.js",
