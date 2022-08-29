@@ -4,6 +4,10 @@ hyperlink = {
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
+            "href": "https://www.eventbrite.com/e/trash-magic-music-distro-tickets-410025887467",
+            "text": "TRASH MAGIC MUSIC DISTRO CLASS SIGNUP"
+        },
+        {
             "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
             "text": "TRASH MAGIC MEDIA NETWORK GOLDEN TRIANGLE"
         },
