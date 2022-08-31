@@ -50,6 +50,7 @@
         "email",
         "geometron",
         "home",
+        "milestones",
         "parts",
         "sharpieprinter"
     ],

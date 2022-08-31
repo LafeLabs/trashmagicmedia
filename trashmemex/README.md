@@ -5,6 +5,7 @@
  - [as we may think wikipedia](https://en.wikipedia.org/wiki/As_We_May_Think)
  - [as we may think pdf](https://web.mit.edu/STS.035/www/PDFs/think.pdf)
  - [trash memex replicator.php global link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/replicator.php)
+ - [hyperland with Douglas Adams on youtube](https://www.youtube.com/watch?v=1iAJPoc23-M)
 
 The memex is a creation of Vannevar Bush from his July 1945 essay "As We May Think".  It imagines the knowledge systems of today but with a much better vision than the one we ended up with, in which knowledge is freely shared and organized based on what scholars have found useful in the past.  A world where instead of predatory platforms like Google gatekeeping a deliberately broken search we have means of finding information based on transparent peer data.  The imagined device is based on photography-like technology for directly writing documents into surfaces.  
 
