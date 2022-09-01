@@ -30,6 +30,10 @@ hyperlink = {
         {
             "href": "media.html",
             "text": "MEDIA"
+        },
+        {
+            "href": "images.html",
+            "text": "IMAGES"
         }
     ]
 };
