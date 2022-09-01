@@ -45,9 +45,7 @@
         "uploadmedia.txt"
     ],
     "scrolls": [
-        "home",
-        "trashmagic",
-        "ubuntu"
+        "home"
     ],
     "web": [
         "alignicons.js",

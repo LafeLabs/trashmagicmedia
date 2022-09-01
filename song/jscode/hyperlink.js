@@ -28,10 +28,6 @@ hyperlink = {
             "text": "Thiiirdperson on Twitter"
         },
         {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/song",
-            "text": "REPLICATOR"
-        },
-        {
             "href": "media.html",
             "text": "MEDIA"
         }
