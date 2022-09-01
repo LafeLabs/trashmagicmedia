@@ -34,6 +34,10 @@ hyperlink = {
         {
             "href": "images.html",
             "text": "IMAGES"
+        },
+        {
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/song",
+            "text": "REPLICATOR GITHUB SCROLL"
         }
     ]
 };
