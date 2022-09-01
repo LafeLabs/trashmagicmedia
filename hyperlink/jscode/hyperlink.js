@@ -4,8 +4,8 @@ hyperlink = {
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
-            "href": "https://www.eventbrite.com/e/trash-magic-music-distro-tickets-410025887467",
-            "text": "TRASH MAGIC MUSIC DISTRO CLASS SIGNUP"
+            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
+            "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
@@ -14,10 +14,6 @@ hyperlink = {
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/anarchistbookdistro",
             "text": "TRASH MAGIC MEDIA NETWORK ANARCHIST BOOK DISTRO"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
-            "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/scripture",
