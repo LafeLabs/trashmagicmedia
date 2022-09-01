@@ -6,6 +6,10 @@
 
 ## [http://localhost/copy.php?from=[github]jscode/hyperlink.js&to=jscode/hyperlink.js](http://localhost/copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/song/jscode/hyperlink.js&to=jscode/hyperlink.js)
 
+```
+copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/song/jscode/hyperlink.js&to=jscode/hyperlink.js
+```
+
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/song/images/qrcode.png)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/song/images/replicator.png)
