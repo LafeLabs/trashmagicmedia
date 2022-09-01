@@ -36,6 +36,10 @@ hyperlink = {
             "text": "IMAGES"
         },
         {
+            "href": "scroll.html",
+            "text": "SCROLLS"
+        },
+        {
             "href": "https://www.youtube.com/embed/Y5BZkaWZAAA",
             "text": "Learn About the Innernette"
         },
