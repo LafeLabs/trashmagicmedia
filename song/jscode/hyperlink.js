@@ -1,6 +1,6 @@
 hyperlink = {
     "url": "https://github.com/LafeLabs/trashmagicmedia/tree/main/song",
-    "src": "https://f4.bcbits.com/img/a1743870227_16.jpg",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/song/images/replicator.png",
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
