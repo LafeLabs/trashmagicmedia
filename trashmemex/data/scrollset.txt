@@ -8,6 +8,7 @@
         "home",
         "milestones",
         "parts",
-        "sharpieprinter"
+        "sharpieprinter",
+        "slimezistor"
     ]
 }
