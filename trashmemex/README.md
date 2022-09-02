@@ -33,3 +33,16 @@ The initial phase of the system is just electrical and mechanical, but we will a
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/graph.png)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/uno-io.png)
+
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/slimezistor.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-setup.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-square-front.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-square-back.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-arduino.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-sliders.png)
