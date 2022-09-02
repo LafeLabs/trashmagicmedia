@@ -3,12 +3,14 @@
 # [TRASH MEMEX](https://github.com/LafeLabs/trashmagicmedia/blob/main/trashmemex/README.md)
 
  - [README](scroll(README.md))
+ - [WEB](web/)
  - [as we may think wikipedia](https://en.wikipedia.org/wiki/As_We_May_Think)
  - [as we may think pdf](https://web.mit.edu/STS.035/www/PDFs/think.pdf)
  - [slimezistor](scrolls/slimezistor)
- - cube
- - simple cube
- - icon factory
+ - [cubes scroll](scrolls/cubes)
+ - [sharpie printer scroll](scrolls/sharpieprinter)
+ - [simple cube](scrolls/simplecube)
+ - [icon factory](scrolls/iconfactory)
  - xyz printer robot machine with controller and brain
  - [editor.php](editor.php)
  - [dnagenerator.php](dnagenerator.php)

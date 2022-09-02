@@ -6,9 +6,11 @@
         "email",
         "geometron",
         "home",
+        "iconfactory",
         "milestones",
         "parts",
         "sharpieprinter",
+        "simplecube",
         "slimezistor"
     ]
 }
