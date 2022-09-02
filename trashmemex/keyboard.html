@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">    
+<head>
+     <meta charset="utf-8"/>
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/geometron.js"></script>
+
+<!--
+    this is how shape table editor should be, totally focused on 3 rows, with symbols in a tablet that is automatically saved
+-->
+</head>
+<body> 
+<div id = "keyboardbox">
+    <canvas id = "keyboard"></canvas>
+</div>
+
+    <table id = "iotable">
+        <tr>
+            <td>key</td><td><input id = "keyinput"/></td>
+        </tr>
+        <tr>
+            <td>keycode</td><td><input id = "keycodeinput"/></td>
+        </tr>
+        <tr>
+            <td>action</td><td><input id = "actioninput"/></td>
+        </tr>
+    </table>
+<p></p>
+<a href  = "symbol.html">
+    <img src = "iconsymbols/home.svg"/>
+</a>
+
+
+<table id = "buttontable">
+<tr>
+    <td class = "button" id = "exportbutton">EXPORT</td>    
+    <td class = "button" id = "importbutton">IMPORT</td>
+    <td class = "button" id = "resetbutton">RESET</td>
+</tr>
+<tr>
+    <td colspan = "3">
+        <textarea id = "textio"></textarea>
+    </td>
+</tr>
+</table>
+
+<div id = "hypercubebox">
+    <table id = "hypercubetable">
+    </table>
+</div>
+<script>
+
+resetkeyboard = [
+    "041:0321,",
+    "042:0236,",
+    "043:0323,",
+    "044:0324,",
+    "045:0325,",
+    "046:0327,",
+    "047:021,",
+    "050:0345,",
+    "051:0346,",
+    "052:0300,",
+    "053:0211,",
+    "054:032,",
+    "055:0314,",
+    "056:033,",
+    "057:020,",
+    "060:0313,",
+    "061:0305,",
+    "062:0306,",
+    "063:0350,",
+    "064:0351,",
+    "065:0352,",
+    "066:0353,",
+    "067:0310,",
+    "070:0311,",
+    "071:0312,",
+    "072:0177,",
+    "073:037,",
+    "074:0237,",
+    "075:0316,",
+    "076:0177,",
+    "077:0524,",
+    "0100:0322,",
+    "0101:0230",
+    "0102:0234,",
+    "0103:0506,",
+    "0104:0232",
+    "0105:0222,",
+    "0106:0233",
+    "0107:0234",
+    "0110:0235",
+    "0111:0227,",
+    "0112:0236",
+    "0113:0237",
+    "0114:0177,",
+    "0115:0236,",
+    "0116:0235,",
+    "0117:0177,",
+    "0120:0177,",
+    "0121:0220",
+    "0122:0223,",
+    "0123:0231",
+    "0124:0224,",
+    "0125:0226,",
+    "0126:0507,",
+    "0127:0221",
+    "0130:0505,",
+    "0131:0225,",
+    "0132:0504,",
+    "0133:0365,",
+    "0134:0201,",
+    "0135:0204,",
+    "0136:0326,",
+    "0137:0210,",
+    "0140:0304,",
+    "0141:0330",
+    "0142:0200,",
+    "0143:0342,",
+    "0144:0332,",
+    "0145:0363,",
+    "0146:0333,",
+    "0147:0334,",
+    "0150:0335,",
+    "0151:0370,",
+    "0152:0336,",
+    "0153:0337,",
+    "0154:036,",
+    "0155:031,",
+    "0156:030,",
+    "0157:0371,",
+    "0160:0347,",
+    "0161:0362,",
+    "0162:0354,",
+    "0163:0331,",
+    "0164:0364,",
+    "0165:0367,",
+    "0166:0343,",
+    "0167:0203,",
+    "0170:0341,",
+    "0171:0366,",
+    "0172:0340,",
+    "0173:0213,",
+    "0174:011,",
+    "0175:0214,",
+    "0176:0320,"
+];
+
+keyglypharray = [
+    "0331,0333,0337,0200,0316,0336,0314,0336,0330,0332,0337,0313,0337,0332,0370,",
+    "0371,0333,0330,0332,0336,0314,0336,0330,0337,0314,0313,0337,0370,",
+    "0371,0333,0332,0333,0331,0336,0314,0336,0331,0333,0331,0314,0337,0316,0337,0332,0313,0336,0336,0330,0333,0336,0331,0332,0337,",
+    "0365,0330,0330,",
+    "0365,0331,0331,0333,0333,0333,0336,0331,0333,0337,0337,0330,0332,",
+    "0333,0333,0336,0336,0333,0337,0337,"
+];
+
+
+lc = ["`1234567890-=","qwertyuiop[]\\","asdfghjkl;\'","zxcvbnm,./"];
+uc = ["~!@#$%^&*()_+","QWERTYUIOP{}|","ASDFGHJKL:\"","ZXCVBNM<>?"];
+
+
+currentKeyCode = 0141;
+
+var mainGVM = new GVM(document.getElementById("keyboard"),1200,370);
+mainGVM.x0 = 50;
+mainGVM.y0 = 55;
+mainGVM.unit = 37;
+
+
+hypercube = [];
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);
+        redraw();
+        loadtable();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpc.send();
+
+
+function redraw(){
+    mainGVM.drawGlyph("0300,");
+    for(var row = 0;row < lc.length;row++){
+        for(var col = 0;col < lc[row].length;col++){
+            upperkey = "0" + (uc[row].charCodeAt(col)).toString(8);
+            lowerkey = "0" + (lc[row].charCodeAt(col)).toString(8);
+        
+            uppersymbol = "0" + (parseInt(mainGVM.hypercube[uc[row].charCodeAt(col)],8)+01000).toString(8);
+            lowersymbol = (parseInt(mainGVM.hypercube[lc[row].charCodeAt(col)],8)+01000).toString(8);
+
+            //console.log(upperkey + "," + lowerkey + "," + uppersymbol + "," + uppersymbol + ",");
+            
+            mainGVM.actionSequence(keyglypharray[0] + lowersymbol + "," + keyglypharray[1] + uppersymbol + "," + keyglypharray[2] + lowerkey + "," + keyglypharray[3] + upperkey + "," + keyglypharray[4] + keyglypharray[5]);
+        }
+        if(row == 0){
+            mainGVM.actionSequence("0331,0331,0336,0336,0331,0337,0337,0336,0332,0337,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,");
+        }
+        if(row == 1){
+            mainGVM.actionSequence("0331,0331,0336,0336,0331,0337,0337,0336,0332,0332,0332,0337,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,");
+        }        
+        if(row == 2){
+            mainGVM.actionSequence("0331,0331,0336,0336,0331,0337,0337,0336,0332,0332,0332,0337,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,0332,");            
+        }
+    }
+}
+
+
+document.getElementById("keyinput").value = "";
+document.getElementById("keyinput").select();
+document.getElementById("keyinput").onkeypress = function(a) {
+    currentKeyCode = a.keyCode || a.which;
+    document.getElementById("keyinput").value = "";
+    document.getElementById("keycodeinput").value = "0" + currentKeyCode.toString(8);
+    document.getElementById("actioninput").value = mainGVM.hypercube[currentKeyCode].split(",")[0];
+}
+document.getElementById("actioninput").onchange = function(){
+    mainGVM.hypercube[currentKeyCode] = this.value;
+    redraw();
+    savekeyboard();
+}
+
+function savekeyboard(){
+    
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data=" + encodeURIComponent(mainGVM.bytecode(0,01777))+"&filename=data/hypercube.txt");//send text to filesaver.php
+    document.getElementById("textio").value = mainGVM.bytecode(040,0177);
+
+}
+
+document.getElementById("exportbutton").onclick = function(){
+    var jsonarray = [];
+    for(var index = 040;index < 0177;index++) {
+        if(mainGVM.hypercube[index].length > 1) {
+            var bytecodestring = "0" + index.toString(8) + ":" + mainGVM.hypercube[index];
+            jsonarray.push(bytecodestring); 
+        }
+    }
+    document.getElementById("textio").value = JSON.stringify(jsonarray,null,"    ");
+    
+}
+
+document.getElementById("textio").value = "";
+
+
+document.getElementById("importbutton").onclick = function(){
+    if(document.getElementById("textio").value.length > 0){
+        inputbytecode = JSON.parse(document.getElementById("textio").value);
+        mainGVM.importbytecode(inputbytecode);
+        redraw();
+    }
+    savekeyboard();
+}
+
+document.getElementById("resetbutton").onclick = function(){
+    mainGVM.importbytecode(resetkeyboard);
+    redraw();
+    savekeyboard();
+}
+
+hypercubetable = document.getElementById("hypercubetable");
+
+buttonsize = 50;
+
+function loadtable(){
+    for(var row = 0;row < 64;row++){
+        var newtr = document.createElement("TR");
+        hypercubetable.appendChild(newtr);    
+        for(var col = 0;col < 8;col++){
+            address = row*8 + col;
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newcan = document.createElement("CANVAS");
+            newtd.appendChild(newcan);
+            var datadiv = document.createElement("div");
+            datadiv.innerHTML = "0" + (address).toString(8);
+            datadiv.className = "data";
+            newtd.appendChild(datadiv);
+            var newGVM = new GVM(newcan,buttonsize,buttonsize);
+            newGVM.unit = buttonsize  - 2;
+            newGVM.x0 = 1;
+            newGVM.y0 = buttonsize - 1;
+            newGVM.importbytecode(hypercube);
+            newGVM.action(0300);
+            newGVM.action(01000 + address);    
+            newtd.classList.add("button");
+            newtd.onclick = function(){
+        
+                var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                //alert(localaction);
+                mainGVM.hypercube[currentKeyCode] = "0" + localaction.toString(8) + ",";
+                redraw();
+                document.getElementById("actioninput").value = "0" + localaction.toString(8);;
+                savekeyboard();
+                document.getElementById("keyinput").select();
+            }
+        }
+    }    
+}
+
+
+
+
+</script>
+<style>
+.data{
+    display:none;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color: green;
+}
+.button:active{
+    background-color: yellow;
+}
+tr{
+    text-align:right;
+}
+table{
+    border:solid;
+    width:50px;
+    height:50px;
+}
+canvas{
+
+border:solid;
+}
+#symbolbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    background-color:#ffafaf;
+}
+#keybox{
+    font-size:5em;
+}
+#buttontable{
+    border:none;
+}
+#buttontable .button{
+    border:solid;
+    text-align:center;
+}
+#iotable{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+}
+#hypercubebox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    top:50%;
+    overflow:scroll;
+    width:500px;
+}
+a{
+    margin-top:1em;
+}
+a img{
+    width:36px;
+}
+</style>
+</body>
+</html>

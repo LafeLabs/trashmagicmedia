@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body{
+    background-color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+}
+#rawstl{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+<script>
+THREE.STLExporter = function () {};
+THREE.STLExporter.prototype = {
+
+	constructor: THREE.STLExporter,
+
+	parse: ( function () {
+
+		var vector = new THREE.Vector3();
+		var normalMatrixWorld = new THREE.Matrix3();
+
+		return function parse( scene, options ) {
+
+			if ( options === undefined ) options = {};
+
+			var binary = options.binary !== undefined ? options.binary : false;
+
+			//
+
+			var objects = [];
+			var triangles = 0;
+
+			scene.traverse( function ( object ) {
+
+				if ( object.isMesh ) {
+
+					var geometry = object.geometry;
+
+					if ( geometry.isBufferGeometry ) {
+
+						geometry = new THREE.Geometry().fromBufferGeometry( geometry );
+
+					}
+
+					if ( geometry.isGeometry ) {
+
+						triangles += geometry.faces.length;
+
+						objects.push( {
+
+							geometry: geometry,
+							matrixWorld: object.matrixWorld
+
+						} );
+
+					}
+
+				}
+
+			} );
+
+			if ( binary ) {
+
+				var offset = 80; // skip header
+				var bufferLength = triangles * 2 + triangles * 3 * 4 * 4 + 80 + 4;
+				var arrayBuffer = new ArrayBuffer( bufferLength );
+				var output = new DataView( arrayBuffer );
+				output.setUint32( offset, triangles, true ); offset += 4;
+
+				for ( var i = 0, il = objects.length; i < il; i ++ ) {
+
+					var object = objects[ i ];
+
+					var vertices = object.geometry.vertices;
+					var faces = object.geometry.faces;
+					var matrixWorld = object.matrixWorld;
+
+					normalMatrixWorld.getNormalMatrix( matrixWorld );
+
+					for ( var j = 0, jl = faces.length; j < jl; j ++ ) {
+
+						var face = faces[ j ];
+
+						vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+
+						output.setFloat32( offset, vector.x, true ); offset += 4; // normal
+						output.setFloat32( offset, vector.y, true ); offset += 4;
+						output.setFloat32( offset, vector.z, true ); offset += 4;
+
+						var indices = [ face.a, face.b, face.c ];
+
+						for ( var k = 0; k < 3; k ++ ) {
+
+							vector.copy( vertices[ indices[ k ] ] ).applyMatrix4( matrixWorld );
+
+							output.setFloat32( offset, vector.x, true ); offset += 4; // vertices
+							output.setFloat32( offset, vector.y, true ); offset += 4;
+							output.setFloat32( offset, vector.z, true ); offset += 4;
+
+						}
+
+						output.setUint16( offset, 0, true ); offset += 2; // attribute byte count
+
+					}
+
+				}
+
+				return output;
+
+			} else {
+
+				var output = '';
+
+				output += 'solid exported\n';
+
+				for ( var i = 0, il = objects.length; i < il; i ++ ) {
+
+					var object = objects[ i ];
+
+					var vertices = object.geometry.vertices;
+					var faces = object.geometry.faces;
+					var matrixWorld = object.matrixWorld;
+
+					normalMatrixWorld.getNormalMatrix( matrixWorld );
+
+					for ( var j = 0, jl = faces.length; j < jl; j ++ ) {
+
+						var face = faces[ j ];
+
+						vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+
+						output += '\tfacet normal ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+						output += '\t\touter loop\n';
+
+						var indices = [ face.a, face.b, face.c ];
+
+						for ( var k = 0; k < 3; k ++ ) {
+
+							vector.copy( vertices[ indices[ k ] ] ).applyMatrix4( matrixWorld );
+
+							output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+
+						}
+
+						output += '\t\tendloop\n';
+						output += '\tendfacet\n';
+
+					}
+
+				}
+
+				output += 'endsolid exported\n';
+
+				return output;
+
+			}
+
+		};
+
+	}() )
+
+};
+</script>
+</head>
+<body>
+    <a href = "data/three.stl">data/three.stl</a>
+    <a href = "icon3d.html">icon3d.html</a>
+    <a href = "index.html">home</a>
+    <textarea id = "rawstl"></textarea>
+    
+<script>
+            
+var camera, scene, renderer;
+var geometry, material, mesh;
+
+x=0;
+y=0;
+z=0;
+side=0.2;
+
+init();
+
+
+hypercube = [];
+for(var index = 0;index < 02000;index++){
+    hypercube.push("");
+}
+
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercubedata = JSON.parse(this.responseText);
+        for(var index = 0;index < hypercubedata.length;index++){
+            if(hypercubedata.length > 0){
+                var localaddress = parseInt(hypercubedata[index].split(":")[0],8);
+                var localglyph = hypercubedata[index].split(":")[1];
+                hypercube[localaddress] = localglyph;
+            }
+        }
+
+        loadglyph();
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+function drawsphere(){
+    
+    var newsphere = new THREE.SphereGeometry(side,8,8);
+    newsphere.translate(x,y,z);
+    var newspheremesh = new THREE.Mesh( newsphere, material );
+    scene.add(newspheremesh);
+}
+
+function drawcube(){
+    var newcube = new THREE.CubeGeometry( side,side,side );
+    newcube.translate(x,y,z);
+    var newcubemesh = new THREE.Mesh( newcube, material );
+    scene.add(newcubemesh);
+
+}
+
+function init(){
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10 );
+    camera.position.z = 3;
+    camera.position.x = 2;
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xffffff );
+    material = new THREE.MeshNormalMaterial( { color: 0x000000, wireframe: false } );
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement ); 
+}
+
+function drawGlyph(localString){
+x=0;
+y=0;
+z=0;
+side=0.2;
+    
+    var tempArray = localString.split(',');
+    for(var index = 0;index < tempArray.length;index++){
+        action(parseInt(tempArray[index],8));
+    }
+
+    renderer.render( scene, camera );
+    
+}
+
+function actionSequence(localString){
+    var tempArray = localString.split(',');
+    for(var index = 0;index < tempArray.length;index++){
+        action(parseInt(tempArray[index],8));
+    }
+}
+
+function action(localCommand){
+
+    if(localCommand >= 0500 && localCommand <0700){
+        actionSequence(hypercube[localCommand]);
+    }
+    if(localCommand >= 0220 && localCommand <0300){
+        actionSequence(hypercube[localCommand]);
+    }
+
+    if(localCommand > 01000){
+        actionSequence(hypercube[localCommand]);
+    }
+    
+    if(localCommand == 0700){
+        x -= side;
+    }
+    if(localCommand == 0701){
+        x += side;
+    }
+    if(localCommand == 0702){
+        y += side;
+    }
+    if(localCommand == 0703){
+        y -= side;
+    }
+    if(localCommand == 0704){
+        z += side;
+    }
+    if(localCommand == 0705){
+        z -= side;
+    }
+    if(localCommand == 0706){
+        side /= 2;
+    }
+    if(localCommand == 0707){
+        side *= 2;
+    }
+    if(localCommand == 0710){
+        drawsphere();
+    }
+    if(localCommand == 0711){
+        drawcube();
+    }
+    
+
+}
+
+
+function savestl(){
+    var exporter = new THREE.STLExporter();
+    var str = exporter.parse(scene);
+    var httpc = new XMLHttpRequest();
+    console.log(str);
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(str)+"&filename=data/three.stl");//send text to filesaver.php   
+    document.getElementById("rawstl").value = str;
+
+}
+
+
+function loadglyph(){
+    var httpcglyph = new XMLHttpRequest();
+    httpcglyph.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            glyph = this.responseText + "0207,";
+            drawGlyph(glyph);
+            savestl();
+        }
+    };
+    httpcglyph.open("GET", "fileloader.php?filename=data/glyph3d.txt", true);
+    httpcglyph.send();   
+}
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
+

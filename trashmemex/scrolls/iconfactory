@@ -2,10 +2,11 @@
 ## [HOME](scrolls/home)
 
 # iconfactory
- 
- - [traceicon.html](web/traceicon.html) 
- - [trashmagicicon.html](web/trashmagicicon.html) 
- - [iconset.html](web/iconset.html) 
- - [iconpage.html](web/iconpage.html) 
- - [alignimage.html](web/alignimage.html) 
- - [globalimagefeed.html](web/globalimagefeed.html) 
+
+ - [symbol.html](symbol.html) 
+ - [web/traceicon.html](web/traceicon.html)
+ - [web/trashmagicicon.html](web/trashmagicicon.html)
+ - [web/iconset.html](web/iconset.html)
+ - [web/iconpage.html](web/iconpage.html)
+ - [web/alignimage.html](web/alignimage.html)
+ - [web/globalimagefeed.html](web/globalimagefeed.html)
