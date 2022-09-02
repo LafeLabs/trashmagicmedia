@@ -17,6 +17,7 @@
         "picrust.html",
         "qrcode.html",
         "readme.html",
+        "scanglyph.html",
         "scroll.html",
         "scrolldelete.html",
         "scrolleditor.html",
@@ -36,7 +37,8 @@
         "traceicon.html",
         "voxel.html",
         "webdestroyer.html",
-        "webeditor.html"
+        "webeditor.html",
+        "writeglyph.html"
     ],
     "data": [
         "arduinocodexyz.txt",
@@ -45,9 +47,11 @@
         "dna.txt",
         "hypercube.txt",
         "robotfeed.txt",
+        "scanglyph.txt",
         "scrollset.txt",
         "serverurl.txt",
-        "symbolset.txt"
+        "symbolset.txt",
+        "writeglyph.txt"
     ],
     "javascript": [
         "geometron.js",
