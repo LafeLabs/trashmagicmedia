@@ -6,17 +6,17 @@
 
 Self-replicating web page.
 
+
  - [index.html](index.html)
- - README.md
- - fork.html
- - dir.php
- - mkdir.php
- - rdelete.php
- - copy.php
- - filesaver.php
- - fileloader.php
- - editor.php
- - replicator.php
- - dnagenerator.php
- - data/dna.txt
+ - [README.md](README.md)
+ - [fork.html](fork.html)
+ - [dir.php](dir.php)
+ - [mkdir.php](mkdir.php)
+ - [rdelete.php](rdelete.php)
+ - [filesaver.php](filesaver.php)
+ - [fileloader.php](fileloader.php)
+ - [editor.php](editor.php)
+ - [replicator.php](replicator.php)
+ - [dnagenerator.php](dnagenerator.php)
+ - [data/dna.txt](data/dna.txt)
 
