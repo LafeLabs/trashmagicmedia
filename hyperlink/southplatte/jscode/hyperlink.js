@@ -1,5 +1,5 @@
 hyperlink = {
-    "url": "http://www.southplatte.net",
+    "url": "https://www.southplatte.net",
     "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/southplatte.jpg",
     "alt": "cardboard sign linking to page",
     "list": [
@@ -14,6 +14,10 @@ hyperlink = {
         {
             "href": "fork.html",
             "text": "FORK"
+        },
+        {
+            "href": "copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/southplatte/jscode/hyperlink.js&to=jscode/hyperlink.js",
+            "text": "copy this hyperlink set from github"
         }
     ]
 };
