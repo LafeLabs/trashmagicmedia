@@ -1,6 +1,6 @@
 hyperlink = {
     "url": "https://www.trashrobot.org",
-    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/images/replicator.png",
+    "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
