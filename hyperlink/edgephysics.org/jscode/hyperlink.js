@@ -1,35 +1,15 @@
 hyperlink = {
-    "url": "https://www.trashrobot.org",
+    "url": "https://www.edgephysics.net",
     "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/scripture/images/replicator.png",
     "alt": "cardboard sign which says trash magic and trash can with eight arrows of chaos",
     "list": [
         {
-            "href": "fork.html",
-            "text": "FORK"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/blart",
-            "text": "BLART TRASH MAGIC SELF REPLICATING FAN ART WEB PAGE ON INNERNETTE"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/goldentriangle",
-            "text": "TRASH MAGIC MEDIA NETWORK GOLDEN TRIANGLE"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/anarchistbookdistro",
-            "text": "TRASH MAGIC MEDIA NETWORK ANARCHIST BOOK DISTRO"
-        },
-        {
-            "href": "https://github.com/LafeLabs/trashmagicmedia/tree/main/scripture",
-            "text": "TRASH MAGIC MEDIA NETWORK GEOMETRON SCRIPTURE"
+            "href": "https://lean.toad.pics",
+            "text": "leantime.io on TOAD"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia",
             "text": "BUILD TRASH MAGIC MEDIA SERVER"
-        },
-        {
-            "href": "https://www.lulu.com/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html",
-            "text": "buy geometron magic book from Lulu press"
         },
         {
             "href": "https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks",
@@ -60,7 +40,7 @@ hyperlink = {
             "text": "github:@lafelabs"
         },
         {
-            "href": "copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/jscode/hyperlink.js&to=jscode/hyperlink.js",
+            "href": "copy.php?from=https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/edgephysics/jscode/hyperlink.js&to=jscode/hyperlink.js",
             "text": "UPDATE THIS HYPERLINK PAGE"
         }
     ]

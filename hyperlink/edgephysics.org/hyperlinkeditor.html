@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+    HYPERLINK
+
+    All Code and ideas CC0 Public Domain
+
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+
+   <title>TRASH MAGIC MEDIA</title>    
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "jscode/hyperlink.js"></script>
+
+</head>
+<body>    
+<h1><a href = "index.html">HOME</a></h1>
+
+
+
+<img id = "mainimage"/>
+
+<div id = "qrcode"></div>
+
+<h3><a id=  "serverlink"></a></h3>
+
+
+
+<table>
+    <tr>
+        <td>Server URL(http://[your ip address]/):</td>
+        <td><input id = "serverurlinput"/></td>
+    </tr>
+    <tr>
+        <td>image URL:</td>
+        <td><input id = "srcinput"/></td>
+    </tr>    
+    <tr>
+        <td>image alt text:</td>
+        <td><input id = "altinput"/></td>
+    </tr>
+</table>
+
+<table id = "linktable"></table>
+
+<ul id = "linklist">
+</ul>
+<div id ="importbutton" class = "button">IMPORT</div>
+
+<textarea id = "textio"></textarea>
+
+<script>
+
+codesquaresize = 200;
+document.getElementById("qrcode").style.width = codesquaresize.toString()  + "px";
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: hyperlink.url,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+loadserver();
+loadimage();
+
+
+document.getElementById("serverurlinput").onchange = function(){
+
+    hyperlink.url = this.value;
+    loadserver();
+    savejson();
+    
+}
+
+document.getElementById("srcinput").onchange = function(){
+    hyperlink.src = this.value;
+    loadimage();
+    savejson()
+
+}
+
+document.getElementById("altinput").onchange = function(){
+    hyperlink.alt = this.value;
+    loadimage();
+    savejson()
+    
+}
+
+function loadserver(){
+    document.getElementById("serverlink").href = hyperlink.url;
+    document.getElementById("serverlink").innerHTML = hyperlink.url;
+    document.getElementById("serverurlinput").value = hyperlink.url;
+    qrcode.makeCode(hyperlink.url);
+}
+
+function loadimage(){
+    document.getElementById("mainimage").src = hyperlink.src;
+    document.getElementById("srcinput").value = hyperlink.src;
+    document.getElementById("altinput").value = hyperlink.alt;
+    document.getElementById("mainimage").alt = hyperlink.alt;
+}
+
+loadlinks();
+function loadlinks(){
+    document.getElementById("linklist").innerHTML = "";
+    for(var index = 0;index < hyperlink.list.length;index++){
+        var newli = document.createElement("LI");
+        document.getElementById("linklist").appendChild(newli);
+        var newa = document.createElement("A");
+        newli.appendChild(newa);
+        newa.href = hyperlink.list[index].href;
+        newa.innerHTML = hyperlink.list[index].text;
+        var newbutt = document.createElement("SPAN");
+        newbutt.className = "button";
+        newbutt.innerHTML = "UP";
+        newbutt.id = "up" + index.toString();
+        newli.appendChild(newbutt);
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(2));
+            if(localindex != 0){
+                var temparray = [];
+                
+                for(var tempindex = 0;tempindex < localindex - 1;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[localindex]);
+                temparray.push(hyperlink.list[localindex - 1]);
+                for(var tempindex = localindex + 1;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }                
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+            else{
+                var temparray = [];
+                for(var tempindex = 1;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[0]);
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+        }
+
+        var newbutt = document.createElement("SPAN");
+        newbutt.className = "button";
+        newbutt.innerHTML = "DOWN";
+        newbutt.id = "down" + index.toString();
+        newli.appendChild(newbutt);
+    
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(4));
+            if(localindex != hyperlink.list.length-1){
+                var temparray = [];
+                for(var tempindex = 0;tempindex < localindex;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                temparray.push(hyperlink.list[localindex + 1]);
+                temparray.push(hyperlink.list[localindex]);
+                for(var tempindex = localindex + 2;tempindex < hyperlink.list.length;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }                
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+            else{
+                var temparray = [];
+                temparray.push(hyperlink.list[hyperlink.list.length - 1]);
+                for(var tempindex = 1;tempindex < hyperlink.list.length - 1;tempindex++){
+                    temparray.push(hyperlink.list[tempindex]);
+                }
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+        }    
+    
+    
+        var newbutt = document.createElement("SPAN");
+        //reusing the same variable name is a form of recycling;#dealwithit
+        newbutt.className = "button";
+        newbutt.innerHTML = "DELETE";
+        newbutt.id = "delete" + index.toString();
+        newli.appendChild(newbutt);
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(6));
+            if(hyperlink.list.length > 1){
+                var temparray = [];
+                for(var tempindex = 0;tempindex < hyperlink.list.length;tempindex++){
+                    if(tempindex != localindex){
+                        temparray.push(hyperlink.list[tempindex]);
+                    }
+                }
+                hyperlink.list = temparray;
+                savejson();
+                loadlinks();
+            }
+        }
+    
+        var newbutt = document.createElement("SPAN");
+        newbutt.className = "button";
+        newbutt.innerHTML = "COPY";
+        newli.appendChild(newbutt);
+        newbutt.id = "copy" + index.toString();
+        newbutt.onclick = function(){
+            var localindex = parseInt(this.id.substring(4));
+            var thiselement = JSON.parse(JSON.stringify(hyperlink.list[localindex]));
+            hyperlink.list.unshift(thiselement);
+            savejson();
+            loadlinks();
+        }
+    
+        var newt = document.createElement("TABLE");
+        newli.appendChild(newt);
+        var newtr = document.createElement("TR");
+        newt.appendChild(newtr);
+    
+        var newtd = document.createElement("TD");
+        newtd.innerHTML = "text:";
+        newtr.appendChild(newtd);
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newi = document.createElement("INPUT");
+        newi.value = hyperlink.list[index].text;
+        newi.id = "text" + index.toString();
+        newtd.appendChild(newi);
+        newi.onchange = function(){
+            var localindex = parseInt(this.id.substring(4));
+            hyperlink.list[localindex].text = this.value;
+            savejson();
+            loadlinks();
+        }
+    
+    
+        var newtd = document.createElement("TD");
+        newtd.innerHTML = "href:";
+        newtr.appendChild(newtd);
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newi = document.createElement("INPUT");
+        newi.value = hyperlink.list[index].href;
+        newi.id = "href" + index.toString();
+        newtd.appendChild(newi);
+        newi.onchange = function(){
+            var localindex = parseInt(this.id.substring(4));
+            hyperlink.list[localindex].href = this.value;
+            savejson();
+            loadlinks();
+        }
+        
+        
+    }
+    
+}
+
+
+
+
+
+function savejson(){
+
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+    httpc.send("data="+encodeURIComponent("hyperlink = " + JSON.stringify(hyperlink,null,"    ") + ";")+"&filename=jscode/hyperlink.js");//send text to filesaver.ph
+    
+}
+
+
+document.getElementById("textio").value = JSON.stringify(hyperlink,null,"    ");
+
+document.getElementById("importbutton").onclick = function(){
+    hyperlink = JSON.parse(document.getElementById("textio").value);
+    loadimage();
+    loadserver();
+    loadlinks();
+    savejson();
+}
+
+</script>
+<style>
+#importbutton{
+    width:6em;
+}
+input,textarea{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    border-color:#00ff00;
+    width:40em;
+}
+table{
+    font-family:courier;
+    font-size:14px;
+    display:block;
+    margin:auto;
+    border:solid;
+    border-color:#00ff00;
+}
+td{
+    text-align:right;
+}
+body{
+    font-size:2em;
+    padding:0em 4em 4em 4em;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+}
+#mainimage{
+    max-width:90%;
+    display:block;
+    margin:auto;
+    background-color:#808080;
+}
+#qrcode{
+    border:solid;
+    border-width:10px;
+    border-color:#808080;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+h1,h2,h3{
+    text-align:center;
+}
+a{
+    color:#ff2cb4;
+}
+.button{
+    border:solid;
+    font-family:courier;
+    border-color:#00ff00;
+    cursor:pointer;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>
