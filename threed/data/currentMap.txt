@@ -1,0 +1,167 @@
+[
+    {
+        "x": 0.8343337334933973,
+        "y": 0.007202881152460984,
+        "w": 0.2845138055222089,
+        "h": 0.08523409363745499,
+        "angle": 0,
+        "text": "map editor",
+        "href": "mapeditor.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.003601440576230492,
+        "y": 0.008403361344537815,
+        "w": 0.2845138055222089,
+        "h": 0.03341288782816229,
+        "angle": 0,
+        "text": "tools",
+        "href": "maps/tools",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.8199279711884754,
+        "y": 0.1716686674669868,
+        "w": 0.3037214885954382,
+        "h": 0.10501193317422435,
+        "angle": -88,
+        "text": "trash magic manifesto pdf download",
+        "href": "https://lafelabs.github.io/Trash_Magic_Manifesto.pdf",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": -0.15606242496998798,
+        "y": 0.7322929171668667,
+        "w": 0.3037214885954382,
+        "h": 0.10501193317422435,
+        "angle": 89,
+        "text": "book of geometron",
+        "href": "https://lafelabs.github.io/book_of_geometron.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": -0.06842737094837935,
+        "y": 0.4069627851140456,
+        "w": 0.19447779111644659,
+        "h": 0.045346062052505964,
+        "angle": 89,
+        "text": "trash magic manifesto hardcopy",
+        "href": "https://www.lulu.com/en/us/shop/lafe-spietz/trash-magic-manifesto-and-action-coloring-book-revision-1/paperback/product-1km4deev.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.19327731092436976,
+        "y": 0.15726290516206481,
+        "w": 0.680672268907563,
+        "h": 0.6825775656324582,
+        "angle": 0,
+        "text": "CLICK TO DESIGN!!",
+        "href": "",
+        "src": "https://i.imgur.com/SmYWDTH.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.31812725090036015,
+        "y": 0.22809123649459784,
+        "w": 0.4525810324129652,
+        "h": 0.545346062052506,
+        "angle": 0,
+        "text": "CLICK TO DESIGN!!",
+        "href": "",
+        "src": "https://i.imgur.com/No1wukK.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7983193277310925,
+        "y": 0.9207683073229291,
+        "w": 0.47058823529411764,
+        "h": 0.09904534606205251,
+        "angle": 0,
+        "text": "localhost",
+        "href": "http://localhost/",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.013205282112845138,
+        "y": 0.9447779111644657,
+        "w": 0.3517406962785114,
+        "h": 0.09904534606205251,
+        "angle": 0,
+        "text": "workflow",
+        "href": "maps/workflow",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.4417767106842737,
+        "y": 0.9519807923169268,
+        "w": 0.2845138055222089,
+        "h": 0.08591885441527446,
+        "angle": 0,
+        "text": "shield",
+        "href": "maps/shield",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.3445378151260504,
+        "y": 0.08883553421368548,
+        "w": 0.2845138055222089,
+        "h": 0.08591885441527446,
+        "angle": 0,
+        "text": "ROBOT SYMBOLS",
+        "href": "programarduino.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.21368547418967587,
+        "y": 0.8355342136854742,
+        "w": 0.5270108043217286,
+        "h": 0.050119331742243436,
+        "angle": 0,
+        "text": "magic",
+        "href": "scrolls/magic",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.01800720288115246,
+        "y": 0.14285714285714285,
+        "w": 0.2845138055222089,
+        "h": 0.03341288782816229,
+        "angle": 0,
+        "text": "terminal",
+        "href": "maps/terminal",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.48739495798319327,
+        "y": 0.8283313325330132,
+        "w": 0.2845138055222089,
+        "h": 0.08591885441527446,
+        "angle": 0,
+        "text": "Replicate Trash Robot Terminal",
+        "href": "scrolls/terminal",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.8283313325330132,
+        "y": 0.6506602641056423,
+        "w": 0.226890756302521,
+        "h": 0.02386634844868735,
+        "angle": -86,
+        "text": "build printer robot",
+        "href": "maps/printer",
+        "src": "",
+        "maplinkmode": true
+    }
+]

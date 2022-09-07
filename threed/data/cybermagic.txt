@@ -1,0 +1,24 @@
+{
+  "spread": [
+    0,
+    1,
+    2,
+    48,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "sigilindex": 4,
+  "image": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg",
+    "x": 0,
+    "y": 0,
+    "w": 1.4993954050785974,
+    "angle": 0
+  }
+}

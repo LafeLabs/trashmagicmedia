@@ -1,0 +1,46 @@
+[
+    {
+        "x": 0.014319809069212411,
+        "y": 0.007159904534606206,
+        "w": 0.7267303102625299,
+        "h": 0.7267303102625299,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/Qg40z9U.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.535799522673031,
+        "y": 0.014319809069212411,
+        "w": 0.4809069212410501,
+        "h": 0.4809069212410501,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/qMRny0B.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5262529832935561,
+        "y": 0.48329355608591884,
+        "w": 0.4809069212410501,
+        "h": 0.47494033412887826,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/ktEZLu3.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.07517899761336516,
+        "y": 0.06801909307875895,
+        "w": 0.30906921241050117,
+        "h": 0.30906921241050117,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/nKHSZxC.jpg",
+        "maplinkmode": false
+    }
+]

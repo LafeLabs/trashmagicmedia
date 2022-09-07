@@ -1,0 +1,19 @@
+{
+    "foo": [
+        "baz",
+        "bar",
+        "foo",
+        "channels[channel]",
+        "doodeedoo",
+        "baz",
+        "bar",
+        "first post in channel #foo",
+        "second post"
+    ],
+    "secret": [
+        "@foo",
+        "@foo",
+        "secret post one",
+        "another secret post"
+    ]
+}

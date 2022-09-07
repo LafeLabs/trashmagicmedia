@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAREAAAAAAiAAEAAAAAACIAAQAAAAAAACABAAAAAAAAAgEAAAAAAwAAIQAAADAzMzMwMzMzMwMAAAEgAAAwAAAAAQIAAAAAAAABACAAAAAAAAEAAgAAAAAAAQAAIgAAAAABAAAiAAAAABEQAAAAAAAAAQAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+</head>
+<body>
+    
+    
+<div style = "display:none"><canvas id = "maincanvas"></canvas></div>
+    
+<div id = "header">
+
+    <input id = "glyphinput"/>
+    <input id = "arduinoinput"/>
+
+</div>
+<div id = "feed"></div>
+
+<textarea id = "arduinocode"></textarea>
+
+<table id = "linktable">
+    <tr>
+        <td>
+            <a href = "index.html">HOME</a>
+        </td>
+        <td>
+            <a href = "traceicon.html">TRACE</a>
+        </td>
+        <td>
+            <a href = "iconfeed.html">SHARE</a>
+        </td>
+        <td>
+            <a href = "programarduino.html">CLAY PROGRAMMER</a>
+        </td>
+        <td>
+            <a href = "https://www.arduino.cc/en/software">DOWNLOAD</a>
+        </td>
+    </tr>
+</table>
+<p id = "helpbox">Bottle cap printer: x, y, and z are all independent axes. click an icon to load it into arduino code area. copy/paste code from there to ARDUINO IDE, which you can download from "download" link.</p>
+<script>
+
+feedwidth = 100;
+feedlinkwidth  = feedwidth;
+mainsize = 0.5*innerWidth - 10;
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+
+gvmArray = [];
+
+robotfeed = [];
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+
+        var httpcFeed = new XMLHttpRequest();
+        httpcFeed.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                robotfeed = JSON.parse(this.responseText);
+                loadfeed();
+            }
+        };
+        httpcFeed.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+        httpcFeed.send();
+
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+arduinocode = "";
+
+//load data/arduinocode.txt
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        arduinocode = this.responseText;
+        document.getElementById("arduinocode").value = "char coin[] = \"\";\n\n" + arduinocode;
+    };
+}
+httpc.open("GET", "fileloader.php?filename=data/arduinocodexyz.txt", true);
+httpc.send();
+    
+
+function loadfeed(){
+    gvmArray = [];
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            document.getElementById("glyphinput").value = glyph;
+            document.getElementById("arduinoinput").value = bytecode2ascii(glyph);
+            //make this the coin for coin studio
+            coin = glyph;
+            
+            document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(glyph) + "\";\n\n" + arduinocode;
+        }
+        
+        
+    }    
+}
+
+document.getElementById("glyphinput").value = "";
+document.getElementById("arduinoinput").value = "";
+
+
+function bytecode2ascii(bytecode){
+    var bytesequence = bytecode.split(",");
+    var outstring = "";
+    for(var index = 0;index < bytesequence.length;index++){
+        var robotaction = parseInt(bytesequence[index],8);
+        if(robotaction == 0500){
+            outstring += "A";
+        }
+        if(robotaction == 0501){
+            outstring += "B";
+        }
+        if(robotaction == 0502){
+            outstring += "C";
+        }
+        if(robotaction == 0503){
+            outstring += "D";
+        }
+        if(robotaction == 0504){
+            outstring += "E";
+        }
+        if(robotaction == 0505){
+            outstring += "F";
+        }
+        if(robotaction == 0506){
+            outstring += "G";
+        }
+        if(robotaction == 0507){
+            outstring += "H";
+        }
+        if(robotaction > 01040 && robotaction < 01177){
+            outstring += bytecode2ascii(mainGVM.hypercube[robotaction]);
+        }
+    }
+    return outstring;
+
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+#linktable{
+    position:absolute;
+    right:0px;
+    top:3em;
+}
+.deletebutton{
+    width:20px;
+    z-index:2;
+    position:relative;
+    left:-100px;
+    top:-80px;
+}
+.feedelement{
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:100px;
+}
+#footer{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:150px;
+}
+#textio{
+    position:absolute;
+    left:0px;
+    width:100%;
+    bottom:0px;
+    height:100px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:50%;
+    top:100px;
+    bottom:0px;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+}
+#arduinocode{
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    width:40%;
+    height:500px;
+    border:solid;
+    border-width:10px;
+    border-color:#00878F;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#glyphinput{
+    width:90%;
+    font-family:courier;
+    font-size:12px;
+}
+#arduinoinput{
+    border-color:#3186a0;
+}
+#helpbox{
+    position:absolute;
+    right:10px;
+    top:100px;
+    width:300px;
+    font-size:12px;
+    overflow:scroll;
+    height:100px;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+</style>
+</body>
+</html>

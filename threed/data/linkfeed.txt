@@ -1,0 +1,67 @@
+[
+    {
+        "href": "editor.php",
+        "src": "",
+        "text": "editor.php"
+    },
+    {
+        "href": "imagefeed.html",
+        "src": "",
+        "text": "imagefeed.html"
+    },
+    {
+        "href": "poetryengine.html",
+        "src": "",
+        "text": "poetry engine"
+    },
+    {
+        "href": "duality.html",
+        "src": "",
+        "text": "duality"
+    },
+    {
+        "href": "chaosfeed.html",
+        "src": "",
+        "text": "chaosfeed.html"
+    },
+    {
+        "href": "https://www.signupgenius.com/go/10c0f4ba8a922a13-week",
+        "src": "",
+        "text": "karate link"
+    },
+    {
+        "href": "imagefeed.html",
+        "src": "",
+        "text": "imagefeed.html"
+    },
+    {
+        "href": "textfeed.html",
+        "src": "",
+        "text": "textfeed.html"
+    },
+    {
+        "href": "mathuser.php?map=maps/math",
+        "src": "",
+        "text": "math map"
+    },
+    {
+        "href": "qrcode.html",
+        "src": "",
+        "text": "qr code generator"
+    },
+    {
+        "href": "ipaddress.php",
+        "src": "",
+        "text": "ipaddress.php"
+    },
+    {
+        "href": "linkfeededitor.html",
+        "src": "",
+        "text": "operator screen"
+    },
+    {
+        "href": "index.html",
+        "src": "",
+        "text": "home"
+    }
+]

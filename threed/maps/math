@@ -1,0 +1,79 @@
+[
+    {
+        "x": 0.5847255369928401,
+        "y": -0.15990453460620524,
+        "w": 1.3770883054892602,
+        "h": 0.983451536643026,
+        "angle": -60,
+        "text": "$\\frac{-\\hbar^2}{2m}\\nabla^2\\Psi$",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.032219570405727926,
+        "y": 0.007159904534606206,
+        "w": 0.545346062052506,
+        "h": 0.1515513126491647,
+        "angle": 0,
+        "text": "math map user",
+        "href": "mathuser.php?map=maps/math",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.00954653937947494,
+        "y": 0.8735083532219571,
+        "w": 0.545346062052506,
+        "h": 0.1515513126491647,
+        "angle": 0,
+        "text": "link to math map editor",
+        "href": "mathmapeditor.php?map=maps/math",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.15871121718377088,
+        "y": 0.38066825775656327,
+        "w": 0.36634844868735084,
+        "h": 0.028368794326241134,
+        "angle": -5,
+        "text": "$\\frac{-\\hbar^2}{2m}\\nabla^2\\Psi$",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.14200477326968974,
+        "y": 0.32816229116945106,
+        "w": 0.20286396181384247,
+        "h": 0.2033096926713948,
+        "angle": -60,
+        "text": "",
+        "href": "",
+        "src": "data:image/png;base64,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",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.6062052505966588,
+        "y": 0.9272076372315036,
+        "w": 0.545346062052506,
+        "h": 0.1515513126491647,
+        "angle": 0,
+        "text": "math scroll user",
+        "href": "mathuser.php?scroll=scrolls/math.md",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.8544152744630071,
+        "y": -0.0011933174224343676,
+        "w": 0.4212410501193317,
+        "h": 0.05608591885441527,
+        "angle": 0,
+        "text": "home",
+        "href": "index.html",
+        "src": "",
+        "maplinkmode": false
+    }
+]

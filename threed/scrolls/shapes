@@ -1,0 +1,37 @@
+[home](index.html)
+
+[map](maps/shapes)
+
+# Laser Cut Shapes
+
+The Geometron language allows a trash robot operator to create laser cut shape designs quickly in computer formats which can be used to either directly program a laser cutter or be sent to a commercial laser cut on demand service.  Thus, all Trash Robot Operators can make custom laser cut shapes of any kind on demand and provide them at any scale from one cut in a library maker space to thousands sent out to have cut.
+
+You can get laser cut shapes made from the files given here.  Here should be files for the basic 7 shapes in the shape set, the golden triangles, and the geometron ruler.  You can use geometron to make your own shapes. These shapes can be made into physical objects using typically 1/8 flouresent green acrylic cut out on a laser cutter.  You can find a laser cutter at any makers space and some artists have them.  The person who gave you Geometron can point you to someone with a laser cutter you can use probably, and you can send files to someone who can cut them out and drop them off in a geometron repository described using maps and symbol magic.  
+
+Bulk orders of shapes can be purchased from the commercial laser cutting company [https://www.ponoko.com/](https://www.ponoko.com/).
+
+To make your own shape designs from scratch, follow the separate geometron instructions for how to make a ruler and generalize from there.
+
+![](iconsymbols/shapesgreen.svg)
+![](https://i.imgur.com/oCXWSGN.jpg)
+![](https://i.imgur.com/Tp6xtV6.jpg)
+![](https://i.imgur.com/TD5Sqs6.jpg)
+![](https://i.imgur.com/vkUCCZP.jpg)
+![](https://i.imgur.com/BtOx3D1.jpg)
+
+## shapeset.svg:
+
+![](iconsymbols/shapeset.svg)
+
+## rulers.svg:
+
+![](iconsymbols/rulers.svg)
+
+## rulers.png:
+
+![](iconsymbols/rulers.png)
+
+## [rulersoutline.svg](iconsymbols/rulersoutline.svg)
+
+
+If you want one set, contact an Operator.  If you want lots, get them made in bulk.  You can make them and sell them if you want it is zero-property.

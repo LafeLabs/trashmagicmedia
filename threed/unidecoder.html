@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script>
+    
+code = [
+    {
+        "name": "aleph",
+        "unicode": "5d0"
+    },
+    {
+        "name": "bet",
+        "unicode": "5d1"
+    },
+    {
+        "name": "gimel",
+        "unicode": "5d2"
+    },
+    {
+        "name": "dalet",
+        "unicode": "5d3"
+    },
+    {
+        "name": "he",
+        "unicode": "5d4"
+    },
+    {
+        "name": "vav",
+        "unicode": "5d5"
+    },
+    {
+        "name": "zayin",
+        "unicode": "5d6"
+    },
+    {
+        "name": "het",
+        "unicode": "5d7"
+    },
+    {
+        "name": "tet",
+        "unicode": "5d8"
+    },
+    {
+        "name": "yod",
+        "unicode": "5d9"
+    },
+    {
+        "name": "kaf",
+        "unicode": "5db"
+    },
+    {
+        "name": "lamed",
+        "unicode": "5dc"
+    },
+    {
+        "name": "mem",
+        "unicode": "5de"
+    },
+    {
+        "name": "nun",
+        "unicode": "5e0"
+    },
+    {
+        "name": "samekh",
+        "unicode": "5e1"
+    },
+    {
+        "name": "ayin",
+        "unicode": "5e2"
+    },
+    {
+        "name": "pe",
+        "unicode": "5e4"
+    },
+    {
+        "name": "tsadi",
+        "unicode": "5e6"
+    },
+    {
+        "name": "qof",
+        "unicode": "5e7"
+    },
+    {
+        "name": "resh",
+        "unicode": "5e8"
+    },
+    {
+        "name": "shin",
+        "unicode": "5e9"
+    },
+    {
+        "name": "tav",
+        "unicode": "5ea"
+    },
+    {
+        "name": "final kaf",
+        "unicode": "5da"
+    },
+    {
+        "name": "final mem",
+        "unicode": "5dd"
+    },
+    {
+        "name": "final nun",
+        "unicode": "5df"
+    },
+    {
+        "name": "final pe",
+        "unicode": "5e3"
+    },
+    {
+        "name": "final tsadi",
+        "unicode": "5e5"
+    }
+];
+
+    </script>
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<a href= "index.html">index.html</a>
+<br>
+
+<div id = "importbutton">IMPORT</div>
+
+<table id = "textiotable">
+    <tr>
+        <td>
+            enter native text:
+        </td>
+        <td>
+            <input id = "inputinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            character codes, base 16:
+        </td>
+        <td>
+            <input id = "hexoutput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            cyber magic spread:
+        </td>
+        <td>
+            <input id = "spreadinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            cyber magic spread names:
+        </td>
+        <td>
+            <input id = "spreadnamesinput"/>
+        </td>
+    </tr>
+
+</table>
+
+<table id = "icontable"></table>
+
+<textarea id = "textio"></textarea>
+
+<body>    
+<script>
+
+document.getElementById("inputinput").value = "";
+document.getElementById("inputinput").select();
+document.getElementById("inputinput").onchange = function(){
+    
+    inputstring = this.value;
+    hexstring = "";
+    letterstring = "";
+    glyph = "";
+    spread = [];
+    spreadnames = "";
+    
+    for(var index = 0;index < inputstring.length;index++){
+
+        hexstring += "0x" + inputstring.charCodeAt(index).toString(16) + ",";
+        icon = unicode2icon(inputstring.charCodeAt(index));
+        if(icon.index >= 0){
+            spread.push(icon.index);
+            spreadnames += icon.name + ",";
+        }
+    }
+    document.getElementById("hexoutput").value = hexstring;
+    document.getElementById("spreadinput").value = JSON.stringify(spread,null,"    ");
+    document.getElementById("spreadnamesinput").value = spreadnames;    
+}
+document.getElementById("hexoutput").value = "";
+document.getElementById("spreadinput").value = "";
+document.getElementById("spreadnamesinput").value = "";
+
+function unicode2icon(unicode){
+    icon = {};
+    icon.name = "null";
+    icon.index = -1;
+    for(var index = 0;index < code.length;index++){
+        if(parseInt(code[index].unicode,16) == unicode){
+            icon.index = index;
+            icon.name = code[index].name;
+        }
+    }
+    return icon;
+}
+
+
+
+icontable = document.getElementById("icontable");
+icons = [];
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        icons = JSON.parse(this.responseText);
+        drawtable();//this is the table of icons
+    }
+    
+};
+httpc.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+httpc.send();
+iconsize = 30;
+function drawtable(){
+    icontable.innerHTML = "";
+    for(var index= 0;index < code.length;index++){
+        var newtr = document.createElement("TR");
+        icontable.appendChild(newtr);
+        
+        //index:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.innerHTML = index.toString();
+
+        //geometron icon:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var symbolcan = document.createElement("CANVAS");
+        newtd.appendChild(symbolcan);
+        var symbolGVM = new GVM(symbolcan,iconsize,iconsize);
+        symbolGVM.importbytecode(hypercube);
+        symbolGVM.style.line0 = 1;
+        symbolGVM.drawGlyph(icons[index]);
+        
+        //rendering of unicode:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.innerHTML = "&#x" + code[index].unicode;
+
+        //unicode hex code:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.innerHTML = "0x" + code[index].unicode;
+
+        //name:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.innerHTML = code[index].name;
+
+        //link:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newa = document.createElement("A");
+        newtd.appendChild(newa);
+        newa.innerHTML = "unicode-table link";
+        newa.href = "https://unicode-table.com/en/" + code[index].unicode + "/";
+
+        //nameinput:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newinput  = document.createElement("INPUT");
+        newtd.appendChild(newinput);
+        newinput.value = code[index].name;
+        newinput.id = "n" + index.toString();
+        newinput.onchange = function(){
+            var localindex = parseInt(this.id.substring(1));
+            code[localindex].name = this.value;
+            document.getElementById("textio").value = JSON.stringify(code,null,"    ");
+            drawtable();
+        }
+    
+        //charinput:
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newinput  = document.createElement("INPUT");
+        newtd.appendChild(newinput);
+        newinput.id = "i" + index.toString();
+        newinput.value = String.fromCharCode(parseInt(code[index].unicode,16));
+        newinput.onchange = function(){
+            var localunicode = this.value.charCodeAt(0).toString(16);
+            var localindex = parseInt(this.id.substring(1));
+            code[localindex].unicode = localunicode;
+            document.getElementById("textio").value = JSON.stringify(code,null,"    ");
+            drawtable();
+        }
+    }
+}
+
+document.getElementById("textio").value = JSON.stringify(code,null,"    ");
+
+document.getElementById("importbutton").onclick = function(){
+    code = JSON.parse(document.getElementById("textio").value);
+    drawtable();
+
+}
+
+</script>
+<style>
+body{
+}
+#textiotable input{
+    width:40em;
+}
+
+#icontable td{
+    border:solid;
+    font-size:30px;
+}
+#icontable input{
+    width:4em;
+}
+#textio{
+    position:absolute;
+    right:0px;
+    top:50px;
+    width:25%;
+    height:80%;
+}
+#importbutton{
+    position:absolute;
+    right:0px;
+    top:0px;
+    cursor:pointer;
+    border:solid;
+    border-radius:5px;
+}
+</style>
+</body>
+</html>

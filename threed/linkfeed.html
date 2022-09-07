@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+<!--un-comment to add math: -->
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+-->
+
+</head>
+<body>    
+<div id = "header"><input id = "feedurlinput"/></div>
+<div id = "feed"></div>
+
+<script>
+
+
+
+feed = [];
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("feedurlinput").value = "";
+        feed = JSON.parse(this.responseText);
+        loadfeed();
+    }
+};
+
+httpc.open("GET", "fileloader.php?filename=data/linkfeed.txt", true);
+httpc.send();
+
+document.getElementById("feedurlinput").onchange = function(){
+    loadfeedurl(this.value);
+}
+
+function loadfeedurl(url){
+    document.getElementById("feed").innerHTML = "";
+    document.getElementById("feedurlinput").value = "";
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            feed = JSON.parse(this.responseText);
+            loadfeed();
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=" + url, true);
+    httpc666.send();
+}
+
+function loadfeed(){
+    for(var index = feed.length - 1;index >= 0;index--){
+        var newa = document.createElement("A");
+        newa.id = "a" + index.toString();
+        newa.className = "feedlink";
+        if(feed[index].href.length > 0){
+            newa.href = feed[index].href;
+        }
+        if(feed[index].src.length > 0){
+            var newimg = document.createElement("IMG");
+            newimg.src = feed[index].src;
+            newimg.alt = feed[index].text;
+            newa.appendChild(newimg);
+            newimg.onload = function(){
+                this.parentElement.style.height = this.height + "px";
+            }
+            newimg.className = "feedimage";
+        }
+        else{
+            newa.innerHTML = feed[index].text;
+            newa.style.height = "2em";
+        }
+        document.getElementById("feed").appendChild(newa);
+    }
+
+}
+
+
+</script>
+<style>
+body{
+    background-color:white;
+    overflow:hidden;
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:80px;
+    background-color:black;
+}
+#feedurlinput{
+    width:80%;
+    height:50px;
+    border:solid;
+    border-color:#f9429e;
+    background-color:black;
+    font-size:26px;
+    font-family:courier;
+    color:#00ff00;
+    display:block;
+    margin:auto;
+    margin-top:5px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:100px;
+    bottom:0px;
+    overflow:scroll;
+    background-color:#404040;
+}
+.feedlink{
+    margin:auto;
+    margin-bottom:1em;
+    margin-top:1em;
+    display:block;
+    width:80%;
+    height:10em;
+    background-color:white;
+    overflow:scroll;
+    font-size:26px;
+}
+.feedlink .button{
+    cursor:pointer;
+    text-align:center;
+    border:solid;
+    border-radius:3px;
+}
+.feedimage{
+    max-width:100%;
+    display:block;
+    margin:auto;
+}
+.scrollbox{
+    overflow:scroll;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+}
+</style>
+</body>
+</html>

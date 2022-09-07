@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body> 
+<a href = "index.html">
+    <img src  = "iconsymbols/home.svg" alt = "home"/>
+</a>
+
+<a id = "copylink" href = "copy.html">copy.php</a>
+<table>
+    <tr>
+        <td>server url:</td>
+        <td><input id = "serverurlinput"/></td>
+    </tr>
+    <tr>
+        <td>filename:</td>
+        <td><input id = "fileinput"/></td>
+    </tr>    
+</table>
+<div id = "dnascroll">
+    
+</div>
+
+<script>
+servername = "https://raw.githubusercontent.com/LafeLabs/thing/master";
+filename = "index.html";
+redraw();
+function redraw(){
+    document.getElementById("copylink").href = "copy.php?from=" + servername + "/" + filename + "&to=" + filename;
+    document.getElementById("copylink").innerHTML =  "copy.php?from=" + servername + "/" + filename + "&to=" + filename;
+}
+
+document.getElementById("serverurlinput").value = "https://raw.githubusercontent.com/LafeLabs/thing/master";
+document.getElementById("fileinput").value = "index.html";
+
+document.getElementById("serverurlinput").onchange = function(){
+    servername = this.value;
+    if(servername.charAt(servername.length - 1) == "/"){
+        servername = servername.substring(0,servername.length - 1);
+    }
+    redraw();
+}
+document.getElementById("fileinput").onchange = function(){
+    filename = this.value;
+    redraw();
+}
+
+
+dna = {};
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        dna = JSON.parse(this.responseText);
+        loaddna();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/dna.txt", true);
+httpc.send();
+
+function loaddna(){
+    for(var index = 0;index < dna.html.length;index++){
+        var newdiv = document.createElement("div");
+        newdiv.innerHTML = dna.html[index];
+        newdiv.className = "element";
+        document.getElementById("dnascroll").appendChild(newdiv);
+        newdiv.onclick = function(){
+            filename = this.innerHTML;
+            document.getElementById("fileinput").value = filename;
+            redraw();
+        }
+    }
+    for(var index = 0;index < dna.php.length;index++){
+        var newdiv = document.createElement("div");
+        newdiv.innerHTML = "php/" + dna.php[index];
+        newdiv.className = "element";
+        document.getElementById("dnascroll").appendChild(newdiv);
+        newdiv.onclick = function(){
+            filename = this.innerHTML;
+            document.getElementById("fileinput").value = filename;
+            redraw();
+        }
+    }
+    for(var index = 0;index < dna.data.length;index++){
+        var newdiv = document.createElement("div");
+        newdiv.innerHTML = "data/" + dna.data[index];
+        newdiv.className = "element";
+        document.getElementById("dnascroll").appendChild(newdiv);
+        newdiv.onclick = function(){
+            filename = this.innerHTML;
+            document.getElementById("fileinput").value = filename;
+            redraw();
+        }
+    }
+    for(var index = 0;index < dna.scrolls.length;index++){
+        var newdiv = document.createElement("div");
+        newdiv.innerHTML = "scrolls/" + dna.scrolls[index];
+        newdiv.className = "element";
+        document.getElementById("dnascroll").appendChild(newdiv);
+        newdiv.onclick = function(){
+            filename = this.innerHTML;
+            document.getElementById("fileinput").value = filename;
+            redraw();
+        }
+    }
+
+    for(var index = 0;index < dna.maps.length;index++){
+        var newdiv = document.createElement("div");
+        newdiv.innerHTML = "maps/" + dna.maps[index];
+        newdiv.className = "element";
+        document.getElementById("dnascroll").appendChild(newdiv);
+        newdiv.onclick = function(){
+            filename = this.innerHTML;
+            document.getElementById("fileinput").value = filename;
+            redraw();
+        }
+    }
+
+    
+}
+
+</script>
+<style>
+input{
+    width:30em;
+}
+#dnascroll{
+    overflow:scroll;
+    position:absolute;
+    top:50%;
+    bottom:0px;
+    right:0px;
+    left:0px;
+    background-color:#f0f0f0;
+}
+.element{
+    margin-left:1em;
+    margin-top:0.5em;
+    border:solid;
+    cursor:pointer;
+}
+.element:hover{
+    background-color:#00ff0080;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,35 @@
+[
+    {
+        "x": 0.0072992700729927005,
+        "y": -0.00851581508515815,
+        "w": 0.46958637469586373,
+        "h": 0.057177615571776155,
+        "angle": 0,
+        "text": "home",
+        "href": "index.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.05961070559610705,
+        "y": 0.05474452554744526,
+        "w": 0.9063260340632603,
+        "h": 0.9069212410501193,
+        "angle": 0,
+        "text": "CLICK TO DESIGN!!",
+        "href": "",
+        "src": "https://i.imgur.com/niV3C7n.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.3150851581508516,
+        "y": 0.2956204379562044,
+        "w": 0.36496350364963503,
+        "h": 0.4379474940334129,
+        "angle": 0,
+        "text": "CLICK TO DESIGN!!",
+        "href": "",
+        "src": "https://i.imgur.com/No1wukK.png",
+        "maplinkmode": false
+    }
+]

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+<table id = "linktable">
+    <tr>
+        <td id = "help">?</td>
+        <td>
+            <a href = "index.html">HOME</a>
+        </td>
+        <td>
+            <a href = "globalimagefeed.html">GLOBAL IMAGES</a>
+        </td>
+        <td>
+            <a href = "alignimage.html">ALIGN</a>
+        </td>
+    </tr>    
+</table>    
+<div id = "header">
+        
+    <h1>Local Image Feed</h1>
+    
+    <p>
+        Upload images to local server(this generally breaks on global web pages). Images that are too large in megabytes are rejected and should be shrunk.  Red "X" deletes an image. Use this for private local art.
+    </p>
+    
+</div>    
+
+<div id = "imagefeedheader">
+    <form style = "margin-top:10px" id = "uploadform" action="upload.php" method="post" enctype="multipart/form-data">
+                <span id ="uploadspan">UPLOAD:</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit" id ="submitinput">
+    </form>        
+</div>
+    
+<div id = "imagefeed"></div>
+<script>
+
+uploadImages = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        uploadImages = JSON.parse(this.responseText);
+        loadimagefeed();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=uploadimages", true);
+httpcUpload.send();
+
+
+function loadimagefeed(){
+
+    for(var index = uploadImages.length - 1;index >= 0;index--) {
+        var newuploadbox = document.createElement("DIV");
+        newuploadbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = "uploadimages/" + uploadImages[index];
+        newimg.classList.add("uploadimage");
+        
+        newuploadbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newuploadbox);
+
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newuploadbox.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.onclick = function(){
+            var imageurl =this.parentElement.getElementsByClassName("uploadimage")[0].src; 
+            var imagename = "uploadimages/" + imageurl.split("uploadimages/")[1];
+            var httpc = new XMLHttpRequest();
+            var url = "deletefile.php";         
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            httpc.send("filename=" + imagename);//send text to deletefile.php
+            this.parentElement.parentElement.removeChild(this.parentElement);
+        }
+    }    
+}
+
+document.getElementById("help").onmouseover = function(){
+    document.getElementById("header").style.display = "block";
+}
+document.getElementById("help").onmouseout = function(){
+    document.getElementById("header").style.display = "none";
+}
+
+</script>
+<style>
+#fileToUpload,#submitinput,#uploadspan{
+    font-size:2em;
+}
+body{
+    overflow:hidden;
+    font-size:1em;
+    font-family:courier;
+    color:#00ff00;
+    background-color:black;
+}
+a{
+    color:black;
+    background-color:#00c000;
+    font-family:courier;
+}
+h1{
+    text-align:center;
+}
+#linktable{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    width:100%;
+}
+#linktable td{
+    text-align:center;
+    font-size:2em;
+    font-family:courier;
+    background-color:black;
+}
+#header{
+    display:none;
+    position:absolute;
+    z-index:2;
+    top:3em;
+    bottom:60%;
+    background-color:black;
+}
+#imagefeedheader{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:3em;
+    height:7em;
+    border-bottom:solid;
+    border-color:#00ff00;
+    overflow:scroll;
+}
+#imagefeed{
+    position:absolute;
+    top:10em;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+    background-color:black;
+}
+.uploadimage{
+    max-width:50%;
+    margin:auto;
+    display:block;
+    background-color:#808080;
+}
+.imagebox{
+    border-top:solid;
+    padding-bottom:1em;
+    padding-top:1em;
+    padding-left:1em;
+    
+}
+.deletebutton{
+    width:4em;
+    background-color:#808080;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+</style>
+</body>
+</html>

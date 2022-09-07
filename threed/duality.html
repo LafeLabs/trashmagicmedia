@@ -1,0 +1,400 @@
+ <!doctype html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8"> 
+ <!-- 
+PUBLIC DOMAIN, NO COPYRIGHTS, NO PATENTS.
+-->
+<title>Duality</title>
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREAAREAAREAERAAERAAEQABEQABEQABAAAAAAAAAAAAAAAAAAAAAAAAACIiAAAAAAAiIiIiAAAAAiAAIiIgAAAAAAACIiAAAAAAAAIiIAAAACIAIgAgAAAAIgAiACAAAAAAACIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA/D8AAPAPAADgBwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAA4AcAAPAPAAD8PwAA" rel="icon" type="image/x-icon" />
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+</head>
+<body>
+<div id = "square">
+    <div id = "dualityslider"></div>
+    <div id = "topaligner"></div>
+    <div id = "bottomaligner"></div>
+    <img id = "bottomimage"/>
+    <img id = "topimage"/>
+</div>
+<div id = "notsquare">
+    <table>
+        <tr>
+            <td id = "topbutton" class = "button">
+                <img src = "iconsymbols/upelement.svg"/>
+            </td>
+            <td id = "bottombutton" class = "button">
+                <img src = "iconsymbols/downelement.svg"/>
+            </td>
+            <td id = "dualitybutton" class = "button">
+                <img src = "iconsymbols/duality.svg"/>
+            </td>
+            <td id = "savebutton" class = "button">
+                <img src = "iconsymbols/save.svg"/>
+            </td>
+        </tr>
+        <tr>
+            <td>top image url:</td>
+            <td><input id = "topimgurl"/></td>
+        </tr>
+        <tr>
+            <td>bottom image url:</td>
+            <td><input id = "bottomimgurl"/></td>
+        </tr>
+    </table>
+        <div id = "rotatezoombox">
+            <img src = "iconsymbols/scale.svg" id = "scalebar"/>
+            <img src = "iconsymbols/rotate.svg" id = "rotatebar"/>
+        </div>  
+    <a href = "textfeed.html"><img src = "iconsymbols/feed.svg"/></a>
+    <a href = "index.html"><img src = "iconsymbols/home.svg"/></a>
+
+    <div id = "imagefeed"></div>
+    <div id = "iobox">
+        <textarea id = "textio"></textarea>
+        <div class = "button" id = "importbutton">IMPORT</div>
+        <div class = "button" id = "resetbutton">RESET</div>
+    </div>
+
+</div>
+<script>
+
+json0 = {
+    "top": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Erwin_Schr%C3%B6dinger_%281933%29.jpg/440px-Erwin_Schr%C3%B6dinger_%281933%29.jpg",
+        "x": 0.1718377088305489,
+        "y": -0.022673031026252982,
+        "w": 0.5011933174224343,
+        "angle": 0
+    },
+    "bottom": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Erwin_Schr%C3%B6dinger_%281933%29.jpg/440px-Erwin_Schr%C3%B6dinger_%281933%29.jpg",
+        "x": 0.13365155131264916,
+        "y": -0.20286396181384247,
+        "w": 0.5429594272076372,
+        "angle": 177
+    },
+    "theta": 0.785398
+};
+
+
+mode = "duality";
+
+document.getElementById("topaligner").style.display = "none";
+document.getElementById("bottomaligner").style.display = "none";
+    document.getElementById("rotatezoombox").style.display = "none";
+
+document.getElementById("topbutton").onclick = function(){
+    mode = "top";
+    document.getElementById("imagefeed").style.display = "block";
+    this.style.backgroundColor = "#00ff00";
+    document.getElementById("rotatezoombox").style.display = "block";
+    document.getElementById("dualityslider").style.display = "none";
+    document.getElementById("bottomaligner").style.display = "none";
+    document.getElementById("topaligner").style.display = "block";
+    document.getElementById("bottombutton").style.backgroundColor = "white";
+    document.getElementById("dualitybutton").style.backgroundColor = "white";    
+}
+document.getElementById("bottombutton").onclick = function(){
+    mode = "bottom";
+    document.getElementById("imagefeed").style.display = "block";
+    document.getElementById("rotatezoombox").style.display = "block";
+    this.style.backgroundColor = "#00ff00";
+    document.getElementById("dualityslider").style.display = "none";
+    document.getElementById("bottomaligner").style.display = "block";
+    document.getElementById("topaligner").style.display = "none";
+    document.getElementById("topbutton").style.backgroundColor = "white";
+    document.getElementById("dualitybutton").style.backgroundColor = "white";    
+}
+document.getElementById("dualitybutton").onclick = function(){
+    mode = "duality";
+    document.getElementById("imagefeed").style.display = "none";
+
+    document.getElementById("rotatezoombox").style.display = "none";
+
+    this.style.backgroundColor = "#00ff00";
+    document.getElementById("dualityslider").style.display = "block";
+    document.getElementById("bottomaligner").style.display = "none";
+    document.getElementById("topaligner").style.display = "none";
+    document.getElementById("bottombutton").style.backgroundColor = "white";
+    document.getElementById("topbutton").style.backgroundColor = "white";    
+}
+
+    document.getElementById("imagefeed").style.display = "none";
+
+if(window.innerWidth > window.innerHeight){
+    square = window.innerHeight;
+    document.getElementById("notsquare").style.width = (window.innerWidth - square).toString() + "px";
+    document.getElementById("notsquare").style.height = (square).toString() + "px";
+    
+}
+else{
+    square = window.innerWidth;
+    document.getElementById("notsquare").style.height = (window.innerHeight - square).toString() + "px";
+    document.getElementById("notsquare").style.width = (square).toString() + "px";
+    
+}
+
+document.getElementById("square").style.width = square.toString() + "px";
+document.getElementById("square").style.height = square.toString() + "px";
+
+
+mc = new Hammer(document.getElementById("dualityslider"));
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc.on("panleft panright panup pandown tap press", function(ev) {
+
+    theta = Math.PI/4 +(ev.deltaX/200);
+    redraw();
+
+});    
+
+mc2 = new Hammer(document.getElementById("topaligner"));
+mc2.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc2.on("panleft panright panup pandown tap press rotate", function(ev) {
+
+    document.getElementById("topimage").style.left = (ev.deltaX + duality.top.x*square).toString() +  "px";
+    document.getElementById("topimage").style.top = (ev.deltaY + duality.top.y*square).toString() +  "px";
+
+}); 
+
+mc3 = new Hammer(document.getElementById("bottomaligner"));
+mc3.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc3.on("panleft panright panup pandown tap press rotate", function(ev) {
+
+    document.getElementById("bottomimage").style.left = (ev.deltaX + duality.bottom.x*square).toString() +  "px";
+    document.getElementById("bottomimage").style.top = (ev.deltaY + duality.bottom.y*square).toString() +  "px";
+
+}); 
+
+
+
+mczoom = new Hammer(document.getElementById("scalebar"));
+mczoom.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mczoom.on("panleft panright panup pandown tap press", function(ev) {
+
+    if(mode == "bottom"){
+        document.getElementById("bottomimage").style.width = (Math.abs(duality.bottom.w*square + 2*ev.deltaX)).toString() +  "px";        
+    }
+    if(mode == "top"){
+        document.getElementById("topimage").style.width = (Math.abs(duality.top.w*square + 2*ev.deltaX)).toString() +  "px";        
+    }
+
+});    
+
+mcrotate = new Hammer(document.getElementById("rotatebar"));
+mcrotate.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mcrotate.on("panleft panright panup pandown tap press", function(ev) {
+    if(mode == "top"){
+        document.getElementById("topimage").style.transform = "rotate(" + (duality.top.angle + ev.deltaX*Math.PI/5).toString() + "deg)";        
+    }
+    if(mode=="bottom"){
+        document.getElementById("bottomimage").style.transform = "rotate(" + (duality.bottom.angle + ev.deltaX*Math.PI/5).toString() + "deg)";        
+    }
+
+});    
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        duality = JSON.parse(this.responseText);
+        init();
+        document.getElementById("textio").value = this.responseText;
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/duality.txt", true);
+httpc.send();
+
+document.getElementById("topimgurl").onchange = function(){
+    document.getElementById("topimage").src = this.value;
+    duality.top.src = this.value;
+}
+
+document.getElementById("bottomimgurl").onchange = function(){
+    document.getElementById("bottomimage").src = this.value;
+    duality.bottom.src = this.value;
+}
+
+document.getElementById("savebutton").onclick = function(){
+
+    duality.top.x = parseInt(document.getElementById("topimage").style.left.substring(0,document.getElementById("topimage").style.left.length-2))/square;
+    duality.top.y = parseInt(document.getElementById("topimage").style.top.substring(0,document.getElementById("topimage").style.top.length-2))/square;
+    duality.top.w = parseInt(document.getElementById("topimage").style.width.substring(0,document.getElementById("topimage").style.width.length-2))/square;
+    duality.top.angle = parseInt(document.getElementById("topimage").style.transform.substring(7,document.getElementById("topimage").style.transform.length - 4));
+
+
+    duality.bottom.x = parseInt(document.getElementById("bottomimage").style.left.substring(0,document.getElementById("bottomimage").style.left.length-2))/square;
+    duality.bottom.y = parseInt(document.getElementById("bottomimage").style.top.substring(0,document.getElementById("bottomimage").style.top.length-2))/square;
+    duality.bottom.w = parseInt(document.getElementById("bottomimage").style.width.substring(0,document.getElementById("bottomimage").style.width.length-2))/square;
+    duality.bottom.angle = parseInt(document.getElementById("bottomimage").style.transform.substring(7,document.getElementById("bottomimage").style.transform.length - 4));
+
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(duality,null,"    "))+"&filename=data/duality.txt");//send text to filesaver.php
+    document.getElementById("textio").value = JSON.stringify(duality,null,"    ");
+    
+}
+
+function init(){
+    theta = duality.theta;
+    alpha = Math.cos(theta)*Math.cos(theta);
+    beta = Math.sin(theta)*Math.sin(theta);
+
+    document.getElementById("bottomimage").src = duality.bottom.src;
+    document.getElementById("topimage").src = duality.top.src;
+    document.getElementById("topimage").style.width = (square*duality.top.w).toString() + "px";
+    document.getElementById("bottomimage").style.width = (square*duality.bottom.w).toString() + "px";
+    document.getElementById("topimage").style.left = (square*duality.top.x).toString() + "px";
+    document.getElementById("bottomimage").style.left = (square*duality.bottom.x).toString() + "px";
+    document.getElementById("topimage").style.top = (square*duality.top.y).toString() + "px";
+    document.getElementById("bottomimage").style.top = (square*duality.bottom.y).toString() + "px";
+
+
+    document.getElementById("topimage").style.transform = "rotate(" + (duality.top.angle).toString() + "deg)";
+    document.getElementById("bottomimage").style.transform = "rotate(" + (duality.bottom.angle).toString() + "deg)";
+
+    document.getElementById("topimage").style.opacity = (alpha).toString();
+    document.getElementById("bottomimage").style.opacity = (beta).toString();
+
+    document.getElementById("topimgurl").value = duality.top.src;
+    document.getElementById("bottomimgurl").value = duality.bottom.src;
+    
+}
+
+function redraw(){
+
+    alpha = Math.cos(theta)*Math.cos(theta);
+    beta = Math.sin(theta)*Math.sin(theta);
+    document.getElementById("topimage").style.opacity = (alpha).toString();
+    document.getElementById("bottomimage").style.opacity = (beta).toString();
+    
+}
+
+document.getElementById("resetbutton").onclick = function(){
+    document.getElementById("textio").value = JSON.stringify(json0,null,"    ");
+    duality = json0;
+    init();
+}
+
+document.getElementById("importbutton").onclick = function(){
+    duality = JSON.parse(document.getElementById("textio").value);
+    init();
+}
+
+
+
+textfeed = {};
+var httpc10 = new XMLHttpRequest();
+    httpc10.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        textfeed = JSON.parse(this.responseText);
+        for(var index = 0;index < textfeed.src.length;index++) {
+            var newimg = document.createElement("IMG");
+            newimg.src = textfeed.src[index];
+            newimg.classList.add("uploadimage");
+            newimg.classList.add("button");
+            document.getElementById("imagefeed").appendChild(newimg);
+            newimg.onclick = function() {
+                if(mode == "top"){
+                    duality.top.src = this.src;
+                    document.getElementById("topimage").src = this.src;
+                }
+                if(mode=="bottom"){
+                    duality.bottom.src = this.src;
+                    document.getElementById("bottomimage").src = this.src;        
+                }
+            }
+        }
+    }
+};
+httpc10.open("GET", "fileloader.php?filename=data/textfeed.txt", true);
+httpc10.send();
+
+</script>
+
+<style>
+#dualityslider{
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    z-index:1;
+    
+}
+#topaligner{
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    z-index:3;
+}
+#bottomaligner{
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    z-index:2;
+}
+
+#notsquare{
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index:0;
+}
+#square{
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    z-index:0;
+    overflow:hidden;
+}
+#square img{
+    position:absolute;
+}
+#bottomimage{
+    z-index:-2;
+}
+#topimage{
+    z-index:-1;
+}
+.button{
+    cursor:pointer;
+    text-align:center;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+#iobox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+#importbutton{
+    width:6em;
+}
+#resetbutton{
+    width:6em;
+}
+#imagefeed{
+    overflow:scroll;
+    position:absolute;
+    left:0px;
+    width:50%;
+    bottom:0px;
+    height:42%;
+}
+#imagefeed img{
+    max-width:50%;
+}
+</style>
+</body>
+</html>

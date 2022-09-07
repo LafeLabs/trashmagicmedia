@@ -1,0 +1,211 @@
+[
+    {
+        "x": 0.6432889963724304,
+        "y": 0.6372430471584039,
+        "w": 0.22249093107617895,
+        "h": 0.060459492140266025,
+        "angle": 0,
+        "text": "Files for Dremel laser cutter:",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.10399032648125756,
+        "y": 0.7617896009673518,
+        "w": 0.4969770253929867,
+        "h": 0.06205250596658711,
+        "angle": 0,
+        "text": "width",
+        "href": "",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAAyCAYAAAByHI2dAAADFElEQVR4nO3dwW3bMBQG4HdPlvAcGSIzZARPkA6QBTKAB8gARe859tBrDxmggC89FAV7kAtLtuw4gUWR1PcZQlCFDh5R53+QTDoRAAAAAAAAAAAAAMAipNhEipu5ywCoXorbSLGZu4w8uuaxkMkCZLCIXF3EJAFm0HS+Nj05gAI0mbNNTgqgQE3lbVOTAahAE7nbxCQAKlR1/lZdPEADqszhKouGD0hxFykeI8Xz7niMFHfvjN+PPXUOrq2qPK6qWPigFKtI8RLp5OMlUqxGnvfQG/N68hxMoYpcrqJI+KTuiuHtoGG87o7+48dRE9FAmFvR+Vx0cXAFXWMYv9Lomkv/+5uD52ogzK/InC6yKLiiFE+D5jE+ZhUptrsx24MGo4FQhqLyuqhiYCL7W1fDxnA8btNrCg+986ujq5Oxc5BDEbldRBEwsRT3Fwf9fmXVOg5XZe2vTp7OnoMcZs1vzYOlGN6+enj/CSd/zuvRzxg7B7nMkuOaB0vSvy01PP8Ql+4D6cavd2NXZ89BTlnzPMWXSPF993XK41uG42eG41eG43eG40+G4++kx+df8/tlut2/13G8nHd8ddZUpv+/yPGayvG7keN3PEdWTZ23XaZneOFqIBrIchtId6Xx//G2+15/+W6KsX0g16aBaCBVNpDuxesWFstxvFFwGynWB2PuIsXX3hjLcqmD90FgQscN5P7CseuT46AEVmLBxIZNYXwT4X7s+uKxMKci8ruIImBCH72qcBuL0hWV20UVA1d2anf56fEaCOUqMq+LLAquYLjy6vyO8eHHk2gglKXonC66OPikboXVZU1h+B7Ic6YK4X1V5HMVRcIHDZfojv/1wO7qo78n5PzOdMilqlyuqli4QHcVso1Tt7Le+3sgMJcq87jKouGM7r2QfhPZxlw70eESVedw1cXDiO6j3Q83FvYfG82DIjSRv01MAg50t6weY/9pvGuNg2I0lbtNTQagYE3mbZOTAihI0znb9OQAZrSIfF3EJAEyWlSudpO9mbsMgOqluF1O8wAAAAAAAAAAAACAxfsHY7hgfTT2PVoAAAAASUVORK5CYII=",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.37484885126964934,
+        "y": -0.009673518742442563,
+        "w": 0.8814993954050786,
+        "h": 0.8818615751789977,
+        "angle": 0,
+        "text": "shapes",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.060459492140266025,
+        "y": 0.218863361547763,
+        "w": 0.5876662636033857,
+        "h": 0.5883054892601431,
+        "angle": 0,
+        "text": "shapes",
+        "href": "http://trashrobot.org/iconsymbols/shapeset.svg",
+        "src": "http://trashrobot.org/iconsymbols/shapeset.svg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7484885126964933,
+        "y": 0.22128174123337363,
+        "w": 0.6952841596130592,
+        "h": 0.10859188544152745,
+        "angle": 0,
+        "text": "ponoko",
+        "href": "https://www.ponoko.com/",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.6856106408706167,
+        "y": 0.31559854897218864,
+        "w": 0.32769044740024184,
+        "h": 0.25894988066825775,
+        "angle": 0,
+        "text": "0.12in neon green acrylic",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.20556227327690446,
+        "y": 0.8911729141475212,
+        "w": 0.4969770253929867,
+        "h": 0.49761336515513127,
+        "angle": 0,
+        "text": "ruler",
+        "href": "maps/ruler",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.8234582829504232,
+        "y": 0.8307134220072552,
+        "w": 0.18621523579201935,
+        "h": 0.19105199516324062,
+        "angle": 0,
+        "text": "velvet pouches",
+        "href": "https://www.uline.com/BL_5513/Velvet-Pouches",
+        "src": "https://i.imgur.com/ygTuQPx.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.02539298669891173,
+        "y": 0.28657799274486095,
+        "w": 0.18621523579201935,
+        "h": 0.19212410501193317,
+        "angle": 0,
+        "text": "use these files on ponoko to get laser cut shapes for geometron constructions",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.10278113663845223,
+        "y": 0.07859733978234583,
+        "w": 0.18621523579201935,
+        "h": 0.2052505966587112,
+        "angle": 0,
+        "text": "golden triangles",
+        "href": "",
+        "src": "https://i.imgur.com/TD5Sqs6.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.2974607013301088,
+        "y": 0.08222490931076179,
+        "w": 0.18621523579201935,
+        "h": 0.1873508353221957,
+        "angle": 0,
+        "text": "golden triangles",
+        "href": "",
+        "src": "https://i.imgur.com/BtOx3D1.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.4848851269649335,
+        "y": 0.08101571946795647,
+        "w": 0.18621523579201935,
+        "h": 0.1873508353221957,
+        "angle": 0,
+        "text": "golden triangles",
+        "href": "",
+        "src": "https://i.imgur.com/oCXWSGN.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.6178960096735188,
+        "y": 0.3966142684401451,
+        "w": 0.18621523579201935,
+        "h": 0.21360381861575178,
+        "angle": 0,
+        "text": "golden triangles",
+        "href": "",
+        "src": "https://i.imgur.com/vkUCCZP.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7980652962515115,
+        "y": 0.03143893591293833,
+        "w": 0.13422007255139057,
+        "h": 0.13484486873508353,
+        "angle": 0,
+        "text": "scroll",
+        "href": "scrolls/shapes",
+        "src": "https://i.imgur.com/6ruFv2s.png",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.3083434099153567,
+        "y": 0.8935912938331319,
+        "w": 0.4969770253929867,
+        "h": 0.1003627569528416,
+        "angle": 0,
+        "text": "ruler",
+        "href": "maps/ruler",
+        "src": "https://i.imgur.com/xt1HCtu.jpg",
+        "maplinkmode": true
+    },
+    {
+        "x": -0.24909310761789602,
+        "y": 1.0846432889963724,
+        "w": 0.6541717049576784,
+        "h": 0.06771463119709795,
+        "angle": 88,
+        "text": "home",
+        "href": "index.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7085852478839177,
+        "y": 0.6674727932285369,
+        "w": 0.3313180169286578,
+        "h": 0.04836759371221282,
+        "angle": 0,
+        "text": "shapes.png",
+        "href": "iconsymbols/shapes.png",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7110036275695284,
+        "y": 0.713422007255139,
+        "w": 0.3313180169286578,
+        "h": 0.04836759371221282,
+        "angle": 0,
+        "text": "shapesoutline.svg",
+        "href": "iconsymbols/shapes.png",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.02418379685610641,
+        "y": 0.013301088270858524,
+        "w": 0.31559854897218864,
+        "h": 0.05441354292623942,
+        "angle": 0,
+        "text": "action geometry scroll",
+        "href": "scrolls/actiongeometry.md",
+        "src": "",
+        "maplinkmode": true
+    }
+]

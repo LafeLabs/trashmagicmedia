@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8"/>
+<!--Stop Google:-->
+<META NAME="robots" CONTENT="noindex,nofollow">
+<!--un-comment to add math: -->
+<!-- 
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+        
+-->
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMzMzQREREAAzMzRBEREQAAMzNEQREQAAAzNERBERAAAAM0REQRAAAAAEREREAAAAAAREREQAAAAAACIiIAAAAAAAIiIgAAAAAAACIgAAAAAAAAIiAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAQAAwAEAAOADAADgAwAA8AcAAPgPAAD4DwAA/B8AAPwfAAD+PwAA/j8AAP9/AAD//wAA" rel="icon" type="image/x-icon" />
+
+</head>
+<body>
+<div id = "header">
+    <a href = "index.html">
+        <img src = "iconsymbols/home.svg"/>
+    </a>
+
+<!--
+    <a href = "mapeditor.php">
+        <img src = "iconsymbols/map.svg"/>
+    </a>
+    <a href = "canvas2png.html">
+        <img src = "iconsymbols/pngcode.svg"/>
+    </a>
+    <a href = "duality.html">
+        <img src = "iconsymbols/duality.svg"/>
+    </a>
+    <a href = "poetryengine.html">
+        <img src = "iconsymbols/poetryengine.svg"/>
+    </a>
+
+    <a href = "icon64.html">icon64.html</a>
+    <a href = "linkfeededitor.html">link feed editor</a>
+    <a href = "qrcode.html">qrcode.html</a>
+    -->
+    
+    <img class = "button" id = "textbutton" src = "iconsymbols/text.svg"/>
+    <img class = "button" id = "imagebutton" src = "iconsymbols/image.svg"/>
+    <img class = "button" id = "linkbutton" src = "iconsymbols/link.svg"/>
+
+<table id  = "iotable">
+    <tr>
+        <td class = "button" id = "importbutton">IMPORT</td>
+        <td class = "button" id = "resetbutton">RESET</td>
+    </tr>
+</table>
+                <textarea id = "textio"></textarea>
+
+    
+</div>
+<div id = "column1" class = "column">
+    <table class = "inputtable" id ="textinputtable">
+        <tr>
+            <td>Text:</td>
+            <td>
+                <input id = "textinput" class = "no-mathjax"/>
+            </td>
+        </tr>
+    </table>
+    <div id  = "textscroll" class = "scroll"></div>
+</div>
+
+<div id = "column2" class = "column">
+    <table class = "inputtable" id ="textinputtable">
+        <tr>
+            <td>Image URL:</td>
+            <td>
+                <input id = "srcinput" class = "no-mathjax"/>
+            </td>
+        </tr>
+    </table>
+
+    <div id  = "srcscroll" class = "scroll"></div>
+</div>
+<div id = "column3" class = "column">
+    <table class = "inputtable" id ="textinputtable">
+        <tr>
+            <td>Link:</td>
+            <td>
+                <input id = "hrefinput" class = "no-mathjax"/>
+            </td>
+        </tr>
+    </table>
+    <div id  = "hrefscroll" class = "scroll"></div>
+</div>
+<script>
+
+if(innerWidth > innerHeight){
+
+    
+}
+else{
+    document.getElementById("column2").style.display = "none";
+    document.getElementById("column3").style.display = "none";
+    document.getElementById("textbutton").style.backgroundColor = "#00ff00";
+}
+
+document.getElementById("textbutton").onclick = function(){
+    document.getElementById("column1").style.display = "block";
+    document.getElementById("column2").style.display = "none";
+    document.getElementById("column3").style.display = "none";
+    document.getElementById("imagebutton").style.backgroundColor = "white";
+    document.getElementById("linkbutton").style.backgroundColor = "white";
+    document.getElementById("textbutton").style.backgroundColor = "#00ff00";
+    document.getElementById("textinput").select();
+    
+}
+document.getElementById("imagebutton").onclick = function(){
+    document.getElementById("column1").style.display = "none";
+    document.getElementById("column2").style.display = "block";
+    document.getElementById("column3").style.display = "none";
+    document.getElementById("textbutton").style.backgroundColor = "white";
+    document.getElementById("linkbutton").style.backgroundColor = "white";
+    document.getElementById("imagebutton").style.backgroundColor = "#00ff00";
+    document.getElementById("srcinput").select();
+
+}
+document.getElementById("linkbutton").onclick = function(){
+    document.getElementById("column1").style.display = "none";
+    document.getElementById("column2").style.display = "none";
+    document.getElementById("column3").style.display = "block";
+    document.getElementById("imagebutton").style.backgroundColor = "white";
+    document.getElementById("textbutton").style.backgroundColor = "white";    
+    document.getElementById("linkbutton").style.backgroundColor = "#00ff00";
+    document.getElementById("hrefinput").select();
+
+}
+
+
+textfeed = {};
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        textfeed = JSON.parse(this.responseText);
+        document.getElementById("textio").value = this.responseText;
+        redrawtext();
+        redrawsrc();
+        redrawhref();        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/textfeed.txt", true);
+httpc.send();
+
+
+document.getElementById("textinput").onchange = function(){
+    textfeed.text.push(this.value);
+    redrawtext();
+    savejson();
+}
+
+textfieldindex = 0;
+document.getElementById("textinput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 046){
+        //up arrow: next
+        textfieldindex++;
+        if(textfieldindex >= textfeed.text.length){
+            textfieldindex = -1;
+        }
+        if(textfieldindex != -1){
+            this.value = textfeed.text[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+    if(charCode == 050){
+        //down arrow: prev
+        textfieldindex--;
+        if(textfieldindex < -1){
+            textfieldindex = textfeed.text.length - 1;
+        }
+        if(textfieldindex != -1){
+            this.value = textfeed.text[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+}
+
+document.getElementById("resetbutton").onclick = function(){
+    textfeed = {
+    "text": [
+        "some text",
+        "☕ "
+    ],
+    "src": [
+        "https://i.imgur.com/VP0eswH.jpg",
+        "https://i.imgur.com/sg95uWv.jpg"
+    ],
+    "href": [
+        "http://geometronics.org"
+    ]
+    };
+    redrawtext();
+    redrawsrc();
+    redrawhref();        
+    savejson();
+}
+document.getElementById("importbutton").onclick = function(){
+    textfeed = JSON.parse(document.getElementById("textio").value);
+    redrawtext();
+    redrawsrc();
+    redrawhref();        
+    savejson();
+
+}
+
+
+document.getElementById("srcinput").onchange = function(){
+    textfeed.src.push(this.value);
+    redrawsrc();
+    savejson();
+}
+
+srcfieldindex = 0;
+document.getElementById("srcinput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 046){
+        //up arrow: next
+        srcfieldindex++;
+        if(srcfieldindex >= textfeed.src.length){
+            srcfieldindex = -1;
+        }
+        if(srcfieldindex != -1){
+            this.value = textfeed.src[srcfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+    if(charCode == 050){
+        //down arrow: prev
+        srcfieldindex--;
+        if(srcfieldindex < -1){
+            srcfieldindex = textfeed.src.length - 1;
+        }
+        if(srcfieldindex != -1){
+            this.value = textfeed.src[srcfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+}
+
+document.getElementById("hrefinput").onchange = function(){
+    textfeed.href.push(this.value);
+    redrawhref();
+    savejson();
+}
+
+hreffieldindex = 0;
+document.getElementById("hrefinput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 046){
+        //up arrow: next
+        hreffieldindex++;
+        if(hreffieldindex >= textfeed.href.length){
+            hreffieldindex = -1;
+        }
+        if(hreffieldindex != -1){
+            this.value = textfeed.href[hreffieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+    if(charCode == 050){
+        //down arrow: prev
+        hreffieldindex--;
+        if(hreffieldindex < -1){
+            hreffieldindex = textfeed.href.length - 1;
+        }
+        if(hreffieldindex != -1){
+            this.value = textfeed.href[hreffieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+}
+
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(textfeed,null,"    "))+"&filename=data/textfeed.txt");//send text to filesaver.php
+}
+
+function redrawtext(){
+    
+    document.getElementById("textscroll").innerHTML = "";
+    text = textfeed.text;
+    for(var index = text.length - 1;index >=0;index--){
+        var newbox = document.createElement("div");
+        newbox.className = "box";
+        newbox.innerHTML = text[index];
+        var newbutton = document.createElement("IMG");
+        newbutton.src = "iconsymbols/delete.svg";
+        newbutton.className = "deletebutton";
+        newbutton.id = "text" + index.toString();
+        newbutton.onclick = function(){
+            //alert(this.id.substring(4));
+            var thisindex = this.id.substring(4);
+            var localtext = textfeed.text;
+            textfeed.text = [];
+            for(var textindex = 0;textindex < localtext.length;textindex++){
+                if(textindex != thisindex){
+                    textfeed.text.push(localtext[textindex]);
+                }
+            }
+            redrawtext();
+            savejson();
+        }
+        newbox.appendChild(newbutton);
+        document.getElementById("textscroll").appendChild(newbox);
+    }
+    //un comment for math
+    //MathJax.Hub.Typeset();
+
+}
+
+function redrawsrc(){
+    document.getElementById("srcscroll").innerHTML = "";
+    var src = textfeed.src;
+    for(var index = src.length - 1;index >= 0;index--){
+        var newbox = document.createElement("div");
+        newbox.className = "box";
+        
+        var newimg = document.createElement("img");
+        newimg.onclick  = function(){
+            document.getElementById("srcinput").value = this.src;
+        }
+        newimg.src = src[index];
+        newbox.appendChild(newimg);
+        
+        var newbutton = document.createElement("IMG");
+        newbutton.src = "iconsymbols/delete.svg";
+        newbutton.className = "deletebutton";
+        newbutton.id = "src" + index.toString();
+        newbutton.onclick = function(){
+            //alert(this.id.substring(4));
+            var thisindex = this.id.substring(3);
+            var localsrc = textfeed.src;
+            textfeed.src = [];
+            for(var srcindex = 0;srcindex < localsrc.length;srcindex++){
+                if(srcindex != thisindex){
+                    textfeed.src.push(localsrc[srcindex]);
+                }
+            }
+            redrawsrc();
+            savejson();
+        }
+        newbox.appendChild(newbutton);
+        document.getElementById("srcscroll").appendChild(newbox);
+    }
+    
+}
+function redrawhref(){
+    document.getElementById("hrefscroll").innerHTML = "";
+    var href = textfeed.href;
+    for(var index = href.length - 1;index >= 0 ;index--){
+        var newbox = document.createElement("div");
+        newbox.className = "box";
+        
+        var newa = document.createElement("A");
+        newa.href = href[index];
+        newa.innerHTML = href[index];
+        newbox.appendChild(newa);
+        
+        var newbutton = document.createElement("IMG");
+        newbutton.src = "iconsymbols/delete.svg";
+        newbutton.className = "deletebutton";
+        newbutton.id = "href" + index.toString();
+        newbutton.onclick = function(){
+            //alert(this.id.substring(4));
+            var thisindex = this.id.substring(4);
+            var localhref = textfeed.href;
+            textfeed.href = [];
+            for(var hrefindex = 0;hrefindex < localhref.length;hrefindex++){
+                if(hrefindex != thisindex){
+                    textfeed.href.push(localhref[hrefindex]);
+                }
+            }
+            redrawhref();
+            savejson();
+        }
+        newbox.appendChild(newbutton);
+        document.getElementById("hrefscroll").appendChild(newbox);
+    }
+    
+}
+
+document.getElementById("textinput").select();
+</script>
+<style>
+.inputtable{
+    width:100%;
+}
+.inputtable td{
+    text-align:right;
+}
+body,input{
+    font-family:courier;
+    font-size:16px;
+}
+#header{
+    position:absolute;
+    padding-left:1em;
+    padding-top:0.5em;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:18%;
+    overflow:scroll;
+    
+}
+#header img{
+    width:100px;
+}
+.column{
+    position:absolute;
+    top:20%;
+    bottom:0px;
+}
+
+.column input{
+    width:97%;
+}
+.box{
+    margin:1em;
+    padding:0.5em;
+    border:solid;
+    border-radius:0.5em;
+    font-size:16px;
+    font-family:courier;
+}
+.scroll{
+    position:absolute;
+    top:60px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+}
+.deletebutton{
+    width:20px;
+    cursor:pointer;
+}
+.deletebutton:hover{
+    background-color:#afffaf;
+}
+#srcscroll img{
+    width:100px;
+}
+#iotable .button{
+    text-align:center;
+    border:solid;
+    border-radius:5px;
+    border-width:2px;
+    width:5em;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+@media only screen and (orientation: landscape) {
+    .inputtable{
+        border-bottom:solid;
+    }
+
+    #textbutton{
+        display:none;
+    }
+    #linkbutton{
+        display:none;
+    }
+    #imagebutton{
+        display:none;
+    }
+    .column{
+        width:32%;
+    }
+    #column1{
+        left:0px;
+    }
+    #column2{
+        left:33%;
+    }
+    #column3{
+        right:0px;
+    }
+
+}
+@media only screen and (orientation: portrait) {
+    .inputtable{
+        border-top:solid;
+        border-bottom:solid;
+        border-color:purple;
+    }
+
+    #header img{
+        width:14%;
+    }
+    .column{
+        width:100%;
+    }
+    #column1{
+        left:0px;
+    }
+    #column2{
+        left:0px;
+    }
+    #column3{
+        right:0px;
+    }
+    
+}
+
+</style>
+</body>
+</html>

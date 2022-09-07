@@ -1,0 +1,47 @@
+[home](index.html)
+
+[ruler map](maps/ruler)
+
+[action geometry scroll](scrolls/actiongeometry.md)
+
+# Make a Laser Cut Ruler
+
+To make a laser cut thing, we will want to either make an svg file with two layers(one for cutting and one for etching) or a pair of files, svg and png where the svg is for cutting and the png is for etching.  
+
+Go to the symbol editor. Go from there to the setup app to adjust the size of the image, set it for about 6 times wider than high adjust the start point of cursor to the lower left corner of the display, going back and forth to the setup editor until it's right.  Start a path, move up, turn right, go right 6 units, rotate, go down, and complete the rectangle, then terminate with a closed but not filled path. Save immediately. Now go to the feed app and you should see two of the image, one is an svg and one is a png.  The top one will be the svg.  This is a 6 inch by 1 inch ruler which you can get laser cut by setting the width to be exactly 6 inches.  To make divisions on the ruler, return the cursor to how you started, move to a different color(red is a good choice it's easy to see), and move over inch by inch making line segments.  Then copy the design here by moving, scaling and adding little markers.  Save that.  Add a custom design relevant to you, adding words and symbols of all kinds, and save again.  Now download the .svg file you first made for the outline and the svg and png of the finished etch design.  
+
+With these files you can email the person who sent you Geometron and they'll help you figure out how to get them cut on someones laser cutter.  Just be sure to say that this is a 6 inch ruler and that the cutter has to be set accordingly.   
+
+Also, copy the bytecode you used to make the ruler(making sure the cursor has returned to where it started first), and paste it into one of the shapes in the shape table editor.  save the shape table, make a symbol that makes sense where you can see the ruler, save again, and return to the main symbol editor.  Go back to the setup editor and make the area as large as possible.  Go back to the symbol editor and make a ruler, move and make another and repeat, making 6 rulers stacked up for a 6x6 inch square pattern.  Save this. Also make a shape that is just the ruler cutout, and repeat making the stack of 6 rulers and save that.  Now you can get rulers made in batches more efficiently, if you want to get a large number.  Use the cutout font in the cutouts to make a spray stencil ruler.
+
+With spray stencils on custom cutout laser cut shapes, you can instantly replicate any symbol with some paint.  This can be integrated into the Symbol Magic network described in its own scroll. 
+
+Below is the shape stack to import to make a set of 6 rulers, each 6 inches long and 1 inch wide:
+
+<pre>
+[
+    "0220:0342,0336,0333,0342,0336,0332,0342,0333,0333,0342,0336,0333,0342,0332,0332,0342,0332,0332,0342,0332,0332,0342,0333,0333,0333,0333,0333,0333,0333,0337,0337,0337,",
+    "0221:0316,0336,0313,0342,0336,0333,0342,0333,0342,0333,0342,0333,0342,0333,0337,0342,0336,0333,0342,0333,0342,0333,0342,0333,0342,0333,0342,0337,0316,0337,0313,",
+    "0222:0362,0203,0335,0203,0203,0203,0203,0203,0203,0335,0203,0335,0203,0203,0203,0203,0203,0203,0354,0335,",
+    "0223:0222,0322,0221,0221,0221,0221,0221,0221,0334,0221,0334,0220,0220,0220,0220,0220,0220,0334,0220,0334,0320,",
+    "0224:0222,0330,0222,0330,0222,0330,0222,0330,0222,0330,0222,0331,0331,0331,0331,0331,",
+    "0225:0223,0330,0223,0330,0223,0330,0223,0330,0223,0330,0223,0331,0331,0331,0331,0331,",
+    "01220:0333,0200,0336,0332,0330,0336,0332,0337,0220,0331,0336,0333,0337,0337,",
+    "01221:0333,0200,0336,0330,0332,0336,0332,0337,0221,0336,0333,0337,0331,0337,",
+    "01222:0333,0200,0336,0330,0332,0336,0332,0336,0332,0222,0332,0337,0337,0331,0337,0333,",
+    "01223:0333,0200,0336,0332,0330,0336,0332,0336,0332,0223,0332,0337,0337,0331,0337,0333,0320,",
+    "01224:0333,0200,0336,0332,0336,0330,0336,0332,0332,0331,0332,0224,",
+    "01225:0333,0200,0336,0330,0332,0336,0331,0332,0336,0331,0332,0225,0331,0332,0320,0337,0337,0337,0333,",
+    "01226:0333,0200,0336,0336,0330,0332,0337,0226,0336,0333,0331,0337,0337,",
+    "01227:0333,0200,0336,0330,0332,0336,0332,0337,0227,0333,0336,0333,0337,0331,0337,",
+    "01230:0333,0200,",
+    "01231:0333,0200,",
+    "01232:0333,0200,",
+    "01233:0333,0200,",
+    "01234:0333,0200,",
+    "01235:0333,0200,",
+    "01236:0333,0200,",
+    "01237:0333,0200,"
+]
+</pre>
+

@@ -1,0 +1,134 @@
+[
+    {
+        "x": 0.12725090036014405,
+        "y": 0.1212484993997599,
+        "w": 0.4057623049219688,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "paste image url's from Web",
+        "href": "globalimagefeed.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.6348448687350835,
+        "y": 0.07875894988066826,
+        "w": 0.40692124105011934,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "upload image to server(for raspberry pi)",
+        "href": "localimagefeed.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.383054892601432,
+        "y": 0.36515513126491644,
+        "w": 0.40692124105011934,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "align image",
+        "href": "alignimage.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5847255369928401,
+        "y": 0.7852028639618138,
+        "w": 0.40692124105011934,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "PROGRAM(program arduino)",
+        "href": "programarduino.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.3329355608591885,
+        "y": 0.5572792362768496,
+        "w": 0.40692124105011934,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "TRACE(trace icon)",
+        "href": "traceicon.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.00954653937947494,
+        "y": 0.7863961813842482,
+        "w": 0.40692124105011934,
+        "h": 0.07040572792362769,
+        "angle": 0,
+        "text": "SHARE(icon feed)",
+        "href": "iconfeed.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0,
+        "y": 0,
+        "w": 0.4057623049219688,
+        "h": 0.06962785114045618,
+        "angle": 0,
+        "text": "home",
+        "href": "maps/home",
+        "src": "",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.297719087635054,
+        "y": 0.23289315726290516,
+        "w": 0.11284513805522209,
+        "h": 0.11336515513126491,
+        "angle": 153,
+        "text": "global image feed",
+        "href": "",
+        "src": "https://i.imgur.com/KwACAgy.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5642256902761105,
+        "y": 0.234093637454982,
+        "w": 0.11284513805522209,
+        "h": 0.11336515513126491,
+        "angle": 212,
+        "text": "global image feed",
+        "href": "",
+        "src": "https://i.imgur.com/KwACAgy.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.4261704681872749,
+        "y": 0.42857142857142855,
+        "w": 0.11284513805522209,
+        "h": 0.11336515513126491,
+        "angle": 181,
+        "text": "global image feed",
+        "href": "",
+        "src": "https://i.imgur.com/KwACAgy.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.2797118847539016,
+        "y": 0.6290516206482593,
+        "w": 0.11284513805522209,
+        "h": 0.11336515513126491,
+        "angle": 207,
+        "text": "global image feed",
+        "href": "",
+        "src": "https://i.imgur.com/KwACAgy.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5846338535414166,
+        "y": 0.6218487394957983,
+        "w": 0.11284513805522209,
+        "h": 0.11336515513126491,
+        "angle": 161,
+        "text": "global image feed",
+        "href": "",
+        "src": "https://i.imgur.com/KwACAgy.png",
+        "maplinkmode": false
+    }
+]

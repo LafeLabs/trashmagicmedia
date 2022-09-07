@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+    <head>
+     <meta charset="utf-8"/>
+
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADf+wAA3/sAAAfgAACv9QAAoAUAAK/1AACv9QAAqBUAAK/1AACoFQAAr/UAAKAFAACv9QAAB+AAAN/7AADf+wAA" rel="icon" type="image/x-icon" />
+        
+            <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    </head>
+<body>
+    <textarea id = "maintextarea"></textarea>
+    <div id = "feedscroll">
+        <div id = "header">
+            <a href = "user.php?scroll=scrolls/page">
+                <img src = "iconsymbols/home.svg"/>
+            </a>
+            <table>
+                <tr>
+                    <td>Image URL:</td>
+                    <td><input id = "imageurlinput"/></td>
+                </tr>
+            </table>
+        </div>
+        <div id = "imagescroll"></div>
+    </div>
+        
+<div id = "reloadbar">
+    R
+    <BR/>
+    E
+    <BR/>
+    L
+    <BR/>
+    O
+    <BR/>
+    A
+    <BR/>
+    D
+
+</div>
+
+<script>
+
+currentfile = "scrolls/page";
+
+//get readme.md, convert to html and display
+
+scroll = "";
+rawhtml = "";
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        scroll = this.responseText;
+        document.getElementById("maintextarea").value = scroll;  
+    }
+};
+httpc.open("GET", "fileloader.php?filename=" + currentfile, true);
+httpc.send();
+
+document.getElementById("maintextarea").onkeyup = function() {
+    scroll = this.value;
+    data = encodeURIComponent(this.value);
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data="+data+"&filename=" + currentfile);//send text to filesaver.php
+}
+
+
+
+document.getElementById("reloadbar").onclick = function() {
+//     location.reload(); 
+     window.location.href = "user.php?scroll=scrolls/page";
+     
+}
+
+imagefeed = [];
+var httpcimagefeed = new XMLHttpRequest();
+    httpcimagefeed.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        imagefeed = JSON.parse(this.responseText);
+        for(var index = imagefeed.length - 1;index >= 0;index--) {
+            var newimg = document.createElement("IMG");
+            newimg.src = imagefeed[index];
+            newimg.classList.add("uploadimage");
+            newimg.classList.add("button");
+            document.getElementById("imagescroll").appendChild(newimg);
+            newimg.onclick = function() {
+                
+                document.getElementById("imageurlinput").value = "![](" + this.src + ")";
+                document.getElementById("imageurlinput").select();
+            }
+        }
+    }
+};
+httpcimagefeed.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpcimagefeed.send();
+
+
+</script>
+<style>
+#header{
+    position:absolute;
+    top:0px;
+    height:200px;
+    width:100%;
+    left:0px;
+    border-bottom:solid;
+}
+#imagescroll{
+    position:absolute;
+    left:0px;
+    width:100%;
+    top:200px;
+    bottom:0px;
+    overflow:scroll;
+}
+    .scrollbutton{
+        cursor:pointer;
+        color:blue;
+        margin-bottom:0.5em;
+    }
+
+            body{
+                overflow:hidden;
+            }
+            #reloadbar{
+                position:absolute;
+                left:0px;
+                top:0px;
+                height:100%;
+                width:50px;
+                font-size:36px;
+                font-family:courier;
+                color:red;
+                background-color:white;
+                z-index:20;
+                overflow:hidden;
+                cursor:pointer;
+            }
+            #maintextarea{
+                position:absolute;
+                left:5%;
+                top:0px;
+                width:65%;
+                height:100%;
+                padding-left:1em;
+                padding-top:1em;
+                background-color:black;
+                color:#00ff00;
+                font-family:courier;
+                font-size:1em;
+                overflow:scroll;
+            }
+            #feedscroll{
+                position:absolute;
+                right:0px;
+                bottom:0px;
+                top:0px;
+                width:27%;
+                overflow:scroll;
+                font-size:1.5em;
+            }
+            .uploadimage{
+                max-width:50%;
+                display:block;
+                margin:auto;
+            }
+
+            .deletebutton{
+                width:50px;
+            }
+            .uploadbox{
+                border:solid;
+                border-width:0.5px;
+                border-radius:10px;
+                margin-top:1em;
+            }
+            .button{
+                cursor:pointer;
+            }
+            .button:hover{
+                background-color:#50ff50;
+            }
+            .button:active{
+                background-color:yellow;
+            }
+            #srcinput{
+                display:block;
+            }
+            #imgurlbox{
+                display:block;
+                font-family:courier;
+                font-size:28px;
+            }
+            @media only screen and (max-width: 1000px) {
+                #maintextarea{
+                    position:absolute;
+                    left:5%;
+                    top:30%;
+                    width:95%;
+                    bottom:10px;
+                    padding-left:1em;
+                    padding-top:1em;
+                    background-color:black;
+                    color:#00ff00;
+                    font-family:courier;
+                    font-size:1em;
+                    overflow:scroll;
+                }
+                #feedscroll{
+                    position:absolute;
+                    top:0px;
+                    left:50px;
+                    right:0px;
+                    width:100%;
+                    bottom:73%;
+                    overflow:scroll;
+                    font-size:1.5em;
+        
+                }
+
+            }
+
+        </style>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body> 
+<a href = "index.html">
+    <img src  = "iconsymbols/home.svg" alt = "home"/>
+</a>
+<a id = "editorlink" href = "">
+    <img src = "iconsymbols/edit.svg"/>
+</a>
+<p>
+</p>
+<table>
+    <tr>
+        <td>pastebin address:</td>
+        <td><input id = "urlinput"/></td>
+    </tr>
+    <tr>
+        <td>scroll name:</td>
+        <td><input id = "scrollinput"/></td>
+    </tr>    
+</table>
+<div id = "dnascroll">
+    
+</div>
+
+<script>
+url = "https://pastebin.com/raw/3YyHx10H";
+scrollname = "remote";
+filename = "scrolls/" + scrollname;
+redraw();
+
+function redraw(){
+    document.getElementById("editorlink").href = "scrolleditor.php?scroll=scrolls/" + scrollname + "&from=" + url;
+    //document.getElementById("editorlink").innerHTML =  "scrolleditor.php?scroll=scrolls/" + scrollname + "&from=" + url;
+}
+
+document.getElementById("urlinput").value = "";
+document.getElementById("urlinput").select();
+
+document.getElementById("scrollinput").value = "";
+
+document.getElementById("urlinput").onchange = function(){
+    url = this.value;
+    if(url.charAt(url.length - 1) == "/"){
+        url = url.substring(0,url.length - 1);
+    }
+    redraw();
+    document.getElementById("scrollinput").select();    
+}
+
+document.getElementById("scrollinput").onchange = function(){
+    scrollname = this.value;;
+    filename = "scrolls/" + scrollname;
+    redraw();
+    document.getElementById("editorlink").style.display = "block";
+}
+
+</script>
+<style>
+body,input{
+    font-family:courier;
+    font-size:24px;
+}
+input{
+    width:30em;
+}
+#editorlink{
+    display:none;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">    
+<head>
+     <meta charset="utf-8"/>
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/geometron.js"></script>
+
+<!--
+    this is how shape table editor should be, totally focused on 3 rows, with symbols in a tablet that is automatically saved
+-->
+</head>
+<body> 
+<table id = "keyboardtable">
+</table>
+
+<div id = "symbolbox">
+    <canvas id = "mainsymbol"></canvas>
+</div>
+<div id = "keybox"></div>
+<table>
+    <tr>
+        <td>key:</td>
+        <td>
+            <input id = "keyinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Action:</td>
+        <td>
+            <input id = "actioninput"/>
+        </td>
+    </tr>
+</table>
+
+<table id = "buttontable">
+    <a href  = "index.html">index.html</a>
+    <tr>
+        <td id = "savebutton" class = "button">SAVE</td>
+        <td id = "importbutton" class = "button">IMPORT</td>
+        <td id = "resetbutton" class = "button">RESET</td>
+    </tr>
+</table>
+<textarea id = "textio"></textarea>
+<script>
+
+
+lc = ["`1234567890-= "," qwertyuiop[]\\"," asdfghjkl;\'"," zxcvbnm,./"];
+uc = ["~!@#$%^&*()_+"," QWERTYUIOP{}|"," ASDFGHJKL:\""," ZXCVBNM<>?"];
+
+
+currentKeyCode = 0141;
+
+var mainGVM = new GVM(document.getElementById("mainsymbol"),200,200);
+mainGVM.x0 = 1;
+mainGVM.y0 = 199;
+mainGVM.unit = 198;
+
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        var localhypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(localhypercube);
+        mainGVM.drawGlyph("0300,");
+        mainGVM.action(parseInt(mainGVM.hypercube[currentKeyCode],8) + 01000);
+        document.getElementById("keybox").innerHTML = String.fromCharCode(currentKeyCode);
+        redraw();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpc.send();
+
+
+function redraw(){
+    document.getElementById("keyboardtable").innerHTML = "";
+    cansize = 40;
+    for(var row = 0;row < lc.length;row++){
+        var newtr = document.createElement("TR");
+        newtr.id = "row" + row.toString();
+        document.getElementById("keyboardtable").appendChild(newtr);
+        for(var col = 0;col < lc[row].length;col++){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newtable = document.createElement("TABLE");
+            newtd.appendChild(newtable);
+            var newtr2 = document.createElement("TR");
+            var newtr3 = document.createElement("TR");
+            var upperkey = document.createElement("TD");
+            var upperaction = document.createElement("TD");
+            var lowerkey = document.createElement("TD");
+            var loweraction = document.createElement("TD");
+            newtable.appendChild(newtr2);
+            newtable.appendChild(newtr3);
+            newtr2.appendChild(upperkey);
+            newtr2.appendChild(upperaction);
+            newtr3.appendChild(lowerkey);
+            newtr3.appendChild(loweraction);
+            var newcan1 = document.createElement("CANVAS");
+            var newcan2 = document.createElement("CANVAS");
+            upperkey.innerHTML = uc[row].charAt(col);
+            lowerkey.innerHTML = lc[row].charAt(col);
+            upperaction.appendChild(newcan1);
+            loweraction.appendChild(newcan2);
+            var newGVM = new GVM(newcan1,cansize,cansize);
+            newGVM.x0 = 1;
+            newGVM.y0 = cansize - 1;
+            newGVM.unit = cansize - 2;
+            newGVM.hypercube = mainGVM.hypercube;
+            newGVM.drawGlyph("0300,");
+            newGVM.action(parseInt(newGVM.hypercube[uc[row].charCodeAt(col)],8)+01000);
+            var newGVM2 = new GVM(newcan2,cansize,cansize);
+            newGVM2.hypercube = mainGVM.hypercube;
+            newGVM2.x0 = 1;
+            newGVM2.y0 = cansize - 1;
+            newGVM2.unit = cansize - 2;
+            newGVM2.drawGlyph("0300,");
+            newGVM2.action(parseInt(newGVM2.hypercube[lc[row].charCodeAt(col)],8)+01000);
+            if(lc[row].charCodeAt(col) == 040){
+                newtable.style.border = "none";
+            }
+        }
+    }
+}
+
+
+document.getElementById("keyinput").select();
+
+document.getElementById("keyinput").onkeypress = function(a) {
+    currentKeyCode = a.keyCode || a.which;
+    mainGVM.drawGlyph("0300,");
+    mainGVM.action(parseInt(mainGVM.hypercube[currentKeyCode],8) + 01000);
+    document.getElementById("keybox").innerHTML = String.fromCharCode(currentKeyCode);
+    document.getElementById("keyinput").value = "";
+    document.getElementById("actioninput").value = mainGVM.hypercube[currentKeyCode].split(",")[0];
+}
+document.getElementById("actioninput").value = mainGVM.hypercube[currentKeyCode];
+
+document.getElementById("actioninput").onchange = function(){
+    var thisaction = parseInt(this.value,8);
+    mainGVM.hypercube[currentKeyCode] = "0" + thisaction.toString(8) + ",";
+    redraw();
+    mainGVM.drawGlyph("0300,");
+    mainGVM.action(parseInt(mainGVM.hypercube[currentKeyCode],8) + 01000);    
+}
+
+
+
+function savekeyboard(){
+    
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data=" + encodeURIComponent(mainGVM.bytecode(0,01777))+"&filename=data/hypercube.txt");//send text to filesaver.php
+    document.getElementById("textio").value = mainGVM.bytecode(040,0177);
+
+}
+
+document.getElementById("savebutton").onclick  = function(){
+    savekeyboard();
+    document.getElementById("textio").value = mainGVM.bytecode(040,0176);    
+}
+
+
+document.getElementById("resetbutton").onclick = function(){
+    mainGVM.importbytecode(hypercube);
+    redraw();
+}
+
+
+document.getElementById("importbutton").onclick =  function(){
+    var importcode = JSON.parse(document.getElementById("textio").value);
+    mainGVM.importbytecode(importcode);
+    redraw();
+}
+
+</script>
+<style>
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color: green;
+}
+.button:active{
+    background-color: yellow;
+}
+tr{
+    text-align:right;
+}
+table{
+    border:solid;
+    width:50px;
+    height:50px;
+}
+canvas{
+    background-color:#f0f0f0;
+}
+#symbolbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    background-color:#ffafaf;
+}
+#keybox{
+    font-size:5em;
+}
+#buttontable{
+    border:none;
+}
+#buttontable .button{
+    border:solid;
+    text-align:center;
+}
+</style>
+</body>
+</html>

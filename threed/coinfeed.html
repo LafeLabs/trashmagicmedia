@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAREAAAAAAiAAEAAAAAACIAAQAAAAAAACABAAAAAAAAAgEAAAAAAwAAIQAAADAzMzMwMzMzMwMAAAEgAAAwAAAAAQIAAAAAAAABACAAAAAAAAEAAgAAAAAAAQAAIgAAAAABAAAiAAAAABEQAAAAAAAAAQAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+</head>
+<body>
+    <div style = "display:none"><canvas id = "maincanvas"></canvas></div>
+    
+<div id = "header">
+
+<a href = "index.html">
+    <img src = "iconsymbols/home.svg" style = "width:40px"/>
+</a>
+
+<a href = "coinstudio.html">
+    <img src = "iconsymbols/edit.svg" style = "width:40px"/>
+</a>
+
+<!-- UN-COMMENT IF USING PI AS ROBOT
+<a href = "robot.html">
+    <img src = "iconsymbols/robot.svg" style = "width:40px"/>
+</a>
+-->
+
+<input id = "glyphinput"/>
+
+<input id = "arduinoinput"/>
+
+
+</div>
+<div id = "feed"></div>
+
+<div id = "footer">
+<table>
+    <tr>
+        <td id = "importbutton" class=  "button">IMPORT</td>
+        <td id = "exportbutton" class=  "button">EXPORT</td>
+    </tr>
+</table> 
+    <textarea id = "textio"></textarea>
+</div>
+<script>
+
+feedwidth = 100;
+feedlinkwidth  = feedwidth;
+mainsize = 0.5*innerWidth - 10;
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+
+gvmArray = [];
+
+robotfeed = [];
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+        var httpcFeed = new XMLHttpRequest();
+        httpcFeed.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                robotfeed = JSON.parse(this.responseText);
+                loadfeed();
+            }
+        };
+        httpcFeed.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+        httpcFeed.send();
+
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+function loadfeed(){
+    gvmArray = [];
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            document.getElementById("glyphinput").value = glyph;
+            document.getElementById("arduinoinput").value = bytecode2ascii(glyph);
+            //make this the coin for coin studio
+            coin = glyph;
+            savecoin();
+        }
+        
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newdiv.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.id = "if" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+
+            var tempfeed = [];
+            for(var robotindex = 0;robotindex < robotfeed.length;robotindex++){
+                if(robotindex != thisindex){
+                    tempfeed.push(robotfeed[robotindex]);
+                }
+            }
+            robotfeed = tempfeed;    
+            this.parentElement.parentElement.removeChild(this.parentElement);
+            saverobotfeed();
+            
+        }
+        
+        
+    }    
+}
+
+document.getElementById("glyphinput").value = "";
+
+
+document.getElementById("glyphinput").onchange = function(){
+    robotfeed.unshift(this.value);
+    loadfeed();
+    saverobotfeed();
+}
+
+
+function saverobotfeed(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(robotfeed,null,"  "))+"&filename=data/robotfeed.txt");//send text to filesaver.php
+}
+
+document.getElementById("importbutton").onclick = function(){
+    if(document.getElementById("textio").value.length > 0){
+        inputfeed = JSON.parse(document.getElementById("textio").value);
+        for(var index = inputfeed.length - 1;index >= 0;index--){
+                robotfeed.unshift(inputfeed[index]);
+        }
+        loadfeed();
+    }    
+}
+
+document.getElementById("textio").value = "";
+
+document.getElementById("exportbutton").onclick = function(){
+    document.getElementById("textio").value = JSON.stringify(robotfeed,null,"  ");
+}
+
+
+coin = "";
+function savecoin(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(coin)+"&filename=data/coin.txt");//send text to filesaver.php
+}
+
+function bytecode2ascii(bytecode){
+    var bytesequence = bytecode.split(",");
+    var outstring = "";
+    for(var index = 0;index < bytesequence.length;index++){
+        var robotaction = parseInt(bytesequence[index],8);
+        if(robotaction == 0500){
+            outstring += "A";
+        }
+        if(robotaction == 0501){
+            outstring += "B";
+        }
+        if(robotaction == 0502){
+            outstring += "C";
+        }
+        if(robotaction == 0503){
+            outstring += "D";
+        }
+        if(robotaction == 0504){
+            outstring += "E";
+        }
+        if(robotaction == 0505){
+            outstring += "F";
+        }
+        if(robotaction == 0506){
+            outstring += "G";
+        }
+        if(robotaction == 0507){
+            outstring += "H";
+        }
+        if(robotaction > 01040 && robotaction < 01177){
+            outstring += bytecode2ascii(mainGVM.hypercube[robotaction]);
+        }
+    }
+    return outstring;
+
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+
+.deletebutton{
+    width:20px;
+    z-index:2;
+    position:relative;
+    left:-100px;
+    top:-80px;
+}
+.feedelement{
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:100px;
+}
+#footer{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:150px;
+}
+#textio{
+    position:absolute;
+    left:0px;
+    width:100%;
+    bottom:0px;
+    height:100px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:100px;
+    bottom:150px;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+}
+
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#glyphinput{
+    width:90%;
+    font-family:courier;
+    font-size:12px;
+}
+#exportbutton,#importbutton{
+    border:solid;
+    text-align:center;
+}
+#arduinoinput{
+    border-color:#3186a0;
+}
+</style>
+</body>
+</html>

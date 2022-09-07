@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/mapfactory.js"></script>
+<!--
+    <script src="jscode/mapfactory.js"></script>
+    <script src="jscode/robotfont.js"></script>
+    <script src="jscode/keyboard.js"></script>
+    <script src="jscode/hypercube.js"></script>
+-->
+
+</head>
+<body>    
+<div id = "mainmap"></div>
+<div id = "margin">
+    <div id = "box1">
+        <input id = "mapinput"/>
+
+    </div>
+    <div id = "box2">
+        <textarea id = "textio"></textarea>
+    </div>
+</div>
+<script>
+
+if(innerWidth > innerHeight){
+    mainmap = new Map(innerHeight,innerHeight,document.getElementById("mainmap"));
+    document.getElementById("margin").style.width = (innerWidth  - innerHeight).toString() + "px";    
+    document.getElementById("margin").style.height = (innerHeight).toString() + "px";
+    document.getElementById("mapinput").select();
+}
+else{
+    mainmap = new Map(innerWidth,innerWidth,document.getElementById("mainmap"));    
+    document.getElementById("margin").style.width = (innerWidth).toString() + "px";    
+    document.getElementById("margin").style.height = (innerHeight - innerWidth).toString() + "px";
+    
+//    document.getElementById("margin").style.display = "none";
+
+}
+
+
+
+mapname = "data/currentMap.txt";
+loadmap(mapname);
+
+
+function loadmap(mapname){
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            mainmap.array = JSON.parse(this.responseText);
+            
+            N = mainmap.array.length;
+
+            for(var index = 0;index < mainmap.array.length;index++){
+                
+            }
+            
+            mainmap.draw();
+            for(var index = 0;index < mainmap.linkArray.length;index++){
+                if(mainmap.array[index].maplinkmode == true){
+                    mainmap.linkArray[index].onclick = function(){
+                        loadmap(this.getElementsByClassName("maplink")[0].innerHTML);    
+                        
+                    }
+                }
+            }
+            document.getElementById("textio").value = this.responseText;
+            document.getElementById("mapinput").value = "";
+
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=" + mapname, true);
+    httpc.send();
+}
+
+document.getElementById("mapinput").value = "";
+document.getElementById("mapinput").onchange = function(){
+  var mapname = this.value;
+  if(mapname.includes("/") == false){
+      mapname = "maps/" + mapname;
+      
+  }
+  loadmap(mapname);   
+}
+
+
+
+</script>
+<style>
+
+input{
+    width:90%;
+    font-family:courier;
+    font-size:1.5em;
+    background-color:black;
+    color:#ff2cb4;
+    border-color:#ff2cb4;
+    border-width:8px;
+}
+#margin{
+    background-color:black;
+    position:absolute;
+    font-family:courier;
+    font-size:2em;
+    right:0px;
+    bottom:0px;
+}
+#box1{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:25%;
+    background-color:black;
+}
+#box2{
+    background-color:black;
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:70%;
+}
+
+body{
+    overflow:hidden;
+}
+#mainmap{
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+}
+#mainmap a{
+    font-family:Helvetica;
+    color:#ff2cb4;
+}
+#textio{
+    display:none;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:2;
+}
+#mapinput{
+    position:absolute;
+    z-index:3;
+    top:0px;
+    right:0px;
+}
+</style>
+</body>
+</html>

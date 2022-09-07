@@ -1,0 +1,123 @@
+[
+    {
+        "x": 0.18742442563482467,
+        "y": 0.094316807738815,
+        "w": 0.2370012091898428,
+        "h": 0.13784764207980654,
+        "angle": 0,
+        "text": "files for Dremel laser cutter:",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.10640870616686819,
+        "y": 0.25755743651753327,
+        "w": 0.7932285368802902,
+        "h": 0.7935560859188544,
+        "angle": 0,
+        "text": "ruler file",
+        "href": "iconsymbols/anotherruler.svg",
+        "src": "iconsymbols/anotherruler.svg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.6203143893591294,
+        "y": 0.1523579201934704,
+        "w": 0.3651753325272068,
+        "h": 0.1467780429594272,
+        "angle": 0,
+        "text": "neon green acrylic, 1/8 or 1/4 inch thick, 6 inches square to print 6 rulers",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.2720677146311971,
+        "y": 0.0048367593712212815,
+        "w": 0.6686819830713422,
+        "h": 0.07517899761336516,
+        "angle": 0,
+        "text": "Geometron Ruler",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.8440145102781137,
+        "y": -0.020556227327690448,
+        "w": 1.1801692865779927,
+        "h": 0.13961813842482101,
+        "angle": 0,
+        "text": "📏",
+        "href": "",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": -0.4498186215235792,
+        "y": 0.20314389359129384,
+        "w": 1.0386940749697702,
+        "h": 0.13484486873508353,
+        "angle": -91,
+        "text": "Ponoko.com",
+        "href": "https://www.ponoko.com/",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5779927448609432,
+        "y": 0.5634824667472793,
+        "w": 0.6638452237001209,
+        "h": 0.13422007255139057,
+        "angle": 90,
+        "text": "ruler file",
+        "href": "iconsymbols/anotherruler.svg",
+        "src": "https://i.imgur.com/xt1HCtu.jpg",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.018137847642079808,
+        "y": 0,
+        "w": 0.6686819830713422,
+        "h": 0.07496977025392987,
+        "angle": 0,
+        "text": "home",
+        "href": "index.html",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.25755743651753327,
+        "y": 0.1185006045949214,
+        "w": 0.437726723095526,
+        "h": 0.06287787182587666,
+        "angle": 0,
+        "text": "rulersoutline.svg",
+        "href": "iconsymbols/rulersoutline.svg",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.26118500604594924,
+        "y": 0.17896009673518742,
+        "w": 0.437726723095526,
+        "h": 0.07013301088270858,
+        "angle": 0,
+        "text": "rulers.png",
+        "href": "iconsymbols/rulers.png",
+        "src": "",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.20314389359129384,
+        "y": 0.26360338573155984,
+        "w": 0.39298669891172916,
+        "h": 0.053204353083434096,
+        "angle": 0,
+        "text": "action geometry scroll",
+        "href": "scrolls/actiongeometry.md",
+        "src": "",
+        "maplinkmode": true
+    }
+]

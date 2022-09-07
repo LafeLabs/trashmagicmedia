@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+</head>
+<body>    
+
+<a href = "index.html">index.html</a>
+<h2>Find hash of strings using sha256(via PHP)</h2>
+<table>
+    <tr>
+        <td>data:</td>
+        <td>
+            <input id = "datainput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>hash(sha256):</td>
+        <td>
+            <input id = "hashinput"/>
+        </td>
+    </tr>
+</table>
+<script>
+document.getElementById("datainput").value = "";
+document.getElementById("hashinput").value = "";
+document.getElementById("datainput").onchange = function(){
+    data = this.value;
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            hash = this.responseText;
+            document.getElementById("hashinput").value = hash;
+        }
+    }
+    httpc.open("GET", "hash.php?data=" + data, true);
+    httpc.send();
+}
+
+</script>
+<style>
+
+</style>
+</body>
+</html>

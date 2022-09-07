@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+</head>
+<body>    
+<table>
+    <tr>
+        <td>
+            pi code:
+        </td>
+        <td>
+            <input id = "piinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Arduino Code:
+        </td>
+        <td>
+            <input id = "arduinoinput"/>            
+        </td>
+    </tr>
+</table>
+<script>
+document.getElementById("piinput").onchange = function(){
+    bytecode = this.value;
+    bytesequence = bytecode.split(",");
+    outstring = "";
+    for(var index = 0;index < bytesequence.length;index++){
+        if(bytesequence[index] == "0500"){
+            outstring += "D";
+        }
+        if(bytesequence[index] == "0501"){
+            outstring += "C";
+        }
+        if(bytesequence[index] == "0502"){
+            outstring += "B";
+        }
+        if(bytesequence[index] == "0503"){
+            outstring += "A";
+        }
+        if(bytesequence[index] == "0504"){
+            outstring += "H";
+        }
+        if(bytesequence[index] == "0505"){
+            outstring += "G";
+        }
+        if(bytesequence[index] == "0506"){
+            outstring += "F";
+        }
+        if(bytesequence[index] == "0507"){
+            outstring += "E";
+        }
+
+    }
+    document.getElementById("arduinoinput").value = outstring;
+    this.value = "";
+}
+</script>
+<style>
+
+</style>
+</body>
+</html>

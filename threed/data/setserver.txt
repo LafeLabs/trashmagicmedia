@@ -1,0 +1,8 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/thing/main/",
+    "set": [
+        "php/setserverreplicator.txt",
+        "setserver.html",
+        "data/setserver.txt"
+    ]
+}

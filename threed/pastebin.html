@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body> 
+<a href = "index.html">
+    <img src  = "iconsymbols/home.svg" alt = "home"/>
+</a>
+<p>
+    <a href = "https://pastebin.com/">pastebin.com</a>
+</p>
+<a id = "copylink" href = "copy.html">copy.php</a>
+<table>
+    <tr>
+        <td>pastebin address:</td>
+        <td><input id = "serverurlinput"/></td>
+    </tr>
+    <tr>
+        <td>filename(default = scrolls/home):</td>
+        <td><input id = "fileinput"/></td>
+    </tr>    
+</table>
+<div id = "dnascroll">
+    
+</div>
+
+<script>
+servername = "https://pastebin.com/raw/3YyHx10H";
+filename = "scrolls/home";
+redraw();
+function redraw(){
+    document.getElementById("copylink").href = "copy.php?from=" + servername + "&to=" + filename;
+    document.getElementById("copylink").innerHTML =  "copy.php?from=" + servername + "&to=" + filename;
+}
+
+document.getElementById("serverurlinput").value = "";
+document.getElementById("serverurlinput").select();
+
+document.getElementById("fileinput").value = "scrolls/home";
+
+document.getElementById("serverurlinput").onchange = function(){
+    servername = this.value;
+    if(servername.charAt(servername.length - 1) == "/"){
+        servername = servername.substring(0,servername.length - 1);
+    }
+    redraw();
+}
+document.getElementById("fileinput").onchange = function(){
+    filename = this.value;
+    redraw();
+}
+
+</script>
+<style>
+input{
+    width:30em;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<body>
+    <div id = "upperleft"><canvas id = "leftcan"></canvas></div>
+    <h2 id = "title">Geometron: <i>look around you!</i></h1>
+    <div id = "upperright"><canvas id = "rightcan"></canvas></div>
+    <div id = "feed"></div>
+<script>
+
+mobileline = 150;
+desktopline = 100;
+
+if(innerWidth > innerHeight){
+    topline = 100;
+}
+else{
+    topline = 150;
+}
+
+document.getElementById("feed").style.top = topline.toString() + "px";
+
+loaddata();
+
+function loaddata(){
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            hypercube = JSON.parse(this.responseText);
+            var httpc2 = new XMLHttpRequest();
+            httpc2.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    feed = JSON.parse(this.responseText);
+                    loadfeed();
+                }
+            };
+            httpc2.open("GET", "fileloader.php?filename=data/feed.txt", true);
+            httpc2.send();
+            gvmleft = new GVM(document.getElementById("leftcan"),topline,topline);
+            gvmright = new GVM(document.getElementById("rightcan"),topline,topline);
+            gvmleft.importbytecode(hypercube);
+            gvmright.importbytecode(hypercube);
+            gvmleft.drawGlyph(gvmleft.hypercube[0220]);
+            gvmright.drawGlyph(gvmleft.hypercube[0221]);
+
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+    httpc.send();
+}
+
+function loadfeed(){
+    feedwidth = innerWidth;
+    feedlinkwidth = feedwidth - 500;
+    for(var index = 0;index < feed.length;index++){
+        var newdiv = document.createElement("DIV");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.importbytecode(hypercube);
+        //GVM(canvas2d,x0,y0,unit,width,height)
+        newGVM.drawGlyph(feed[index].glyph);    
+        if(feed[index].image.src.length > 0){
+            var newimg = document.createElement("IMG");
+            newimg.src = feed[index].image.src;
+            newdiv.appendChild(newimg);
+            newimg.className = "feedimage";
+            newimg.style.width = (feed[index].image.w*feedlinkwidth).toString() + "px";
+            newimg.style.left = (feed[index].image.x*feedlinkwidth).toString() + "px";
+            newimg.style.top = (feed[index].image.y*feedlinkwidth).toString() + "px";
+            newimg.style.transform = "rotate(" + feed[index].image.angle.toString() + "deg)";
+        }
+    }    
+}
+
+
+
+</script>
+<style>
+#upperleft{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-1;
+}
+#upperright{
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:-1;
+}
+#title{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    text-align:center;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    top:0px;
+    overflow:scroll;
+}
+.feedelement{
+    margin-top:100px;
+    margin:auto;
+    border:solid;
+    overflow:hidden;
+}
+.feedcan{
+    position:absolute;
+    
+}
+.feedimage{
+    position:relative;
+    z-index:-1;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+    <div id = "imagefeedheader">
+        <a href = "index.html" style = "position:absolute;right:0px"><img style = "width:40px" src = "iconsymbols/home.svg"/></a>
+        <form style = "margin-top:10px" id = "uploadform" action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>        
+        <table  style = "margin-top:10px" id  = "imagecontroltable">
+            <tr>
+                <td>Image url:</td>
+                <td>
+                    <input id = "imageurlinput"/>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <TD id = "exportbutton" class= "button">EXPORT</TD>
+                <TD id = "importbutton" class= "button">IMPORT</TD>
+            </tr>
+        </table>
+
+                <textarea id = "textio"></textarea>
+
+    </div>
+    <div id = "imagefeed"></div>
+<script>
+
+document.getElementById("imageurlinput").value = "";
+
+document.getElementById("imageurlinput").onchange  = function(){
+    imagefeed.push(this.value);
+    saveimagefeed();
+    loadimagefeed();
+}
+
+
+
+
+uploadImages = [];
+imagefeed = [];
+var httpcImagefeed = new XMLHttpRequest();
+httpcImagefeed.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        imagefeed = JSON.parse(this.responseText);
+        var httpcUpload = new XMLHttpRequest();
+        httpcUpload.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            uploadImages = JSON.parse(this.responseText);
+            loadimagefeed();
+        }
+    };
+    httpcUpload.open("GET", "dir.php?filename=uploadimages", true);
+    httpcUpload.send();
+    }
+};
+
+httpcImagefeed.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpcImagefeed.send();
+
+function loadimagefeed(){
+    document.getElementById("imagefeed").innerHTML = "";
+    for(var index = imagefeed.length - 1;index >= 0;index--){
+        var newbox = document.createElement("DIV");
+        newbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = imagefeed[index];
+        newimg.classList.add("uploadimage");
+        newimg.classList.add("button");
+        newbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newbox);
+        newimg.onclick = function() {
+            var localsrc = this.src;
+            document.getElementById("imageurlinput").value = localsrc;
+        }
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newbox.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.id = "if" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+            var tempimagefeed = [];
+            for(var imageindex=0;imageindex<imagefeed.length;imageindex++){
+                if(imageindex != thisindex){
+                    tempimagefeed.push(imagefeed[imageindex]);
+                }
+            }
+            imagefeed = tempimagefeed;
+            this.parentElement.parentElement.removeChild(this.parentElement);
+            saveimagefeed();
+        }
+    }    
+    for(var index = uploadImages.length - 1;index >= 0;index--) {
+        var newuploadbox = document.createElement("DIV");
+        newuploadbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = "uploadimages/" + uploadImages[index];
+        newimg.classList.add("uploadimage");
+        newimg.classList.add("button");
+        newuploadbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newuploadbox);
+        newimg.onclick = function() {
+            var localsrc = "uploadimages" + this.src.split("uploadimages")[1];
+            document.getElementById("imageurlinput").value = localsrc;
+        }
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newuploadbox.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.onclick = function(){
+            var imageurl =this.parentElement.getElementsByClassName("uploadimage")[0].src; 
+            var imagename = "uploadimages/" + imageurl.split("uploadimages/")[1];
+            var httpc = new XMLHttpRequest();
+            var url = "deletefile.php";         
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            httpc.send("filename=" + imagename);//send text to deletefile.php
+            this.parentElement.parentElement.removeChild(this.parentElement);
+        }
+    }    
+}
+
+function saveimagefeed(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(imagefeed,null,"  "))+"&filename=data/imagefeed.txt");//send text to filesaver.php   
+    document.getElementById("imageurlinput").value = "";
+    
+}
+
+document.getElementById("textio").value = "";
+
+document.getElementById("exportbutton").onclick = function(){
+    document.getElementById("textio").value = JSON.stringify(imagefeed,null,"  ");
+}
+
+document.getElementById("importbutton").onclick = function(){
+    imagefeed = JSON.parse(document.getElementById("textio").value);
+    saveimagefeed();
+    loadimagefeed();
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    font-size:1em;
+    font-family:arial;
+}
+.imagebox{
+    border-top:solid;
+    padding-bottom:1em;
+    padding-top:1em;
+    padding-left:1em;
+}
+#imagefeedheader{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:100px;
+    border-bottom:solid;
+    border-color:purple;
+    overflow:scroll;
+}
+#imagefeed{
+    position:absolute;
+    top:110px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+}
+.uploadimage{
+    max-width:50%;
+    margin:auto;
+    display:block;
+}
+.deletebutton{
+    width:4em;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#imageurlinput{
+    width:20em;
+}
+</style>
+</body>
+</html>

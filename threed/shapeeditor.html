@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+<!--un-comment to add math: -->
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+-->
+<!-- 
+
+showdown is a javascript library which converts markdown to html.
+it lives here on the internet:
+http://showdownjs.com/
+
+Markdown is a lightweight language for creating formatted text on a computer, see the wikipedia entry here
+
+https://en.wikipedia.org/wiki/Markdown
+
+bootstrap is whole big thing that does lots of things, but what we use it for here is just to make things look good on a mobile device. 
+
+-->
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<body>    
+<img src = "iconsymbols/save.svg" id = "savebutton" class = "button"/>
+
+<div id = "displaybox">
+    <canvas id=  "maincanvas"></canvas>
+</div>
+
+<div id = "spellbox">
+    <canvas id = "spellcanvas"></canvas>
+</div>
+
+<table id = "shapetable"></table>
+
+
+
+<table id = "controltable"></table>
+    
+    <input id = "actioninput"/>
+    <input id = "spellinput"/>
+    <img id = "modebutton" src= "iconsymbols/cursor.svg"/>
+
+<script>
+shapes = [
+    "0220:0314,0336,0313,0333,0331,0331,0337,0337,0321,0332,0362,0203,0336,0336,0333,0350,0334,0345,0335,0330,0335,0335,0337,0337,0203,0336,0336,0335,0333,0334,0334,0345,0335,0330,0335,0335,0337,0337,0203,0335,0336,0336,0333,0334,0334,0345,0335,0330,0335,0335,0337,0337,0203,0335,0336,0336,0333,0334,0334,0345,0333,0364,0335,0335,0335,0304,0337,0330,0333,0336,0333,0314,0337,0313,0320,",
+    "0221:0220,0350,0335,0313,0304,0336,0331,0336,0336,0332,0337,0337,0337,0362,0203,0335,0336,0336,0203,0335,0337,0337,0203,0335,0336,0336,0203,0363,0335,0336,0333,0337,0337,0337,0330,0336,0336,0336,0336,0330,0337,0362,0346,0363,0336,0331,0337,0337,0337,0337,0331,0336,0336,0336,0335,0335,0336,0330,0335,0337,0330,0334,0334,0337,0306,0362,0203,0335,0335,0203,0335,0335,0203,0363,0334,0304,0335,0336,0333,0336,0330,0337,0337,0337,0337,0336,0330,0337,0350,0334,0304,0331,0331,0336,0330,0336,0332,0332,0337,0330,0330,0330,0333,0337,",
+    "01220:0333,0200,0336,0330,0332,0210,0220,0211,0333,0331,0337,",
+    "01221:0333,0200,0336,0330,0332,0210,0221,0211,0333,0331,0337,"
+ ];
+
+
+newgeometron = {
+  "glyph": "0341,",
+  "shapes": shapes,
+  "x0": 0.05,
+  "y0": 0.95,
+  "unit": 0.9,
+  "style": {
+    "color0": "black",
+    "fill0": "black",
+    "line0": 1,
+    "color1": "black",
+    "fill1": "black",
+    "line1": 5,
+    "color2": "red",
+    "fill2": "red",
+    "line2": 1,
+    "color3": "#FF7900",
+    "fill3": "#FF7900",
+    "line3": 1,
+    "color4": "yellow",
+    "fill4": "yellow",
+    "line4": 1,
+    "color5": "green",
+    "fill5": "green",
+    "line5": 1,
+    "color6": "blue",
+    "fill6": "blue",
+    "line6": 1,
+    "color7": "purple",
+    "fill7": "purple",
+    "line7": 1
+  },
+  "controlGlyph": "020,010,021,0330,0331,0332,0333,0341,0320,0322,0323,0324,0325,0326,0327,"
+};
+
+
+
+
+controls  = [
+    "020,010,021,0500,",
+    "0334,0330,0335,0501,",
+    "0332,0330,0333,0502,",
+    "0336,0331,0337,0503,",
+    "0341,0201,0200,0547,",
+    "0504,0505,0506,0507,"
+];
+
+
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(newgeometron,maincanvas,hypercube,200,200);
+
+mainGVM.x0 = mainGVM.width*0.2;
+mainGVM.y0 = mainGVM.width*0.75;
+mainGVM.unit = mainGVM.width*0.5;
+
+mainGVM.cleanGlyph = "01101,";
+mainGVM.glyph = mainGVM.cleanGlyph + "0207,";
+
+mainGVM.drawGlyph(mainGVM.glyph);
+
+for(var index = 0;index < controls.length;index++){
+    var newtr = document.createElement("TR");
+    document.getElementById("controltable").appendChild(newtr);
+    rowarray = controls[index].split(",");
+    for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
+        if(rowarray[rowindex].length > 0){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newcan = document.createElement("CANVAS");
+            newtd.appendChild(newcan);
+            var datadiv = document.createElement("div");
+            datadiv.innerHTML = rowarray[rowindex];
+            datadiv.className = "data";
+            newtd.appendChild(datadiv);
+            var newGVM = new GVM(newgeometron,newcan,hypercube,50,50);
+            newGVM.action(parseInt(rowarray[rowindex],8)+01000);
+            newtd.onclick = function(){
+                var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                mainGVM.cursorAction(localaction);
+                mainGVM.saveGlyph();
+            }
+        }
+    }
+    
+}
+
+
+gvmArray = [];
+
+address = 01040;
+for(var row = 0;row < 12;row++){
+    var newtr = document.createElement("TR");
+    document.getElementById("shapetable").appendChild(newtr);
+    for(var col = 0;col < 8;col++){
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newcan = document.createElement("CANVAS");
+        newtd.appendChild(newcan);
+        var newGVM = new GVM(newgeometron,newcan,hypercube,36,36);
+        newGVM.x0 = 5;
+        newGVM.y0 = 30;
+        newGVM.unit = 20;
+        newGVM.action(0300);
+        newGVM.action(address);
+        gvmArray.push(newGVM);
+        var datadiv = document.createElement("div");
+        datadiv.innerHTML = "0" + address.toString(8);
+        datadiv.className = "data";
+        newtd.appendChild(datadiv);
+        var datadiv2 = document.createElement("div");
+        datadiv2.innerHTML = "0" + (8*row + col).toString(8);
+        datadiv2.className = "data";
+        newtd.appendChild(datadiv2);
+
+        newtd.onclick = function(){
+            var thisaddress = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+            var thisindex = parseInt(this.getElementsByClassName("data")[1].innerHTML,8); 
+            mainGVM.saveGlyph();
+            gvmArray[thisindex].drawGlyph(mainGVM.hypercube[mainGVM.address]);            
+            mainGVM.saveGlyph();
+            mainGVM.glyph = mainGVM.hypercube[thisaddress] + "0207,";
+            mainGVM.drawGlyph(mainGVM.glyph);
+            gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "white";
+            mainGVM.address = thisaddress;
+            gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "#a0a0a0";
+            mainGVM.saveGlyph();
+            gvmArray[thisindex].drawGlyph(mainGVM.cleanGlyph);
+            redraw();
+        }
+        address++;
+    }
+}
+
+mainGVM.address = 01060;
+mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+mainGVM.drawGlyph(mainGVM.glyph);
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        mainGVM.hypercube = JSON.parse(this.responseText);
+        redraw();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/localcube.txt", true);
+httpc.send();    
+
+
+function savecube(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(mainGVM.hypercube,null,"  "))+"&filename=data/localcube.txt");//send text to filesaver.php
+}
+
+function redraw(){
+    for(var index = 0;index < gvmArray.length;index++){
+        gvmArray[index].drawGlyph(mainGVM.hypercube[01040 + index]);
+    }
+    
+    gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "#a0a0a0";
+    
+}
+
+document.getElementById("savebutton").onclick  = function(){
+    savecube();
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        mainGVM.saveGlyph();    
+        gvmArray[mainGVM.address - 01040].drawGlyph(mainGVM.hypercube[mainGVM.address]);            
+        mainGVM.saveGlyph();
+        gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "white";        
+        mainGVM.address--;
+        if(mainGVM.address < 01040){
+            mainGVM.address = 01176;
+        }
+        gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "#a0a0a0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.saveGlyph();
+        gvmArray[mainGVM.address - 01040].drawGlyph(mainGVM.cleanGlyph);
+        redraw();
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        mainGVM.saveGlyph();    
+        gvmArray[mainGVM.address - 01040].drawGlyph(mainGVM.hypercube[mainGVM.address]);            
+        mainGVM.saveGlyph();
+        gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "white";        
+        mainGVM.address++;
+        if(mainGVM.address > 01176){
+            mainGVM.address = 01040;
+        }
+        gvmArray[mainGVM.address - 01040].canvas2d.style.backgroundColor = "#a0a0a0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.saveGlyph();
+        gvmArray[mainGVM.address - 01040].drawGlyph(mainGVM.cleanGlyph);
+        redraw();
+    }
+
+
+//    spellGVM.spellGlyph(currentGVM.glyph);    
+  //  savejson();//
+    mainGVM.saveGlyph();
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+ //   document.getElementById("spellinput").style.width = 0.8*currentjson.glyph.length.toString() + "em";
+
+}
+
+if(innerWidth > innerHeight){
+    document.getElementById("actioninput").select();
+}
+
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode != 015){
+        if(mode == 0){
+            localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+
+        mainGVM.cursorAction(localCursorAction);   
+       // spellGVM.spellGlyph(currentGVM.glyph);    
+        this.value = "";
+        mainGVM.saveGlyph();
+        document.getElementById("spellinput").value = currentGVM.cleanGlyph;
+
+//        savejson();
+  //      document.getElementById("spellinput").value = currentjson.glyph;
+   //     document.getElementById("spellinput").style.width = 0.8*currentjson.glyph.length.toString() + "em";    
+    }
+
+
+}
+
+mode = 0;//0 is action, 1, is spelling, 2 is stack.
+document.getElementById("modebutton").onclick = function(){
+    modeswitch();
+}
+function modeswitch(){
+    mode++;
+    mode = mode%3;
+    if(mode == 0){
+        document.getElementById("modebutton").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+        document.getElementById("modebutton").src = "iconsymbols/abcfont.svg";
+    }
+    if(mode == 2){
+        document.getElementById("modebutton").src = "iconsymbols/abcstack.svg";
+    }
+    document.getElementById("actioninput").select();
+}
+
+
+</script>
+<style>
+body{
+    background-color:#afafff;
+}
+#spellbox{
+    position:absolute;
+    left:10px;
+    top:50px;
+    width:500px;
+    height:500px;
+    background-color:white;
+}
+#controltable{
+    position:absolute;
+    top:300px;
+    right:50px;
+    background-color:white;
+}
+#controltable td{
+    cursor:pointer;
+}
+#shapetable{
+    position:absolute;
+    right:400px;
+    top:50px;
+    background-color:#f0f0f0;
+}
+#shapetable td{
+    cursor:pointer;
+}
+#shapetable canvas{
+    background-color:white;
+}
+#modebutton{
+    position:absolute;
+    right:2em;
+    bottom:0px;
+    width:2em;
+    z-index:2;
+    background-color:yellow;
+}
+#actioninput{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:1em;
+}
+#spellinput{
+    font-family:courier;
+    width:90%;
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:12px;
+}
+#displaybox{
+    position:absolute;
+    right:3em;
+    top:3em;
+    width:300px;
+    height:300px;
+    background-color:white;
+}
+#maincanvas{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+.data{
+    display:none;
+}
+#savebutton{
+    position:absolute;
+    left:50px;
+    bottom:50px;
+}
+.button{
+    cursor:pointer;
+    background-color:white;
+    
+}
+</style>
+</body>
+</html>

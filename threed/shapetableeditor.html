@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">    
+<head>
+         <meta charset="utf-8"/>
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/geometron.js"></script>
+    
+<!--    
+    <script src="jscode/hypercube.js"></script>
+    <script src="jscode/font.js"></script>
+    <script src="jscode/keyboard.js"></script>
+-->
+
+</head>
+
+<body> 
+
+    <!--
+        shapetableeditor.html:
+    -->
+<div id = "square">
+        <canvas id = "shapetablecanvas"></canvas>
+        <canvas id = "symbolcanvas"></canvas>
+        <canvas id = "shapecanvas"></canvas>
+        <div id = "spelldiv">
+                <input id = "spellinput"/>
+                <canvas id = "spellcanvas"></canvas>
+        </div>    
+</div>
+<div id = "margin">
+    <img style = "width:50px" class = "button" id = "savebutton" src = "iconsymbols/save.svg"/>
+    <img style = "width:50px" class = "button" id = "actionsymbolbutton" src = "iconsymbols/symbolmode.svg"/>
+    <img id = "modebutton" class = "button" style = "width:50px;background-color:#00ff00" src = "iconsymbols/cursor.svg"/>
+        <a href = "map.html">
+            <img style = "width:50px;" src = "../iconsymbols/map.svg"/>
+        </a>
+
+    <a href = "fonteditor.html">
+        <img style = "width:50px;" src = "iconsymbols/fonteditor.svg"/>
+    </a>
+
+    <a href = "symbol.html">
+        <img style = "width:50px;" src = "iconsymbols/geometron.svg"/>
+    </a>
+
+    <table>
+        <tr>
+            <td>action:</td><td><input id = "actioninput"/></td>
+        </tr>
+        <tr>
+            <td>address:</td><td><input id = "addressinput"/></td>
+        </tr>
+    </table>
+                
+        <div id = "importbutton" class = "button">import bytecode</div>
+        <textarea id = "textio"></textarea>
+<img style = "max-width:95%;" id  = "keyboardimage" src = "iconsymbols/keyboard.svg"/>
+</div>
+
+
+
+
+
+<script>
+
+symbolmode = false;//shape mode is symbolmode = false, symbolmode is symbolmode = true
+document.getElementById("shapecanvas").style.border = "solid";
+
+address = 0220;
+
+squareWidth = innerWidth;
+if(innerWidth > innerHeight) {
+    squareWidth = innerHeight;
+    document.getElementById("margin").style.height = squareWidth.toString() + "px"; 
+    document.getElementById("margin").style.width = (innerWidth - squareWidth).toString() + "px"; 
+}
+else{
+    document.getElementById("margin").style.height = (innerHeight - squareWidth).toString() + "px"; 
+    document.getElementById("margin").style.width = (squareWidth).toString() + "px"; 
+}
+symbolsize = squareWidth/10;
+
+document.getElementById("square").style.width =  squareWidth.toString() + "px";
+document.getElementById("square").style.height =  squareWidth.toString() + "px";
+
+tablecan = document.getElementById("shapetablecanvas");
+var newg = new GVM(0.25*symbolsize,symbolsize + 0.25*symbolsize,symbolsize,-Math.PI/2,tablecan,symbolsize*8.5,symbolsize*4,hypercube);
+//newg.importbytecode(font);
+//newg.importbytecode(keyboard);
+
+newg.address = 0220;
+newg.glyph = newg.hypercube[address] + "0207,";
+currentGlyph = newg.hypercube[address] + "0207,";
+
+symcan = document.getElementById("symbolcanvas");
+//GVM(x0,y0,unit,theta0,canvas2d,width,height,bytecode)
+cansize = squareWidth/3;
+var symg = new GVM(4,cansize - 4,cansize-8,-Math.PI/2,symcan,cansize,cansize,hypercube);
+symg.address = 0220;
+//symg.importbytecode(font);
+//symg.importbytecode(keyboard);
+//symg.drawGlyph("0300,");
+//symg.action(01000 + newg.address);
+
+shapecan = document.getElementById("shapecanvas");
+var shapeg = new GVM(cansize*0.5,cansize*0.5,cansize*0.25,-Math.PI/2,shapecan,cansize,cansize,hypercube);
+shapeg.address = 0220;
+//shapeg.importbytecode(font);
+//shapeg.importbytecode(keyboard);
+//shapeg.drawGlyph("0300,");
+//shapeg.action(newg.address);
+
+function redrawtable() {
+
+    var ctxlocal = newg.canvas2d.getContext("2d");
+    ctxlocal.clearRect(0,0,newg.width,newg.height);
+    ctxlocal.strokeStyle = newg.style.color0;
+    ctxlocal.fillStyle = newg.style.fill0;
+    ctxlocal.lineWidth = newg.style.line0;
+    newg.svgString = "<svg width=\"" + newg.width.toString() + "\" height=\"" + newg.height.toString() + "\" viewbox = \"0 0 " + newg.width.toString() + " " + newg.height.toString() + "\"  xmlns=\"http://www.w3.org/2000/svg\">\n";
+    newg.action(0300);
+
+    if(spellGVM.address < 0250){
+        for(var index = 0220 ;index < 0230;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+        newg.action(0300);
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        for(var index = 0230 ;index < 0240;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+        newg.action(0300);
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        for(var index = 0240 ;index < 0250;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+    }
+    else{
+        for(var index = 0250 ;index < 0260;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+        newg.action(0300);
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        for(var index = 0260 ;index < 0270;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+        newg.action(0300);
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        newg.actionSequence("0331,0336,0336,0331,0337,0337,");
+        for(var index = 0270 ;index < 0300;index++) {
+            newg.actionSequence("0370,01" + index.toString(8) + ",0371,0333,");
+        }
+        
+    }
+
+    newg.svgString += "</svg>";
+
+}
+
+
+spellsize = 50;
+//GVM(x0,y0,unit,theta0,canvas2d,width,height,bytecode)
+var spellGVM = new GVM(5,spellsize - 5,spellsize,-Math.PI/2,document.getElementById("spellcanvas"),200,spellsize + 10,hypercube);
+//spellGVM.importbytecode(font);
+//spellGVM.importbytecode(keyboard);
+spellGVM.address = 0220;
+spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+symg.glyph = newg.glyph;
+shapeg.glyph = newg.glyph;
+
+function redraw() {
+    
+    spellGVM.spellGlyph(spellGVM.glyph);
+    document.getElementById("spellinput").value = spellGVM.hypercube[spellGVM.address];
+    document.getElementById("spellinput").style.width =  (spellGVM.hypercube[spellGVM.address].length*0.65).toString() +  "em";
+    document.getElementById("addressinput").value = "0"  + spellGVM.address.toString(8);
+    if(!symbolmode){
+        shapeg.drawGlyph("0300,");
+        shapeg.actionSequence(spellGVM.glyph);
+        symg.drawGlyph("0300,");
+        symg.actionSequence(spellGVM.hypercube[spellGVM.address + 01000]);
+    }
+    else{
+        shapeg.drawGlyph("0300,");
+        shapeg.actionSequence(spellGVM.hypercube[spellGVM.address - 01000]);
+        symg.drawGlyph("0300,");
+        symg.actionSequence(spellGVM.glyph);
+    }
+
+
+}
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+    if(charCode == 010) {
+        spellGVM.cursorAction(010);                        
+    }
+    if(charCode == 045){
+        spellGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        spellGVM.cursorAction(021);   
+    }
+    if(charCode == 046){
+        //up arrow: next
+        spellGVM.address++;
+        if(spellGVM.address > 0277 && spellGVM.address < 01000) {
+            spellGVM.address = 0220;
+        }
+        if(spellGVM.address > 01277) {
+            spellGVM.address = 01220;
+        }
+
+        spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+        spellGVM.saveGlyph();
+        newg.hypercube = spellGVM.hypercube;
+        symg.hypercube = spellGVM.hypercube;
+        shapeg.hypercube = spellGVM.hypercube;
+        redrawtable();
+
+    }
+    if(charCode == 050){
+        //down arrow: prev address
+        spellGVM.address--;
+        if(spellGVM.address < 0220) {
+            spellGVM.address = 0277;
+        }
+        if(spellGVM.address > 01000 && spellGVM.address < 01220) {
+            spellGVM.address = 01277;
+        }
+        spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+        spellGVM.saveGlyph();
+        newg.hypercube = spellGVM.hypercube;
+        symg.hypercube = spellGVM.hypercube;
+        shapeg.hypercube = spellGVM.hypercube;
+        redrawtable();
+
+    }
+    spellGVM.saveGlyph();
+
+    redraw();
+}
+
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+    var localCursorAction = 0177;//do nothing
+    if(charCode != 015){
+        if(mode == 0){
+            localCursorAction = parseInt(spellGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+
+        if(spellGVM.address != localCursorAction) {
+            spellGVM.cursorAction(localCursorAction);   
+            spellGVM.spellGlyph(spellGVM.glyph);    
+            this.value = "";
+            spellGVM.saveGlyph();
+            redraw();
+
+        }
+    }
+
+}
+
+
+document.getElementById("actioninput").select();
+
+document.getElementById("savebutton").onclick = function(){
+    redrawtable();
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST","filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(newg.svgString) +"&filename=symbolfeed/shapetable.svg");//send text to filesaver.php
+
+
+    currentjson.shapes = [];
+    for(var index = 0220;index <= 0277;index++){
+        if(spellGVM.hypercube[index].length > 0){
+            console.log("foo");
+            currentjson.shapes.push("0" + index.toString(8) + ":" + spellGVM.hypercube[index]);
+        }
+    }
+    for(var index = 01220;index < 01300;index++){
+        if(spellGVM.hypercube[index].length > 0){
+            console.log("bar");
+            currentjson.shapes.push("0" + index.toString(8) + ":" + spellGVM.hypercube[index]);   
+        }
+    }
+
+    var httpc4 = new XMLHttpRequest();
+    httpc4.open("POST","filesaver.php", true);
+    httpc4.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc4.send("data="+encodeURIComponent(JSON.stringify(currentjson,null,"  "))+"&filename=data/currentjson.txt");//send text to filesaver.php
+
+    
+    document.getElementById("actioninput").select();
+
+    document.getElementById("textio").value = JSON.stringify(currentjson.shapes,null,"  ");
+
+
+
+}
+
+
+document.getElementById("spellinput").onchange = function() {
+    spellGVM.hypercube[spellGVM.address] = this.value;
+    spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+    newg.hypercube = spellGVM.hypercube;
+    symg.hypercube = spellGVM.hypercube;
+    shapeg.hypercube = spellGVM.hypercube;
+    redraw();
+}
+
+document.getElementById("importbutton").onclick = function() {
+    if(document.getElementById("textio").value.length > 0){
+        var localshapes = JSON.parse(document.getElementById("textio").value);
+        spellGVM.importbytecode(localshapes);
+        spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+        newg.hypercube = spellGVM.hypercube;
+        symg.hypercube = spellGVM.hypercube;
+        shapeg.hypercube = spellGVM.hypercube;
+        redraw();
+        redrawtable();
+    }
+}
+
+document.getElementById("actionsymbolbutton").onclick = function() {
+
+    symbolmode = !symbolmode;
+    spellGVM.saveGlyph();
+    if(symbolmode){
+        spellGVM.address += 01000;
+        document.getElementById("symbolcanvas").style.border = "solid";
+        document.getElementById("shapecanvas").style.border = "none";
+
+    }
+    else{
+        spellGVM.address -= 01000;
+        document.getElementById("shapecanvas").style.border = "solid";
+        document.getElementById("symbolcanvas").style.border = "none";
+    }
+    spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+    redraw();
+    document.getElementById("actioninput").select();
+
+}
+
+mode = 0;//0 is action, 1, is spelling, 2 is stack.
+
+actionmode = "action";//"spelling","stack"
+
+document.getElementById("modebutton").onclick = function(){
+    modeswitch();
+}
+
+function modeswitch(){
+    mode++;
+    mode = mode%3;
+    if(mode == 0){
+        document.getElementById("modebutton").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+        document.getElementById("modebutton").src = "iconsymbols/abcfont.svg";
+    }
+    if(mode == 2){
+        document.getElementById("modebutton").src = "iconsymbols/abcstack.svg";
+    }
+    document.getElementById("actioninput").select();
+}
+
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        currentjson = JSON.parse(this.responseText);
+        currentstyle = currentjson.style;
+
+        spellGVM.importbytecode(currentjson.shapes);
+        newg.hypercube = spellGVM.hypercube;
+        symg.hypercube = spellGVM.hypercube;
+        shapeg.hypercube = spellGVM.hypercube;
+
+        newg.style = currentstyle;
+        symg.style = currentstyle;
+        shapeg.style = currentstyle;
+                
+        spellGVM.address = 0220;
+        spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+        symg.glyph = newg.glyph;
+        shapeg.glyph = newg.glyph;
+
+        redraw();
+        redrawtable();
+
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/currentjson.txt", true);
+httpc.send();    
+
+
+document.getElementById("addressinput").onchange = function(){
+    spellGVM.address = parseInt(this.value,8);
+    spellGVM.glyph = spellGVM.hypercube[spellGVM.address] + "0207,";
+    spellGVM.saveGlyph();
+    newg.hypercube = spellGVM.hypercube;
+    symg.hypercube = spellGVM.hypercube;
+    shapeg.hypercube = spellGVM.hypercube;
+    redrawtable();
+    spellGVM.saveGlyph();
+    redraw();
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color: green;
+}
+.button:active{
+    background-color:yellow;
+}
+#actioninput{
+    width:1em;
+}
+#printinput{
+    width:1em;
+}
+#stackinput{
+    width:1em;
+}
+#spellinput{
+    font-family:courier;
+    font-size:1em;
+}
+#square{
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+}
+#spelldiv{
+    overflow:scroll;
+}
+#margin{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+#importbutton{
+    width:10em;
+    font-family:courier;
+    border:solid;
+    border-width:3px;
+    border-radius:5px;
+}
+</style>
+</body>
+</html>

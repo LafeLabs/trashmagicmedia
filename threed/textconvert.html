@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/mapfactory.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
+<!--       un comment to use math
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+    -->
+
+    
+</head>
+<body>    
+
+<p>
+    <a href = "index.html">
+        <img id = "home" src = "iconsymbols/home.svg" alt = "home"/>
+    </a>   
+</p>
+
+<table>
+    <tr>
+        <td class = "button" id = "text2bytecode">from > <span style = "background-color:#0000ff80">text</span>> to > <span style = "background-color:#ff000080">bytecode</span>></td>
+    </tr>
+    <tr>
+        <td class = "button" id = "bytecode2text">< from <<span style = "background-color:#ff000080">bytecode</span>< to <span style = "background-color:#0000ff80">< text</span></td>
+    </tr>
+</table>
+
+<textarea id = "textarea"></textarea>
+<textarea id = "bytecodearea"></textarea>
+
+<script>
+document.getElementById("bytecodearea").value ="";
+document.getElementById("textarea").value = "";
+document.getElementById("text2bytecode").onclick = function(){
+    text = document.getElementById("textarea").value;
+    bytecode = "";
+    for(var index = 0;index < text.length;index++){
+        charcode = text.charCodeAt(index);
+        bytecode += "0x" + charcode.toString(16) + ",";
+    }
+    document.getElementById("bytecodearea").value = bytecode;
+}
+
+document.getElementById("bytecode2text").onclick = function(){
+    bytestring = document.getElementById("bytecodearea").value;
+    bytelist = bytestring.split(",");
+    text = "";
+    for(var index = 0;index < bytelist.length;index++){
+        if(bytelist[index].length>0){
+            charcode = parseInt(bytelist[index],16);
+            text += String.fromCharCode(charcode);
+        }
+    }
+    document.getElementById("textarea").value = text;
+}
+</script>
+<style>
+#text2bytecode{
+    position:absolute;
+    top:10%;
+    left:47%;
+    right:47%;
+}
+#bytecode2text{
+    position:absolute;
+    bottom:10%;
+    left:47%;
+    right:47%;
+    
+}
+.button{
+    cursor:pointer;
+    border:solid;
+    text-align:center;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+
+#textarea{
+    background-color:#0000ff80;
+    position:absolute;
+    top:10%;
+    left:0%;
+    width:45%;
+    height:85%;
+}
+#bytecodearea{
+    background-color:#ff000080;
+    position:absolute;
+    top:10%;
+    right:0%;
+    width:45%;
+    bottom:0%;
+    height:85%;
+}
+#home{
+    width:50px;
+}
+</style>
+</body>
+</html>

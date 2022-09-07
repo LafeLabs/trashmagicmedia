@@ -1,0 +1,14 @@
+[
+    {
+        "text": "new text\n",
+        "title": "new post"
+    },
+    {
+        "title": "first post title",
+        "text": "it's by the dumpster\n\npost text\n\n\nedit\n\\_ reply to edit\n   \\_ reply to reply\n"
+    },
+    {
+        "title": "GEOMETRY TUTOR!! ",
+        "text": "COME DOWN TO THE DUMPSTER TO LEARN GEOMETRY!! or Sidamo."
+    }
+]

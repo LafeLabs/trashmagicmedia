@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<body>
+<div id = "header">
+    <img class = "button" src = "iconsymbols/save.svg" style = "width:40px" id = "savebutton"/>
+    <a href = "index.html">
+        <img src = "iconsymbols/home.svg" style = "width:40px"/>      
+    </a>
+</div>
+<div id = "textareabox">
+    <textarea id = "arduinocode"></textarea>
+</div>
+    
+<div id = "mainbox">
+    <canvas id = "maincanvas"></canvas>
+</div>
+<div id = "spellbox">
+    <table id = "spellinputtable">
+        <tr>
+            <td>
+                <img id = "modeindicator" class = "button" src = "iconsymbols/cursor.svg"/>
+            </td>
+            <td>
+                <input id = "actioninput"/>
+            </td>
+            <td>
+                <input id = "spellinput"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div id = "controlbox">
+    <table id = "controltable">
+    </table>
+</div>
+
+
+<script>
+
+symbols015xx = [
+    "01500:0333,0200,0336,0336,0330,0332,0332,0332,0337,0141,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01501:0333,0200,0336,0336,0330,0332,0332,0332,0337,0142,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01502:0333,0200,0336,0336,0330,0332,0332,0332,0337,0143,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01503:0333,0200,0336,0336,0330,0332,0332,0332,0337,0144,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01504:0333,0200,0336,0336,0330,0332,0332,0332,0337,0145,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01505:0333,0200,0336,0336,0330,0332,0332,0332,0337,0146,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01506:0333,0200,0336,0336,0330,0332,0332,0332,0337,0147,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01507:0333,0200,0336,0336,0330,0332,0332,0332,0337,0150,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01510:0333,0200,0336,0336,0330,0332,0332,0332,0337,0151,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01511:0333,0200,0336,0336,0330,0332,0332,0332,0337,0152,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01512:0333,0200,0336,0336,0330,0332,0332,0332,0337,0153,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01513:0333,0200,0336,0336,0330,0332,0332,0332,0337,0154,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01514:0333,0200,0336,0336,0330,0332,0332,0332,0337,0155,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01515:0333,0200,0336,0336,0330,0332,0332,0332,0337,0156,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01516:0333,0200,0336,0336,0330,0332,0332,0332,0337,0157,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01517:0333,0200,0336,0336,0330,0332,0332,0332,0337,0160,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01520:0333,0200,0336,0336,0330,0332,0332,0332,0337,0161,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01521:0333,0200,0336,0336,0330,0332,0332,0332,0337,0162,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01522:0333,0200,0336,0336,0330,0332,0332,0332,0337,0163,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,",
+    "01523:0333,0200,0336,0336,0330,0332,0332,0332,0337,0164,0211,0365,0210,0336,0331,0333,0333,0333,0337,0337,"
+];
+
+
+arduinorobot = {
+    "glyph":"0510,0510,0400,",
+    "stack":[
+        "0406,0406,0400,0407,0407,",
+        "0406,0406,0401,0407,0407,",
+        "0406,0406,0402,0407,0407,",
+        "0400,0401,",
+        "0401,0400,",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]
+};
+
+arduinoCode();
+
+function arduinoCode(){
+
+    code = "";
+    code += "String glyph =  String(\"" + geometron2arduino(arduinorobot.glyph) +"\");//glyph to run on go button\n";
+    code += "String aString = String(\"" + geometron2arduino(arduinorobot.stack[0]) + "\");//0500\n";
+    code += "String bString = String(\"" + geometron2arduino(arduinorobot.stack[1]) + "\");//0501\n";    
+    code += "String cString = String(\"" + geometron2arduino(arduinorobot.stack[2]) + "\");//0502\n";
+    code += "String dString = String(\"" + geometron2arduino(arduinorobot.stack[3]) + "\");//0503\n";
+    code += "String eString = String(\"" + geometron2arduino(arduinorobot.stack[4]) + "\");//0504\n";
+    code += "String fString = String(\"" + geometron2arduino(arduinorobot.stack[5]) + "\");//0505\n";
+    code += "String gString = String(\"" + geometron2arduino(arduinorobot.stack[6]) + "\");//0506\n";
+    code += "String hString = String(\"" + geometron2arduino(arduinorobot.stack[7]) + "\");//0507\n";
+    code += "String iString = String(\"" + geometron2arduino(arduinorobot.stack[8]) + "\");//0510\n";
+    code += "String jString = String(\"" + geometron2arduino(arduinorobot.stack[9]) + "\");//0511\n";
+    code += "String kString = String(\"" + geometron2arduino(arduinorobot.stack[10]) + "\");//0512\n";
+    code += "String lString = String(\"" + geometron2arduino(arduinorobot.stack[11]) + "\");//0513\n";
+    code += "String mString = String(\"" + geometron2arduino(arduinorobot.stack[12]) + "\");//0514\n";
+    code += "String nString = String(\"" + geometron2arduino(arduinorobot.stack[13]) + "\");//0515\n";
+    code += "String oString = String(\"" + geometron2arduino(arduinorobot.stack[14]) + "\");//0516\n";
+    code += "String pString = String(\"" + geometron2arduino(arduinorobot.stack[15]) + "\");//0517\n";    
+
+    document.getElementById("arduinocode").value = code;
+}
+
+function geometron2arduino(geometronString){
+    var arduinoString = "";
+    var localStringArray = geometronString.split(",");
+    for(var index = 0;index  < localStringArray.length;index++){
+        if(localStringArray[index].length > 0 ){
+            if(localStringArray[index] == "0400"){
+                arduinoString += "A";
+            }
+            if(localStringArray[index] == "0401"){
+                arduinoString += "B";
+            }
+            if(localStringArray[index] == "0402"){
+                arduinoString += "C";
+            }
+            if(localStringArray[index] == "0403"){
+                arduinoString += "D";
+            }
+            if(localStringArray[index] == "0404"){
+                arduinoString += "E";
+            }
+            if(localStringArray[index] == "0405"){
+                arduinoString += "F";
+            }
+            if(localStringArray[index] == "0406"){
+                arduinoString += "G";
+            }
+            if(localStringArray[index] == "0407"){
+                arduinoString += "H";
+            }
+            if(localStringArray[index] == "0500"){
+                arduinoString += "a";
+            }
+            if(localStringArray[index] == "0501"){
+                arduinoString += "b";
+            }
+            if(localStringArray[index] == "0502"){
+                arduinoString += "c";
+            }
+            if(localStringArray[index] == "0503"){
+                arduinoString += "d";
+            }
+            if(localStringArray[index] == "0504"){
+                arduinoString += "e";
+            }
+            if(localStringArray[index] == "0505"){
+                arduinoString += "f";
+            }
+            if(localStringArray[index] == "0506"){
+                arduinoString += "g";
+            }
+            if(localStringArray[index] == "0507"){
+                arduinoString += "h";
+            }
+            if(localStringArray[index] == "0510"){
+                arduinoString += "i";
+            }
+            if(localStringArray[index] == "0511"){
+                arduinoString += "j";
+            }
+            if(localStringArray[index] == "0512"){
+                arduinoString += "k";
+            }
+            if(localStringArray[index] == "0513"){
+                arduinoString += "l";
+            }
+            if(localStringArray[index] == "0514"){
+                arduinoString += "m";
+            }
+            if(localStringArray[index] == "0515"){
+                arduinoString += "n";
+            }
+            if(localStringArray[index] == "0516"){
+                arduinoString += "o";
+            }
+            if(localStringArray[index] == "0517"){
+                arduinoString += "p";
+            }
+            
+        }
+    }
+    return arduinoString;
+}
+
+
+
+function string2glyph(inputstring){
+    localglyph = "";    
+    for(var index = 0;index < inputstring.length;index++){
+        if(inputstring.charAt(index) == "A"){
+            localglyph += "0400,";
+        }
+        if(inputstring.charAt(index) == "B"){
+            localglyph += "0401,";
+        }
+        if(inputstring.charAt(index) == "C"){
+            localglyph += "0402,";
+        }
+        if(inputstring.charAt(index) == "D"){
+            localglyph += "0403,";
+        }
+        if(inputstring.charAt(index) == "E"){
+            localglyph += "0404,";
+        }
+        if(inputstring.charAt(index) == "F"){
+            localglyph += "0405,";
+        }
+        if(inputstring.charAt(index) == "G"){
+            localglyph += "0406,";
+        }
+        if(inputstring.charAt(index) == "H"){
+            localglyph += "0407,";
+        }
+        if(inputstring.charAt(index) == "a"){
+            localglyph += "0500,";
+        }
+        if(inputstring.charAt(index) == "b"){
+            localglyph += "0501,";
+        }
+        if(inputstring.charAt(index) == "c"){
+            localglyph += "0502,";
+        }
+        if(inputstring.charAt(index) == "d"){
+            localglyph += "0503,";
+        }
+        if(inputstring.charAt(index) == "e"){
+            localglyph += "0504,";
+        }
+        if(inputstring.charAt(index) == "f"){
+            localglyph += "0505,";
+        }
+        if(inputstring.charAt(index) == "g"){
+            localglyph += "0506,";
+        }
+        if(inputstring.charAt(index) == "h"){
+            localglyph += "0507,";
+        }        
+    }
+    return(localglyph);
+}
+
+headerbuttonsize = 36;
+if(innerWidth > innerHeight){
+    footerbuttonsize = 36;
+    headerbuttonsize = 36;    
+}
+else{
+    footerbuttonsize = 85;
+    headerbuttonsize = 85;
+}
+
+
+screenmode = 0;
+setscreen();
+
+function setscreen(){
+    if(true){
+
+        //geometron edit mode
+        document.getElementById("mainbox").style.display = "block";
+        
+        document.getElementById("controlbox").style.display = "block";            
+        document.getElementById("spellbox").style.display = "block";
+        if(innerWidth > innerHeight){
+            document.getElementById("actioninput").select();
+            document.getElementById("spellbox").style.top = "40px";
+            document.getElementById("spellbox").style.left = "25%";
+            document.getElementById("spellbox").style.width = "25%";
+            document.getElementById("spellbox").style.height = (innerHeight*0.15 - 45).toString() + "px";
+            document.getElementById("controlbox").style.bottom = "40px";
+            document.getElementById("controlbox").style.left = "25%";
+            document.getElementById("controlbox").style.width = "25%";
+            document.getElementById("controlbox").style.height = (innerHeight*0.75 - 45).toString() + "px";     
+          
+
+        }
+        else{
+         //mobile here   
+    
+            document.getElementById("spellbox").style.top = "140px";
+            document.getElementById("spellbox").style.left = "0px";
+            document.getElementById("spellbox").style.width = "50%";
+            document.getElementById("spellbox").style.height = (innerHeight*0.5 - 140 - 140).toString() + "px";
+
+            document.getElementById("controlbox").style.right = "0px";
+            document.getElementById("controlbox").style.width = "50%";
+            document.getElementById("controlbox").style.top = (innerWidth*0.5 + 140 + 100).toString() + "px";    
+            document.getElementById("controlbox").style.height = (innerHeight - 140 - 140 - 0.5*innerWidth - 80).toString() + "px";
+            
+
+        }        
+        
+    }
+    
+}
+
+
+//load 4 files: data/feed.txt, data/imagefeed.txt data/robot.txt, and data/hypercube.txt
+
+controls  = [
+    "020,010,021,011,",
+    "022,023,",
+    "0400,0401,0402,0403,",
+    "0404,0405,0406,0407,",
+    "0500,0501,0502,0503,",
+    "0504,0505,0506,0507,",
+    "0510,0511,0512,0513,",
+    "0514,0515,0516,0517,"
+];
+
+
+
+document.getElementById("savebutton").onclick  = function(){
+}
+
+
+controlbuttonsize = 80;
+function loadcontroltable(){
+    document.getElementById("controltable").innerHTML = "";
+    for(var index = 0;index < controls.length;index++){
+        var newtr = document.createElement("TR");
+        document.getElementById("controltable").appendChild(newtr);
+        rowarray = controls[index].split(",");
+        for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
+            if(rowarray[rowindex].length > 0){
+                var newtd = document.createElement("TD");
+                newtr.appendChild(newtd);
+                var newcan = document.createElement("CANVAS");
+                newtd.appendChild(newcan);
+                var datadiv = document.createElement("div");
+                datadiv.innerHTML = rowarray[rowindex];
+                datadiv.className = "data";
+                newtd.appendChild(datadiv);
+                var newGVM = new GVM(newcan,controlbuttonsize,controlbuttonsize);
+                newGVM.unit = controlbuttonsize - 2;
+                newGVM.x0 = 1;
+                newGVM.y0 = controlbuttonsize-1;
+                newGVM.importbytecode(hypercube);
+                newGVM.importbytecode(symbols015xx);
+                newGVM.action(0300);
+                if(parseInt(rowarray[rowindex],8) >= 040 && parseInt(rowarray[rowindex],8) < 0177){
+                    newGVM.drawGlyph("0300,0336,0336,0330,0333,0337,");
+                }
+                newGVM.action(parseInt(rowarray[rowindex],8)+01000);
+
+                newtd.onclick = function(){
+                    var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                    if(localaction != 022 && localaction != 023){
+                        if(localaction >= 040 && localaction < 0177){
+                            localaction += 01000;
+                        }
+                        mainGVM.cursorAction(localaction);
+                    }
+                    else{
+                        if(localaction == 022){
+                            mainGVM.clean();
+                            mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+                            if(mainGVM.address == 0520){
+                                arduinorobot.glyph = mainGVM.cleanGlyph;
+                            }
+                            else{
+                                arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+                            }               
+                            mainGVM.address--;
+                            if(mainGVM.address < 0500){
+                                mainGVM.address = 0520;
+                            }
+                            mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+                            
+                        }
+                        if(localaction == 023){
+                            mainGVM.clean();
+                            mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+                            if(mainGVM.address == 0520){
+                                arduinorobot.glyph = mainGVM.cleanGlyph;
+                            }
+                            else{
+                                arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+                            }               
+                            mainGVM.address++;
+                            if(mainGVM.address > 0520){
+                                mainGVM.address = 0500;
+                            }
+                            mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+                            
+                        }
+                        drawMain();
+                        if(mainGVM.address == 0520){
+                            arduinorobot.glyph = mainGVM.cleanGlyph;
+                        }
+                        else{
+                            arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+                        }           
+                        savearduinorobot();
+                        arduinoCode();    
+                    }
+
+                    mainGVM.clean();
+                    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+                    drawMain();
+
+                }
+                newcan.classList.add("button");
+            }
+        }
+    }
+}
+
+
+hypercube = [];
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.8*innerWidth -10);
+mainGVM.x0 = 5;
+mainGVM.y0 = 35;
+mainGVM.unit = 20;
+
+mainGVM.address = 0520;
+
+
+robotkeys = [
+    "0140:0400,",
+    "061:0401,",
+    "062:0402,",
+    "063:0403,",
+    "064:0404,",
+    "065:0405,",
+    "066:0406,",
+    "067:0407,",
+    "0161:0500,",
+    "0167:0501,",
+    "0145:0502,",
+    "0162:0503,",
+    "0164:0504,",
+    "0171:0505,",
+    "0165:0506,",
+    "0151:0507,",
+    "0141:0510,",
+    "0163:0511,",
+    "0144:0512,",
+    "0146:0513,",
+    "0147:0514,",
+    "0150:0515,",
+    "0152:0516,",
+    "0153:0517,"
+];
+
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+        mainGVM.importbytecode(robotkeys);
+        mainGVM.importbytecode(symbols015xx);
+        loadcontroltable();
+        var httpcarduino = new XMLHttpRequest();
+        httpcarduino.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                arduinorobot = JSON.parse(this.responseText);
+                mainGVM.hypercube[0520] = arduinorobot.glyph;
+                for(var index = 0;index < arduinorobot.stack.length;index++){
+                    mainGVM.hypercube[0500 + index] = arduinorobot.stack[index];
+                }
+                mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+                drawMain();
+                arduinoCode();
+            }
+        };
+        httpcarduino.open("GET", "fileloader.php?filename=data/arduinorobot.txt", true);
+        httpcarduino.send();
+    }
+        
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+function drawMain(){
+    mainGVM.drawGlyph("0300,");
+    if(mainGVM.address == 0520){
+        mainGVM.actionSequence("0322,");
+    }
+
+    mainGVM.actionSequence("0147,0154,0171,0160,0150,072,0365,0333,0333,0333,0333,0320,");
+    
+    if(mainGVM.address == 0520){
+        spellSequence(mainGVM.glyph);
+    }
+    else{
+        spellSequence(arduinorobot.glyph);
+    }
+
+    for(var stackIndex = 0;stackIndex < 16;stackIndex++){
+        mainGVM.actionSequence("0300,0331,0331,");
+        for(var lineIndex = 0;lineIndex < stackIndex;lineIndex++){
+            mainGVM.actionSequence("0331,0331,");
+        }
+        if(mainGVM.address == 0500 + stackIndex){
+            mainGVM.actionSequence("0322,");
+        }
+        mainGVM.action(01500 + stackIndex);
+        mainGVM.actionSequence("0333,072,0365,0333,0320,");
+        if(mainGVM.address == 0500 + stackIndex){
+            spellSequence(mainGVM.glyph);
+        }
+        else{
+            spellSequence(arduinorobot.stack[stackIndex]);
+        }
+    }
+
+}
+
+function spellSequence(localSequence){
+    var localArray = localSequence.split(",");
+    for(var index = 0;index < localArray.length;index++){
+        if(localArray[index].length > 0){
+            if(parseInt(localArray[index],8) < 01000){
+                mainGVM.action(parseInt(localArray[index],8) + 01000);
+            }
+            else{
+                mainGVM.action(parseInt(localArray[index],8));
+
+            }
+        }
+    }
+}
+
+stoprelativekeys = [
+    "0154:",
+    "073:",    
+    "0156:",    
+    "0155:",    
+    "054:",    
+    "056:"    
+];
+
+
+mode = 0;
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode != 015){
+        if(mode == 0 || mode == 3){
+            localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+        
+        mainGVM.cursorAction(localCursorAction);   
+        this.value = "";
+        mainGVM.clean();
+        document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    }
+    drawMain();
+    arduinoCode();
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        mainGVM.clean();
+        mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+        if(mainGVM.address == 0520){
+            arduinorobot.glyph = mainGVM.cleanGlyph;
+        }
+        else{
+            arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+        }               
+        mainGVM.address--;
+        if(mainGVM.address < 0500){
+            mainGVM.address = 0520;
+        }
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        mainGVM.clean();
+        mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+        if(mainGVM.address == 0520){
+            arduinorobot.glyph = mainGVM.cleanGlyph;
+        }
+        else{
+            arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+        }               
+        mainGVM.address++;
+        if(mainGVM.address > 0520){
+            mainGVM.address = 0500;
+        }
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+
+    }
+
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    mainGVM.clean();
+    drawMain();
+    if(mainGVM.address == 0520){
+        arduinorobot.glyph = mainGVM.cleanGlyph;
+    }
+    else{
+        arduinorobot.stack[mainGVM.address - 0500] = mainGVM.cleanGlyph;
+    }           
+    savearduinorobot();
+    arduinoCode();
+}
+
+function modeswitch(){
+    mode++;
+    mode = mode%2;
+    if(mode == 0){
+        document.getElementById("modeindicator").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+        document.getElementById("modeindicator").src = "iconsymbols/abcfont.svg";
+    }
+
+    document.getElementById("actioninput").select();   
+}
+
+if(innerWidth > innerHeight){
+    document.getElementById("actioninput").select();
+}
+
+document.getElementById("spellinput").onchange = function(){
+    
+    drawmain();
+        
+}
+
+function savearduinorobot(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(arduinorobot,null,"  "))+"&filename=data/arduinorobot.txt");//send text to filesaver.php   
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:40px;
+    width:250px;
+    height:250px;
+    border:solid;
+    border-color:blue;
+    overflow:hidden;
+}
+#mainimage{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    z-index:-3;
+}
+#gridcanvas{
+    z-index:-2;
+    position:absolute;
+    left:0px;
+    top:0px;
+    
+}
+#spellbox{
+    position:absolute;
+    right:0px;
+    width:450px;
+    height:150px;
+    border:solid;
+    border-color:green;
+    overflow:scroll;
+}
+#imagefeedbox input{
+        font-size:12px;
+        font-family:courier;
+}
+#textareabox{
+    position:absolute;
+    left:0px;
+    bottom:80px;
+    border:solid;
+    border-color:blue;   
+    font-size:12px;
+    width:22%;
+    top:150px;
+    z-index:3;
+    overflow:scroll;
+}
+#arduinocode{
+    width:50em;
+    height:40em;
+    font-family:courier;
+    font-size:12px;
+    border:solid;
+    border-color:green;
+}
+#imagefeedheader{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:100px;
+}
+#imagefeed{
+    position:absolute;
+    top:100px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow:scroll;
+}
+.uploadimage{
+    max-width:50%;
+}
+.deletebutton{
+    width:40px;
+}
+#zoomrotatebox{
+    position:absolute;
+    right:0px;
+    z-index:2;
+}
+#scalebar{
+    width:100%;
+    height:50%;
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+}
+#rotatebar{
+    width:100%;
+    height:50%;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    
+}
+#feed{
+    position:absolute;
+    left:0px;
+    bottom:40px;
+    width:50%;
+    top:40px;
+    overflow:scroll;
+}
+#controlbox{
+    position:absolute;
+    right:0px;
+    width:400px;
+    overflow:scroll;
+    height:130px;
+    bottom:51%;
+    border:solid;
+    border-color:red;
+}
+
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.feedelement{
+    margin-top:100px;
+    margin:auto;
+    border:solid;
+    overflow:hidden;
+}
+.feedcan{
+    position:absolute;
+    
+}
+.feedimage{
+    position:relative;
+    z-index:-1;
+}
+.data{
+    display:none;
+}
+#spellbox input{
+    font-size:12px;
+    font-family:courier;
+}
+#actioninput{
+    width:10px;
+}
+#spellinput{
+    width:400px;
+}
+#modeindicator{
+    width:25px;
+}
+#pngcanvasbox{
+    display:none;
+}
+#pngimage{
+    width:200px;
+}
+.tablebutton{
+    border:solid;
+    font-family:courier;
+    font-size:12px;
+    width:30px;
+    text-align:center;
+    border:solid;
+    border-color:blue;
+}
+#header{
+    font-size:12px;
+    height:40px;
+    background-color:#afffaf;
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+}
+#headerbutton{
+}
+#footer{
+    font-size:24px;
+    height:40px;
+    background-color:#afffaf;
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+#header .button{
+
+}
+#imageio{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    width:100px;
+    height:16px;
+    display:none;
+}
+@media only screen and (orientation: portrait) {
+    #mainbox{
+        top:140px;
+    }
+    #footer span{
+        margin-left:25px;
+        margin-right:25px;
+    }
+    #header{
+        height:140px;
+    }
+    #footer{
+        height:140px;
+        padding-top:25px;
+    }
+    #feed{
+        top:140px;
+        bottom:140px;
+    }
+}
+
+</style>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "foo": [
+        "bar",
+        "foo",
+        "Type and hit enter to post. Red x's delete.💥 button resets feed.  🔄 or enter refreshes feed to see what other people have posted. #channelname changes or creates a channel"
+    ],
+    "start": [
+        "Type and hit enter to post. Red x's delete.💥 button resets feed.  🔄 or enter refreshes feed to see what other people have posted. #channelname changes or creates a channel"
+    ]
+}

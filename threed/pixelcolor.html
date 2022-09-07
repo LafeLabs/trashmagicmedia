@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+        
+</head>
+<body>   
+<div id = "hammerxy"></div>
+<div id = "selectbox"></div>
+
+
+<table id = "controltable">
+    <tr>
+        <td id = "reloadbutton" class = "button">RELOAD</td>
+        <td><input id = "colorhex"/></td>
+    </tr>
+    <tr>
+        <td>img url:</td>
+        <td><input id = "imgurlinput"/></td>
+    </tr>
+
+</table>
+<img id = "mainimage" src = "https://i.imgur.com/iJwmQu9.jpg"/> 
+<canvas  id = "maincanvas"></canvas>
+
+<script>
+
+x0 = innerWidth*0.5;
+y0 = innerHeight*0.5;
+x = x0;
+y = y0;
+
+rect = {
+    "x":0,
+    "y":0,
+    "w":10,
+    "h":10
+}
+
+
+color = {
+    "r":0x90,
+    "g":0xff,
+    "b":0x45,
+    "a":0x35
+}
+    
+img = document.getElementById("mainimage");
+img.crossOrigin = 'Anonymous';
+canvas = document.getElementById("maincanvas");
+ctx = canvas.getContext("2d");
+
+document.getElementById("imgurlinput").value = img.src;
+
+img.style.left = x.toString() + "px";
+img.style.top = y.toString() + "px";
+canvas.style.left = x.toString() + "px";
+canvas.style.top = y.toString() + "px";
+
+document.getElementById("selectbox").style.left = x.toString() + "px";
+document.getElementById("selectbox").style.top = y.toString() + "px";
+document.getElementById("selectbox").style.width = rect.w.toString() + "px";
+document.getElementById("selectbox").style.height = rect.h.toString() + "px";
+
+
+img.onload = function() {
+    canvas.width = this.width;
+    canvas.height = this.height;
+//    img.crossOrigin = '';
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+    imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    
+
+    //each row has canvas.width x 4 elemeents in imgData.data.
+    //there are canvas.height rows.
+    //to grab one row starting at rect.x,rect.y and going across rect.w:
+    //start at 
+    //rect.y*canvas.width*4 + rect.x*4
+    //and run index up from there by index=0 to <4*rect.w
+
+    color.r = 0;
+    color.g = 0;
+    color.b = 0;
+    color.a = 0;
+    
+    
+    for(var yindex = 0;yindex < rect.h;yindex++){
+        for(var index = (rect.y + yindex)*canvas.width*4 + rect.x*4;  index < rect.y*canvas.width*4 + rect.x*4 + rect.w*4;  index+=4){
+            color.r += imgData.data[index];
+            color.g += imgData.data[index + 1];
+            color.b += imgData.data[index + 2];
+            color.a += imgData.data[index + 3];
+        }        
+    }
+
+    
+    color.r /= rect.w;
+    color.g /= rect.w;
+    color.b /= rect.w;
+    color.a /= rect.w;
+    
+    document.body.style.backgroundColor = "#" + Math.round(color.r).toString(16) + Math.round(color.g).toString(16) + Math.round(color.b).toString(16) + Math.round(color.a).toString(16);
+    document.getElementById("colorhex").value = "#" + Math.round(color.r).toString(16) + Math.round(color.g).toString(16) + Math.round(color.b).toString(16) + Math.round(color.a).toString(16);
+  //  ctx.beginPath();
+//    ctx.lineWidth = "2";
+ //   ctx.strokeStyle = "black";
+//    ctx.rect(rect.x, rect.y, rect.w, rect.h);
+  //  ctx.stroke();
+
+    
+};
+
+
+document.getElementById("reloadbutton").onclick = function(){
+    var imgsrc = img.src;
+    img.src = "";
+    img.src = imgsrc;
+}
+
+
+document.getElementById("colorhex").onchange = function(){
+    document.body.style.backgroundColor = this.value;
+}
+
+
+mc = new Hammer(document.getElementById("hammerxy"));
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc.on("panleft panright panup pandown tap press rotate", function(ev) {
+
+    img.style.left = (ev.deltaX + x0).toString() +  "px";
+    img.style.top = (ev.deltaY + y0).toString() +  "px";
+    rect.x = -ev.deltaX;
+    rect.y = -ev.deltaY;
+    canvas.style.left = (ev.deltaX + x0).toString() +  "px";
+    canvas.style.top = (ev.deltaY + y0).toString() +  "px";
+    
+
+});    
+
+document.getElementById("imgurlinput").onchange = function(){
+    img.src = this.value;
+}
+</script>
+<style>
+#controltable{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+}
+body{
+    overflow:hidden;
+}
+#hammerxy{
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+#selectbox{
+    border:solid;
+    border-width:2px;
+    position:absolute;
+}
+#mainimage{
+    position:absolute;
+    z-index:-3;
+    max-width:50%;
+}
+#maincanvas{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    z-index:-2;
+}
+input, td,table{
+    font-size:16px;
+    border:solid;
+    border-color:#00ff00;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>

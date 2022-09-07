@@ -1,0 +1,34 @@
+# Duality
+
+Duality explores the failure of binary philosophy to accurately describe our reality.  It points the web browser at two images, which you position and rotate and rescale, then you can either drag a pointer across the screen or move a finger across a touch screen to see one image blend into the other with the same mathematics as used in quantum superposition.
+
+The symbol for duality is this icon, which is also a link:
+
+[![](iconsymbols/duality.svg)](duality.html)
+
+The buttons which select either editing the top or bottom image in the duality editor are like this:
+
+![](iconsymbols/upelement.svg)
+
+and 
+
+![](iconsymbols/downelement.svg)
+
+
+Save the state of the duality with the save button which looks like this:
+
+![](iconsymbols/save.svg)
+
+Images can be selected from the image feed, which can be edited with the main text feed linked to via the text feed icon which looks like this:
+
+[![](iconsymbols/feed.svg)](textfeed.html)
+
+In the text feed you can paste urls of images and they'll be automatically saved to the feed, then return to the duality editor to use those images as top or bottom in the duality.  
+
+When editing either the top or bottom image of the duality, move it around by click-drag or slide on a touch screen, and rotate and scale with the slider bar on the screen.  Click on an image in the image feed to use that image.  When you save a duality, you can copy all the code in the text area filled with code next to the "IMPORT" and "RESET" buttons and save that or send it to someone via email, chat or text and they can paste it into the same field on the duality on their instance of Geometron, hit the IMPORT button and they'll be viewing the same duality you are.  They can then save it to their local Geometron, change it, and copy their new code and send it to others on the network to remix and evolve.  
+
+If the code becomes corrupted, the "RESET" button can restore it to non-currupted code which can be used as a baseline for a new duality.  The duality teaches the basic way we share information on the Geometron network, just as the map and poetry engine do.
+
+
+
+

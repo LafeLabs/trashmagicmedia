@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMzMzQREREAAzMzRBEREQAAMzNEQREQAAAzNERBERAAAAM0REQRAAAAAEREREAAAAAAREREQAAAAAACIiIAAAAAAAIiIgAAAAAAACIgAAAAAAAAIiAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAQAAwAEAAOADAADgAwAA8AcAAPgPAAD4DwAA/B8AAPwfAAD+PwAA/j8AAP9/AAD//wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/mapfactory.js"></script>
+
+
+<!--un-comment to add math: -->
+
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+        -->
+
+</head>
+<body>    
+<table>
+    <tr>
+        <td>robot glyph:</td>
+        <td><input id = "glyphinput"/></td>
+    </tr>
+    <tr>
+        <td>width[px]:</td>
+        <td><input id = "widthinput"/></td>
+    </tr>
+    <tr>
+        <td>height[px]:</td>
+        <td><input id = "heightinput"/></td>
+    </tr>
+</table>
+
+<textarea id = "textio"></textarea>
+<div id = "iconbox">
+</div>
+<script>
+
+width = 400;
+height = 400;
+
+document.getElementById("widthinput").value = width.toString();
+document.getElementById("heightinput").value = height.toString();
+
+
+document.getElementById("glyphinput").onchange = function(){
+   drawglyph(this.value);
+}
+
+drawglyph("0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0505,0501,0504,0502,0504,0502,0504,0502,0504,0502,0502,0504,0502,0504,0502,0504,0502,0504,0502,0504,0502,0504,0502,0504,0502,0502,0504,0502,0500,0506,0500,0506,0500,0506,0500,0506,0500,0500,0500,0506,0500,0500,0500,0500,0506,0500,0500,0500,0507,0500,0500,0500,0507,0500,0500,0507,0500,0507,0500,0507,0500,0503,0504,0503,0503,0503,0504,0503,0503,0503,0505,0503,0503,0503,0505,0503,0505,0503,0505,0503,0505,0503,0505,0503,0504,0503,0504,0503,0504,0503,0504,0503,0503,0504,0503,0503,0503,0504,0503,0503,0503,0505,0503,0503,0503,0505,0503,0503,0505,0503,0505,0503,0501,0507,0501,0501,0501,0507,0501,0501,0501,0501,0501,0501,0506,0501,0501,0501,0506,0501,0501,0506,0501,0501,0506,0501,0506,0501,0506,0501,0506,0501,0502,0505,0502,0505,0502,0505,0502,0505,0502,0505,0502,0505,0502,0505,0502,0502,0505,0502,0505,0502,0505,0502,0504,0504,0504,0504,0504,0504,0504,0504,0504,0327,0504,0504,");
+
+function drawglyph(glyphstring){
+    
+    width = parseInt(document.getElementById("widthinput").value);
+    height = parseInt(document.getElementById("heightinput").value);
+
+    document.getElementById("iconbox").style.width = width + "px";
+    document.getElementById("iconbox").style.height = height + "px";
+
+    htmlstring = "<div id = \"iconbox\">";
+    cssstring = "";
+    cssstring += "#iconbox{\nposition:absolute;\nleft:100px;\ntop:100px;\nwidth:" + width.toString() + "px;\nheight:" + height.toString() + "px;\nborder:solid;\n}";
+    cssstring += ".dot{\nposition:absolute;\nwidth:2%;\nheight:2%;\nborder-radius:50%;\nbackground-color:black;\n}";
+    
+    glyph = glyphstring.split(",");    
+    document.getElementById("iconbox").innerHTML = "";
+    x = 0;
+    y = 0;
+    color = "black";
+    for(var index = 0;index < glyph.length; index++){
+                if(glyph[index] == "0320"){
+            color = "black";
+        }
+        if(glyph[index] == "0322"){
+            color = "red";
+        }
+        if(glyph[index] == "0323"){
+            color = "orange";
+        }
+        if(glyph[index] == "0324"){
+            color = "yellow";
+        }
+        if(glyph[index] == "0325"){
+            color = "green";
+        }
+        if(glyph[index] == "0326"){
+            color = "blue";
+        }
+        if(glyph[index] == "0327"){
+            color = "purple";
+        }
+        if(glyph[index] == "0500"){
+            y += 2;
+            var newdot = document.createElement("DIV");
+            newdot.className = "dot";
+            newdot.style.left = (50 + x).toString() + "%";
+            newdot.style.top = (50 - y).toString() + "%";
+            newdot.style.backgroundColor = color;
+            document.getElementById("iconbox").appendChild(newdot);
+            cssstring += "\n#dot" + index.toString() + "{\nleft:" + (50 + x).toString() + "%;\n" + "top:" + (50 - y).toString() + "%;\nbackground-color:" + color + ";\n}";
+            htmlstring += "<div class = \"dot\" id = \"dot" + index.toString() + "\"></div>";
+            
+        }
+        if(glyph[index] == "0501"){
+            y -= 2;
+            var newdot = document.createElement("DIV");
+            newdot.className = "dot";
+            newdot.style.left = (50 + x).toString() + "%";
+            newdot.style.top = (50 - y).toString() + "%";
+            newdot.style.backgroundColor = color;
+            document.getElementById("iconbox").appendChild(newdot);
+            cssstring += "\n#dot" + index.toString() + "{\nleft:" + (50 + x).toString() + "%;\n" + "top:" + (50 - y).toString() + "%;\nbackground-color:" + color + ";\n}";
+            htmlstring += "<div class = \"dot\" id = \"dot" + index.toString() + "\"></div>";
+        }
+        if(glyph[index] == "0502"){
+            x -= 2;
+            var newdot = document.createElement("DIV");
+            newdot.className = "dot";
+            newdot.style.left = (50 + x).toString() + "%";
+            newdot.style.top = (50 - y).toString() + "%";
+            newdot.style.backgroundColor = color;
+            document.getElementById("iconbox").appendChild(newdot);
+            cssstring += "\n#dot" + index.toString() + "{\nleft:" + (50 + x).toString() + "%;\n" + "top:" + (50 - y).toString() + "%;\nbackground-color:" + color + ";\n}";
+            htmlstring += "<div class = \"dot\" id = \"dot" + index.toString() + "\"></div>";
+        }
+        if(glyph[index] == "0503"){
+            x += 2;
+            var newdot = document.createElement("DIV");
+            newdot.className = "dot";
+            newdot.style.left = (50 + x).toString() + "%";
+            newdot.style.top = (50 - y).toString() + "%";
+            newdot.style.backgroundColor = color;
+            document.getElementById("iconbox").appendChild(newdot);
+            cssstring += "\n#dot" + index.toString() + "{\nleft:" + (50 + x).toString() + "%;\n" + "top:" + (50 - y).toString() + "%;\nbackground-color:" + color + ";\n}";
+            htmlstring += "<div class = \"dot\" id = \"dot" + index.toString() + "\"></div>";
+            
+        }
+        if(glyph[index] == "0504"){
+            y += 2;
+        }
+        if(glyph[index] == "0505"){
+            y -= 2;
+        }
+        if(glyph[index] == "0506"){
+            x -= 2;
+        }
+        if(glyph[index] == "0507"){
+            x += 2;
+        }
+    }
+    
+    htmlstring += "</div>";
+    htmlstring += "<style>" + cssstring + "</style>"
+    
+    document.getElementById("textio").value = htmlstring;
+}
+
+
+</script>
+<style>
+#iconbox{
+    position:absolute;
+    left:100px;
+    top:100px;
+    width:300px;
+    height:300px;
+    border:solid;
+}
+.dot{
+    position:absolute;
+    width:2%;
+    height:2%;
+    border-radius:50%;
+    background-color:black;
+}
+#textio{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:400px;
+    height:400px;
+}
+</style>
+</body>
+</html>

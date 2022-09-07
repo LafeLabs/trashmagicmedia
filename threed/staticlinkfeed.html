@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>    
+<div id = "header"><input id = "feedurlinput"/></div>
+<div id = "feed"></div>
+
+<!--<jsondata>--><script>
+feed = [
+    {
+        "href": "editor.php",
+        "src": "",
+        "text": "editor.php"
+    },
+    {
+        "href": "linkfeededitor.html",
+        "src": "",
+        "text": "operator screen"
+    },
+    {
+        "href": "robot.html",
+        "src": "",
+        "text": "robot.html"
+    },
+    {
+        "href": "",
+        "src": "https://acdn.list25.com/wp-content/uploads/2012/05/tumblr_nfodzdlXuk1r6q4zxo1_1280.gif",
+        "text": ""
+    },
+    {
+        "href": "",
+        "src": "",
+        "text": "here is some random text with no link"
+    },
+    {
+        "href": "linkfeededitor.html",
+        "src": "",
+        "text": "operator screen"
+    }
+];    
+</script><!--</jsondata>-->
+<script>
+loadfeed();
+function loadfeed(){
+    for(var index = feed.length - 1;index >= 0;index--){
+        var newa = document.createElement("A");
+        newa.id = "a" + index.toString();
+        newa.className = "feedlink";
+        if(feed[index].href.length > 0){
+            newa.href = feed[index].href;
+        }
+        if(feed[index].src.length > 0){
+            var newimg = document.createElement("IMG");
+            newimg.src = feed[index].src;
+            newimg.alt = feed[index].text;
+            newa.appendChild(newimg);
+            newimg.onload = function(){
+                this.parentElement.style.height = this.height + "px";
+            }
+            newimg.className = "feedimage";
+        }
+        else{
+            newa.innerHTML = feed[index].text;
+            newa.style.height = "2em";
+        }
+        document.getElementById("feed").appendChild(newa);
+    }
+}
+</script>
+<style>
+body{
+    background-color:white;
+    overflow:hidden;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    overflow:scroll;
+    background-color:#404040;
+}
+.feedlink{
+    margin:auto;
+    margin-bottom:1em;
+    margin-top:1em;
+    display:block;
+    width:80%;
+    height:10em;
+    background-color:white;
+    overflow:scroll;
+    font-size:26px;
+}
+.feedlink .button{
+    cursor:pointer;
+    text-align:center;
+    border:solid;
+    border-radius:3px;
+}
+.feedimage{
+    width:100%;
+}
+.scrollbox{
+    overflow:scroll;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+}
+</style>
+</body>
+</html>

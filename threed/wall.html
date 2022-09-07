@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- 
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <title>Trash Robot</title>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+</head>
+<body>
+    <textarea id = "wall"></textarea>
+<script>
+
+
+
+wall = "";
+
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        wall = this.responseText;
+        document.getElementById("wall").value = wall;
+    }
+};
+
+httpc2.open("GET", "fileloader.php?filename=data/wall.txt", true);
+httpc2.send();
+
+
+document.getElementById("wall").onkeyup = function() {
+        wall = this.value;
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        httpc.send("data="+encodeURIComponent(wall)+"&filename=data/wall.txt");//send text to filesaver.php        
+    
+}
+
+
+//document.getElementById("editbutton").click();
+
+</script>
+<style>
+p{
+    text-align:center;
+}
+body{
+    margin-left:3em;
+    margin-right:3em;
+    margin-top:3em;
+    font-size:3em;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    overflow:hidden;
+}
+#wall{
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:scroll;
+    width:100%;
+    height:100%;
+    background-color:black;
+    font-family:courier;
+    color:#00ff00;
+}
+img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+}
+h1,h2,h3,h4{
+    font-size:2em;
+    margin:auto;
+    text-align:center;
+}
+    @media only screen and (orientation: portrait) {
+        h1{
+            font-size:1.65em;
+        }
+        h2{
+            font-size:1.25em;
+        }
+        h3{
+            font-size:1em;
+        }
+        h4{
+            font-size:0.8em;
+        }
+    }
+
+</style>
+</body>
+</html>

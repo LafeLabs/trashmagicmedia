@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "jscode/qrcode.js"></script>
+</head>
+<body>    
+<a href = "index.html">index.html</a><p></p>
+<a href = "textfeed.html">textfeed.html</a>
+<p></p>
+<a id = "linklink"></a>
+
+<div id = "qrcode"></div>
+<img id = "transferimage"/>
+<canvas id = "outputcanvas"></canvas>
+<table>
+    <tr>
+        <td></td>
+        <td class = "button" id = "savebutton">SAVE TO FEED</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class = "button" id = "urlbutton">LOAD CURRENT URL</td>
+    </tr>
+    <tr>
+        <td>URL:</td>
+        <td><input id = "urlinput"/></td>
+    </tr>
+    <tr>
+        <td>MAP:</td>
+        <td><input id = "mapinput"/></td>
+    </tr>
+    <tr>
+        <td>SCROLL:</td>
+        <td><input id = "scrollinput"/></td>
+    </tr>
+</table>
+
+<script>
+
+codesquaresize = 128;
+marginsize = 40;
+fontsize = 12;
+
+//globalurl = "http://www.trashrobot.org/qrcode.html";
+globalurl = window.location.href.split("qrcode.html")[0];
+
+map = "";
+scroll = "";
+mode = "url";//url,map and scroll are the 3 modes
+
+document.getElementById("urlinput").value = "";
+document.getElementById("mapinput").value = "";
+document.getElementById("scrollinput").value = "";
+
+
+document.getElementById("urlinput").onchange = function(){
+    mode = "url";
+    globalurl= this.value;
+    qrcode.makeCode(globalurl);
+}
+
+document.getElementById("mapinput").onchange = function(){
+    map = this.value;
+    mode = "map";
+    globalurl= window.location.origin+"/user.php?map=" + this.value;
+    qrcode.makeCode(globalurl);
+    document.getElementById("linklink").href = globalurl;
+    document.getElementById("linklink").innerHTML = globalurl;
+
+}
+document.getElementById("scrollinput").onchange = function(){
+    scroll = this.value;
+    mode = "scroll";
+    globalurl = window.location.origin+"/user.php?scroll=" + this.value;
+    qrcode.makeCode(globalurl);
+    document.getElementById("linklink").href = globalurl;
+    document.getElementById("linklink").innerHTML = globalurl;
+
+}
+
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+
+
+
+textfeed = {};
+var httpc11 = new XMLHttpRequest();
+    httpc11.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        textfeed = JSON.parse(this.responseText);
+    }
+};
+httpc11.open("GET", "fileloader.php?filename=data/textfeed.txt", true);
+httpc11.send();
+
+
+
+document.getElementById("savebutton").onclick = function(){
+
+    document.getElementById("transferimage").src = document.getElementsByTagName("IMG")[0].src;
+    
+
+}
+
+img = document.getElementById("transferimage");
+//img.crossOrigin = 'Anonymous';
+canvas = document.getElementById("outputcanvas");
+ctx = canvas.getContext("2d");
+
+
+
+
+document.getElementById("transferimage").onload = function(){
+    canvas.style.border = "solid"; 
+    canvas.width = codesquaresize + 2*marginsize;
+    canvas.height = codesquaresize + 2*marginsize;
+    //img.crossOrigin = '';
+    ctx.strokeStyle = "white";
+    ctx.fillStyle = "white";
+            
+    ctx.clearRect(0,0,codesquaresize + 2*marginsize,codesquaresize + 2*marginsize);
+    ctx.fillRect(0,0,codesquaresize + 2*marginsize,codesquaresize + 2*marginsize); 
+    ctx.drawImage(img,marginsize,marginsize,codesquaresize,codesquaresize);
+
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "black";
+    ctx.font = "10px Helvetica";
+    if(mode == "url"){
+        ctx.fillText(globalurl,2,codesquaresize + 2*marginsize - 2);
+    }
+    if(mode == "map" || mode == "scroll"){
+        ctx.fillText(window.location.origin,2,12);
+    }
+    if(mode == "map"){
+        ctx.fillText(map,2,codesquaresize + 2*marginsize - 2);
+    }
+    if(mode == "scroll"){
+        ctx.fillText(scroll,2,codesquaresize + 2*marginsize - 2);
+    }
+    
+
+    
+    var localfeedelement = {};
+    localfeedelement.href = globalurl;
+    localfeedelement.text = globalurl;
+    localfeedelement.src = canvas.toDataURL("image/png");
+    localfeedelement.glyph = "";
+    textfeed.src.push(localfeedelement.src);
+    
+    var url = "filesaver.php";        
+    var httpc3 = new XMLHttpRequest();
+    httpc3.open("POST", url, true);
+    httpc3.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc3.send("data="+encodeURIComponent(JSON.stringify(textfeed,null,"    "))+"&filename=data/textfeed.txt");//send text to filesaver.php    
+
+    
+}
+
+
+document.getElementById("urlbutton").onclick = function(){
+    var localurl = window.location.href.split("qrcode.html")[0];
+    document.getElementById("urlinput").value = localurl;
+    mode = "url";
+    globalurl= localurl;
+    qrcode.makeCode(globalurl);
+    document.getElementById("linklink").href = globalurl;
+    document.getElementById("linklink").innerHTML = globalurl;
+    
+}
+
+</script>
+<style>
+#transferimage{
+    display:none;
+    width:128px;
+    height:128px;
+    border:solid;
+}
+body{
+}
+#qrcode{
+    margin: 5em 5em 5em 5em;
+}
+.button{
+    cursor:pointer;
+    text-align:center;
+    border:solid;
+    border-radius:3px;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+</style>
+</body>
+</html>

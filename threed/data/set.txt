@@ -1,0 +1,26 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/maps/math",
+        "name": "maps/math"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/scrolls/math.md",
+        "name": "scrolls/math.md"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/php/mathmapeditor.txt",
+        "name": "php/mathmapeditor.txt"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/php/mathmapeditor.txt",
+        "name": "mathmapeditor.php"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/php/mathuser.txt",
+        "name": "mathuser.php"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/php/mathuser.txt",
+        "name": "php/mathuser.txt"
+    }
+]

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+</head>
+<body>   
+<div id = "selectbox"></div>
+
+
+<table id = "controltable">
+    <tr>
+        <td id = "savebutton" class = "button">SAVE</td>
+        <td>
+            <a style = "background-color:white " href =  "mapeditor.html">mapeditor.html</a>
+        </td>
+    </tr>
+    <tr>
+        <td>img url:</td>
+        <td><input id = "imgurlinput"/></td>
+    </tr>
+    <tr>
+        <td>img url:</td>
+        <td><input id = "thresholdinput"/></td>
+    </tr>
+
+</table>
+<img id = "mainimage" src = "https://i.imgur.com/ziZfYgD.jpg"/> 
+<canvas  id = "maincanvas"></canvas>
+
+<script>
+
+threshold = 0x40;
+
+textfeed = {};
+var httpc10 = new XMLHttpRequest();
+    httpc10.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        textfeed = JSON.parse(this.responseText);
+    }
+};
+httpc10.open("GET", "fileloader.php?filename=data/textfeed.txt", true);
+httpc10.send();
+
+
+color = {
+    "r":0x90,
+    "g":0xff,
+    "b":0x45,
+    "a":0x35
+}
+    
+img = document.getElementById("mainimage");
+img.crossOrigin = 'Anonymous';
+canvas = document.getElementById("maincanvas");
+ctx = canvas.getContext("2d");
+
+document.getElementById("imgurlinput").value = img.src;
+
+
+
+img.onload = function() {
+//    this.style.width = "400px";
+    canvas.width = 400;
+    canvas.height = this.height*400/this.width;
+    img.crossOrigin = '';
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+    imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    
+
+    //each row has canvas.width x 4 elemeents in imgData.data.
+    //there are canvas.height rows.
+    //to grab one row starting at rect.x,rect.y and going across rect.w:
+    //start at 
+    //rect.y*canvas.width*4 + rect.x*4
+    //and run index up from there by index=0 to <4*rect.w
+
+    color.r = 0;
+    color.g = 0;
+    color.b = 0;
+    color.a = 0;
+    
+    
+
+    for(var index = 0;index < imgData.data.length;index += 16){
+          
+        color.r = (imgData.data[index] + imgData.data[index + 4]+ imgData.data[index + 8]+ imgData.data[index + 12])/4;
+        color.g = (imgData.data[index + 1] + imgData.data[index + 5] + imgData.data[index + 9] + imgData.data[index + 13])/4;
+        color.b = (imgData.data[index + 2] + imgData.data[index + 6] + imgData.data[index + 10] + imgData.data[index + 14])/4;
+        if(Math.sqrt(color.r*color.r + color.g*color.g + color.b*color.b) < threshold){
+            imgData.data[index + 3] = 0;
+            imgData.data[index + 7] = 0;
+            imgData.data[index + 11] = 0;
+            imgData.data[index + 15] = 0;
+        }
+
+
+    }
+
+    img.style.display = "none";
+
+    ctx.putImageData(imgData, 0, 0); 
+
+};
+
+
+document.getElementById("savebutton").onclick = function(){
+
+    textfeed.src.push(canvas.toDataURL("image/png"));
+    var url = "filesaver.php";        
+    var httpc3 = new XMLHttpRequest();
+    httpc3.open("POST", url, true);
+    httpc3.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc3.send("data="+encodeURIComponent(JSON.stringify(textfeed,null,"    "))+"&filename=data/textfeed.txt");//send text to filesaver.php    
+    
+}
+
+document.getElementById("thresholdinput").value = threshold.toString();
+document.getElementById("thresholdinput").onchange = function(){
+    threshold = parseInt(this.value);
+    var localsrc = img.src;
+    img.src = "";
+    img.src = localsrc;
+}
+
+document.getElementById("imgurlinput").onchange = function(){
+    img.src = this.value;
+}
+</script>
+<style>
+#controltable{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+}
+#mainimage{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-3;
+    max-width:40%;
+}
+#maincanvas{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-2;
+}
+input, td,table{
+    font-size:16px;
+    border:solid;
+    border-color:#00ff00;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>
