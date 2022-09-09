@@ -16,6 +16,7 @@
         "sharpieprinter",
         "simplecube",
         "slimezistor",
+        "trashmagic",
         "whitepaper"
     ]
 }
