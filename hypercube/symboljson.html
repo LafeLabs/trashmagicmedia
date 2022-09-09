@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/geometron.js"></script>
+    <title>JSON import/export</title>
+</head>
+<body>    
+<div id = "mainbox">
+    <canvas id = "maincanvas"></canvas>
+</div>
+    <a href = "symbol.html">
+        <img src = "iconsymbols/home.svg"/>
+    </a>
+<table>
+    <tr>
+        <td class = "button" id = "importbutton">IMPORT</td>
+    </tr>
+    <tr>
+        <td class = "button" id = "exportbutton">EXPORT</td>
+    </tr>
+    <tr>
+        <td class = "button" id = "resetbutton">RESET</td>
+    </tr>
+    <tr>
+        <td class=  "button" id = "savebutton">SAVE</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>URL of a Geometron symbol(from anywhere on Web):</td>
+        <td><input id= "symbolurlinput"/></td>
+    </tr>
+</table>
+    <textarea id = "textio"></textarea>
+
+<script>    
+
+document.getElementById("symbolurlinput").value = "";
+document.getElementById("symbolurlinput").onchange = function(){
+    imageurl = this.value;
+    var httpc2 = new XMLHttpRequest();
+    httpc2.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            svgraw = this.responseText;
+            jsontext = svgraw.split("<json>")[1].split("</json>")[0];
+            document.getElementById("textio").value = jsontext;
+            currentjson = JSON.parse(jsontext);
+            mainGVM.importbytecode(currentjson.shapes);
+            mainGVM.style = currentjson.style;
+            mainGVM.x0 = currentjson.x0;
+            mainGVM.y0 = currentjson.y0;
+            mainGVM.unit = currentjson.unit;
+            mainGVM.width = currentjson.width;
+            mainGVM.height = currentjson.height;
+            document.getElementById("mainbox").style.width = mainGVM.width.toString() + "px";
+            document.getElementById("mainbox").style.height = mainGVM.height.toString() + "px";
+            maincanvas.width  = mainGVM.width;
+            maincanvas.height = mainGVM.height;
+            mainGVM.drawGlyph(currentjson.glyph);   
+        }
+    };
+
+    httpc2.open("GET", "fileloader.php?filename=" + imageurl, true);
+    httpc2.send();
+
+}
+
+
+maincanvas = document.getElementById("maincanvas");
+
+hypercube = [];
+for(var index = 0;index < 02000;index++){
+    hypercube.push("");
+}
+
+mainGVM = new GVM(maincanvas,200,200);
+
+
+currentjson = {};
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercubedata = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercubedata);
+        var httpc = new XMLHttpRequest();
+        httpc.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                currentjson = JSON.parse(this.responseText);
+                document.getElementById("textio").value = JSON.stringify(currentjson,null,"    ");
+                mainGVM.importbytecode(currentjson.shapes);
+                mainGVM.style = currentjson.style;
+                mainGVM.x0 = currentjson.x0;
+                mainGVM.y0 = currentjson.y0;
+                mainGVM.unit = currentjson.unit;
+                mainGVM.width = currentjson.width;
+                mainGVM.height = currentjson.height;
+                document.getElementById("mainbox").style.width = mainGVM.width.toString() + "px";
+                document.getElementById("mainbox").style.height = mainGVM.height.toString() + "px";
+                maincanvas.width  = mainGVM.width;
+                maincanvas.height = mainGVM.height;
+                mainGVM.drawGlyph(currentjson.glyph);
+                
+            }
+        };
+        httpc.open("GET", "fileloader.php?filename=data/currentjson.txt", true);
+        httpc.send();    
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpc.send();
+
+function redraw(){
+    mainGVM.importbytecode(currentjson.shapes);
+    mainGVM.style = currentjson.style;
+    mainGVM.x0 = currentjson.x0;
+    mainGVM.y0 = currentjson.y0;
+    mainGVM.unit = currentjson.unit;
+    mainGVM.width = currentjson.width;
+    mainGVM.height = currentjson.height;
+    document.getElementById("mainbox").style.width = mainGVM.width.toString() + "px";
+    document.getElementById("mainbox").style.height = mainGVM.height.toString() + "px";
+    maincanvas.width  = mainGVM.width;
+    maincanvas.height = mainGVM.height;
+    mainGVM.drawGlyph(currentjson.glyph);    
+}
+
+function savejson(){
+
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(currentjson,null,"    "))+"&filename=data/currentjson.txt");//send text to filesaver.php
+
+}
+
+function savecube(){
+    
+    mainGVM.importbytecode(currentjson.shapes);
+    
+    hypercube = mainGVM.bytecode(0,01777);
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(hypercube)+"&filename=data/hypercube.txt");//send text to filesaver.php
+    
+}
+
+document.getElementById("exportbutton").onclick = function(){
+    document.getElementById("textio").value = JSON.stringify(currentjson,null,"    ");
+}
+
+document.getElementById("importbutton").onclick = function(){
+    currentjson = JSON.parse(document.getElementById("textio").value);
+    redraw();
+    
+}
+
+document.getElementById("savebutton").onclick  = function(){
+    currentjson = JSON.parse(document.getElementById("textio").value);
+    savejson();
+    savecube();
+}
+
+resetjson = {
+    "glyph": "",
+    "x0": 200,
+    "y0": 200,
+    "unit": 50,
+    "width": 400,
+    "height": 400,
+    "style": {
+        "color0": "black",
+        "fill0": "black",
+        "line0": 1,
+        "color1": "black",
+        "fill1": "black",
+        "line1": 5,
+        "color2": "red",
+        "fill2": "red",
+        "line2": 1,
+        "color3": "#FF7900",
+        "fill3": "#FF7900",
+        "line3": 1,
+        "color4": "yellow",
+        "fill4": "yellow",
+        "line4": 1,
+        "color5": "green",
+        "fill5": "green",
+        "line5": 1,
+        "color6": "blue",
+        "fill6": "blue",
+        "line6": 1,
+        "color7": "purple",
+        "fill7": "purple",
+        "line7": 1
+    },
+    "shapes": [
+        "01220:0333,0200,0336,0330,0332,0336,0332,060,062,062,060,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01221:0333,0200,0336,0330,0332,0336,0332,060,062,062,061,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01222:0333,0200,0336,0330,0332,0336,0332,060,062,062,062,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01223:0333,0200,0336,0330,0332,0336,0332,060,062,062,063,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01224:0333,0200,0336,0330,0332,0336,0332,060,062,062,064,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01225:0333,0200,0336,0330,0332,0336,0332,060,062,062,065,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01226:0333,0200,0336,0330,0332,0336,0332,060,062,062,066,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01227:0333,0200,0336,0330,0332,0336,0332,060,062,062,067,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01230:0333,0200,0336,0330,0332,0336,0332,060,062,063,060,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01231:0333,0200,0336,0330,0332,0336,0332,060,062,063,061,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01232:0333,0200,0336,0330,0332,0336,0332,060,062,063,062,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01233:0333,0200,0336,0330,0332,0336,0332,060,062,063,063,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01234:0333,0200,0336,0330,0332,0336,0332,060,062,063,064,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01235:0333,0200,0336,0330,0332,0336,0332,060,062,063,065,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01236:0333,0200,0336,0330,0332,0336,0332,060,062,063,066,0365,0333,0333,0331,0331,0333,0337,0337,",
+        "01237:0333,0200,0336,0330,0332,0336,0332,060,062,063,067,0365,0333,0333,0331,0331,0333,0337,0337,"
+    ]
+};
+
+document.getElementById("resetbutton").onclick = function(){
+    currentjson = resetjson;
+    document.getElementById("textio").value = JSON.stringify(currentjson,null,"    ");    
+    redraw();
+}
+
+
+document.getElementById("textio").value = "";
+
+
+</script>
+
+<style>
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:-1;    
+}
+#maincanvas{
+    position:absolute;
+    right:0px;
+    top:0px;
+    border:solid;
+    z-index:-1;
+}
+#textio{
+    width:40em;
+    height:40em;
+}
+.button{
+    cursor:pointer;
+    border:solid;
+    text-align:center;
+    border-radius:3px;
+    margin-top:10px;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>    
+    <h1>SET MAGIC</h1>
+
+    
+<div class = "button" id ="importbutton">IMPORT</div>
+    
+<table id = "controltable">
+    <tr>
+        <td>remote set:</td>
+        <td><input id = "remotesetinput"/></td>
+    </tr>
+    <tr>
+        <td>
+            <a href = "index.html">HOME</a>        
+        </td>
+        <td>
+            <a href = "setreplicator.php">setreplicator.php</a> 
+        </td>
+    </tr>
+    <tr>
+        <td>URL:</td>
+        <td><input id = "urlinput"/></td>
+    </tr>
+    <tr>
+        <td>NAME:</td>
+        <td><input id = "fileinput"/></td>
+    </tr>
+    <tr>
+        <td class = "button" id = "publishbutton">PUBLISH</td>
+        <td>
+        </td>
+    </tr>
+</table>
+    <textarea id = "textio"></textarea>
+
+<div id = "feed"></div>
+
+
+<script>
+
+document.getElementById("fileinput").value = "";
+document.getElementById("urlinput").value = "";
+
+set = [];
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        set = JSON.parse(this.responseText);
+        redraw();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/set.txt", true);
+httpc.send();
+
+boxindex = 0;
+
+function redraw(){
+    document.getElementById("feed").innerHTML = "";
+    document.getElementById("textio").value = JSON.stringify(set,null,"    ");
+    for(var index = 0;index < set.length;index++){
+        var newbox = document.createElement("DIV");
+        document.getElementById("feed").appendChild(newbox);
+        newbox.className = "box";
+        newbox.id = "box" + index.toString();
+        var deletebutton = document.createElement("SPAN");
+        deletebutton.className = "button";
+        deletebutton.innerHTML = "X";
+        deletebutton.style.color = "#ff0000";
+        deletebutton.style.border = "solid";
+        deletebutton.style.borderColor = "#ff0000";
+        newbox.style.marginBottom = "1em";
+
+        newbox.appendChild(deletebutton);
+        deletebutton.onclick = function(){
+            boxindex = parseInt(this.parentElement.id.substring(3));
+            var tempset = [];
+            for(var index = 0;index < set.length;index++){
+                if(index != boxindex){
+                    tempset.push(set[index]);
+                }
+            }
+            set = tempset;
+            redraw();
+            savejson();
+
+        }
+        var textspan = document.createElement("span");
+        textspan.className = "button";
+        textspan.innerHTML = set[index].url;
+        textspan.style.backgroundColor = "#ff2cb480";
+        textspan.onclick = function(){
+            document.getElementById("urlinput").value = this.innerHTML;
+        }
+        newbox.appendChild(textspan);
+        var textspan2 = document.createElement("span");
+        textspan2.className = "button";
+        textspan2.style.backgroundColor = "#5050ff80";
+        
+        textspan2.innerHTML = set[index].name;
+        textspan2.onclick = function(){
+            document.getElementById("fileinput").value = this.innerHTML;
+        }
+        newbox.appendChild(textspan2);        
+    }   
+}
+
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(set,null,"    "))+"&filename=data/set.txt");//send text to filesaver.php
+}
+
+
+
+
+document.getElementById("importbutton").onclick = function(){
+    set = JSON.parse(document.getElementById("textio").value);
+    redraw();
+    savejson();
+}
+
+document.getElementById("publishbutton").onclick = function(){
+    element = {};
+    element.url = document.getElementById("urlinput").value;
+    element.name = document.getElementById("fileinput").value;
+    set.unshift(element);
+    redraw();
+    savejson();
+}
+
+document.getElementById("remotesetinput").value = "";
+
+document.getElementById("remotesetinput").onchange = function(){
+    setfilename = this.value;
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            remotesettext = this.responseText;
+            set = JSON.parse(remotesettext);
+            document.getElementById("textio").value = remotesettext;
+            savejson();
+            redraw();    
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=" + setfilename, true);
+    httpc666.send();
+}
+
+</script>
+<style>
+#importbutton{
+    position:absolute;
+    right:1px;
+    top:0px;
+}
+#textio{
+    position:absolute;
+    right:1px;
+    top:36px;
+    height:40%;
+    width:40%;
+}
+#feed{
+    position:absolute;
+    top:50%;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+#urlinput{
+    background-color:#ff2cb460;
+}
+#fileinput{
+    background-color:#5050ff60;
+}
+body,a,div,textarea,input{
+    font-family:courier;
+    background-color:black;
+    color:#00ff00;
+    font-size:24px;
+    border-color:#00ff00;
+}
+.button{
+    cursor:pointer;
+    border:solid;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+.box img{
+    width:3em;
+}
+</style>
+</body>
+</html>

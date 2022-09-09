@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>  
+<table id = "toptable">
+    <tr>
+        <td>
+            <a href = "index.html">
+                HOME
+            </a>
+        </td>
+        <td>
+            <a href = "geometroncoinfeededitor.html">
+                FEED EDITOR
+            </a>
+        </td>
+
+    </tr>
+</table>
+<table>
+    <tr>
+        <td style = "text-align:right">SOURCE SERVER:</td>
+        <td>
+            <input id = "sourceinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td style = "text-align:right">THIS SERVER HERE:</td>
+        <td>
+            <input id = "hereinput"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td id = "importbutton" class= "button">IMPORT</td>
+    </tr>
+</table>
+
+
+<a href = "fetchfeed.php" id = "fetchlink">
+(!)CLICK TO FETCH FEED FROM SOURCE TO HERE(!)
+</a>
+
+<textarea id  = "textio"></textarea>
+<script>
+
+var localurl = window.location.href.split("magic.html")[0];
+document.getElementById("hereinput").value = localurl;
+
+feedsource = "";
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        feedsource = this.responseText;
+        if(feedsource.charAt(feedsource.length-1) != "/"){
+            feedsource = feedsource + "/"; 
+        }
+        document.getElementById("sourceinput").value = feedsource;
+
+        var httpc9 = new XMLHttpRequest();
+        httpc9.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                geometroncoinfeed = JSON.parse(this.responseText);
+
+                document.getElementById("textio").value = JSON.stringify(geometroncoinfeed,null,"    ");
+                
+                savejson();
+
+            };
+        }
+        
+        httpc9.open("GET", "fileloader.php?filename=data/geometroncoinfeed.txt", true);
+        httpc9.send();
+        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/feedsource.txt", true);
+httpc.send();
+
+document.getElementById("sourceinput").onchange = function(){
+    feedsource = this.value;
+    if(feedsource.charAt(feedsource.length-1) != "/"){
+        feedsource = feedsource + "/"; 
+    }
+    savejson();
+}
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(feedsource)+"&filename=data/feedsource.txt");//send text to filesaver.php
+}
+
+
+document.getElementById("importbutton").onclck = function(){
+    
+    geometroncoinfeed = JSON.parse(document.getElementById("textio").value);
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(geometroncoinfeed,null,"    "))+"&filename=data/geometroncoinfeed.txt");//send text to filesaver.php
+    
+}
+
+
+</script>
+<style>
+#buttontable{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+#buttontable td{
+    width:12em;
+    text-align:center;
+}
+#inputtable{
+    position:absolute;
+    bottom:1em;
+    left:1em;
+}
+#inputtable table{
+    width:80%;
+}
+#inputtable tr{
+    width:100%;
+}
+
+#textio{
+    position:absolute;
+    right:1px;
+    top:2em;
+    height:80%;
+    width:40%;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    font-size:12px;
+}
+#feed{
+    position:absolute;
+    top:50%;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+#serverinput{
+    width:100%;
+}
+body,div,textarea,input{
+    font-family:courier;
+    font-size:24px;
+}
+a{
+    font-family:courier;
+    font-size:24px;
+    color:#ff2cb4;
+}
+td a{
+    border:solid;
+}
+.button{
+    cursor:pointer;
+    border:solid;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+.box img{
+    width:3em;
+}
+</style>
+</body>
+</html>

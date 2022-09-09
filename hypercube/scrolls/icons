@@ -1,0 +1,15 @@
+
+## [HOME](scrolls/home)
+
+# Icons
+ 
+Icons are sequences of geometric actions which make simple pixelated shapes.  They are a way to show how Geometron can be a universal geometric language letting us move between many physical and digital media.
+
+The steps to create your own Geometron icon are:
+
+ 1.  Find an image and drop the url to it into [globalimagefeed.html](globalimagefeed.html)
+ 2.  Align the image for tracing using [alignimage.html](alignimage.html)
+ 3.  Trace the image with [traceicon.html](traceicon.html) and save it
+ 4.  Copy the Geometron glyph of the icon and share it with others, spread it, replicate it, share whole sets/feeds of icons with [iconfeed.html](iconfeed.html)
+ 5. Print a page of icons on a regular paper printer using [iconpage.html](iconpage.html)
+ 6. Print icons using the [Trash Robot Printer](scrolls/printer) via the program [arduino.html](arduino.html)

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+             <meta charset="utf-8"/>
+
+<!--
+NO MONEY
+NO MINING
+NO PROPERTY
+EVERYTHING IS PHYSICAL 
+EVERYTHING IS RECURSIVE
+EVERYTHING IS FRACTAL
+LOOK AT THE INSECTS
+LOOK AT THE FUNGI
+LANGUGE IS HOW THE MIND PARSES REALITY
+
+-->
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAABEAAREQAAABERABERAAAAEREAAREAAAAREAAAABAAAQAAAAAAAQAQAAAAAAAAEQAAAAAAAAEREAAAAAAAAREQAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAM/zAACH4QAAh+EAAMfjAAD73wAA/b8AAP5/AAD8PwAA/D8AAP5/AAD//wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+<!--Stop Google:-->
+<META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+    <a href = "user.php">
+        <img id = "scrollbutton" class = "button" src = "iconsymbols/scroll.svg"/>
+    </a>
+    <a href = "scrolleditor.php">
+        <img id = "scrollbutton" class = "button" src = "iconsymbols/edit.svg"/>
+    </a>
+    
+<ul id = "mainlist">
+
+</ul>
+
+<script>
+
+//deleteprotect = true;//set to false to enable deletion of directories
+
+deleteprotect = false;//set to ture to disable deletion of directories
+
+
+scrolls = [];
+var httpc2 = new XMLHttpRequest();
+    httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        scrolls = JSON.parse(this.responseText);
+        for(var index = 0;index < scrolls.length;index++) {
+            if(scrolls[index] != "home"){
+                var newspan = document.createElement("SPAN");
+                newspan.innerHTML = "scrolls/" + scrolls[index];
+                var newli = document.createElement("LI");
+                newli.appendChild(newspan);
+                document.getElementById("mainlist").appendChild(newli);
+            
+            }
+        }
+        addDeleteButtons();
+    }
+};
+
+httpc2.open("GET", "dir.php?filename=scrolls", true);
+httpc2.send();
+
+
+function addDeleteButtons(){
+    dirlist = document.getElementById("mainlist").getElementsByTagName("LI");
+    for(var index = 0;index < dirlist.length;index++){
+        var newdeletebutton = document.createElement("span");
+        newdeletebutton.innerHTML = "DELETE";
+        newdeletebutton.className = "button";
+        dirlist[index].appendChild(newdeletebutton);
+    }
+    
+    deletebuttons = document.getElementById("mainlist").getElementsByClassName("button");
+
+    for(var index = 0;index < deletebuttons.length;index++){
+        deletebuttons[index].onclick = function() {
+            thisdir = this.parentNode.getElementsByTagName("SPAN")[0].innerHTML;
+            
+//            console.log(thisdir);
+
+            var httpc = new XMLHttpRequest();
+            var url = "deletefile.php";         
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            httpc.send("filename=" + thisdir);//send text to deletefile.php
+            this.parentNode.parentNode.removeChild(this.parentNode);
+
+
+        }
+    }
+
+}
+
+
+</script>
+<style>
+    body{
+        font-size:2em;
+    }
+    table{
+        font-family:courier;
+    }
+    .button{
+        cursor:pointer;
+    }
+    .button:hover{
+        background-color:green;
+    }
+    .button:active{
+        background-color:yellow;
+    }
+    
+    .button{
+        cursor:pointer;
+        color:red;
+        font-family:courier;
+        font-size:1.5em;
+    }
+    #deleteonbutton{
+        cursor:pointer;
+        font-family:arial;
+        border:solid;
+        border-radius:0.3em;
+        width:10em;
+    }
+
+</style>
+</body>
+</html>

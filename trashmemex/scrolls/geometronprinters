@@ -2,10 +2,10 @@
 
 # geometronprinters
  
- - geometron: a geometric language for creating self-replicating geometric constructions from trash
- - shapes, squares and cubes as self-replicating constructions to build technology
- - DVD stage design, specs, photos, part numbers, mounts on 4" Squares
- - Arduino brain and board
+ - [geometron: a geometric language for creating self-replicating geometric constructions from trash](scrolls/geometron)
+ - [shapes, squares and cubes as self-replicating constructions to build technology](scrolls/shapes)
+ - [DVD stage design, specs, photos, part numbers, mounts on 4" Squares](scrolls/dvdstage)
+ - [Arduino brain and board](scrolls/printerbrain)
  - Controller
  - geometron icon software, printer operation with pen 
  - other actions of icon printer robot: clay, plastic, different kinds of trash, different tools, extruders, tool motions of all kinds

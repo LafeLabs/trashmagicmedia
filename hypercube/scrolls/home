@@ -1,0 +1,223 @@
+# The Geometron Hypercube
+
+ - [symbol factory](symbol.html)
+ - [symbol feed](symbolfeed.html)
+ - [scroll editor](scrolleditor.php?scroll=scrolls/home)
+ - [icon feed](iconfeed.html)
+ - [page of icons](iconpage.html)
+ - [program Arduino robot](arduino.html)
+ - [icon card](card.html)
+ - [icon card editor](cardmaker.html)
+ - [qrcode](qrcode.html)
+ - [global image feed](globalimagefeed.html)
+ - [align image](alignimage.html)
+ - [trace icon](http://localhost/traceicon.html)
+ - [voxel.html](voxel.html)
+ - [Geometron Hypercube Github Repository](https://github.com/LafeLabs/hypercube)
+ - [tarot.txt icon feed](https://raw.githubusercontent.com/LafeLabs/hypercube/main/scrolls/tarot.txt)
+ - [main geometron icon feed](https://raw.githubusercontent.com/LafeLabs/hypercube/main/data/robotfeed.txt)
+ - [Microsoft Office Icons](https://pastebin.com/raw/6HK949UC)
+ - [fork.html](fork.html)
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/d7/8-cell.gif)
+
+The Cube is self-replicating geometry constructed from cardboard trash.    The Hypercube is the set of all the cubes we make, a shared Universe of cardboard cubes.  
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cubereplicator.jpg)
+
+The cube contains tools to replicate itself: box cutters, sharpies, [rulers](scrolls/rulers), and [shapes for geometric constructions](scrolls/shapes).
+
+We use triangles of various special shapes to create patterns showing the fundamental symmetries of the Universe.  [These can be made from laser cut acrylic using patterns from this web page](scrolls/shapes).  Also we use [laser cut acrylic rulers](scrolls/rulers) if we can. But without special tools, we can use a protractor, printing, tracing, or classical geometry to construct shapes with angles of 45 degrees, 30 degrees, 60 degrees, 90 degrees, 36 and 72 degrees.   These angles give us insight into the most common symmetries we find in both Nature and Technology.  
+
+We begin with raw corrugated cardboard.
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/rawcardboard.jpg)
+
+This is cut into 4 inch squares:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/squarestack.jpg)
+
+Squares without any paint/coating/finish/color are cut to the side shapes and bottom shape, and we need 5 faces for the outside, which are unmodified 4 inch squares.  
+
+Use a 36 degree triangle to color one finished side in with a fractal pentagram structure, which shows how fivefold symmetry relates to the Golden Ratio:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/fivepanel.svg)
+
+Use triangles with 30, 60, and 120 degrees to color another side in with a fractal six pointed star showing how sixfold symmetry and scaling by the square root of 3 are structured. 
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/sixpanel.svg)
+
+A third side is based on a study of the square root of two and fourfold symmetry:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/quadpanel.svg)
+
+We put all this together along with the side and base layouts to get the five finished faces:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/faces.jpg)
+
+side layout, on a 0.5 inch grid(we need 12 of these per cube):
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/sidepanel.svg)
+
+An assembled side piece with 6x1 inch rulers for scale:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardboardside.jpg)
+
+We cut 3 of these out per cube to make the base:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottompanel.svg)
+
+Those are stacked and glued:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardboardbottom.jpg)
+
+Squares can be transformed into sides one by one by hand:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/pieces.jpg)
+
+Assembly with glue fits it all together:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/piece-assembly.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/glue.jpg)
+
+If you have access to a laser cutter, there are patterns you can use to cut here:
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/side.svg)
+
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/bottom.svg)
+
+
+## Toaster: Square Factory
+
+It is useful to have a box which can hold 4 inch squares in the various stages of processing.  This can contain squares both before and after cutting to various shapes, before and after patterning and before and after gluing into completed panels(side or bottom).
+
+
+Completed Toaster Box:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/toaster4.jpg)
+
+Assembly layout:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/toaster3.jpg)
+
+
+Side:
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/toaster1.jpg)
+
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/squarefactoryside.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/squarefactoryside.svg)
+
+Bottom:
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/toaster2.jpg)
+
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/squarefactorybottom.svg)](https://raw.githubusercontent.com/LafeLabs/hypercube/main/symbolfeed/squarefactorybottom.svg)
+
+# Trash Magic 
+
+The objective of Trash Magic is to build a world of freely replicating media which is used to create and replicate all elements of a comfortable life for all people using only trash and things we can grow.  To that end, we build media from trash and replicate it.  This self-replicating trash-based media can be used to replicate anything: ideas, things, groups, systems, technologies, organizations, projects, research, media, food, medicine, culture, stories, and living things.  
+
+# Trash Magic Geometron Hypercube Cards
+
+Trash Magic Cards are cardboard cards 3 by 4.5 inches in size.  One side has a fractal pentagram drawn with a 36 degree isosceles triangle.  The other side is divided into 6 squares, each 1.5 inches across.  Squares can have any icon, drawn either by hand or with the [trash robot icon printer](scrolls/printers).
+
+
+A Cube can contain the means of replication of both the the cards: a 3 inch square, a 36 degree triangle, a box cutter and a marker.  That tool set can cut raw cardboard we find outside into cards and pattern the cards with the fractal and the grid.  Cards can then be made by hand using the sharpie and placed back in the cube.  This is how the Geometron Hypercube works as social media.  People make cards, edit cards, put cards in the cube, take them out, use them to make boards near the cube, or carry them away to other cubes in the network. 
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardfactory.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardfactory2.jpg)
+
+Cards can be used for any networked communication.  Use cards to 
+
+ - find resources
+ - distribute resources
+ - sell things
+ - buy things
+ - share links to social media
+ - share links to web resources
+ - spread memes
+ - find friends
+ - find collaborators on projects
+ - locate places with resources and link them to one another
+ - stimulate the flow of local waste streams into Trash Magic, to upcycle into usable things
+ - annotate spaces, physical hyperlink, mixed reality media
+ - send messages
+ - divination
+ - game creation
+ - commerce
+ - direct to a place(park, corner, bridge, tunnel, shelter, house, business, rest stop, library, community center, makerspace, art gallery, coffee shop, garden, grove, warehouse, ford, dock, swamp, beach, etc.)
+ - build a collaborative game board on flat surfaces. This is a form of physical social media entirely built on trash and geometry.
+
+When cards become unusable, we sterilize them and [grow mushrooms](https://grocycle.com/grow-mushrooms-on-cardboard/) out of them.
+
+
+Cards are a form of mixed reality media.  We can move them around in public spaces and place them on things to give layers of meanings to those things.  While this involves not digital technology, the existence of the ubiquitous mobile Internet means we can connect the physical media to any digital media.  This can be done with simple hand written links. For example, simply writing a tiktok handle and hashtag can link to a tiktok which can be anything, all linked in words using only a pen and cardboard.  
+
+This layer of information we put on the world around us can point not just to cloud information like commercial social media accounts but to local wifi networks which have PI CRUST servers on them where we have our own media network off the Internet.  This physical mixed reality media network built entirely on cardboard is what draws people to our digital network that exists outside of the Internet.
+
+[![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/uploadimages/cardmagictiktok.jpg)](card.html)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/symbolfeed/card.svg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/uploadimages/cardmagic.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/uploadimages/sixcards.jpg)
+
+![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/uploadimages/cubestack.jpg)
+
+
+Using physical cards in conjunction with media we put on both local and global web servers we can point to any information of any kind.  A domain name can point to a web page which can point to a place which can have more physical media pointing to a server which can hold any media in any format of any size.  This represents an extension of the World Wide Web into the physical world, printed on trash.  Passerby bring us cardboard trash and we cut it up into cards, divide the cards, print on them, put them in cubes, and share them with the whole Hypercube. 
+
+
+## PI CRUST Media
+
+The PI CRUST is a media server we build on local machines outside of the public Inernet.  This can be on a Windows laptop, Mac Laptop, Linux laptop, or Raspberry Pi.  We share media over these servers by carrying it around in the physical network on USB thumb drives.
+
+ - [picrust.html](picrust.html)
+ - [install PI CRUST on Windows or Mac](scrolls/xampp)
+ - [install PI CRUST on Raspberry PI](scrolls/pi)
+ - [install PI CRUST on Android](scrolls/android)
+
+Make folders inside the "media" directory.  Drop media in there.  Operators can make home pages for media content creators.   Content creators can promote content with physical Trash Magic cards which are available on the PI CRUST server.  For example a card might be an album which is on a server which the card points to via the Trash Magic mixed reality network. The album consists of a set of songs and possibly video, text, images, and other graphic arts which are in the home page.  That home page can be visited by people on the wifi which hosts the PI CRUST server.
+
+Make personal home pages from PI CRUST using the page editor linked in the media scroll in [PI CRUST](picrust.html).
+
+## Trash Robot Books
+
+ - [Read The First Book of Geometron](https://www.trashrobot.org/bookofgeometronfirst/)
+ - [Read the Book of Geometron Magic](https://www.trashrobot.org/geometronmagic/)
+ - [Read the Trash Magic Manifesto and Action Coloring Book](https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks)
+ - [Public Domain Github Repository for Geometron Hypercube](https://github.com/LafeLabs/hypercube)
+
+
+## Geometron Icons
+
+Icons are sequences of geometric actions which make simple pixelated shapes.  They are a way to show how Geometron can be a universal geometric language letting us move between many physical and digital media.  Trace icons using a keyboard, where the keys to move are w, a, s, d and to move with pixels are W, A, S, D. 
+
+ - [Build icon printer robots](scrolls/printers)
+ - [harvest trace image urls](globalimagefeed.html)
+ - [align trace image](alignimage.html)
+ - [trace icon](traceicon.html)
+ - [program Arduino](arduino.html)
+ - [edit icon feed](iconfeed.html)
+ - [Create Geometron media servers](scrolls/servers) 
+
+ 
+The steps to create your own Geometron icon are:
+
+ 1.  Find an image and drop the url to it into [globalimagefeed.html](globalimagefeed.html)
+ 2.  Align the image for tracing using [alignimage.html](alignimage.html)
+ 3.  Trace the image with [traceicon.html](traceicon.html) and save it
+ 4.  Copy the Geometron glyph of the icon and share it with others, spread it, replicate it, share whole sets/feeds of icons with [iconfeed.html](iconfeed.html)
+ 5. Produce physical prints using the [printer robot](scrolls/printers) or other Geometron machines like laser cutters and 3d printers
+
+What to do with icons?
+
+ - [program arduino(arduino.html)](arduino.html)
+ - [save base 64 and use(icon64.html)](icon64.html)
+ - [save svg and print in laser cutter for stencil(svgfeed.html)](svgfeed.html)
+ - [3d print icons(icon3d.html)](icon3d.html)

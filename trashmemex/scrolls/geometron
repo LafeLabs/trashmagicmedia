@@ -1,10 +1,12 @@
 
 ## [HOME](scrolls/home)
 
+## [geometron printers](scrolls/geometronprinters)
+
 # geometron
  
-Geometron is a geometric metalanguage for constructing languages for machine control.  We use Geometron to program the movement of the probe, both to read and to write. 
+Geometron is a language which represents geometric actions with symbols which are themselves constructed from those actions.  We use this to make symbols in the Web Browser for editing, as well as to construct arbitrary 2d and 3d graphics on computers, to build fonts, and to control machine motion.  Geometron is the basis of all of the media technology presented here.  
 
-In write mode, a sequence of actions which includes both moving the electrode(possibly with feedback on the signal to keep z position the same) and changing the electrical behavior is run when the run button is pressed.  
+![](https://i.imgur.com/NdlikVn.png)
 
-In read mode, a raster scan is performed. again possibly with feedback, 
+![](https://i.imgur.com/I0fqXva.png)

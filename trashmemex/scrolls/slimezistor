@@ -5,7 +5,7 @@
 
  - [Voltage Vs. Time Curve](scrolls/voltagevstime)
  - [schematic](scrolls/slimezistorschematic)
- - slimezistor as synth tool, tool for digital music recording and playback
+ - slimezistor as synth and noise music tool, tool for digital music recording and playback
  - slimezistor as device physics platform: tunneling, nanodevices, microfabrication, crystal growth tool
  - slimezistor to study water and soil, environmental monitoring, lab on chip, soil probe
  - Integrated slimezistor/geometron printer as write/read system, completing the Memex system
@@ -20,7 +20,8 @@
  - [alligator clips from digikey](https://www.digikey.com/en/products/detail/keystone-electronics/5040/316339)
  - [hook up wire from digikey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4735/13280273)
  - [audio cable out to 1/8 plug](https://www.digikey.com/en/products/detail/tensility-international-corp/10-00344/2350247) 
- - [digikey shopping cart for one Slimezistor](https://www.digikey.com/short/wpqj290r)
+ - [Adafruit jumper kit from digikey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1955/6827088)
+ - [digikey shopping cart for one Slimezistor](https://www.digikey.com/short/j7mbvt05)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/slimezistor.png)
 

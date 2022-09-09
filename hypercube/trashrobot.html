@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY 
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
+
+<!--       un comment to use math
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+    -->
+
+    
+</head>
+<body>    
+<div id = "scrollscroll"></div>
+<script>
+
+if(innerWidth>innerHeight){
+    marginWidth = 0.5*(innerWidth - innerHeight);
+    document.getElementById("scrollscroll").style.left = marginWidth.toString() + "px";
+    document.getElementById("scrollscroll").style.right = marginWidth.toString() + "px";
+}
+
+mode = "dark";
+//mode = "light";
+
+scroll = "";
+rawhtml = "";
+var converter = new showdown.Converter();
+// for more on options see here:
+// https://github.com/showdownjs/showdown/wiki/Showdown-Options
+converter.setOption('literalMidWordUnderscores', 'true');
+converter.setOption('tables', 'true')
+    
+filename = "README.md";
+
+loadscroll(filename);
+
+localfile = true;
+
+
+function loadscroll(scrollname){
+    filename = scrollname;
+    if(filename.substring(0,8) == "scrolls/" || filename == "README.md"){
+        localfile = true;
+    }
+    else{
+        localfile = false;
+    }
+
+
+
+
+    document.getElementById("scrollscroll").innerHTML = "";
+    document.getElementById("scrollscroll").style.display = "block";
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scroll = this.responseText;
+            rawhtml = converter.makeHtml(scroll);
+            document.getElementById("scrollscroll").innerHTML = rawhtml;
+            convertscrollinks();
+            //			MathJax.Hub.Typeset();//tell Mathjax to update the math
+    //			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=" + scrollname, true);
+    httpc666.send();
+    //MathJax.Hub.Typeset();//tell Mathjax to update the math
+}
+
+
+
+
+</script>
+<style>
+.editlinks{
+/*    display:none;*/
+}
+pre{
+  overflow:scroll;
+}
+body{
+    overflow:hidden;
+    background-color:black
+}
+input{
+    display:block;
+    margin:auto;
+    width:90%;
+    font-family:courier;
+    font-size:1.2em;
+    background-color:white;
+    color:black;
+    border-color:#ff2cb4;
+    border-width:8px;
+}
+.boxlink{
+    padding-left:1em;
+    cursor:pointer;
+    color:#ff2cb4;
+}
+.boxlink:hover{
+    background-color:#808080;
+}
+
+.scrolllink{
+    color:#ff2cb4;
+    cursor:pointer;
+}
+.scrolllink:hover{
+    background-color:#ff2cb490;
+}
+
+#scrollscroll{
+    text-align:justify;
+    padding-left:1em;
+    padding-right:1em;
+    position:absolute;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+    font-size:2em;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    right:0px;
+}
+#scrollscroll a{
+    color:#ff2cb4;
+}
+#scrollscroll img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+    background-color:#808080;
+}
+
+.data{
+    display:none;
+}
+h1,h2,h3,h4{
+    text-align:center;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+@media only screen and (orientation: landscape) {
+    
+    #scrollscroll{
+        top:0px;
+        bottom:0px;
+        
+    }   
+
+}
+
+@media only screen and (orientation: portrait) {
+    .button{
+        font-size:2em;
+    }
+    #scrollscroll{
+        top:70px;
+        left:10px;
+        right:10px;
+        bottom:10px;
+    }   
+    table img{
+        max-width:60px;
+    }
+}
+</style>
+</body>
+</html>

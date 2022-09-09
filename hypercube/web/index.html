@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<title>The Web</title>
+    <meta charset="utf-8">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+</head>
+<body>
+
+<a href= "../index.html" style = "position:Absolute;right:0px;top:1em;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">HOME</a>
+<a href= "../webeditor.html" style = "position:Absolute;right:0px;top:0px;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">WEB EDITOR</a>
+<div id = "qrcode"></div>
+    <div id = "linkbox">
+        <h1>PI CRUST WEB</h1>
+        <a href = "../webdestroyer.html">../webdestroyer.html</a>
+        <a href = "../images.html">image feed</a>
+
+    </div>
+<script>
+
+
+media = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        media = JSON.parse(this.responseText);
+        loadmediafeed();
+    }
+};
+httpcUpload.open("GET", "../dir.php?filename=web", true);
+httpcUpload.send();
+
+mediadir = [];
+dirname = "";
+
+function loadmediafeed(){
+    for(var index = 0;index < media.length;index++) {
+        
+        if(media[index].substr(-5) == ".html"){
+            var newa = document.createElement("A");
+            newa.innerHTML = media[index];
+            newa.href = media[index];
+            document.getElementById("linkbox").appendChild(newa);
+            
+        }
+    }    
+
+}
+
+
+/*
+mediaup = [];
+
+var httpcUploadup = new XMLHttpRequest();
+httpcUploadup.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        mediaup = JSON.parse(this.responseText);
+        loadmediafeedup();
+    }
+};
+httpcUploadup.open("GET", "../dir.php", true);
+httpcUploadup.send();
+
+function loadmediafeedup(){
+    for(var index = 0;index < mediaup.length;index++) {
+        
+        if(mediaup[index].substr(-5) == ".html"){
+            var newa = document.createElement("A");
+            newa.innerHTML = mediaup[index];
+            newa.href = "../" + mediaup[index];
+            document.getElementById("linkbox").appendChild(newa);
+            
+        }
+    }    
+
+}
+*/
+
+globalurl = window.location.href;
+
+//globalurl = "http://10.0.0.138/web/index.html";
+
+
+codesquaresize = 200;   
+
+drawqrcode();
+
+function drawqrcode(){
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+    	text: globalurl,
+    	width: codesquaresize,
+    	height: codesquaresize,
+    	colorDark : "#000000",
+    	colorLight : "#ffffff",
+    	correctLevel : QRCode.CorrectLevel.H
+    });    
+    qrcode.makeCode(globalurl);
+
+}
+
+
+
+</script>
+</body>
+<style>
+    body{
+        background-color:black;
+        color:#ffffff;
+        font-family:Comic Sans MS;
+    }
+    h1,h2,h3,h4{
+        text-align:center;
+    }
+    a{
+        color:#ff2cb4;
+    }
+    img{
+        max-width:50%;
+        display:block;
+        margin:auto;
+    }
+    
+    #linkbox{
+        position:absolute;
+        right:10px;
+        bottom:10px;
+        left:10px;
+        top:10px;
+        background-color:#4040ff80;
+        overflow:scroll;
+    }
+    #linkbox a{
+        font-family:Comic Sans MS;
+        color:yellow;
+        display:block;
+        padding-bottom:1em;
+        padding-left:1em;
+        font-size:2em;
+    }
+    #qrcode{
+        position:absolute;
+        border:solid;
+        border-color:#808080;
+        background-color:#808080;
+        border-width:10px;
+        z-index:1;
+        bottom:10px;
+        right:10px;
+    }
+    
+</style>
+</html>
