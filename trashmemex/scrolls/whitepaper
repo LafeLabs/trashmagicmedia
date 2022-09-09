@@ -1,57 +1,46 @@
-
 ## [HOME](scrolls/home)
 
-# whitepaper
+## whitepaper
  
-## Background
+# The Trash Memex
 
- - memex
- - liquid microphone
- - brief history of the Internet, the transition from the consumer internet to the trash magic media network, how trash magic media network can distribute technology
- - physical vital statistics of the Internet: estimate cloud servers, estimate iot, estimate mobile, desktop/laptop/tablet, rate of waste, consumption of raw materials, what the machines actually do(read, write, transmit media)
+## 1. A brief history of Hypermedia
 
-## System Architecture
+ - Vannevar Bush and the Memex
+ - The rise of the Internet: the Bell System, ARPAnet, the World Wide Web, the 90s telecom boom
+ - The rise of the consumer Internet: smart phones, ubiquity
+ - The Trash Magic Media network, consuming waste stream of consumer internet
 
- - philosophy of trash magic as it applies to applied physics research
- - cubes
- - printer robot: x,y,z stages, cubes, controller, brain, sharpie, clay tool, hot iron, electrode, needle
- - slimezistor
- - all the schematics
- - all the code 
- - all the diagrams and photos of the parts of the system
-
-## Geometric programming
-
- - how geometron works
- - write glyphs: cut, poke, deposit, etch
- - read glyphs
- - self-replicated web information
-
-## Technology roadmap
-
- - tunnel junctions
- - molecular electronics
- - organic electronics
- - grow mushroom circuits, bacteria, plant circuits
- - hybrid interconnect fabrication for upcycling electronics
- - crystal growth fabrication
- - water monitoring
- - microfluidics and lab-on-chip
- - build collaborations with experts: molecular electronics, crystal growth chemistry, electrochemistry, graphene, nanotubes, fullerenes nanotechnology, mycology, soil and water science
- - digital music record and playback
- - analog music record and playback
- - icon printing as art
- - saving text files and reading them back out
- - building geometron processors
- - the ultimate full stack geometron vision of a trash based memex running on geometron processors with combined organic and trash fabrication
+## 2. Geometron Printers
   
-## Proposal
+ - geometron: a geometric language for creating self-replicating geometric constructions from trash
+ - shapes, squares and cubes as self-replicating constructions to build technology
+ - DVD stage design, specs, photos, part numbers, mounts on 4" Squares
+ - Arduino brain and board
+ - Controller
+ - geometron icon software, printer operation with pen 
+ - other actions of icon printer robot: clay, plastic, different kinds of trash, different tools, extruders, tool motions of all kinds
+ - using lever action reduction to get smaller motion with the same stepper motors
+ - using the fine motion control of the coils  
+ - printing with Geometron using existing fab tools: STM, SEM lithography, laser lithography, etc.
 
- - grant money for applied physics PI time and grad student time
- - grant money for buying arduino and robotics parts, all to be distributed through public maker spaces for maximum replication, all through existing non profits and libraries
- - grant money for free classes to teach people(money pays via existing non profits and libraries)
- - musicians can sell physical media with music on it
- - artists and trash magicians can sell all sorts of physical media made from trash and printed with the trash memex
- - paid sponsorships of self-replicating media from trash(e.g. red bull pays musicians to release songs on red bull cans written/etched with red bull solution)
+## 3. SlimeZistor
+
+ - schematics, cartoons and description of hardware
+ - slimezistor as synth tool, tool for digital music recording and playback
+ - slimezistor as device physics platform: tunneling, nanodevices, microfabrication, crystal growth tool
+ - slimezistor to study water and soil, environmental monitoring, lab on chip, soil probe
+ - Integrated slimezistor/geometron printer as write/read system, completing the Memex system
+
+## 4. Self-replicating media
+ 
+ - trash magic: the purpose is to replicate
+ - self-replicating events and classes to replicate the elements
+ - self-replicating media which replicates the elements
+ - elements: icon printers, shapes, clay coins, cardboard signs, hyperlinks, web pages, scrolls, chaos game spaces, hypercubes(cubes and cards, other media in cubes), trash with icons printed on it(bottle caps, cardboard, packaging, scraps of all materials), icons printed on aluminum trash with metal, slimezistors, bags, flags, skeletron, old mac/windows ubuntu trash magic servers, raspberry pi trash magic servers, neopixels, 
+ - full stack geometron/ trash magic memex: print circuits which run Geometron actions and control trash electronics
+ - funding: sell physical media, get paid to teach classes, research grants to try things and publish them and teach people to copy them, promotion deals with sponsors
+ - media and marketing plan(this document, versions of): white paper published on mass media platform(s), powerpoint of this document for academic talks, youtube videos, tiktok videos, videos on local servers, classes, trash magic media servers(old laptops, private laptops, pi, other hardware with future work), trash magic scroll set, drop art which points to media, physical trash magic stations in public and private spaces,
+
 
 

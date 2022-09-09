@@ -1,0 +1,14 @@
+## [HOME](scrolls/home)
+
+# geometronprinters
+ 
+ - geometron: a geometric language for creating self-replicating geometric constructions from trash
+ - shapes, squares and cubes as self-replicating constructions to build technology
+ - DVD stage design, specs, photos, part numbers, mounts on 4" Squares
+ - Arduino brain and board
+ - Controller
+ - geometron icon software, printer operation with pen 
+ - other actions of icon printer robot: clay, plastic, different kinds of trash, different tools, extruders, tool motions of all kinds
+ - using lever action reduction to get smaller motion with the same stepper motors
+ - using the fine motion control of the coils  
+ - printing with Geometron using existing fab tools: STM, SEM lithography, laser lithography, etc.
