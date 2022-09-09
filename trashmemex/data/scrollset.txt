@@ -16,7 +16,9 @@
         "sharpieprinter",
         "simplecube",
         "slimezistor",
+        "slimezistorschematic",
         "trashmagic",
+        "voltagevstime",
         "whitepaper"
     ]
 }
