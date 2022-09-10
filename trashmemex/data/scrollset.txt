@@ -1,13 +1,15 @@
 {
-    "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
+    "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/",
     "scrolls": [
         "aswemaythink.txt",
         "bush",
         "cubes",
         "dvdstage",
+        "elements",
         "email",
         "events",
         "geometron",
+        "geometronapps",
         "geometronprinters",
         "home",
         "hypermedia",

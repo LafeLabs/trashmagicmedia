@@ -1,5 +1,5 @@
 {
-    "server": "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/",
+    "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/",
     "scrolls": [
         "home",
         "trashmagic",
