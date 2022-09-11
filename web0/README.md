@@ -20,3 +20,6 @@ Self-replicating web page.
  - [dnagenerator.php](dnagenerator.php)
  - [data/dna.txt](data/dna.txt)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southbroadwaydotnet.png)
+
+## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/php/replicator.txt)
