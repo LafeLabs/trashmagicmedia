@@ -3,9 +3,15 @@
 
 ## [Geometron Printers](scrolls/geometronprinters)
 
-# geometron apps
+# geometron printer apps
  
  - [scanglyph.html](scanglyph.html)
  - [writeglyph.html](writeglyph.html)
  - [arduino.html](arduino.html)
- - [symbol.html](symbol.html) 
+ - [globalimagefeed.html](globalimagefeed.html)
+ - [imagefeed.html](imagefeed.html) 
+ - [alignimage.html](alignimage.html)
+ - [traceicon.html](traceicon.html)
+ - [iconset.html](iconset.html)
+ - [iconpage.html](iconpage.html)
+ - [editor.php](editor.php)

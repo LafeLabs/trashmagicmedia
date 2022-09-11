@@ -3,19 +3,34 @@
     "maps": [
         "home"
     ],
-    "images": [
-        "cube-factory.jpg"
-    ],
+    "images": [],
     "scrolls": [
+        "android",
+        "arduino",
         "bags",
+        "business",
+        "cards",
+        "carts",
+        "chaos",
         "cubes",
         "fashion",
+        "geometron",
         "home",
         "icons",
+        "lasers",
+        "links",
+        "pi",
+        "picrust",
         "printers",
+        "replicators",
+        "research",
         "rulers",
         "servers",
         "shapes",
-        "spaces"
+        "spaces",
+        "stencils",
+        "tarot.txt",
+        "trashmagic",
+        "xampp"
     ]
 }

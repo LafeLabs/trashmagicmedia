@@ -1,6 +1,7 @@
 # The Geometron Hypercube
 
  - [symbol factory](symbol.html)
+ - [editor.php](editor.php)
  - [symbol feed](symbolfeed.html)
  - [scroll editor](scrolleditor.php?scroll=scrolls/home)
  - [icon feed](iconfeed.html)
