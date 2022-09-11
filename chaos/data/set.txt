@@ -1,0 +1,14 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/chaos/main/data/set.txt",
+        "name": "data/set.txt"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/minimal/php/replicator.txt",
+        "name": "php/replicator.txt"
+    },
+    {
+        "url": "https://raw.githubusercontent.com/LafeLabs/thing/master/minimal/php/replicator.txt",
+        "name": "replicator.php"
+    }
+]

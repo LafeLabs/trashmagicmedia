@@ -1,0 +1,16 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/chaos/main/",
+    "scrolls": [
+        "bench",
+        "deadend",
+        "dumpster",
+        "gazebo",
+        "home",
+        "manhole",
+        "pipe",
+        "pylon",
+        "tree",
+        "treegrotto",
+        "woods"
+    ]
+}

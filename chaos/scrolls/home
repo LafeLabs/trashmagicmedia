@@ -1,0 +1,69 @@
+[![](iconsymbols/edit.svg)](scrolleditor.php)
+
+## [qrcode](qrcode.html)
+
+![](https://i.imgur.com/9UPvqj9.png)
+![](https://i.imgur.com/LB6kLFj.png)
+
+# [Chaos](https://github.com/LafeLabs/chaos/)
+
+A self-replicating text-based mixed reality game for mutual aid.
+
+
+## Create a Space, Place and Quest:
+
+1. name the "space" in which the place exists
+2. go to a place, give it a name, describe its location
+3. define a quest for that place improve the material conditions of the community in that place
+4. transmit space, place, and quest to operator, email at lafelabs at gmail dot com[update operator contact here]
+5. get back a QR code, link, and web path to scroll from operator
+6. make signs and white rabbits, find players
+
+## How to play:
+
+1. choose a scroll, follow a scroll to a place
+2. complete the quest for that place
+3. replicate the game(create new space, place and quest)
+
+
+## Scrolls:
+
+Add scrolls here
+
+  - [home](scrolls/home)
+
+## Influences:
+
+ - [Zork/Adventure style text-based games](https://en.wikipedia.org/wiki/Zork)
+ - [Letterboxing](https://en.wikipedia.org/wiki/Letterboxing_(hobby))
+ - [Psychogeography](https://en.wikipedia.org/wiki/Psychogeography)
+ - [Exquisite corpse](https://en.wikipedia.org/wiki/Exquisite_corpse)
+ - [Chaos Magic](https://en.wikipedia.org/wiki/Chaos_magic)
+ - [the Diggers](https://en.wikipedia.org/wiki/Diggers)
+ - [Pokemon Go](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Go)
+ - [Dungeons and Dragons](https://en.wikipedia.org/wiki/Dungeons_%26_Dragons)
+ - [geometron/trash magic](https://www.trashrobot.org)
+ - [really really free markets](https://en.wikipedia.org/wiki/Really_Really_Free_Market)
+ - [food not bombs](https://en.wikipedia.org/wiki/Food_Not_Bombs)
+
+## [README.md](scroll(README.md))
+
+
+## Links
+
+ - [scrolls.html](scrolls.html)
+ - [fork down](fork.html)
+ - [../](../)
+ - [php/replicator.txt](php/replicator.txt)
+ - [global replicator link](https://raw.githubusercontent.com/LafeLabs/chaos/main/php/replicator.txt)
+ - [code editor](editor.php)
+ - [localhost](http://localhost)
+ - [github repo](https://github.com/LafeLabs/chaos)
+ - [dnagenerator.php](dnagenerator.php)
+ - [copy from other servers](copy.html)
+ - [scroll set replicator](scrollset.html)
+ - [replicator.php](replicator.php)
+ - [scroll delete](scrolldelete.html)
+ - [distance calculator](distance.html)
+ - [qrcode](qrcode.html)
+ - [geometron set replicator](set.html)

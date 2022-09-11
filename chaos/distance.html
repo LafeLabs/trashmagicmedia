@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY 
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    
+</head>
+<body>
+<a href= "index.html">HOME</a>
+<h1>DISTANCE CALCULATOR</h1>
+    <table>
+        <tr>
+            <td>lat1:</td>
+            <td>
+                <input id = "lat1"/>
+            </td>
+            <td>lon1:</td>
+            <td>
+                <input id = "lon1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>lat2:</td>
+            <td>
+                <input id = "lat2"/>
+            </td>
+            <td>lon2:</td>
+            <td>
+                <input id = "lon2"/>
+            </td>
+        </tr>
+    </table>
+<h2 id = "distance"></h2>        
+<h2 id = "deltax"></h2>        
+<h2 id = "deltay"></h2>        
+<p>
+360 degrees latitude = 40,000,000 m, by definition prior to the <a href = "https://www.bipm.org/en/measurement-units">quantum SI</a>
+</p>
+<p>
+    0.1 degrees lat = 11.1 km, 0.1 degrees lon = 8.6 km
+</p>
+<p>
+    0.01 degrees lat = 1.1 km, 0.01 degrees lon = 860 m
+</p>
+<p>
+    0.001 degrees lat = 111 m, 0.001 degrees lon = 86 m
+</p>
+<p>
+    0.0001 degrees lat = 11 m, 0.0001 degrees lon = 9 m
+</p>
+<em>last decimal place is about 10 meters for 4 decimal places, beyond which lat/lons are of limited use</em>
+</body>
+
+<script>
+//360 degrees lat = 40,000,000 meters
+
+//maple lawn blvd
+lat1 = 39.1471;
+lon1 = -76.9072;
+//scaggsville road
+lat2 = 39.1451;
+lon2 = -76.9041
+deltay = 0;
+deltax = 0;
+distance=0;
+redraw();
+
+document.getElementById("lat1").value = lat1;
+document.getElementById("lon1").value = lon1;
+document.getElementById("lat2").value = lat2;
+document.getElementById("lon2").value = lon2;
+
+document.getElementById("lat1").onchange = function(){
+    lat1 = this.value;
+    redraw();
+}
+document.getElementById("lon1").onchange = function(){
+    lon1 = this.value;
+    redraw();
+}
+document.getElementById("lat2").onchange = function(){
+    lat2 = this.value;
+    redraw();
+}
+document.getElementById("lon2").onchange = function(){
+    lon2 = this.value;
+    redraw();
+}
+
+function redraw(){
+    cosine = Math.cos(lat1*Math.PI/180);
+    deltay = (lat2 - lat1)*4e7/360;//degrees to meters
+    deltax = (lon2 - lon1)*cosine*4e7/360;
+    distance = Math.round(Math.sqrt(deltax*deltax + deltay*deltay));
+    distance_feet = Math.round(3.281*distance/10)*10;
+    distance_miles = Math.round(100*distance_feet/5280)/100;
+    document.getElementById("distance").innerHTML = "d = " + distance.toString()  + " m = " + distance_feet.toString() + " ft = " + distance_miles + " miles";
+    document.getElementById("deltax").innerHTML = "dx = " + Math.round(deltax).toString()  + " m";
+    document.getElementById("deltay").innerHTML = "dy = " + Math.round(deltay).toString()  + " m";
+    
+}
+    
+</script>
+
+<style>
+    body,input{
+        color:#00ff00;
+        font-family:courier;
+        background-color:black;
+        font-size:2em;
+    }
+    input{
+        border:solid;
+        border-color:#00ff00;
+        font-size:1em;
+    }
+    a{
+        color:#ff2cb4;
+    }
+</style>
+</html>

@@ -1,0 +1,49 @@
+{
+    "html": [
+        "README.md",
+        "copy.html",
+        "distance.html",
+        "fork.html",
+        "index.html",
+        "qrcode.html",
+        "scrolldelete.html",
+        "scrolls.html",
+        "scrollset.html",
+        "set.html"
+    ],
+    "javascript": [],
+    "iconsymbols": [
+        "delete.svg",
+        "edit.svg",
+        "home.svg",
+        "scroll.svg"
+    ],
+    "data": [
+        "dna.txt",
+        "scrollset.txt",
+        "set.txt"
+    ],
+    "php": [
+        "copy.txt",
+        "deletefile.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "scroll.txt",
+        "scrolleditor.txt",
+        "scrollsetreplicator.txt",
+        "setreplicator.txt",
+        "text2php.txt",
+        "user.txt"
+    ],
+    "maps": [],
+    "scrolls": [
+        "foo",
+        "home"
+    ]
+}
