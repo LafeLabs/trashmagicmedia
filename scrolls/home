@@ -4,55 +4,43 @@
 
 *self-replicating media from trash*
 
+ - [servers](scrolls/servers)
+ - [signs](scrolls/signs)
+ - [squares](scrolls/squares)
+ - [cubes](scrolls/cubes)
+ - [simple cubes](scrolls/simplecubes)
+ - [cards](scrolls/cards)
+ - [fashion](scrolls/fashion)
+ - [shapes](scrolls/shapes)
+ - [rulers](scrolls/rulers)
+ - [flags](scrolls/flags)
+ - [bags](scrolls/bags)
+ - [geometron icon printers](scrolls/iconprinters)
+ - [clay tokens](scrolls/claytokens)
+ - [printed trash icons](scrolls/trashicons)
+ - [scrolls](scrolls/scrolls)
+ - [books](scrolls/books)
+ - [trash memex](https://github.com/LafeLabs/trashmagicmedia/tree/main/trashmemex)
+ - [skeletron](scrolls/skeletron)
+ - [domains](scrolls/domains)
+ - [local web pages](scrolls/localweb)
+ - [media](scrolls/media)
+ - [videos](scrolls/videos)
+ - [music](scrolls/music)
+ - [podcasts](scrolls/podcasts)
+ - [articles](scrolls/articles)
+ - [markets](scrolls/markets)
+ - [trash feed](scrolls/trashfeed)
+ - [slimezistor](scrolls/slimezistor)
+ - [games](scrolls/games)
+ - [maps]
+ - [arduino shield](scrolls/arduinoshield)
+ - [geometron books](scrolls/geometronbooks)
+ - [hyperlinks](scrolls/hyperlinks)
  - [README.md](scroll(README.md))
  - [ubuntu install](scrolls/ubuntu)
  - [dnagenerator.php](dnagenerator.php)
+ - [scroll set](scrollset.html)
  - [editor.php](editor.php)
  - [trash magic](scrolls/trashmagic)
- - geometron
- - self-replicating media
- - self-replicating code
- - the Innernette
- - Trash Magic Scroll sets
- - Trash Magic Maps sets
- - icons
- - cardboard signs
- - hyperlink pages
- - anarchist book distro servers
- - music distribution
- - classified ads
- - personal ads
- - math servers
- - religion
- - watershed network
- - street network
- - list of human social networks
- - scrap metal collectors/dealers/haulers
- - trash magic exchange points
- - the history of the Bell System
- - the history of the Internet
- - the history of the web 
- - trash [memex](https://en.wikipedia.org/wiki/Memex)/printer
- - printing of physical books on trash
- - raspberry pi
- - arduino
- - android
- - ios
- - windows/mac private servers
- - upcycled laptop Ubuntu servers
- - mesh networks
- - role of ham radio
- - radio frequency engineering and art
- - wireless network extenders
- - backhaul logistics
- - networking references
- - social networks of network experts and organizations
- - kiosks and carts
- - solar electric power
- - solar direct power
- - trash-based battery stacks
- - micro-hydroelectric power
- - micro-wind power
- - bike power
-
 

@@ -1,8 +1,31 @@
 {
     "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/",
     "scrolls": [
+        "bags",
+        "books",
+        "cards",
+        "claytokens",
+        "cubes",
+        "domains",
+        "fashion",
+        "flags",
         "home",
+        "hyperlinks",
+        "iconprinters",
+        "localweb",
+        "media",
+        "music",
+        "rulers",
+        "scrolls",
+        "servers",
+        "shapes",
+        "signs",
+        "simplecubes",
+        "skeletron",
+        "squares",
+        "trashicons",
         "trashmagic",
-        "ubuntu"
+        "ubuntu",
+        "videos"
     ]
 }

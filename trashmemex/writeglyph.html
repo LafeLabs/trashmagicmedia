@@ -173,6 +173,8 @@ function bytecode2ascii(bytecode){
         if(robotaction == 0507){
             outstring += "H";
         }
+        
+        
         if(robotaction >= 01040 && robotaction < 01177){
             outstring += bytecode2ascii(mainGVM.hypercube[robotaction]);
         }
