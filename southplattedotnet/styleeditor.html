@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/geometron.js"></script>
+    <title>Style Editor</title>
+</head>
+<body>    
+    <a href = "symbol.html">
+        <img src = "iconsymbols/home.svg"/>
+    </a>
+    <table id = "styletable">
+        <tr>
+            <th>Layer</th>
+            <th>Color</th>
+            <th>Fill</th>
+            <th>Linewidth</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><input/></td>
+            <td><input/></td>
+            <td><input/></td>
+        </tr>
+
+    </table>
+<table>
+    <tr>
+        <td class = "button" id = "importbutton">IMPORT</td>
+    </tr>
+    <tr>
+        <td class = "button" id = "exportbutton">EXPORT</td>
+    </tr>
+    <tr>
+        <td class = "button" id = "resetbutton">RESET</td>
+    </tr>
+</table>
+    <textarea id = "textio"></textarea>
+    <canvas id = "outputcanvas"></canvas>
+<script>    
+
+inputs = document.getElementById("styletable").getElementsByTagName("input");
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        currentjson = JSON.parse(this.responseText);
+        currentstyle = currentjson.style;
+        inputs[0].value = currentstyle.color0;
+        inputs[1].value = currentstyle.fill0;
+        inputs[2].value = currentstyle.line0;
+        inputs[3].value = currentstyle.color1;
+        inputs[4].value = currentstyle.fill1;
+        inputs[5].value = currentstyle.line1;
+        inputs[6].value = currentstyle.color2;
+        inputs[7].value = currentstyle.fill2;
+        inputs[8].value = currentstyle.line2;
+        inputs[9].value = currentstyle.color3;
+        inputs[10].value = currentstyle.fill3;
+        inputs[11].value = currentstyle.line3;
+        inputs[12].value = currentstyle.color4;
+        inputs[13].value = currentstyle.fill4;
+        inputs[14].value = currentstyle.line4;
+        inputs[15].value = currentstyle.color5;
+        inputs[16].value = currentstyle.fill5;
+        inputs[17].value = currentstyle.line5;
+        inputs[18].value = currentstyle.color6;
+        inputs[19].value = currentstyle.fill6;
+        inputs[20].value = currentstyle.line6;
+        inputs[21].value = currentstyle.color7;
+        inputs[22].value = currentstyle.fill7;
+        inputs[23].value = currentstyle.line7;
+        redraw();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/currentjson.txt", true);
+httpc.send();    
+
+inputs[0].onchange = function() {
+    currentstyle.color0 = this.value;
+    savestyle();
+}
+inputs[1].onchange = function() {
+    currentstyle.fill0 = this.value;
+    savestyle();
+}
+inputs[2].onchange = function() {
+    currentstyle.line0 = parseFloat(this.value);
+    savestyle();
+}
+inputs[3].onchange = function() {
+    currentstyle.color1 = this.value;
+    savestyle();
+}
+inputs[4].onchange = function() {
+    currentstyle.fill1 = this.value;
+    savestyle();
+}
+inputs[5].onchange = function() {
+    currentstyle.line1 = parseFloat(this.value);
+    savestyle();
+}
+inputs[6].onchange = function() {
+    currentstyle.color2 = this.value;
+    savestyle();
+}
+inputs[7].onchange = function() {
+    currentstyle.fill2 = this.value;
+    savestyle();
+}
+inputs[8].onchange = function() {
+    currentstyle.line2 = parseFloat(this.value);
+    savestyle();
+}
+inputs[9].onchange = function() {
+    currentstyle.color3 = this.value;
+    savestyle();
+}
+inputs[10].onchange = function() {
+    currentstyle.fill3 = this.value;
+    savestyle();
+}
+inputs[11].onchange = function() {
+    currentstyle.line3 = parseFloat(this.value);
+    savestyle();
+}
+
+inputs[12].onchange = function() {
+    currentstyle.color4 = this.value;
+    savestyle();
+}
+inputs[13].onchange = function() {
+    currentstyle.fill4 = this.value;
+    savestyle();
+}
+inputs[14].onchange = function() {
+    currentstyle.line4 = parseFloat(this.value);
+    savestyle();
+}
+inputs[15].onchange = function() {
+    currentstyle.color5 = this.value;
+    savestyle();
+}
+inputs[16].onchange = function() {
+    currentstyle.fill5 = this.value;
+    savestyle();
+}
+inputs[17].onchange = function() {
+    currentstyle.line5 = parseFloat(this.value);
+    savestyle();
+}
+inputs[18].onchange = function() {
+    currentstyle.color6 = this.value;
+    savestyle();
+}
+inputs[19].onchange = function() {
+    currentstyle.fill6 = this.value;
+    savestyle();
+}
+inputs[20].onchange = function() {
+    currentstyle.line6 = parseFloat(this.value);
+    savestyle();
+}
+inputs[21].onchange = function() {
+    currentstyle.color7 = this.value;
+    savestyle();
+}
+inputs[22].onchange = function() {
+    currentstyle.fill7 = this.value;
+    savestyle();
+}
+inputs[23].onchange = function() {
+    currentstyle.line7 = parseFloat(this.value);
+    savestyle();
+}
+
+function savestyle(){
+
+    currentjson.style = currentstyle;
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(currentjson,null,"    "))+"&filename=data/currentjson.txt");//send text to filesaver.php
+
+    redraw();
+}
+
+styleglyph = "0320,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0321,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0322,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0323,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0324,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0325,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0326,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,0327,0341,0333,0333,0336,0333,0337,0347,0331,0332,0331,0332,0336,0332,0331,0337,";
+
+h = innerHeight - 100;
+newg = new GVM(document.getElementById("outputcanvas"),0.25*h,h);
+newg.x0 = h/16;
+newg.y0 = h/16;
+newg.unit = h/20;
+
+newg.drawGlyph(styleglyph);
+
+function redraw(){
+    newg.style = currentstyle;
+    newg.drawGlyph(styleglyph);
+    
+}
+
+
+document.getElementById("exportbutton").onclick = function(){
+    document.getElementById("textio").value = JSON.stringify(currentstyle,null,"    ");
+}
+
+document.getElementById("importbutton").onclick = function(){
+    currentstyle = JSON.parse(document.getElementById("textio").value);
+    redraw();
+    savestyle();    
+}
+
+resetstyle = {
+    "color0": "black",
+    "fill0": "black",
+    "line0": 1,
+    "color1": "black",
+    "fill1": "black",
+    "line1": 5,
+    "color2": "red",
+    "fill2": "red",
+    "line2": 1,
+    "color3": "#FF7900",
+    "fill3": "#FF7900",
+    "line3": 1,
+    "color4": "yellow",
+    "fill4": "yellow",
+    "line4": 1,
+    "color5": "green",
+    "fill5": "green",
+    "line5": 1,
+    "color6": "blue",
+    "fill6": "blue",
+    "line6": 1,
+    "color7": "purple",
+    "fill7": "purple",
+    "line7": 1
+};
+
+document.getElementById("resetbutton").onclick = function(){
+    currentstyle = resetstyle;
+    document.getElementById("textio").value = JSON.stringify(currentstyle,null,"    ");    
+    redraw();
+    savestyle();
+}
+document.getElementById("textio").value = "";
+</script>
+
+<style>
+#outputcanvas{
+    position:absolute;
+    right:0px;
+    top:0px;
+    border:solid;
+    z-index:2;
+}
+.button{
+    cursor:pointer;
+    border:solid;
+    text-align:center;
+    border-radius:3px;
+    margin-top:10px;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+</style>
+</body>
+</html>

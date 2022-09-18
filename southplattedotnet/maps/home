@@ -1,0 +1,24 @@
+[
+    {
+        "x": -0.016,
+        "y": -0.011428571428571429,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "scrolls/home",
+        "src": "iconsymbols/scroll.svg",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.648,
+        "y": 0.6445714285714286,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "scrolls/home",
+        "src": "iconsymbols/scroll.svg",
+        "maplinkmode": true
+    }
+]

@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        GEOMETRON CARD MAGIC
+        
+        AS ABOVE SO BELOW
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY 
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/geometron.js"></script>
+
+
+</head>
+<body>    
+<a href = "card.html" id = "cardlink2">card.html</a>
+
+<input class = "linkinputs" id = "leftUpperLinkInput"/>
+<input class = "linkinputs" id = "middleUpperLinkInput"/>
+<input class = "linkinputs" id  = "rightUpperLinkInput"/>
+<input class = "linkinputs" id  = "leftLowerLinkInput"/>
+<input class = "linkinputs" id  = "middleLowerLinkInput"/>
+<input class = "linkinputs" id  = "rightLowerLinkInput"/>
+
+<table id = "maintable">
+    <tr>
+        <td id = "publishbutton" class = "button">PUBLISH</td>
+        <td></td>
+        <td>card name:</td>
+        <td><input id = "cardnameinput"/></td>
+    </tr>
+    <tr>
+        <td>Image URL:</td>
+        <td><input id = "imageurlinput"/></td>
+        <td>JSON URL:</td>
+        <Td><input id = "jsonurlinput"/></Td>
+
+    </tr>
+
+    <tr>
+        <td class = "button" id = "facemodebutton">ICONS/FACE</td>
+        <Td></Td>
+        <td>Arduino String:</td>
+        <td><input id = "arduinoinput"/></td>
+    </tr>
+    <tr>
+        <td>Face Glyph:<input id = "actioninput"/></td>
+        <td><input id = "faceglyphinput"/></td>
+        <td>icon glyph code:</td>
+        <td>
+            <input id = "glyphinput">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>leftUpperIcon:</td>
+        <td><input id  = "leftUpperIconInput"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>middleUpperIcon:</td>
+        <td><input id  = "middleUpperIconInput"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>rightUpperIcon:</td>
+        <td><input id  = "rightUpperIconInput"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>leftLowerIcon:</td>
+        <td><input id  = "leftLowerIconInput"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>middleLowerIcon:</td>
+        <td><input id  = "middleLowerIconInput"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>rightLowerIcon:</td>
+        <td><input id  = "rightLowerIconInput"/></td>
+    </tr>
+</table>
+
+<div id = "iconsbox"></div>
+<div id = "symbolsbox"></div>
+<img id= "mainimage"/>
+<div id = "facebox">
+    <canvas id = "face"></canvas>
+</div>
+
+<div id = "cardbox">
+    <div id = "leftUpperButton" class = "button"></div>
+    <div id = "middleUpperButton" class = "button"></div>
+    <div id = "rightUpperButton" class = "button"></div>
+    <div id = "leftLowerButton" class = "button"></div>
+    <div id = "middleLowerButton" class = "button"></div>
+    <div id = "rightLowerButton" class = "button"></div>
+    <canvas id = "card"></canvas>
+</div>
+
+<div id = "importbutton" class = "button">IMPORT</div>
+
+<table id = "linktable">
+    <tr>
+        <td>
+            <a href = "card.html">card.html</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href = "index.html">index.html</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href = "iconfeed.html">iconfeed.html</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href = "cardset.html">cardset.html</a>
+        </td>
+    </tr>
+</table>
+
+<textarea id = "textio"></textarea>
+<textarea id = "arduinocode"></textarea>
+
+<script>
+
+facemode = false;
+
+
+iconPosition = "leftUpper";
+
+iconbuttons = document.getElementById("cardbox").getElementsByClassName("button");
+
+
+iconbuttons[0].style.backgroundColor = "#80808080";
+
+document.getElementById("arduinoinput").value = "";
+iconbuttons[0].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("glyphinput").value = card.icons[0];
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[0]);
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[0]) + "\";\n\n" + arduinocode;
+    
+}
+iconbuttons[1].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("glyphinput").value = card.icons[1];
+    
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[1]);
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[1]) + "\";\n\n" + arduinocode;
+
+}
+iconbuttons[2].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    document.getElementById("glyphinput").value = card.icons[2];
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[2]);
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[2]) + "\";\n\n" + arduinocode;
+    
+}
+iconbuttons[3].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    document.getElementById("glyphinput").value = card.icons[3];
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[3]);
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[3]) + "\";\n\n" + arduinocode;
+    
+}
+iconbuttons[4].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    document.getElementById("glyphinput").value = card.icons[4];
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[4]);
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[4]) + "\";\n\n" + arduinocode;
+
+}
+iconbuttons[5].onclick = function(){
+    iconPosition = this.id.split("Button")[0];
+    buttonclear();
+    this.style.backgroundColor = "#80808080";
+    document.getElementById("glyphinput").value = card.icons[5];
+    document.getElementById("arduinoinput").value = bytecode2ascii(card.icons[5]);
+    document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(card.icons[5]) + "\";\n\n" + arduinocode;
+    
+}
+
+function buttonclear(){
+    for(var index = 0;index < iconbuttons.length;index++){
+        iconbuttons[index].style.backgroundColor = "#ffffff00";
+    }
+}
+
+square = 200;
+
+document.getElementById("leftUpperLinkInput").style.width =  (square - 20).toString() + "px";
+document.getElementById("middleUpperLinkInput").style.width =  (square - 20).toString() + "px";
+document.getElementById("rightUpperLinkInput").style.width =  (square - 20).toString() + "px";
+document.getElementById("leftLowerLinkInput").style.width =  (square - 20).toString() + "px";
+document.getElementById("middleLowerLinkInput").style.width =  (square - 20).toString() + "px";
+document.getElementById("rightLowerLinkInput").style.width =  (square - 20).toString() + "px";
+
+document.getElementById("leftUpperLinkInput").style.right = (square*2 + 20).toString() + "px";
+document.getElementById("middleUpperLinkInput").style.right = (square + 10).toString() + "px";
+document.getElementById("rightUpperLinkInput").style.right = (0).toString() + "px";
+
+document.getElementById("leftUpperLinkInput").style.top =  (0).toString() + "px";
+document.getElementById("middleUpperLinkInput").style.top =  (0).toString() + "px";
+document.getElementById("rightUpperLinkInput").style.top =  (0).toString() + "px";
+
+document.getElementById("leftLowerLinkInput").style.top =  (square).toString() + "px";
+document.getElementById("middleLowerLinkInput").style.top =  (square).toString() + "px";
+document.getElementById("rightLowerLinkInput").style.top =  (square).toString() + "px";
+
+document.getElementById("leftLowerLinkInput").style.right =  (2*square+20).toString() + "px";
+document.getElementById("middleLowerLinkInput").style.right =  (square + 10).toString() + "px";
+document.getElementById("rightLowerLinkInput").style.right =  (0).toString() + "px";
+
+
+maincanvas = document.getElementById("card");
+var mainGVM = new GVM(maincanvas,3*square + 20,2*square + 20);
+var faceGVM = new GVM(document.getElementById("face"),3*square + 20,2*square + 20);
+
+faceGVM.importbytecode(hypercube);    
+faceGVM.x0 = 10;
+faceGVM.y0 = square + 10;
+faceGVM.unit = square;
+faceGVM.style.line0 = 5;
+faceGVM.style.line1 = 5;
+faceGVM.style.line2 = 5;
+faceGVM.style.line3 = 5;
+faceGVM.style.line4 = 5;
+faceGVM.style.line5 = 5;
+faceGVM.style.line6 = 5;
+faceGVM.style.line7 = 5;
+
+
+mainGVM.importbytecode(hypercube);    
+mainGVM.x0 = 10;
+mainGVM.y0 = square + 10;
+mainGVM.unit = square;
+
+mainGVM.style.fill1 = "#AD8762";
+mainGVM.drawGlyph("0321,0362,0203,0335,0203,0203,0203,0335,0203,0203,0335,0203,0203,0203,0335,0203,0363,0320,0335,0201,0334,0342,0335,0335,0342,0334,0201,0334,0342,0335,0342,0335,0342,0335,0330,0330,0335,");
+maincanvas.style.display = "block";
+document.getElementById("face").style.display = "block";
+
+document.getElementById("mainimage").style.width = mainGVM.width.toString() + "px";
+document.getElementById("mainimage").style.height = mainGVM.height.toString() + "px";
+
+var httpcFeed = new XMLHttpRequest();
+httpcFeed.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        robotfeed = JSON.parse(this.responseText);
+        loadcoinfeed();
+    }
+};
+httpcFeed.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+httpcFeed.send();
+
+
+symbols = [];
+
+var httpcsymbols = new XMLHttpRequest();
+httpcsymbols.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        symbols = JSON.parse(this.responseText);
+        loadsymbolfeed();
+    }
+};
+httpcsymbols.open("GET", "dir.php?filename=symbolfeed", true);
+httpcsymbols.send();
+
+
+svgraw = "";
+
+
+function loadsymbolfeed(){
+
+    for(var index = symbols.length - 1;index >= 0;index--) {
+        var newimg = document.createElement("IMG");
+        newimg.src = "symbolfeed/" + symbols[index];
+        document.getElementById("symbolsbox").appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.onclick = function(){
+            
+            faceglyphurl =  "symbolfeed/" + this.src.split("symbolfeed/")[1];
+            //console.log(faceglyphurl);
+            var httpcFeed = new XMLHttpRequest();
+            httpcFeed.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    svgraw = this.responseText;
+                    svgjson = JSON.parse(svgraw.split("<json>")[1].split("</json>")[0]);
+                        card.faceglyph = svgjson.glyph;
+                        loadcard();
+                        savecard();
+
+                }   
+            };
+            httpcFeed.open("GET", "fileloader.php?filename=" + faceglyphurl, true);
+            httpcFeed.send();
+
+            
+        }
+    }    
+}
+
+
+
+    
+feedwidth = 200;
+feedlinkwidth= 0.3*feedwidth;
+
+document.getElementById("glyphinput").value = "";
+function loadcoinfeed(){
+    gvmArray = [];
+    document.getElementById("iconsbox").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newdiv.style.display = "inline";
+        newcan.classList.add("button");
+        document.getElementById("iconsbox").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            document.getElementById("glyphinput").value = glyph;
+                document.getElementById("arduinoinput").value = bytecode2ascii(glyph);
+                
+            document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(glyph) + "\";\n\n" + arduinocode;
+            if(iconPosition == "leftUpper"){
+                card.icons[0] = glyph;
+            }
+            if(iconPosition == "middleUpper"){
+                card.icons[1] = glyph;
+            }
+            if(iconPosition == "rightUpper"){
+                card.icons[2] = glyph;
+            }
+            if(iconPosition == "leftLower"){
+                card.icons[3] = glyph;
+            }
+            if(iconPosition == "middleLower"){
+                card.icons[4] = glyph;
+            }
+            if(iconPosition == "rightLower"){
+                card.icons[5] = glyph;
+            }
+
+            loadcard();
+            savecard();
+        }
+        
+        
+    }    
+}
+
+
+
+var httpccard = new XMLHttpRequest();
+httpccard.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        card = JSON.parse(this.responseText);
+        loadcard();
+    }
+};
+httpccard.open("GET", "fileloader.php?filename=data/card.txt", true);
+httpccard.send();
+
+
+function loadcard(){
+    document.getElementById("leftUpperIconInput").value = card.icons[0];
+    document.getElementById("middleUpperIconInput").value = card.icons[1];
+    document.getElementById("rightUpperIconInput").value = card.icons[2];
+    document.getElementById("leftLowerIconInput").value = card.icons[3];
+    document.getElementById("middleLowerIconInput").value = card.icons[4];
+    document.getElementById("rightLowerIconInput").value = card.icons[5];    
+    
+    
+    document.getElementById("leftUpperLinkInput").value = card.links[0];
+    document.getElementById("middleUpperLinkInput").value = card.links[1];
+    document.getElementById("rightUpperLinkInput").value = card.links[2];
+    document.getElementById("leftLowerLinkInput").value = card.links[3];
+    document.getElementById("middleLowerLinkInput").value = card.links[4];
+    document.getElementById("rightLowerLinkInput").value = card.links[5];    
+    document.getElementById("imageurlinput").value = card.imageurl;
+    document.getElementById("jsonurlinput").value = card.jsonurl;
+
+    if(card.name != undefined){
+        document.getElementById("cardnameinput").value = card.name;
+    }
+    else{
+        card.name = "cardname";
+        document.getElementById("cardnameinput").value = "";
+    }
+    document.getElementById("faceglyphinput").value = card.faceglyph;
+    
+    document.getElementById("mainimage").src = card.imageurl;
+    
+    document.getElementById("textio").value = JSON.stringify(card,null,"  ");
+    
+    faceGVM.glyph =card.faceglyph + "0207,";
+    faceGVM.drawGlyph(faceGVM.glyph);
+    mainGVM.drawGlyph("0321,0362,0203,0335,0203,0203,0203,0335,0203,0203,0335,0203,0203,0203,0335,0203,0363,0320,0335,0201,0334,0342,0335,0335,0342,0334,0201,0334,0342,0335,0342,0335,0342,0335,0330,0330,0335,");
+    mainGVM.actionSequence("0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[0]);
+    mainGVM.actionSequence("0300,0333,0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[1]);
+    mainGVM.actionSequence("0300,0333,0333,0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[2]);
+    mainGVM.actionSequence("0300,0331,0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[3]);
+    mainGVM.actionSequence("0300,0331,0333,0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[4]);
+    mainGVM.actionSequence("0300,0331,0333,0333,0336,0330,0333,0336,0336,");
+    mainGVM.actionSequence(card.icons[5]);
+
+    
+}
+
+function savecard(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(card,null,"  "))+"&filename=data/card.txt");//send text to filesaver.php
+    document.getElementById("textio").value = JSON.stringify(card,null,"  ");        
+}
+
+
+document.getElementById("leftUpperIconInput").onchange = function(){
+    card.icons[0] = this.value;
+    savecard();
+    loadcard();
+}
+
+document.getElementById("middleUpperIconInput").onchange = function(){
+    card.icons[1] = this.value;
+    savecard();
+    loadcard();
+}
+
+document.getElementById("rightUpperIconInput").onchange = function(){
+    card.icons[2] = this.value;
+    savecard();
+    loadcard();
+}
+
+document.getElementById("leftLowerIconInput").onchange = function(){
+    card.icons[3] = this.value;
+    savecard();
+    loadcard();
+}
+document.getElementById("middleLowerIconInput").onchange = function(){
+    card.icons[4] = this.value;
+    savecard();
+    loadcard();
+}
+
+document.getElementById("rightLowerIconInput").onchange = function(){
+    card.icons[5] = this.value;
+    savecard();
+    loadcard();
+}
+
+document.getElementById("importbutton").onclick = function(){
+    card = JSON.parse(document.getElementById("textio").value);
+    loadcard();
+    savecard();
+}
+
+document.getElementById("leftUpperLinkInput").onchange = function(){
+    card.links[0] = this.value;
+    savecard();
+}
+document.getElementById("middleUpperLinkInput").onchange = function(){
+    card.links[1] = this.value;
+    savecard();
+}
+document.getElementById("rightUpperLinkInput").onchange = function(){
+    card.links[2] = this.value;
+    savecard();
+}
+document.getElementById("leftLowerLinkInput").onchange = function(){
+    card.links[3] = this.value;
+    savecard();
+}
+document.getElementById("middleLowerLinkInput").onchange = function(){
+    card.links[4] = this.value;
+    savecard();
+}
+document.getElementById("rightLowerLinkInput").onchange = function(){
+    card.links[5] = this.value;
+    savecard();
+}
+
+
+
+document.getElementById("imageurlinput").onchange  = function(){
+    card.imageurl = this.value;
+    loadcard();
+    savecard();
+}
+
+document.getElementById("jsonurlinput").onchange  = function(){
+    card.jsonurl = this.value;
+
+    loadcard();
+    savecard();
+}
+
+document.getElementById("faceglyphinput").onchange  = function(){
+    card.faceglyph = this.value;
+    loadcard();
+
+    savecard();
+}
+
+document.getElementById("cardnameinput").onchange = function(){
+    card.name = this.value;
+    savecard();
+}
+
+
+function bytecode2ascii(bytecode){
+    var bytesequence = bytecode.split(",");
+    var outstring = "";
+    for(var index = 0;index < bytesequence.length;index++){
+        var robotaction = parseInt(bytesequence[index],8);
+        if(robotaction == 0500){
+            outstring += "A";
+        }
+        if(robotaction == 0501){
+            outstring += "B";
+        }
+        if(robotaction == 0502){
+            outstring += "C";
+        }
+        if(robotaction == 0503){
+            outstring += "D";
+        }
+        if(robotaction == 0504){
+            outstring += "E";
+        }
+        if(robotaction == 0505){
+            outstring += "F";
+        }
+        if(robotaction == 0506){
+            outstring += "G";
+        }
+        if(robotaction == 0507){
+            outstring += "H";
+        }
+        if(robotaction > 01040 && robotaction < 01177){
+            outstring += bytecode2ascii(mainGVM.hypercube[robotaction]);
+        }
+    }
+    return outstring;
+
+}
+
+arduinocode = "";
+
+//load data/arduinocode.txt
+var httpcarduino = new XMLHttpRequest();
+httpcarduino.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        arduinocode = this.responseText;
+        document.getElementById("arduinocode").value = "char coin[] = \"\";\n\n" + arduinocode;
+    };
+}
+httpcarduino.open("GET", "fileloader.php?filename=data/arduinocodexyz.txt", true);
+httpcarduino.send();
+
+
+document.getElementById("actioninput").value = "";
+
+document.getElementById("facemodebutton").onclick = function(){
+    facemode = !facemode;
+    if(facemode){
+        document.getElementById("cardbox").style.display = "none";
+        document.getElementById("actioninput").select();
+    }
+    else{
+        document.getElementById("cardbox").style.display = "block";
+    }
+}
+
+
+mode = 0;
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode != 015){
+        if(mode == 0 || mode == 3){
+            localCursorAction = parseInt(faceGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+        
+        faceGVM.cursorAction(localCursorAction);   
+        this.value = "";
+        faceGVM.clean();
+      //  document.getElementById("spellinput").value = faceGVM.cleanGlyph;
+
+    }
+
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        faceGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        faceGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        faceGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        faceGVM.clean();
+        faceGVM.glyph = "0207," + faceGVM.cleanGlyph;
+        faceGVM.drawGlyph(faceGVM.glyph);
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        faceGVM.clean();
+        faceGVM.glyph = faceGVM.cleanGlyph + "0207,";
+        faceGVM.drawGlyph(faceGVM.glyph);
+
+    }
+
+
+//    spellGVM.spellGlyph(mainGVM.glyph);
+   // document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    faceGVM.clean();
+    card.faceglyph = faceGVM.cleanGlyph;
+    savecard();
+    //savejson();
+}
+
+function modeswitch(){
+    mode++;
+    mode = mode%3;
+    if(mode == 0){
+      //  document.getElementById("modeindicator").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+    //    document.getElementById("modeindicator").src = "iconsymbols/abcfont.svg";
+    }
+    if(mode == 2){
+//document.getElementById("modeindicator").src = "iconsymbols/abcstack.svg";
+    }
+    document.getElementById("actioninput").select();   
+}
+
+document.getElementById("publishbutton").onclick  = function(){
+    
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST","filesaver.php", true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(card,null,"    ")) +"&filename=cards/" + card.name);//send text to filesaver.php
+            
+}
+
+
+
+
+    
+
+    
+
+</script>
+<style>
+body{
+    background-color:#cecdcb;
+}
+input,textarea{
+    color:#00ff00;
+    font-family:courier;
+    background-color:black;
+}
+.linkinputs{
+    position:absolute;
+    z-index:2;
+    top:0px;
+}
+
+#textio{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:200px;
+    height:180px;
+}
+#arduinocode{
+    position:absolute;
+    right:320px;
+    bottom:0px;
+    width:200px;
+    height:180px;
+    background-color:white;
+    color:black;
+    border:solid;
+    border-color:#00878F;
+}
+#maintable{
+    position:absolute;
+    top:440px;
+    right:0px;
+    z-index:1;
+}
+#cardbox{
+    position:absolute;
+    top:0px;
+    right:0px;
+    border:solid;
+}
+#facebox{
+    position:absolute;
+    top:0px;
+    right:0px;
+    border:solid;
+    z-index:-1;
+}
+#mainimage{
+    position:absolute;
+    top:0px;
+    right:0px;
+    border:solid;
+    z-index:-2;
+}
+#iconsbox{
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:50%;
+    right:700px;
+    overflow:scroll;
+    z-index:2;
+}
+#symbolsbox{
+    position:absolute;
+    left:0px;
+    top:54%;
+    bottom:0px;
+    right:700px;
+    overflow:scroll;
+    z-index:2;
+    
+}
+#symbolsbox img{
+    max-width:50%;
+    display:block;
+    margin:auto;
+    padding-top:2em;
+}
+#importbutton{
+    position:absolute;
+    right:220px;
+    bottom:10px;
+    border:solid;
+    border-radius:5px;
+    text-align:center;
+}
+#linktable{
+    position:absolute;
+    right:220px;
+    bottom:40px;
+}
+.data{
+    display:none;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+#leftUpperButton{
+    position:absolute;
+    left:1%;
+    top:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+#middleUpperButton{
+    position:absolute;
+    left:33%;
+    top:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+#rightUpperButton{
+    position:absolute;
+    right:1%;
+    top:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+
+#leftLowerButton{
+    position:absolute;
+    left:1%;
+    bottom:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+
+#middleLowerButton{
+    position:absolute;
+    left:33%;
+    bottom:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+
+#rightLowerButton{
+    position:absolute;
+    right:1%;
+    bottom:1%;
+    width:32%;
+    height:48%;
+    border:solid;
+}
+#actioninput{
+    width:10px;
+}
+#cardlink2{
+    position:absolute;
+    z-index:2;
+    right:0px;
+    top:0px;
+    color:#ff2cb4;
+    background-color:black;
+    height:1em;
+    font-size:1em;
+}
+</style>
+</body>
+</html>

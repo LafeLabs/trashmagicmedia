@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+    
+        <!--
+
+public domain
+
+trashrobot.org
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAYoetAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREAEREREREREQAREREREQAREREAEREREAEREAEREQERAAAAERARABERERERABEQABEREQABEBEQABEAAREAAREQAAEREAEAEREREREAERABEREREAEREQABERAAEREREQAAABEREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+
+   <title>PI CRUST</title>    
+</head>
+<body>    
+
+
+<a style = "position:absolute;color:#ff2cb4;background-color:black;right:0px;top:0px;font-size:2em;font-family:courier;" href = "picrust.html">PICRUST</a>
+
+
+<div id = "mediascroll">
+
+    <form id = "uploadform" style = "margin-top:10px;color:#00ff00;display:none;" action="uploadmedia.php" method="post" enctype="multipart/form-data">
+                Select media file to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Media File" name="submit">
+    </form>    
+    
+</div>
+<script>
+
+
+
+
+
+media = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        media = JSON.parse(this.responseText);
+        loadmediafeed();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=media", true);
+httpcUpload.send();
+
+mediadir = [];
+dirname = "";
+
+function loadmediafeed(){
+    for(var index = 0;index < media.length;index++) {
+        
+        if(media[index].includes(".")){
+            var newa = document.createElement("A");
+            newa.innerHTML = media[index];
+            newa.href = "media/" + media[index];
+            document.getElementById("mediascroll").appendChild(newa);
+        }
+        else{
+            //directory
+            var newdiv = document.createElement("DIV");
+            newdiv.className = "new";
+            var newh1 = document.createElement("H1");
+            newh1.innerHTML = media[index] + "/";
+            newdiv.id = "dir" + media[index];
+            newdiv.appendChild(newh1);
+            document.getElementById("mediascroll").appendChild(newdiv);
+            newh1.onclick = function(){
+                if(this.parentNode.className == "new"){
+                    this.parentNode.className = "visible";
+                    dirname = this.innerHTML.substring(0,this.innerHTML.length-1);
+                    
+                    var httpcUpload2 = new XMLHttpRequest();
+                    httpcUpload2.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            dirmedia = JSON.parse(this.responseText);
+                            
+                            for(var dirindex = 0;dirindex < dirmedia.length;dirindex++){
+                                var newa = document.createElement("A");
+                                newa.innerHTML = dirmedia[dirindex];
+                                newa.href =  "media/" + dirname + "/"  +dirmedia[dirindex];
+                                document.getElementById("dir" + dirname).appendChild(newa);
+                            }
+                        }
+                    };
+                    httpcUpload2.open("GET", "dir.php?filename=media/" + dirname, true);
+                    httpcUpload2.send();                    
+                }
+                else{
+                    if(this.parentNode.className == "visible"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "none";
+                        }
+                    }                       
+                    if(this.parentNode.className == "hidden"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "block";
+                        }
+                    }         
+                    
+                    if(this.parentNode.className == "visible"){
+                        this.parentNode.className = "hidden";
+                    }
+                    else{
+                        this.parentNode.className = "visible";
+                    }   
+                }
+            }
+        }
+    }    
+
+}
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+/*    background-color:#F8DEB8;*/
+    background-color:#ad8762;
+}
+
+#mediascroll{
+    position:absolute;
+    right:0px;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    overflow:scroll;
+    background-color:#101010;
+}
+#mediascroll a,span{
+    display:block;
+    margin:auto;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+    color:#ff2cb4;
+    margin-left:1em;
+    font-family:courier;
+}
+#mediascroll h1{
+    color:#ff2cb4;
+    font-family:courier;
+    border:solid;
+    border-radius:5px;
+    border-color:#ff2cb4;
+    margin-top:2px;
+    margin-bottom:2px;
+    cursor:pointer;
+}
+#mediascroll span{
+    border:solid;
+    border-color:#ff2cb4;
+    cursor:pointer;
+}
+#mediascroll div{
+    border:solid;
+    border-color:#ff2cb4;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+}
+
+
+</style>
+</body>
+</html>

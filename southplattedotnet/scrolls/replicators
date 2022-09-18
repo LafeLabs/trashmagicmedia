@@ -1,0 +1,26 @@
+
+## [HOME](scrolls/home)
+
+# replicators
+ 
+ - [make the main page scroll.html](copy.php?from=scroll.html&to=index.html)
+ - [copy index.html from github](copy.php?from=https://raw.githubusercontent.com/LafeLabs/hypercube/main/index.html&to=index.html)
+ - [copy icon feed from github](copy.php?from=https://raw.githubusercontent.com/LafeLabs/hypercube/main/data/robotfeed.txt&to=data/robotfeed.txt)
+ - [copy data/card.txt from github](copy.php?from=https://raw.githubusercontent.com/LafeLabs/hypercube/main/data/card.txt&to=data/card.txt)
+ - [copy card.html onto index.html](copy.php?from=card.html&to=index.html)
+ - [copy picrust.html onto index.html](copy.php?from=picrust.html&to=index.html)
+ - [copy image feed github replicator to this replicator](copy.php?from=https://raw.githubusercontent.com/LafeLabs/imagefeed/main/php/replicator.txt&to=replicator.php)
+ - [copy current hypercube github replicator to this replicator](copy.php?from=https://raw.githubusercontent.com/LafeLabs/hypercube/main/php/replicator.txt&to=replicator.php)
+ - [replicator.php](replicator.php)
+ - [scrollsetreplicator.php](scrollsetreplicator.php)
+ - [mapsetreplicator.php](mapsetreplicator.php)
+
+# Five Replication objects:
+
+ - shapes
+ - cards
+ - cubes
+ - servers
+ - icon printer robots
+
+  

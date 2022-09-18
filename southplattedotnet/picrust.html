@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+    
+        <!--
+
+
+        EVERYTHING IS PHYSICAL
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY
+        MO MINING
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAYoetAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREAEREREREREQAREREREQAREREAEREREAEREAEREQERAAAAERARABERERERABEQABEREQABEBEQABEAAREAAREQAAEREAEAEREREREAERABEREREAEREQABERAAEREREQAAABEREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+
+   <title>PI CRUST</title>    
+</head>
+<body>    
+<div id = "ipbutton" class = "wifi"></div>
+<!--hexidecimal &#x1F4F6 is decmial &#128246 is wifi emoji-->
+
+
+<input id = "ipaddressinput"/>
+<textarea id  = "wall" spellcheck="false"></textarea>
+<div id = "qrcode"></div>
+<div id = "brandbox"><a style = "color:#ff2cb4;background-color:black" href = "index.html">HOME</a></div>
+
+<a style = "position:absolute;color:#ff2cb4;background-color:black;right:0px;top:0px;font-size:2em;font-family:courier;" href = "web/">WEB</a>
+
+<div id = "imagescroll">
+            
+            <a style = "position:absolute;right:0px;top:0px;display:none;" href= "imagefeed.html">DESTROYER</a>
+        <form id = "uploadform" style = "margin-top:10px;display:none;" action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+
+</div>
+<div id = "mediascroll">
+
+        <a style = "position:absolute;right:0px;top:0px;display:none;" href= "mediadestroyer.html">DESTROYER</a>
+    <form id = "uploadform" style = "margin-top:10px;color:#00ff00;display:none;" action="uploadmedia.php" method="post" enctype="multipart/form-data">
+                Select media file to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Media File" name="submit">
+    </form>    
+    
+</div>
+<script>
+
+wall = "";
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        wall = this.responseText;
+        document.getElementById("wall").value = wall;
+    }
+};
+
+httpc.open("GET", "fileloader.php?filename=data/wall.txt", true);
+httpc.send();
+
+
+document.getElementById("wall").onkeyup = function() {
+        wall = this.value;
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        httpc.send("data="+encodeURIComponent(wall)+"&filename=data/wall.txt");//send text to filesaver.php        
+    
+}
+
+
+uploadImages = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        uploadImages = JSON.parse(this.responseText);
+        loadimagefeed();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=uploadimages", true);
+httpcUpload.send();
+
+
+function loadimagefeed(){
+
+    for(var index = uploadImages.length - 1;index >= 0;index--) {
+        var newimg = document.createElement("IMG");
+        newimg.src = "uploadimages/" + uploadImages[index];
+        document.getElementById("imagescroll").appendChild(newimg);
+    }    
+}
+
+
+
+symbols = [];
+
+var httpcsymbols = new XMLHttpRequest();
+httpcsymbols.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        symbols = JSON.parse(this.responseText);
+        loadsymbolfeed();
+    }
+};
+httpcsymbols.open("GET", "dir.php?filename=symbolfeed", true);
+httpcsymbols.send();
+
+
+function loadsymbolfeed(){
+
+    for(var index = symbols.length - 1;index >= 0;index--) {
+        var newimg = document.createElement("IMG");
+        newimg.src = "symbolfeed/" + symbols[index];
+        document.getElementById("imagescroll").appendChild(newimg);
+    }    
+}
+
+
+
+media = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        media = JSON.parse(this.responseText);
+        loadmediafeed();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=media", true);
+httpcUpload.send();
+
+mediadir = [];
+dirname = "";
+
+function loadmediafeed(){
+    for(var index = 0;index < media.length;index++) {
+        
+        if(media[index].includes(".")){
+            var newa = document.createElement("A");
+            newa.innerHTML = media[index];
+            newa.href = "media/" + media[index];
+            document.getElementById("mediascroll").appendChild(newa);
+        }
+        else{
+            //directory
+            var newdiv = document.createElement("DIV");
+            newdiv.className = "new";
+            var newh1 = document.createElement("H1");
+            newh1.innerHTML = media[index] + "/";
+            newdiv.id = "dir" + media[index];
+            newdiv.appendChild(newh1);
+            document.getElementById("mediascroll").appendChild(newdiv);
+            newh1.onclick = function(){
+                if(this.parentNode.className == "new"){
+                    this.parentNode.className = "visible";
+                    dirname = this.innerHTML.substring(0,this.innerHTML.length-1);
+                    
+                    var httpcUpload2 = new XMLHttpRequest();
+                    httpcUpload2.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            dirmedia = JSON.parse(this.responseText);
+                            
+                            for(var dirindex = 0;dirindex < dirmedia.length;dirindex++){
+                                var newa = document.createElement("A");
+                                newa.innerHTML = dirmedia[dirindex];
+                                newa.href =  "media/" + dirname + "/"  +dirmedia[dirindex];
+                                document.getElementById("dir" + dirname).appendChild(newa);
+                            }
+                        }
+                    };
+                    httpcUpload2.open("GET", "dir.php?filename=media/" + dirname, true);
+                    httpcUpload2.send();                    
+                }
+                else{
+                    if(this.parentNode.className == "visible"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "none";
+                        }
+                    }                       
+                    if(this.parentNode.className == "hidden"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "block";
+                        }
+                    }         
+                    
+                    if(this.parentNode.className == "visible"){
+                        this.parentNode.className = "hidden";
+                    }
+                    else{
+                        this.parentNode.className = "visible";
+                    }   
+                }
+            }
+        }
+    }    
+
+}
+
+
+
+globalurl = window.location.href;
+
+//globalurl = "http://10.0.0.138/picrust.html";
+
+
+if(innerWidth> innerHeight){
+    codesquaresize = 0.5*innerHeight - 100;   
+}
+else{
+    codesquaresize = 0.5*innerWidth - 100;   
+}
+
+
+drawqrcode();
+
+function drawqrcode(){
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+    	text: globalurl,
+    	width: codesquaresize,
+    	height: codesquaresize,
+    	colorDark : "#000000",
+    	colorLight : "#ffffff",
+    	correctLevel : QRCode.CorrectLevel.H
+    });    
+    qrcode.makeCode(globalurl);
+
+}
+
+/*
+ipaddress = "";
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        ipaddress = this.responseText;
+        if(ipaddress.includes(":")){
+            //ipv6
+            globalurl = "http://[" + ipaddress + "]/"; 
+        }
+        else{
+            globalurl = "http://" + ipaddress;
+        }
+        drawqrcode();
+        document.getElementById("ipaddressinput").value = ipaddress;
+    }
+};
+    
+httpc.open("GET", "fileloader.php?filename=data/ipaddress.txt", true);
+httpc.send();
+    
+
+document.getElementById("ipaddressinput").onchange = function(){
+    ipaddress = this.value;
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc.send("data="+encodeURIComponent(ipaddress)+"&filename=data/ipaddress.txt");//send text to filesaver.php        
+
+}
+
+
+document.getElementById("ipaddressinput").style.display = "none";
+
+ipaddressvisible = false;
+document.getElementById("ipbutton").onclick = function(){
+    ipaddressvisible = !ipaddressvisible;
+    if(ipaddressvisible){
+        document.getElementById("ipaddressinput").style.display = "block";
+    }
+    else{
+        document.getElementById("ipaddressinput").style.display = "none";
+    }
+}
+*/
+
+</script>
+<style>
+body{
+    overflow:hidden;
+/*    background-color:#F8DEB8;*/
+    background-color:#ad8762;
+}
+#ipbutton{
+    
+    position:absolute;
+    right:0px;
+    top:0px;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+}
+#ipaddressinput{
+    display:none;
+    position:absolute;
+    top:0px;
+    right:50px;
+    z-index:10;
+    font-family:courier;
+    color:#00ff00;
+    background-color:black;
+    font-size:18px;
+    border-color:black;
+    width:300px;
+}
+#wall{
+    position:absolute;
+    top:0px;
+    width:50%;
+    left:0px;
+    height:50%;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    font-size:1em;
+}
+#brandbox{
+    position:absolute;
+    top:0px;
+    left:51%;
+    font-family:courier;
+    font-size:2em;
+}
+#qrcode{
+    position:absolute;
+    right:50px;
+    top:50px;
+    z-index:3;
+    font-size:2em;
+}
+#imagescroll{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    width:50%;
+    overflow-y:scroll;
+    height:50%;
+/*    background-color:#F8DEB8;*/
+    background-color:#ad8762;
+    
+}
+#imagescroll img{
+    max-width:70%;
+    display:block;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+#mediascroll{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:50%;
+    overflow:scroll;
+    height:50%;
+    background-color:#101010;
+}
+#mediascroll a,span{
+    display:block;
+    margin:auto;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+    color:#ff2cb4;
+    margin-left:1em;
+    font-family:courier;
+}
+#mediascroll h1{
+    color:#ff2cb4;
+    font-family:courier;
+    border:solid;
+    border-radius:5px;
+    border-color:#ff2cb4;
+    margin-top:2px;
+    margin-bottom:2px;
+    cursor:pointer;
+}
+#mediascroll span{
+    border:solid;
+    border-color:#ff2cb4;
+    cursor:pointer;
+}
+#mediascroll div{
+    border:solid;
+    border-color:#ff2cb4;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+}
+.wifi {
+	padding: 4px;
+}
+
+.wifi, .wifi:before {
+	display: inline-block;
+	border: 12px double transparent;
+	border-top-color: currentColor;
+	border-radius: 50%;
+}
+
+.wifi:before {
+	content: '';
+	width: 0; height: 0;
+}
+</style>
+</body>
+</html>

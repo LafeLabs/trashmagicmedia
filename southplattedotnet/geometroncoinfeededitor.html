@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAREAAAAAAiAAEAAAAAACIAAQAAAAAAACABAAAAAAAAAgEAAAAAAwAAIQAAADAzMzMwMzMzMwMAAAEgAAAwAAAAAQIAAAAAAAABACAAAAAAAAEAAgAAAAAAAQAAIgAAAAABAAAiAAAAABEQAAAAAAAAAQAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+<!--
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>-->
+        
+</head>
+<body>
+    <div style = "display:none"><canvas id = "maincanvas"></canvas></div>
+    
+<div id = "header">
+    <table id  = "linktable">
+        <tr>
+            <td>
+                <a href = "index.html">HOME</a>
+            </td>
+            <td>
+                <a href = "iconset.html">ICONS</a>
+            </td>
+        </tr>
+    </table>
+    <p>
+Click icons to create a link.  Edit links. Edit glyphs. Move links up and down.  Delete links and make new ones.  The bottom text area is for import/export of link feeds.  
+    </p>
+</div>
+
+<div id = "feed"></div>
+<div id = "coinfeed"></div>
+
+<div id = "footer">
+    <div id = "importbutton" class=  "button">IMPORT</div>
+    <div id = "replacebutton" class= "button">REPLACE</div>
+    <textarea id = "textio"></textarea>
+</div>
+
+<script>
+
+//new Sortable(document.getElementById('coinfeed'), {});
+
+
+feedwidth = 100;
+feedlinkwidth  = feedwidth;
+mainsize = 0.5*innerWidth - 10;
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+
+gvmArray = [];
+
+robotfeed = [];
+geometroncoinfeed = [];
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+        var httpcFeed = new XMLHttpRequest();
+        httpcFeed.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                robotfeed = JSON.parse(this.responseText);
+                loadfeed();
+
+            }
+        };
+        httpcFeed.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+        httpcFeed.send();
+        
+        var httpccoinfeed = new XMLHttpRequest();
+        httpccoinfeed.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                geometroncoinfeed = JSON.parse(this.responseText);
+                loadcoinfeed();
+                document.getElementById("textio").value = JSON.stringify(geometroncoinfeed,null,"  ");
+            }
+        };
+        httpccoinfeed.open("GET", "fileloader.php?filename=data/geometroncoinfeed.txt", true);
+        httpccoinfeed.send();        
+
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+
+function loadfeed(){
+    gvmArray = [];
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            var newcoin = {};
+            newcoin.coin = glyph;
+            newcoin.url = "https://www.trashrobot.org/";
+            geometroncoinfeed.unshift(newcoin);
+            savecoinfeed();
+            loadcoinfeed();
+
+        }
+
+        
+    }    
+}
+
+function loadcoinfeed(){
+    gvmArray2 = [];
+    document.getElementById("coinfeed").innerHTML = "";
+    for(var index = 0;index < geometroncoinfeed.length;index++){
+    
+        var newtable = document.createElement("TABLE");
+        var newdiv = document.createElement("div");
+        document.getElementById("coinfeed").appendChild(newdiv);
+        newdiv.appendChild(newtable);
+        document.getElementById("coinfeed").appendChild(newtable);
+        var newtr = document.createElement("TR");
+        newtable.appendChild(newtr);
+
+        var newdiv = document.createElement("span");
+        
+        var newtd = document.createElement("TD");
+        newtd.appendChild(newdiv);
+        newtr.appendChild(newtd);
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+//        newdiv.style.marginTop = 0.05*feedwidth + "px";  
+ //       newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        var newspan = document.createElement("SPAN");
+        newspan.appendChild(newcan);
+        newdiv.appendChild(newspan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("coinfeed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray2.push(newGVM);
+        newGVM.drawGlyph(geometroncoinfeed[index].coin);    
+
+        newcan.id = "can" + index.toString();
+          
+
+        var newinput = document.createElement("INPUT");
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.appendChild(newinput);
+        newinput.id = "index" + index.toString();
+        newinput.value = geometroncoinfeed[index].url;
+        newinput.onchange = function(){
+            var localindex = parseInt(this.id.substring(5));
+//            console.log(localindex);
+            geometroncoinfeed[localindex].url = this.value;
+            savecoinfeed();
+        }
+
+
+        var newinput = document.createElement("INPUT");
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        newtd.appendChild(newinput);
+        newinput.id = "glyph" + index.toString();
+        newinput.value = geometroncoinfeed[index].coin;
+        newinput.onchange = function(){
+            var localindex = parseInt(this.id.substring(5));
+//            console.log(localindex);
+            geometroncoinfeed[localindex].coin = this.value;
+            savecoinfeed();
+            loadcoinfeed();
+        }
+
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newtd.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.id = "if" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+
+            var tempfeed = [];
+            for(var robotindex = 0;robotindex < geometroncoinfeed.length;robotindex++){
+                if(robotindex != thisindex){
+                    tempfeed.push(geometroncoinfeed[robotindex]);
+                }
+            }
+            geometroncoinfeed = tempfeed;    
+            this.parentElement.parentElement.removeChild(this.parentElement);
+          //  saverobotfeed();
+            savecoinfeed();
+            loadcoinfeed();
+        }
+        
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/moveup.svg";
+        newtd.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("moveupbutton");
+        newimg.id = "id" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+            if(thisindex != 0){
+                var tempfeed= [];
+                for(var robotindex = 0;robotindex < geometroncoinfeed.length;robotindex++){
+                    tempfeed.push(geometroncoinfeed[robotindex]);
+                }
+                tempfeed[thisindex] = geometroncoinfeed[thisindex - 1];
+                tempfeed[thisindex -1] = geometroncoinfeed[thisindex]; 
+                geometroncoinfeed = tempfeed;
+                savecoinfeed();
+                loadcoinfeed();
+                
+            }
+        }        
+        
+        var newtd = document.createElement("TD");
+        newtr.appendChild(newtd);
+        
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/movedown.svg";
+        newtd.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("movedownbutton");
+        newimg.id = "iu" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+            if(thisindex != geometroncoinfeed.length - 1){
+                var tempfeed= [];
+                for(var robotindex = 0;robotindex < geometroncoinfeed.length;robotindex++){
+                    tempfeed.push(geometroncoinfeed[robotindex]);
+                }
+                tempfeed[thisindex] = geometroncoinfeed[thisindex + 1];
+                tempfeed[thisindex + 1] = geometroncoinfeed[thisindex]; 
+                geometroncoinfeed = tempfeed;
+                savecoinfeed();
+                loadcoinfeed();
+                
+            }
+        }              
+                
+        
+    }    
+}
+
+
+function savecoinfeed(){
+    
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(geometroncoinfeed,null,"  "))+"&filename=data/geometroncoinfeed.txt");//send text to filesaver.php
+      
+}
+
+document.getElementById("importbutton").onclick = function(){
+    if(document.getElementById("textio").value.length > 0){
+        inputfeed = JSON.parse(document.getElementById("textio").value);
+        for(var index = inputfeed.length - 1;index >= 0;index--){
+                geometroncoinfeed.unshift(inputfeed[index]);
+        }
+        loadcoinfeed()
+        savecoinfeed();
+
+    }    
+}
+
+
+document.getElementById("replacebutton").onclick = function(){
+    if(document.getElementById("textio").value.length > 0){
+        inputfeed = JSON.parse(document.getElementById("textio").value);
+        geometroncoinfeed = [];
+        for(var index = inputfeed.length - 1;index >= 0;index--){
+                geometroncoinfeed.unshift(inputfeed[index]);
+        }
+        loadcoinfeed()
+        savecoinfeed();
+
+    }    
+}
+
+document.getElementById("textio").value = "";
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    color:#00ff00;
+    background-color:black;
+}
+.deletebutton{
+    width:40px;
+    z-index:2;
+}
+.moveupbutton{
+    width:40px;
+    z-index:2;
+}
+.movedownbutton{
+    width:40px;
+    z-index:2;
+}
+.feedcan{
+    margin-bottom:1em;
+}
+
+.feedelement{
+
+    
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:20%;
+    background-color:#404040;
+}
+#header a{
+    color:#ff2cb4;
+    font-family:courier;
+    font-size:2em;
+    border:solid;
+    border-color:#ff2cb4;
+}
+#footer{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:20%;
+}
+#textio{
+    position:absolute;
+    left:0px;
+    width:100%;
+    bottom:0px;
+    height:100px;
+    border:solid;
+    border-width:5px;
+    border-radius:5px;
+    border-color:orange;
+    color:#00ff00;
+    background-color:black;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:50%;
+    background-color:#c0c0c0;
+    top:25%;
+    bottom:25%;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+}
+#coinfeed{
+    position:absolute;
+    right:0px;
+    left:50%;
+    background-color:#c0c0c0;
+    top:25%;
+    bottom:25%;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+    
+}
+#coinfeed table{
+    border-top:solid;
+    border-color:black;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#importbutton{
+    border:solid;
+    text-align:center;
+}
+#replacebutton{
+    border:solid;
+    text-align:center;
+}
+
+#arduinoinput{
+    border-color:#3186a0;
+}
+</style>
+</body>
+</html>

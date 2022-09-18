@@ -1,0 +1,21 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/hypercube/main/",
+    "maps": [
+        "home"
+    ],
+    "images": [
+        "cube-factory.jpg"
+    ],
+    "scrolls": [
+        "bags",
+        "cubes",
+        "fashion",
+        "home",
+        "icons",
+        "printers",
+        "rulers",
+        "servers",
+        "shapes",
+        "spaces"
+    ]
+}

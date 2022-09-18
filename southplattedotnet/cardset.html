@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+<table id = "toptable">
+    <tr>
+        <td>
+            <a href = "index.html">
+                <img src = "iconsymbols/home.svg"/>
+            </a>
+        </td>
+        <td>
+            <a href = "cardmaker.html">
+                <img src = "iconsymbols/edit.svg"/>
+            </a>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td style = "text-align:right">SOURCE SERVER:</td>
+        <td>
+            <input id = "sourceinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td style = "text-align:right">THIS SERVER HERE:</td>
+        <td>
+            <input id = "hereinput"/>
+        </td>
+    </tr>
+
+</table>
+
+
+<a href = "cardsetreplicator.php" id = "fetchlink">
+(!)CLICK TO FETCH SET FROM SOURCE TO HERE(!)
+</a>
+<textarea id  = "textio"></textarea>
+<div id= "feed">
+        <ul id = "mainlist"></ul>
+
+</div>
+<script>
+
+var localurl = window.location.href.split("cardset.html")[0];
+document.getElementById("hereinput").value = localurl;
+
+cardset = {};
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        cardset = JSON.parse(this.responseText);
+        if(cardset.server.charAt(cardset.server.length-1) != "/"){
+            cardset.server = cardset.server + "/"; 
+        }
+        document.getElementById("sourceinput").value = cardset.server;
+        var httpc9 = new XMLHttpRequest();
+        httpc9.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                cards = JSON.parse(this.responseText);
+                cardset.cards = cards;
+                document.getElementById("textio").value = JSON.stringify(cardset.cards,null,"    ");
+                savejson();
+
+            };
+        }
+        
+        httpc9.open("GET", "dir.php?filename=cards", true);
+        httpc9.send();
+        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/cardset.txt", true);
+httpc.send();
+
+document.getElementById("sourceinput").onchange = function(){
+    cardset.server = this.value;
+    if(cardset.server.charAt(cardset.server.length-1) != "/"){
+        cardset.server = cardset.server + "/"; 
+    }
+    savejson();
+}
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(cardset,null,"    "))+"&filename=data/cardset.txt");//send text to filesaver.php
+}
+
+
+
+cards = [];
+var httpc2 = new XMLHttpRequest();
+    httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        cards = JSON.parse(this.responseText);
+        for(var index = 0;index < cards.length;index++) {
+            if(cards[index] != "home"){
+                var newspan = document.createElement("SPAN");
+                newspan.innerHTML = "cards/" + cards[index];
+                newspan.classList.add("button");
+                newspan.onclick = function(){
+//                    alert(this.innerHTML);
+                    cardname = this.innerHTML;
+                    var httpc = new XMLHttpRequest();
+                    httpc.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            card = JSON.parse(this.responseText);
+                            var url = "filesaver.php";        
+                            var httpc2 = new XMLHttpRequest();
+                            httpc2.open("POST", url, true);
+                            httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            httpc2.send("data="+encodeURIComponent(JSON.stringify(card,null,"    "))+"&filename=data/card.txt");//send text to filesaver.php
+                            
+                        }
+                    };
+                    httpc.open("GET", "fileloader.php?filename=" + cardname, true);
+                    httpc.send();
+
+
+                }
+                var newli = document.createElement("LI");
+                newli.appendChild(newspan);
+                document.getElementById("mainlist").appendChild(newli);
+            
+            }
+        }
+        addDeleteButtons();
+    }
+};
+
+httpc2.open("GET", "dir.php?filename=cards", true);
+httpc2.send();
+
+
+function addDeleteButtons(){
+    dirlist = document.getElementById("mainlist").getElementsByTagName("LI");
+    for(var index = 0;index < dirlist.length;index++){
+        var newdeletebutton = document.createElement("span");
+        newdeletebutton.innerHTML = "DELETE";
+        newdeletebutton.className = "button";
+        newdeletebutton.classList.add("delete");
+        dirlist[index].appendChild(newdeletebutton);
+    }
+    
+    deletebuttons = document.getElementById("mainlist").getElementsByClassName("delete");
+
+    for(var index = 0;index < deletebuttons.length;index++){
+        deletebuttons[index].onclick = function() {
+            thisdir = this.parentNode.getElementsByTagName("SPAN")[0].innerHTML;
+            
+//            console.log(thisdir);
+
+            var httpc = new XMLHttpRequest();
+            var url = "deletefile.php";         
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+            httpc.send("filename=" + thisdir);//send text to deletefile.php
+            this.parentNode.parentNode.removeChild(this.parentNode);
+
+
+        }
+    }
+
+}
+
+
+</script>
+<style>
+#buttontable{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+#buttontable td{
+    width:12em;
+    text-align:center;
+}
+#inputtable{
+    position:absolute;
+    bottom:1em;
+    left:1em;
+}
+#inputtable table{
+    width:80%;
+}
+#inputtable tr{
+    width:100%;
+}
+.delete{
+    color:red;
+}
+#textio{
+    position:absolute;
+    right:1px;
+    top:2em;
+    height:80%;
+    width:40%;
+}
+#feed{
+    position:absolute;
+    top:50%;
+    bottom:10px;
+    left:10px;
+    right:50%;
+    overflow:scroll;
+    border:solid;
+}
+#serverinput{
+    width:100%;
+}
+body,div,textarea,input{
+    font-family:courier;
+    font-size:24px;
+}
+a{
+    font-family:courier;
+    font-size:24px;
+    color:#ff2cb4;
+}
+
+.button{
+    cursor:pointer;
+    border:solid;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+.box img{
+    width:3em;
+}
+</style>
+</body>
+</html>

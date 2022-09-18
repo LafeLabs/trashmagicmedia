@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">    
+<head>
+         <meta charset="utf-8"/>
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+
+    <!--Stop Google:-->
+
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/geometron.js"></script>
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAiIAAAAAARAAIAAAAAABEAAgAAAAAAABACAAAAAAAAAQIAAAAAAwAAEgAAADAzMzMwMzMzMwMAAAIQAAAwAAAAAgEAAAAAAAACABAAAAAAAAIAAQAAAAAAAgAAEQAAAAACAAARAAAAACIgAAAAAAAAAgAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+
+<script src="https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.css">
+
+</head>
+<body> 
+
+    <!--
+    geometron 3d for trash robot voxel programming
+        symbol.html:
+
+        this is a custom language, specific to this node in the Universe of Things.  Hypercube BUILDS languages. This is apure implementation of 
+        ONE language, with absolute minimum number of actions, cleaned up glyphs, large and simple buttons, just a few.
+    
+    -->
+
+<img id = "backgroundimage" />
+<div id = "square">
+    <x3d id = "mainx3d">
+        <scene id = "main">
+        </scene>
+    </x3d>
+</div>
+
+<input id = "actioninput"/>            
+<input id = "spellinput"/>
+
+<table id = "imageinputtable">
+    <tr>
+        <td>IMAGE URL:</td>
+        <td>
+            <input id = "imageurlinput"/>
+        </td>
+    </tr>
+</table>
+<div id = "spellcanvasbox">
+    <canvas id = "spellcanvas"></canvas>
+</div>
+<div id = "controltablebox">
+    <table id ="controltable">
+    </table>
+</div>
+
+<textarea id = "textio"></textarea>
+<table id = "linktable">
+    <tr>
+        <td><a href= "icon3d.html">icon3d.html</a></td>
+        <td><a href= "three.html">three.html</a></td>
+        <td><a href= "threejs.html">threejs.html</a></td>
+        <td><a href= "index.html">index.html</a></td>
+    </tr>
+</table>
+<div id = "savebutton" class = "button">SAVE</div>
+<script>
+
+image3durl = "";
+
+keyboard3d = [
+    "041:0321,",
+    "042:0236,",
+    "043:0323,",
+    "044:0324,",
+    "045:0325,",
+    "046:0327,",
+    "047:021,",
+    "050:0345,",
+    "051:0346,",
+    "052:0300,",
+    "053:0211,",
+    "054:032,",
+    "055:0314,",
+    "056:033,",
+    "057:020,",
+    "060:0313,",
+    "061:0305,",
+    "062:0720,",
+    "063:0721,",
+    "064:0722,",
+    "065:0723,",
+    "066:0724,",
+    "067:0725,",
+    "070:0311,",
+    "071:0312,",
+    "072:0215,",
+    "073:037,",
+    "074:0237,",
+    "075:0316,",
+    "076:0177,",
+    "077:0177",
+    "0100:0322,",
+    "0101:0230",
+    "0102:0234,",
+    "0103:0506,",
+    "0104:0232",
+    "0105:0222,",
+    "0106:0233",
+    "0107:0234",
+    "0110:0235",
+    "0111:0227,",
+    "0112:0236",
+    "0113:0237",
+    "0114:0177,",
+    "0115:0236,",
+    "0116:0235,",
+    "0117:0177,",
+    "0120:0177,",
+    "0121:0220",
+    "0122:0223,",
+    "0123:0231",
+    "0124:0224,",
+    "0125:0226,",
+    "0126:0507,",
+    "0127:0221",
+    "0130:0505,",
+    "0131:0225,",
+    "0132:0504,",
+    "0133:0365,",
+    "0134:0201,",
+    "0135:0204,",
+    "0136:0326,",
+    "0137:0210,",
+    "0140:0304,",
+    "0141:0700,",
+    "0142:0200,",
+    "0143:0342,",
+    "0144:0702,",
+    "0145:0602,",
+    "0146:0703,",
+    "0147:0704,",
+    "0150:0705,",
+    "0151:0607,",
+    "0152:0706,",
+    "0153:0707,",
+    "0154:036,",
+    "0155:031,",
+    "0156:030,",
+    "0157:0371,",
+    "0160:0347,",
+    "0161:0600,",
+    "0162:0603,",
+    "0163:0701,",
+    "0164:0604,",
+    "0165:0606,",
+    "0166:0343,",
+    "0167:0601,",
+    "0170:0711,",
+    "0171:0605,",
+    "0172:0710,",
+    "0173:0213,",
+    "0174:011,",
+    "0175:0214,",
+    "0176:0320,"
+];
+
+
+controlbuttonsize = 40;
+spellwidth = 300;
+spellheight = 400;
+
+if(innerWidth > innerHeight){
+    marginWidth = innerWidth - innerHeight;
+    controlbuttonsize = marginWidth*0.1;
+    document.getElementById("square").style.width = innerHeight.toString() +  "px";
+    document.getElementById("square").style.height = innerHeight.toString() +  "px";    
+    spellwidth = marginWidth;
+    document.getElementById("actioninput").select();
+    document.getElementById("controltablebox").style.left = (innerHeight + 10).toString() + "px";    
+}
+else{
+    document.getElementById("controltable").style.bottom = "20px";
+    controlbuttonsize = innerWidth*0.1;    
+    document.getElementById("spellcanvasbox").style.top = innerWidth.toString() + "px";
+    spellwidth = innerWidth;
+    spellheight = innerWidth*0.25;
+    document.getElementById("square").style.width = innerWidth.toString() +  "px";
+    document.getElementById("square").style.height = innerWidth.toString() +  "px";    
+    document.getElementById("actioninput").style.display = "none";
+    document.getElementById("controltablebox").style.left = (10).toString() + "px";
+    document.getElementById("controltablebox").style.top = (10+ innerWidth + 200).toString() + "px";            
+    document.getElementById("controltablebox").style.bottom = "100px";
+    
+    document.getElementById("controltablebox").style.height = (innerHeight - innerWidth - 100).toString() + "px";                          
+}
+
+document.getElementById("backgroundimage").style.width = document.getElementById("square").style.width;
+
+mainGVM = new GVM(document.getElementById("spellcanvas"),spellwidth,spellheight);
+mainGVM.x0 = 5;
+mainGVM.y0 = 25;
+mainGVM.unit = 20;
+mainGVM.glyph = "0207,";
+
+x = 0.0;
+y = 0.0;
+z = 0.0;
+side = 0.25;
+solidColor = "1 0 0";
+currentTrans = 0.0;
+main = document.getElementById("main");
+
+
+  
+controls = [
+    "0500,0501,0502,0503,0504,0505,0506,0507,",
+    "020,010,021,011,0710,0711,0704,0705,",
+    "0701,0700,0702,0703,0706,0707,0720,0721,",
+    "0722,0723,0724,0725,"
+];
+
+
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+        mainGVM.importbytecode(keyboard3d);
+        loadglyph();
+        loadcontroltable();
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+var httpcurl = new XMLHttpRequest();
+httpcurl.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        image3durl = this.responseText;
+        document.getElementById("imageurlinput").value = image3durl;
+        document.getElementById("backgroundimage").src = image3durl;
+
+    }
+};
+httpcurl.open("GET", "fileloader.php?filename=data/image3durl.txt", true);
+httpcurl.send();
+
+
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode != 015){
+        localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        mainGVM.cursorAction(localCursorAction);   
+        this.value = "";
+        mainGVM.clean();
+        redraw();
+    //    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+  
+    }
+
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        //do something on "return" maybe save the 3d file?
+        save();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+    }
+
+//    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    mainGVM.clean();
+    redraw();
+      
+}
+
+
+document.getElementById("spellinput").onchange = function(){
+    mainGVM.glyph = this.value + "0207,";
+    mainGVM.clean();
+    redraw();
+}
+
+function redraw(){
+    main.innerHTML = "";
+    x = 0.0;
+    y = 0.0;
+    z = 0.0;
+    side = 0.25;
+    solidColor = "1 0 0";
+    currentTrans = 0.0;
+    
+    drawGlyph(mainGVM.glyph);
+    mainGVM.spellGlyph(mainGVM.glyph);
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    saveglyph();
+
+    
+}
+
+
+function drawGlyph(localString){
+    var tempArray = localString.split(',');
+    for(var index = 0;index < tempArray.length;index++){
+        action(parseInt(tempArray[index],8));
+    }
+}
+
+editmode = true;
+function action(localCommand){
+
+    if(localCommand >= 0500 && localCommand < 0700){
+        drawGlyph(mainGVM.hypercube[localCommand]);
+    }
+    if(localCommand > 01000){
+        drawGlyph(mainGVM.hypercube[localCommand]);
+    }
+    if(localCommand >= 0220 && localCommand < 0300){
+        drawGlyph(mainGVM.hypercube[localCommand]);
+    }
+    
+    if(localCommand == 0207){
+        if(editmode){
+            drawcursor();
+        }
+    }
+
+    if(localCommand == 0700){
+        x += side;
+    }
+    if(localCommand == 0701){
+        x -= side;
+    }
+    if(localCommand == 0702){
+        y += side;
+    }
+    if(localCommand == 0703){
+        y -= side;
+    }
+    if(localCommand == 0704){
+        z += side;
+    }
+    if(localCommand == 0705){
+        z -= side;
+    }
+    if(localCommand == 0706){
+        side /= 2;
+    }
+    if(localCommand == 0707){
+        side *= 2;
+    }
+    if(localCommand == 0710){
+        drawsphere();
+    }
+    if(localCommand == 0711){
+        drawcube();
+    }
+    
+    if(localCommand == 0720){
+        //red
+        solidColor = "1 0 0";
+    }
+    if(localCommand == 0721){
+        //orange
+        solidColor = "1 0.5 0";
+    }
+    if(localCommand == 0722){
+        solidColor = "1 1 0";
+        //yellow
+    }
+    if(localCommand == 0723){
+        //green
+        solidColor = "0 1 0";
+    }
+    if(localCommand == 0724){
+        //blue
+        solidColor = "0 0 1";
+    }
+    if(localCommand == 0725){
+        //purple
+        solidColor = "1 0 1";
+    }
+
+
+}
+
+
+
+function drawsphere(){
+    var news = document.createElement("shape");
+    var newt = document.createElement("transform");
+    main.appendChild(newt);
+    newt.setAttribute("translation",x.toString() + " " + y.toString() + " " + z.toString() );
+    var newt2 = document.createElement("transform");
+    newt.appendChild(newt2);
+    newt2.setAttribute("scale",(side).toString() + " " + (side).toString() + " " + (side).toString());
+    newt2.appendChild(news);
+    var newa = document.createElement("appearance");
+    news.appendChild(newa);
+    var newm = document.createElement("material");
+    newm.setAttribute("diffuseColor",solidColor);
+    newm.setAttribute("transparency",currentTrans);
+    newa.appendChild(newm);
+    var newb = document.createElement("sphere");
+    news.appendChild(newb);
+}
+
+function drawcube(){
+    var news = document.createElement("shape");
+    var newt = document.createElement("transform");
+    main.appendChild(newt);
+    newt.setAttribute("translation",x.toString() + " " + y.toString() + " " + z.toString() );
+    var newt2 = document.createElement("transform");
+    newt.appendChild(newt2);
+    newt2.setAttribute("scale",(0.5*side).toString() + " " + (0.5*side).toString() + " " + (0.5*side).toString());
+    newt2.appendChild(news);
+    var newa = document.createElement("appearance");
+    news.appendChild(newa);
+    var newm = document.createElement("material");
+    newm.setAttribute("diffuseColor",solidColor);
+    newm.setAttribute("transparency",currentTrans);
+    newa.appendChild(newm);
+    var newb = document.createElement("box");
+    news.appendChild(newb);    
+}
+
+function drawcursor(){
+    var news = document.createElement("shape");
+    var newt = document.createElement("transform");
+    main.appendChild(newt);
+    newt.setAttribute("translation",x.toString() + " " + y.toString() + " " + z.toString() );
+    var newt2 = document.createElement("transform");
+    newt.appendChild(newt2);
+    newt2.setAttribute("scale",(side).toString() + " " + (side).toString() + " " + (side).toString());
+    newt2.appendChild(news);
+    var newa = document.createElement("appearance");
+    news.appendChild(newa);
+    var newm = document.createElement("material");
+    newm.setAttribute("diffuseColor","0 0 1");
+    newm.setAttribute("transparency","0.85");
+    newa.appendChild(newm);
+    var newb = document.createElement("box");
+    news.appendChild(newb);
+}
+
+
+filetop = "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><script src=\"https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.js\">";
+filetop += "<\/script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.css\"></head><body><x3d style = \"position:absolute;left:0px;right:0px;top:0px;bottom:0px;z-index:-1;\">";
+
+
+function save(){
+    mainGVM.clean();
+    editmode = false;
+    redraw();
+    x3dcode = main.innerHTML;
+    //this is an html file not an x3d file, because xml is the language of Mordor, which I shall not utter here
+    document.getElementById("textio").value = filetop + "<scene>" + x3dcode + "</scene></x3d>\n<a style = \"position:absolute;right:0px;bottom:0px;\" href = \"voxel.html\">back to voxel</a></body></html>";
+    
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(filetop + "<scene>" + x3dcode + "</scene></x3d>" + "</scene></x3d>\n<a style = \"position:absolute;right:0px;bottom:0px;font-size:2em;\" href = \"voxel.html\">back to voxel</a></body></html>")+"&filename=three.html");//send text to filesaver.php    
+
+    editmode = true;
+    redraw();
+    
+}
+
+function loadcontroltable(){
+    document.getElementById("controltable").innerHTML = "";
+    for(var index = 0;index < controls.length;index++){
+        var newtr = document.createElement("TR");
+        document.getElementById("controltable").appendChild(newtr);
+        rowarray = controls[index].split(",");
+        for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
+            if(rowarray[rowindex].length > 0){
+                var newtd = document.createElement("TD");
+                newtr.appendChild(newtd);
+                var newcan = document.createElement("CANVAS");
+                newtd.appendChild(newcan);
+                var datadiv = document.createElement("div");
+                datadiv.innerHTML = rowarray[rowindex];
+                datadiv.className = "data";
+                newtd.appendChild(datadiv);
+                var newGVM = new GVM(newcan,controlbuttonsize,controlbuttonsize);
+                newGVM.unit = controlbuttonsize - 2;
+                newGVM.x0 = 1;
+                newGVM.y0 = controlbuttonsize-1;
+                newGVM.importbytecode(hypercube);
+                newGVM.action(0300);
+                if(parseInt(rowarray[rowindex],8) >= 040 && parseInt(rowarray[rowindex],8) < 0177){
+                    newGVM.drawGlyph("0300,0336,0336,0330,0333,0337,");
+                }
+                newGVM.action(parseInt(rowarray[rowindex],8)+01000);
+
+                newtd.onclick = function(){
+                    var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                    mainGVM.cursorAction(localaction);
+                    redraw();
+                }
+                newcan.classList.add("button");
+            }
+        }
+    }
+}
+
+
+document.getElementById("savebutton").onclick = function(){
+    save();
+}
+
+function saveglyph(){
+    mainGVM.clean();
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data=" + mainGVM.cleanGlyph + "&filename=data/glyph3d.txt");//send text to filesaver.php
+}
+
+function saveimageurl(){
+    mainGVM.clean();
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data=" + image3durl + "&filename=data/image3durl.txt");//send text to filesaver.php
+}
+
+
+document.getElementById("imageurlinput").onchange = function(){
+    image3durl = this.value;
+    document.getElementById("backgroundimage").src = image3durl;
+    saveimageurl();
+}
+
+function loadglyph(){
+    var httpcglyph = new XMLHttpRequest();
+    httpcglyph.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            mainGVM.glyph = this.responseText + "0207,";
+            mainGVM.clean();
+            redraw();
+        }
+    };
+    httpcglyph.open("GET", "fileloader.php?filename=data/glyph3d.txt", true);
+    httpcglyph.send();   
+}
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+input{
+    font-family:courier;
+}
+#square{
+    position:absolute;
+    left:0px;
+    top:0px;
+    border:solid;
+    border-width:0.1px;
+    border-color:blue;
+    overflow:hidden;
+    width:500px;
+    height:500px;
+}
+#maincanvas{
+    border:solid;
+}
+#spellcanvas{
+    border:solid;
+}
+#actioninput{
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:1em;
+}
+#spellinput{
+    position:absolute;
+    right:2em;
+    top:0px;
+    width:300px;
+}
+#imageurlinput{
+    width:300px;
+}
+#imageinputtable{
+    position:absolute;
+    right:2em;
+    bottom:4em;
+}
+
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.button{
+    cursor:pointer;
+}
+#mainx3d{
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+}
+#spellcanvasbox{
+    position:absolute;
+    right:0px;
+    top:60px;
+    width:300px;
+    height:300px;
+}
+#textio{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    display:none;
+    z-index:-1;
+}
+#linktable{
+    position:absolute;
+    bottom:20px;
+    right:130px;
+}
+#controltablebox{
+    position:absolute;
+    right:0px;
+    border:solid;
+    overflow:scroll;
+    bottom:100px;
+    height:200px;
+}
+#savebutton{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    border:solid;
+    font-size:2em;
+}
+#backgroundimage{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-2;
+}
+</style>
+</body>
+</html>
