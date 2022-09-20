@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>    
+<table id = "toptable">
+    <tr>
+        <td>
+            <a href = "symbol.html">
+                <img src = "iconsymbols/home.svg"/>
+            </a>
+        </td>
+        </tr>
+</table>
+<table>
+    <tr>
+        <td style = "text-align:right">SOURCE SERVER:</td>
+        <td>
+            <input id = "sourceinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td style = "text-align:right">THIS SERVER HERE:</td>
+        <td>
+            <input id = "hereinput"/>
+        </td>
+    </tr>
+
+</table>
+
+
+<a href = "symbolsetreplicator.php" id = "fetchlink">
+(!)CLICK TO FETCH SET FROM SOURCE TO HERE(!)
+</a>
+
+<textarea id  = "textio"></textarea>
+<script>
+
+var localurl = window.location.href.split("symbolset.html")[0];
+document.getElementById("hereinput").value = localurl;
+
+symbolset = {};
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        symbolset = JSON.parse(this.responseText);
+        if(symbolset.server.charAt(symbolset.server.length-1) != "/"){
+            symbolset.server = symbolset.server + "/"; 
+        }
+        document.getElementById("sourceinput").value = symbolset.server;
+        var httpc9 = new XMLHttpRequest();
+        httpc9.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                allsymbols = JSON.parse(this.responseText);
+                symbols = [];
+                for(var index = 0;index < allsymbols.length;index++){
+                    if(allsymbols[index].substr(-4) == ".svg"){
+                        symbols.push(allsymbols[index]);
+                    }
+                }
+                symbolset.symbols = symbols;
+                document.getElementById("textio").value = JSON.stringify(symbolset.symbols,null,"    ");
+                savejson();
+
+            };
+        }
+        
+        httpc9.open("GET", "dir.php?filename=symbolfeed", true);
+        httpc9.send();
+        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/symbolset.txt", true);
+httpc.send();
+
+document.getElementById("sourceinput").onchange = function(){
+    symbolset.server = this.value;
+    if(symbolset.server.charAt(symbolset.server.length-1) != "/"){
+        symbolset.server = symbolset.server + "/"; 
+    }
+    savejson();
+}
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(symbolset,null,"    "))+"&filename=data/symbolset.txt");//send text to filesaver.php
+}
+
+
+
+</script>
+<style>
+#toptable{
+    background-color:#808080;
+}
+
+#buttontable{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+#buttontable td{
+    width:12em;
+    text-align:center;
+}
+#inputtable{
+    position:absolute;
+    bottom:1em;
+    left:1em;
+}
+#inputtable table{
+    width:80%;
+}
+#inputtable tr{
+    width:100%;
+}
+
+#textio{
+    position:absolute;
+    right:1px;
+    top:2em;
+    height:80%;
+    width:40%;
+}
+#feed{
+    position:absolute;
+    top:50%;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+#serverinput{
+    width:100%;
+}
+body,div,textarea,input{
+    font-family:courier;
+    background-color:#808080;
+    font-size:24px;
+    border-color:black;
+}
+a{
+    font-family:courier;
+    font-size:24px;
+}
+
+.button{
+    cursor:pointer;
+    border:solid;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+.box img{
+    width:3em;
+}
+</style>
+</body>
+</html>

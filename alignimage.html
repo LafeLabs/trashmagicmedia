@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+</head>
+<body>
+    <table id = "linktable">
+        <tr>
+            <td>
+                <a href = "index.html">HOME</a>
+            </td>
+            <td>
+                <a href = "globalimagefeed.html">GLOBAL IMAGES</a>
+            </td>
+            <td>
+                <a href = "imagefeed.html">LOCAL IMAGES</a>
+            </td>
+
+            <td>
+                <a href = "traceicon.html">TRACE</a>
+            </td>
+        </tr>    
+    </table>
+
+<div id = "mainbox">
+    <div id ="mainboxbackground"></div>
+    <canvas id = "gridcanvas"></canvas>
+    <canvas id = "maincanvas"></canvas>
+    <img id = "mainimage"/>
+    <div id = "hammerxy"></div>
+</div>
+
+<div id = "zoomrotatebox">
+        <table id = "rotatezoomtable">
+            <tr id = "rotatezoombuttons1">
+                <td>
+                    <img id = "zoomoutbutton" src= "iconsymbols/shrink.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "littlezoomoutbutton" src= "iconsymbols/shrinksmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "littlezoominbutton" src= "iconsymbols/expandsmall.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "zoominbutton" src= "iconsymbols/expand.svg" class = "button"/> 
+                </td>
+            </tr>
+            <tr id = "rotatezoombuttons2">
+                <td>
+                    <img id = "rotateleftbutton" src= "iconsymbols/left.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "littlerotateleftbutton" src= "iconsymbols/leftsmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "littlerotaterightbutton" src= "iconsymbols/rightsmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "rotaterightbutton" src= "iconsymbols/right.svg" class = "button" /> 
+                </td>
+            </tr>
+        </table>
+
+        <img src = "iconsymbols/scale.svg" id = "scalebar"/>
+        <img src = "iconsymbols/rotate.svg" id = "rotatebar"/>
+        
+</div>
+    
+<div id = "imagefeed"></div>
+
+<div id = "iobox">
+    <table id ="iotable">
+        <tr>
+            <td id = "savebutton" class=  "button">SAVE</td>
+            <td id = "loadbutton" class = "button">LOAD</td>
+        </tr>
+    </table>
+    <textarea id = "textio"></textarea>
+
+</div>
+
+<script>
+
+
+mainboxsize = 500;
+if(innerWidth > innerHeight){
+    //computer
+    mainboxsize = 0.5*innerHeight;
+    //put link table in left side separate from mainbox
+    document.getElementById("linktable").style.width = "50%";
+    document.getElementById("mainbox").style.top = "0px";
+}
+else{
+    //mobile
+    mainboxsize = 0.5*innerWidth;
+    document.getElementById("zoomrotatebox").style.top = (mainboxsize + 100).toString() + "px";
+    document.getElementById("imagefeed").style.width = (mainboxsize).toString()  + "px";
+    document.getElementById("imagefeed").style.top = "100px";
+    document.getElementById("imagefeed").style.bottom = "0px";
+}
+
+document.getElementById("zoomrotatebox").style.width = mainboxsize.toString() + "px";    
+document.getElementById("zoomrotatebox").style.height = mainboxsize.toString() + "px";    
+
+maincanvas = document.getElementById("maincanvas");
+//var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+var mainGVM = new GVM(maincanvas,mainboxsize,mainboxsize);
+
+mainGVM.drawGlyph("0337,0337,0342,0334,0342,0334,0342,0334,0342,0341,");
+
+
+image = {
+    "w":1.0,
+    "x":0.0,
+    "y":0.0,
+    "angle":0,
+    "src":""
+};
+
+
+var httpcimage = new XMLHttpRequest();
+httpcimage.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        image = JSON.parse(this.responseText);
+        loadimage();
+    };
+};
+
+httpcimage.open("GET", "fileloader.php?filename=data/alignimage.txt", true);
+httpcimage.send();
+
+
+
+uploadImages = [];
+imagefeed = [];
+var httpcImagefeed = new XMLHttpRequest();
+httpcImagefeed.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        imagefeed = JSON.parse(this.responseText);
+        var httpc11 = new XMLHttpRequest();
+        httpc11.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                
+                images = JSON.parse(this.responseText);
+                for(var index = 0;index < images.length;index++){
+                    imagefeed.push("uploadimages/" + images[index]);
+                }    
+                loadimagefeed();
+                
+            };
+        }
+                        
+        httpc11.open("GET", "dir.php?filename=uploadimages", true);
+        httpc11.send();
+
+    };
+};
+
+httpcImagefeed.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpcImagefeed.send();
+
+function loadimagefeed(){
+    document.getElementById("imagefeed").innerHTML = "";
+    for(var index = imagefeed.length - 1;index >= 0;index--){
+        var newbox = document.createElement("DIV");
+        newbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = imagefeed[index];
+        newimg.classList.add("uploadimage");
+        newimg.classList.add("button");
+        newbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newbox);
+        newimg.onclick = function() {
+            var localsrc = this.src;
+            document.getElementById("mainimage").src = localsrc;
+            image.x = 0;
+            image.y = 0;
+            image.w = 1.0;
+            image.angle = 0;
+            image.src = localsrc;
+            loadimage();
+        }
+
+    }    
+}
+
+
+mc = new Hammer(document.getElementById("hammerxy"));
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc.on("panleft panright panup pandown tap press rotate", function(ev) {
+    
+    document.getElementById("mainimage").style.left = (ev.deltaX + image.x*mainGVM.width).toString() +  "px";
+    document.getElementById("mainimage").style.top = (ev.deltaY + image.y*mainGVM.width).toString() +  "px";
+
+});    
+
+mczoom = new Hammer(document.getElementById("scalebar"));
+mczoom.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mczoom.on("panleft panright panup pandown tap press", function(ev) {
+
+    document.getElementById("mainimage").style.width = (2*ev.deltaX + image.w*mainGVM.width).toString() +  "px";
+
+});    
+
+mcrotate = new Hammer(document.getElementById("rotatebar"));
+mcrotate.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mcrotate.on("panleft panright panup pandown tap press", function(ev) {
+
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle + ev.deltaX*Math.PI/5).toString() + "deg)";
+
+});    
+
+
+function loadimage(){
+    document.getElementById("mainimage").src = image.src;
+    document.getElementById("mainimage").style.left = (image.x*mainGVM.width).toString() + "px";
+    document.getElementById("mainimage").style.top = (image.y*mainGVM.width).toString() + "px";    
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() + "px";    
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";
+    
+    document.getElementById("textio").value = JSON.stringify(image,null,"    ");
+    
+}
+
+document.getElementById("loadbutton").onclick = function(){
+    image = JSON.parse(document.getElementById("textio").value);
+    loadimage();
+    saveimage();
+}
+
+document.getElementById("savebutton").onclick = function(){
+    
+    if(document.getElementById("mainimage").style.left.length > 0){
+        image.x = parseInt(document.getElementById("mainimage").style.left.substring(0,document.getElementById("mainimage").style.left.length-2))/mainGVM.width;        
+        image.y = parseInt(document.getElementById("mainimage").style.top.substring(0,document.getElementById("mainimage").style.top.length-2))/mainGVM.width;
+        image.w = parseInt(document.getElementById("mainimage").style.width.substring(0,document.getElementById("mainimage").style.width.length-2))/mainGVM.width;
+
+        image.angle = parseInt(document.getElementById("mainimage").style.transform.substring(7,document.getElementById("mainimage").style.transform.length - 4));
+
+    
+    }
+    saveimage();
+}
+
+
+
+
+document.getElementById("zoomoutbutton").onclick = function() {
+    image.w /= 1.25;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("zoominbutton").onclick = function() {
+    image.w *= 1.25;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("littlezoomoutbutton").onclick = function() {
+    image.w /= 1.01;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("littlezoominbutton").onclick = function() {
+    image.w *= 1.01;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("rotateleftbutton").onclick = function() {
+    image.angle -= 5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("rotaterightbutton").onclick = function() {
+    image.angle += 5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("littlerotateleftbutton").onclick = function() {
+    image.angle -= 0.5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("littlerotaterightbutton").onclick = function() {
+    image.angle += 0.5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+
+function saveimage(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(image),null,"    ")+"&filename=data/alignimage.txt");//send text to filesaver.php
+    document.getElementById("textio").value = JSON.stringify(image,null,"    ");    
+}
+
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:black;
+}
+#linktable a{
+    color:black;
+    text-align:center;
+    font-size:1em;
+    background-color:black;
+    font-family:courier;
+    background-color:#00c000;
+}
+#linktable{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    width:100%;
+}
+#linktable td{
+    text-align:center;
+    font-size:2em;
+    font-family:courier;
+    background-color:black;
+}
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:40px;
+    width:250px;
+    height:250px;
+    border:solid;
+    border-color:blue;
+    overflow:hidden;
+}
+#mainboxbackground{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    z-index:-5;
+    background-color:white;
+}
+#mainimage{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    z-index:-3;
+}
+#gridcanvas{
+    z-index:-2;
+    position:absolute;
+    left:0px;
+    top:0px;
+    
+}
+#hammerxy{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    z-index:2;
+}
+@media only screen and (orientation: portrait) {
+#iobox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+    
+}
+@media only screen and (orientation: landscape) {
+#iobox{
+    position:absolute;
+    left:30px;
+    bottom:30px;
+}
+    
+}
+
+#textio{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    height:300px;
+    border:solid;
+    border-width:5px;
+    border-color:orange;
+}
+#iotable td{
+    border:solid;
+    border-radius:5px;
+    font-family:courier;
+    text-align:center;
+    font-size:2em;
+    background-color:black;
+    color:#00ff00;
+}
+#imagefeed{
+    position:absolute;
+    top:200px;
+    right:510px;
+    width:20%;
+    bottom:0px;
+    overflow:scroll;
+    background-color:#808080;
+}
+.uploadimage{
+    max-width:80%;
+    display:block;
+    margin:auto;
+    margin-bottom:1em;
+    margin-top:1em;
+}
+#zoomrotatebox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:400px;
+    height:400px;
+    z-index:2;
+    background-color:white;
+}
+#scalebar{
+    width:100%;
+    height:25%;
+    position:absolute;
+    left:0px;
+    bottom:25%;
+    right:0px;
+}
+#rotatebar{
+    width:100%;
+    height:25%;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    
+}
+#rotatezoomtable{
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:98%;
+    height:50%;
+}
+#rotatezoomtable tr{
+    height:50%;
+    border:solid;
+    border-color:blue;
+    background-clor:green;
+    margin:auto;
+}
+#rotatezoomtable td{
+    height:100%;
+    borer:solid;
+}
+#rotatezoomtable img{
+    width:100%;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:#008000;
+}
+.button:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>

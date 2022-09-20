@@ -38,6 +38,14 @@ hyperlink = {
         {
             "href": "https://www.southplatte.net",
             "text": "southplatte.net"
+        },
+        {
+            "href": "symbol.html",
+            "text": "symbol.html"
+        },
+        {
+            "href": "iconfeed.html",
+            "text": "iconfeed.html"
         }
     ]
 };
