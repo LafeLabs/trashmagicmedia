@@ -1,4 +1,6 @@
-# [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
+# [www.upcyclerobotics.com](https://www.upcyclerobotics.com)
+
+## [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
 
 ## [http://localhost/](http://localhost/)
 
