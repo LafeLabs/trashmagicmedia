@@ -1,4 +1,7 @@
 {
-    "server": "https://raw.githubusercontent.com/LafeLabs/hypercube/main/",
-    "symbols": []
+    "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/",
+    "symbols": [
+        "iconpage.svg",
+        "shapes.svg"
+    ]
 }
