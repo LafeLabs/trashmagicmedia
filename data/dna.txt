@@ -43,6 +43,7 @@
         "webeditor.html"
     ],
     "data": [
+        "alignimage.txt",
         "arduinocodexyz.txt",
         "coin.txt",
         "controls.txt",
@@ -100,6 +101,7 @@
         "home",
         "hyperlinks",
         "iconprinters",
+        "links",
         "localweb",
         "maps",
         "markets",
