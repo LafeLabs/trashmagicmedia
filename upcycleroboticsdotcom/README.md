@@ -2,7 +2,15 @@
 
 ## [http://localhost/](http://localhost/)
 
-## [web0](https://github.com/LafeLabs/trashmagicmedia/tree/main/web0)
+## [web0/](https://github.com/LafeLabs/trashmagicmedia/tree/main/web0)
+
+## [upcycleroboticsdotcom/](https://github.com/LafeLabs/trashmagicmedia/tree/main/upcycleroboticsdotcom)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/images/businessplan.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/images/products.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/images/qrcode.png)
 
 Self-replicating web page.
 
@@ -19,8 +27,7 @@ Self-replicating web page.
  - [replicator.php](replicator.php)
  - [dnagenerator.php](dnagenerator.php)
  - [data/dna.txt](data/dna.txt)
- - [www.southbroadway.net](https://www.southbroadway.net)
+ - [www.upcyclerobotics.com](https://www.upcyclerobotics.com)
 
-![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southbroadwaydotnet.png)
 
-## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/php/replicator.txt)
+## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/php/replicator.txt)
