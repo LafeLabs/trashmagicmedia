@@ -1,0 +1,12 @@
+
+## [HOME](scrolls/home)
+
+## [geometron printers](scrolls/geometronprinters)
+
+# geometron
+ 
+Geometron is a language which represents geometric actions with symbols which are themselves constructed from those actions.  We use this to make symbols in the Web Browser for editing, as well as to construct arbitrary 2d and 3d graphics on computers, to build fonts, and to control machine motion.  Geometron is the basis of all of the media technology presented here.  
+
+![](https://i.imgur.com/NdlikVn.png)
+
+![](https://i.imgur.com/I0fqXva.png)

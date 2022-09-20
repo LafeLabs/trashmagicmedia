@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+<script>    
+</script>
+</head>
+<body>    
+
+<div id = "margin">
+    <a href = "symbol.html" style = "font-size:3em">
+        <img src = "iconsymbols/home.svg"/>
+    </a>            
+    <a href = "symbolset.html" style = "font-size:3em">
+        <img src = "iconsymbols/chaos.svg"/>
+    </a>
+
+<table id = "toptable">
+    <tr>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>COPY LINK:</td>
+        <td><a id = "copylink"></a></td>
+    </tr>
+    
+    <tr>
+        <td>FROM:</td>
+        <td><input id = "fromfile"/></td>
+    </tr>
+    <tr>
+        <td>TO:</td>
+        <td><input id = "tofile"/></td>
+    </tr>
+
+</table>
+
+    <canvas id= "maincanvas"></canvas>
+    <input id = "rawinput"/>
+    <img id = "mainimage"/>
+</div>
+<div id = "symbolscroll">
+<form id = "uploadform"  action="uploadsymbol.php" method="post" enctype="multipart/form-data">
+                Select symbol file to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
+</div>
+
+<script>
+document.getElementById("tofile").value = "";
+document.getElementById("fromfile").value = "";
+
+hypercubearray = [];
+for(var index = 0;index  < 1024;index++){
+    hypercubearray.push("");
+}
+
+
+symbols = [];
+var httpc4 = new XMLHttpRequest();
+httpc4.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        symbols = JSON.parse(this.responseText);
+        for(var index = symbols.length - 1;index >= 0;index--) {
+            var newp = document.createElement("P");
+            var newimg = document.createElement("IMG");
+            newimg.src = "symbolfeed/" + symbols[index];
+            newimg.classList.add("button");
+            newimg.classList.add("feedimage");
+            document.getElementById("symbolscroll").appendChild(newp);
+            newp.appendChild(newimg);
+            
+            newimg.onclick = function() {
+                var localurl = "symbolfeed" + this.src.split("symbolfeed")[1];
+                loadsymbol(localurl);
+                filename = this.src.split("symbolfeed/")[1];
+                document.getElementById("fromfile").value = filename;
+            }                
+
+        
+            var newlabel = document.createElement("P");
+            newlabel.className = "typelabel";
+            if(symbols[index].substr(-4) == ".png"){
+                newlabel.innerHTML = "PNG";
+                newlabel.style.color = "red";
+                newimg.style.borderColor = "red";
+            }
+            if(symbols[index].substr(-4) == ".svg"){
+                newlabel.innerHTML = "SVG";
+                newlabel.style.color = "blue";
+                newimg.style.borderColor = "blue";
+            }
+            newp.appendChild(newlabel);
+
+            var newdiv = document.createElement("DIV");
+            newdiv.innerHTML = symbols[index];
+            newdiv.className = "filename";
+            newp.appendChild(newdiv);
+            
+            var delimg = document.createElement("IMG");
+            delimg.src = "iconsymbols/delete.svg";
+            delimg.className = "button";
+            newp.appendChild(delimg);
+            newp.style.border = "solid";
+            delimg.onclick = function(){
+                var thisimageurl = this.parentNode.getElementsByTagName("IMG")[0].src;
+                var thisimagename = thisimageurl.split("symbolfeed/")[1];
+                var httpc = new XMLHttpRequest();
+                var url = "deletefile.php";         
+                httpc.open("POST", url, true);
+                httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+                httpc.send("filename=symbolfeed/" + thisimagename);//send text to deletefile.php
+                document.getElementById("symbolscroll").removeChild(this.parentNode);
+                
+            }
+
+        }
+    }
+};
+
+httpc4.open("GET", "dir.php?filename=symbolfeed", true);
+httpc4.send();
+
+
+
+
+function loadsymbol(thisurl){
+    if(thisurl.substr(-4) == ".svg"){
+        imagename = thisurl.split("symbolfeed/")[1];
+        imageurl = "symbolfeed/" + imagename;
+        var httpc2 = new XMLHttpRequest();
+        httpc2.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                svgraw = this.responseText;
+                jsondata = svgraw.split("<json>")[1].split("</json>")[0];
+                currentjson = JSON.parse(jsondata);
+                if(currentjson.shapes != undefined){
+//                    console.log("there are shapes.");
+                    for(var index = 0;index < currentjson.shapes.length;index++){
+                        var localaddress = parseInt(currentjson.shapes[index].split(":")[0],8);
+                        var localglyph = currentjson.shapes[index].split(":")[1];
+                        if(localglyph.length > 0){
+                            hypercubearray[localaddress] = localglyph;
+                        }
+                    }
+                    savecube();
+                }
+                else{
+                    //console.log("no shapes here.")
+                }
+                data = encodeURIComponent(jsondata);
+                var httpc = new XMLHttpRequest();
+                var url = "filesaver.php";        
+                httpc.open("POST", url, true);
+                httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+                httpc.send("data="+data+"&filename=data/currentjson.txt");//send text to filesaver.php
+               // window.location.href = "symbol.html";
+            }
+        };
+        httpc2.open("GET", "fileloader.php?filename=" + imageurl, true);
+        httpc2.send();
+    }
+    if(thisurl.substr(-4) == ".png"){
+        imagename = thisurl.split("symbolfeed/")[1];
+        imageurl = "symbolfeed/" + imagename;
+        document.getElementById("mainimage").src = imageurl;
+    }    
+}
+
+
+
+
+
+var httpccube = new XMLHttpRequest();
+httpccube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercuberaw = JSON.parse(this.responseText);
+        for(var index = 0;index < hypercuberaw.length;index++){
+            var localaddress = [parseInt(hypercuberaw[index].split(":")[0],8)]
+            var localglyph = hypercuberaw[index].split(":")[1];
+            if(localglyph.length > 0){
+                hypercubearray[localaddress] = localglyph;
+            }
+        }
+    }
+};
+httpccube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpccube.send();
+
+function savecube(){
+    hypercube = [];
+    for(var index = 0;index < hypercubearray.length;index++){
+        if(hypercubearray[index].length > 0){
+            hypercube.push("0" + index.toString(8) + ":" + hypercubearray[index]);
+        }    
+    }
+    hypercubestring = JSON.stringify(hypercube,null,"    ");
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(hypercubestring)+"&filename=data/hypercube.txt");//send text to filesaver.php    
+}
+
+
+document.getElementById("rawinput").value = "";
+document.getElementById("mainimage").onload = function() {
+    canvas = document.getElementById("maincanvas");
+    ctx = canvas.getContext("2d");
+    canvas.width = this.width;
+    canvas.height = this.height;
+    img = document.getElementById("mainimage");
+    img.crossOrigin = 'Anonymous';
+  
+    ctx.drawImage(img, 0,0,this.width,this.height);
+    document.getElementById("rawinput").value = canvas.toDataURL();
+//    foo = canvas.toDataURL('image/jpeg', 0.1);
+    
+};
+
+document.getElementById("tofile").onchange = function(){
+    tofile = this.value;
+    copylink = "copy.php?from=symbolfeed/";
+    copylink += document.getElementById("fromfile").value;
+    copylink += "&to=symbolfeed/" + tofile;
+    document.getElementById("copylink").href = copylink;
+    document.getElementById("copylink").innerHTML = copylink;
+    
+}
+
+</script>
+<style>
+#maincanvas{
+    width:10px;
+    height:10px;
+    display:none;
+}
+#mainimage{
+    border:solid;
+    position:absolute;
+    right:0px;
+    top:22px;
+}
+#rawinput{
+    position:absolute;
+    right:0px;
+    top:0px;
+    height:20px;
+    font-size:18px;
+}
+#toptable{
+    position:absolute;
+    left:150px;
+    top:0px;
+}
+#margin{
+    position:absolute;
+    bottom:85%;
+    top:0px;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+a img{
+    max-width:50px;
+}
+#linkdiv{
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    right:50%;
+}
+#filediv{
+    position:absolute;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    left:50%;
+}
+#symbolscroll{
+    position:absolute;
+    bottom:0px;
+    top:15%;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+#symbolscroll img{
+    max-width:25%;
+    display:block;
+    margin:auto;
+}
+p img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+}
+.feedimage{
+    border:solid;
+    border-width:0.5px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+input{
+    width:20em;
+}
+.typelabel{
+    text-align:center;
+    font-size:2em;
+    font-family:courier;
+}
+.filename{
+    text-align:center;
+    font-size:2em;
+}
+</style>
+</body>
+</html>

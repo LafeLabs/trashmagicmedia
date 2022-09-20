@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/geometron.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+    
+</head>
+<body>    
+
+<table id = "shapetable"></table>
+<div id = "displaybox">
+    <img id = "mainimage"/>
+    <canvas id=  "maincanvas"></canvas>
+    <div id = "hammerxy"></div>
+</div>
+<div id = "spellbox">
+    <canvas id = "spellcanvas"></canvas>
+</div>
+
+<div id = "zoomrotatebox">
+    <img src = "iconsymbols/scale.svg" id = "scalebar"/>
+    <img src = "iconsymbols/rotate.svg" id = "rotatebar"/>
+</div>
+
+<table id = "srcinputtable">
+    <tr>
+        <td>Image Url:</td>
+        <td>
+            <input id = "srcinput"/>    
+        </td>
+    </tr>
+</table>
+
+<div id  = "imagefeed">
+    
+</div>
+
+<img id = "modeindicator" src = "iconsymbols/cursor.svg"/>
+<input id = "actioninput"/>
+<input id = "spellinput"/>
+<input id = "addressinput"/>
+
+<div id = "exportbutton" class = "button">EXPORT</div>
+<div id = "importbutton" class = "button">IMPORT</div>
+
+<textarea id = "textio"></textarea>
+
+
+<div id = "linkbox">
+    <a href = "symbol.html">
+        <img src = "iconsymbols/home.svg" style = "width:50px"/>
+    </a>    
+    <a href = "shapestacksymbols.html">
+        <img src = "iconsymbols/hypercube.svg" style = "width:50px"/>
+    </a>    
+    
+</div>
+
+
+<!--
+
+
+<table id = "controltable"></table>
+-->
+
+<script>
+
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,250,250);
+//GVM(canvas2d,width,height)
+
+var spellGVM = new GVM(document.getElementById("spellcanvas"),innerWidth - 100,300);
+
+spellGVM.x0 = 10;
+spellGVM.y0 = 40;
+spellGVM.unit = 36;
+
+gvmArray = [];
+
+
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        spellGVM.importbytecode(hypercube);
+        mainGVM.importbytecode(hypercube);
+        loadstack();
+        mainGVM.address = 0220;
+        document.getElementById("addressinput").value = "0" + mainGVM.address.toString(8);
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        spellGVM.spellGlyph(mainGVM.glyph);
+        document.getElementById("spellinput").value = mainGVM.hypercube[mainGVM.address];
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "#c0c0c0";        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpc.send();
+
+
+//only loading this into memory so we can save it as we go with savejson in addition to savecube
+currentjson = {};
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        currentjson = JSON.parse(this.responseText);
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/currentjson.txt", true);
+httpc.send();    
+
+
+function loadstack(){
+    gvmArray = [];
+    document.getElementById("shapetable").innerHTML = "";
+    var localaddress = 0220;
+    for(var row = 0;row < 4;row++){
+        var newtr = document.createElement("TR");
+        document.getElementById("shapetable").appendChild(newtr);
+        for(var col = 0;col < 4;col++){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newcan = document.createElement("CANVAS");
+            newtd.appendChild(newcan);
+            var newGVM = new GVM(newcan,60,60);
+            gvmArray.push(newGVM);
+            newGVM.hypercube = mainGVM.hypercube;
+            newGVM.x0 = 1;
+            newGVM.y0 = 59;
+            newGVM.unit = 58;
+            newGVM.action(0300);
+            newGVM.action(localaddress + 01000);
+            var datadiv = document.createElement("div");
+            datadiv.innerHTML = "0" + localaddress.toString(8);
+            datadiv.className = "data";
+            newtd.appendChild(datadiv);
+            var datadiv2 = document.createElement("div");
+            datadiv2.innerHTML = "0" + (8*row + col).toString(8);
+            datadiv2.className = "data";
+            newtd.appendChild(datadiv2);
+            newcan.className = "button";
+            newtd.onclick = function(){
+                var thisaddress = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "rgba(0,0,0,0)";
+                mainGVM.address = thisaddress;
+                document.getElementById("addressinput").value = "0" + mainGVM.address.toString(8);            
+                gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "#c0c0c0";        
+                mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+                mainGVM.drawGlyph(mainGVM.glyph);
+                mainGVM.clean();
+        
+            
+            }
+            localaddress++;
+        }
+    }    
+}
+
+mode = 0;
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode != 015){
+        if(mode == 0){
+            localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+        
+        mainGVM.cursorAction(localCursorAction); 
+   }
+   
+    this.value = "";
+    mainGVM.clean();
+    mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    spellGVM.spellGlyph(mainGVM.glyph);
+    gvmArray[mainGVM.address - 0220].drawGlyph("0300," + mainGVM.hypercube[mainGVM.address + 01000]);
+    savejson();
+    savecube();
+    
+}
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "rgba(0,0,0,0)";
+        mainGVM.address--;
+        if(mainGVM.address < 0220){
+            mainGVM.address = 0237;
+        }
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "#c0c0c0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.clean();
+        document.getElementById("addressinput").value = "0" + mainGVM.address.toString(8);
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "rgba(0,0,0,0)";        
+        mainGVM.address++;
+        if(mainGVM.address > 0237){
+            mainGVM.address = 0220;
+        }
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "#c0c0c0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.clean();
+        document.getElementById("addressinput").value = "0" + mainGVM.address.toString(8);
+    }
+    this.value = "";
+    mainGVM.clean();
+    mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    spellGVM.spellGlyph(mainGVM.glyph);
+    gvmArray[mainGVM.address - 0220].drawGlyph("0300," + mainGVM.hypercube[mainGVM.address + 01000]);
+    
+    savecube();
+    savejson();
+}
+
+function modeswitch(){
+    mode++;
+    mode = mode%3;
+    if(mode == 0){
+        document.getElementById("modeindicator").src = "iconsymbols/cursor.svg";
+        gvmArray[feedindex].importbytecode(symbolkeyboard);
+    }
+    if(mode == 1){
+        document.getElementById("modeindicator").src = "iconsymbols/abcfont.svg";
+    }
+    if(mode == 2){
+        document.getElementById("modeindicator").src = "iconsymbols/abcstack.svg";
+    }
+}
+
+
+
+document.getElementById("exportbutton").onclick  = function(){
+
+
+    var jsonarray = [];
+    for(var index = 0220;index < 0240;index++) {
+        if(mainGVM.hypercube[index].length > 1) {
+            var bytecodestring = "0" + index.toString(8) + ":" + mainGVM.hypercube[index];
+            jsonarray.push(bytecodestring); 
+        }
+    }
+    for(var index = 01220;index < 01240;index++) {
+        if(mainGVM.hypercube[index].length > 1) {
+                var bytecodestring = "0" + index.toString(8) + ":" + mainGVM.hypercube[index];
+                jsonarray.push(bytecodestring); 
+        }
+    }
+    
+
+    document.getElementById("textio").value = JSON.stringify(jsonarray,null,"    ");
+    
+//    savecube();
+
+}
+
+
+document.getElementById("textio").value = "";
+document.getElementById("importbutton").onclick = function(){
+    if(document.getElementById("textio").value.length > 0){
+        inputbytecode = JSON.parse(document.getElementById("textio").value);
+        spellGVM.importbytecode(inputbytecode);
+        mainGVM.importbytecode(inputbytecode);
+        loadstack();
+        mainGVM.address = 0220;
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        spellGVM.spellGlyph(mainGVM.glyph);
+        document.getElementById("spellinput").value = mainGVM.hypercube[mainGVM.address];
+        gvmArray[mainGVM.address - 0220].canvas2d.style.backgroundColor = "#c0c0c0";            
+    }
+    savecube();
+    savejson();
+}
+
+function savecube(){
+    hypercube = mainGVM.bytecode(0,01777);
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(hypercube)+"&filename=data/hypercube.txt");//send text to filesaver.php    
+}
+
+
+
+function savejson(){
+    currentjson.shapes = [];
+    for(var index = 0220;index < 0240;index++){
+        if(mainGVM.hypercube[index].length > 0){
+            currentjson.shapes.push("0" + index.toString(8) + ":" + mainGVM.hypercube[index]);
+        }
+    }
+    for(var index = 01220;index < 01240;index++){
+        if(mainGVM.hypercube[index].length > 0){
+            currentjson.shapes.push("0" + index.toString(8) + ":" + mainGVM.hypercube[index]);
+        }
+    }    
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(currentjson,null,"    ")) + "&filename=data/currentjson.txt");//send text to filesaver.php    
+}
+
+document.getElementById("srcinput").value = "";
+document.getElementById("srcinput").onchange = function(){
+    document.getElementById("mainimage").src = this.value;
+    document.getElementById("actioninput").select();
+}
+
+document.getElementById("spellinput").onchange =  function(){
+    mainGVM.hypercube[mainGVM.address] = this.value;
+    mainGVM.glyph = this.value + "0207,";
+    mainGVM.drawGlyph(mainGVM.glyph);
+    mainGVM.clean();
+    spellGVM.spellGlyph(mainGVM.glyph);
+    gvmArray[mainGVM.address - 0220].drawGlyph("0300," + mainGVM.hypercube[mainGVM.address + 01000]);
+    
+}
+
+
+mc = new Hammer(document.getElementById("hammerxy"));
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc.on("panleft panright panup pandown tap press rotate", function(ev) {
+    document.getElementById("mainimage").style.left = (ev.deltaX).toString() +  "px";
+    document.getElementById("mainimage").style.top = (ev.deltaY).toString() +  "px";
+
+});    
+
+
+
+mczoom = new Hammer(document.getElementById("scalebar"));
+mczoom.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mczoom.on("panleft panright panup pandown tap press", function(ev) {
+
+document.getElementById("mainimage").style.width = (2*ev.deltaX).toString() +  "px";
+
+});    
+
+
+
+mcrotate = new Hammer(document.getElementById("rotatebar"));
+mcrotate.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mcrotate.on("panleft panright panup pandown tap press", function(ev) {
+
+    document.getElementById("mainimage").style.transform = "rotate(" + (ev.deltaX*Math.PI/5).toString() + "deg)";
+
+
+});    
+
+//load image feed
+
+imagefeed = [];
+var httpc99 = new XMLHttpRequest();
+httpc99.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        imagefeed = JSON.parse(this.responseText);
+        for(var index =0;index< imagefeed.length;index++){
+            var newimg = document.createElement("IMG");
+            newimg.src = imagefeed[index];
+            newimg.classList.add("button");
+            document.getElementById("imagefeed").appendChild(newimg);
+            newimg.onclick = function() {
+                document.getElementById("mainimage").src = this.src;
+                document.getElementById("srcinput").value = this.src;
+            }
+        }
+    }
+};
+httpc99.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpc99.send();
+
+
+document.getElementById("actioninput").select();
+</script>
+<style>
+#displaybox{
+    position:absolute;
+    left:300px;
+    top:15px;
+    border:solid;
+}
+#mainimage{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    z-index:-2;
+}
+#hammerxy{
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    z-index:2;
+}
+#zoomrotatebox{
+    position:absolute;
+    left:600px;
+    top:40px;
+    height:100px;
+    width:250px;
+    background-color:#dfdfdf;
+}
+#scalebar{
+    position:absolute;
+    width:100%;
+    height:50%;
+    left:0px;
+    top:0px;
+}
+#rotatebar{
+    position:absolute;
+    width:100%;
+    height:50%;
+    left:0px;
+    bottom:0px;
+}
+#imagefeed{
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:200px;
+    height:200px;
+    overflow:scroll;
+}
+#imagefeed img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+#shapetable{
+    position:absolute;
+    left:10px;
+    top:10px;
+}
+#spellbox{
+    position:absolute;
+    top:300px;
+    left:10px;
+    border:solid;
+}
+input{
+    font-family:courier;
+    font-size:12px;
+}
+#modeindicator{
+    position:absolute;
+    left:5px;
+    bottom:5px;
+    width:30px;
+}
+#srcinputtable{
+    position:absolute;
+    left:600px;
+    top:0px;
+}
+#srcinput{
+    width:200px;
+}
+#actioninput{
+    position:absolute;
+    left:50px;
+    width:10px;
+    bottom:1px;
+}
+#spellinput{
+    position:absolute;
+    left:70px;
+    width:500px;
+    bottom:1px;
+}
+#addressinput{
+    position:absolute;
+    left:50px;
+    width:4em;
+    bottom:20px;
+}
+#textio{
+    position:absolute;
+    bottom:50px;
+    left:10px;
+}
+#exportbutton{
+    position:absolute;
+    left:20px;
+    bottom:150px;
+    border:solid;
+}
+#importbutton{
+    position:absolute;
+    left:20px;
+    bottom:125px;
+    border:solid;
+}
+
+.data{
+    display:none;
+}
+.button{
+    cursor:pointer;
+    background-color:white;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+#linkbox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:50%;
+    height:150px;
+    border:solid;
+}
+</style>
+</body>
+</html>

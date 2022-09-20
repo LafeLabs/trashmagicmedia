@@ -1,5 +1,6 @@
 # The Geometron Hypercube
 
+ - [../](../)
  - [symbol factory](symbol.html)
  - [symbol feed](symbolfeed.html)
  - [scroll editor](scrolleditor.php?scroll=scrolls/home)
@@ -7,7 +8,7 @@
  - [page of icons](iconpage.html)
  - [editor.php](editor.php)
  - [replicator.php](replicator.php)
- - [global replicator.txt link]()
+ - [global replicator.txt link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/southplattedotnet/php/replicator.txt)
  - [program Arduino robot](arduino.html)
  - [icon card](card.html)
  - [icon card editor](cardmaker.html)
