@@ -32,20 +32,20 @@ hyperlink = {
             "text": "FORK"
         },
         {
-            "href": "https://www.trashrobot.org",
-            "text": "www.trashrobot.org"
-        },
-        {
-            "href": "https://www.southplatte.net",
-            "text": "southplatte.net"
-        },
-        {
             "href": "symbol.html",
             "text": "symbol.html"
         },
         {
             "href": "iconfeed.html",
             "text": "iconfeed.html"
+        },
+        {
+            "href": "https://www.trashrobot.org",
+            "text": "www.trashrobot.org"
+        },
+        {
+            "href": "https://www.southplatte.net",
+            "text": "southplatte.net"
         }
     ]
 };

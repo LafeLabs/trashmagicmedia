@@ -1,0 +1,6 @@
+{
+    "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/",
+    "scrolls": [
+        "home"
+    ]
+}

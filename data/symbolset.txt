@@ -2,6 +2,7 @@
     "server": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/",
     "symbols": [
         "iconpage.svg",
-        "shapes.svg"
+        "shapes.svg",
+        "symbol1663724088.svg"
     ]
 }

@@ -14,6 +14,7 @@ $dna = json_decode($dnaraw);
 mkdir("data");
 mkdir("php");
 mkdir("jscode");
+mkdir("scrolls");
 
 
 
@@ -40,6 +41,11 @@ foreach($dna->php as $value){
 
 }
 
+foreach($dna->scrolls as $value){
+        
+    copy($baseurl."scrolls/".$value,"scrolls/".$value);
+
+}
 
 
 foreach($dna->javascript as $value){

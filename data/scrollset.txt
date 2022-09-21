@@ -16,6 +16,7 @@
         "home",
         "hyperlinks",
         "iconprinters",
+        "links",
         "localweb",
         "maps",
         "markets",
