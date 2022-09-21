@@ -27,5 +27,7 @@
         "scrollsetreplicator.txt",
         "text2php.txt"
     ],
-    "scrolls": []
+    "scrolls": [
+        "home"
+    ]
 }
