@@ -46,6 +46,10 @@ hyperlink = {
         {
             "href": "https://www.southplatte.net",
             "text": "southplatte.net"
+        },
+        {
+            "href": "editor.php",
+            "text": "editor.php"
         }
     ]
 };
