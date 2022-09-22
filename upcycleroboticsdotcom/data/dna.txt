@@ -28,6 +28,10 @@
         "text2php.txt"
     ],
     "scrolls": [
-        "home"
+        "about",
+        "creators",
+        "home",
+        "products",
+        "sponsorship"
     ]
 }
