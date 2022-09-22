@@ -15,6 +15,8 @@ Upcycle Robotics is founded and owned by Dr. Lafe Spietz, who has over 25 years 
 
 ## [upcycleroboticsdotcom/](https://github.com/LafeLabs/trashmagicmedia/tree/main/upcycleroboticsdotcom)
 
+## [JOBS act pdf link](https://www.govinfo.gov/content/pkg/BILLS-117hr4346enr/pdf/BILLS-117hr4346enr.pdf)
+
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/images/businessplan.png)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/upcycleroboticsdotcom/images/products.png)
