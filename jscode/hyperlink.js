@@ -1,8 +1,12 @@
 hyperlink = {
-    "url": "http://10.0.0.27/",
+    "url": "http://192.168.0.180/",
     "src": "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/trashmagic.jpg",
     "alt": "cardboard sign with trash magic logo",
     "list": [
+        {
+            "href": "user.php",
+            "text": "user.php"
+        },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia",
             "text": "BUILD TRASH MAGIC MEDIA SERVER"
@@ -46,6 +50,10 @@ hyperlink = {
         {
             "href": "https://www.southplatte.net",
             "text": "southplatte.net"
+        },
+        {
+            "href": "https://www.southbroadway.net",
+            "text": "southbroadway.net"
         },
         {
             "href": "editor.php",

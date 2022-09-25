@@ -14,9 +14,13 @@
         "iconfeed.html",
         "iconpage.html",
         "iconset.html",
+        "imagefeed.html",
         "images.html",
         "index.html",
         "keyboard.html",
+        "mapbook.html",
+        "mapdelete.html",
+        "mapset.html",
         "media.html",
         "mediadestroyer.html",
         "picrust.html",
@@ -54,7 +58,8 @@
         "robotfeed.txt",
         "scrollset.txt",
         "serverurl.txt",
-        "symbolset.txt"
+        "symbolset.txt",
+        "textfeed.txt"
     ],
     "javascript": [
         "geometron.js",
@@ -72,6 +77,9 @@
         "editor.txt",
         "fileloader.txt",
         "filesaver.txt",
+        "mapeditor.txt",
+        "mapsetreplicator.txt",
+        "mathuser.txt",
         "mkdir.txt",
         "pngsave.txt",
         "rdelete.txt",
@@ -83,7 +91,8 @@
         "text2php.txt",
         "uploadimage.txt",
         "uploadmedia.txt",
-        "uploadsymbol.txt"
+        "uploadsymbol.txt",
+        "user.txt"
     ],
     "scrolls": [
         "arduinoshield",
@@ -122,6 +131,9 @@
         "trashmagic",
         "ubuntu",
         "videos"
+    ],
+    "maps": [
+        "home"
     ],
     "web": [
         "alignicons.js",

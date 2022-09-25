@@ -20,6 +20,7 @@ mkdir("scrolls");
 mkdir("jscode");
 mkdir("hyperlink");
 mkdir("iconsymbols");
+mkdir("maps");
 mkdir("symbolfeed");
 
 copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt","hyperlink/replicator.php");
@@ -59,6 +60,13 @@ foreach($dna->web as $value){
     copy($baseurl."web/".$value,"web/".$value);
     
 }
+    
+foreach($dna->maps as $value){
+        
+    copy($baseurl."maps/".$value,"maps/".$value);
+
+}
+    
     
 foreach($dna->javascript as $value){
     copy($baseurl."jscode/".$value,"jscode/".$value);
