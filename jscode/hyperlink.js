@@ -4,6 +4,10 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
+            "href": "arduino.html",
+            "text": "arduino.html"
+        },
+        {
             "href": "user.php",
             "text": "user.php"
         },
