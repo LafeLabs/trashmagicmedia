@@ -4,24 +4,12 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
-            "href": "arduino.html",
-            "text": "arduino.html"
-        },
-        {
             "href": "user.php",
-            "text": "user.php"
+            "text": "TRASH MAGIC SCROLLS AND MAPS"
         },
         {
             "href": "https://github.com/LafeLabs/trashmagicmedia",
             "text": "BUILD TRASH MAGIC MEDIA SERVER"
-        },
-        {
-            "href": "scroll.html",
-            "text": "TRASH MAGIC SCROLLS"
-        },
-        {
-            "href": "hyperlink/",
-            "text": "HYPERLINK PAGE BUILDER"
         },
         {
             "href": "web/",
@@ -44,6 +32,10 @@ hyperlink = {
             "text": "symbol.html"
         },
         {
+            "href": "hyperlink/",
+            "text": "HYPERLINK PAGE BUILDER"
+        },
+        {
             "href": "iconfeed.html",
             "text": "iconfeed.html"
         },
@@ -62,6 +54,10 @@ hyperlink = {
         {
             "href": "editor.php",
             "text": "editor.php"
+        },
+        {
+            "href": "arduino.html",
+            "text": "arduino.html"
         }
     ]
 };
