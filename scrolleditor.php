@@ -27,7 +27,7 @@ double line break for paragraph break, *italic*, **bold**, [link](index.html). D
     
 <textarea id = "maintextarea"></textarea>
 <div id = "linksbox">
-    <a id = "userlink" href = "scroll.php?scroll=scrolls/home">READ SCROLL</a>
+    <a id = "userlink" href = "user.php?scroll=scrolls/home">READ SCROLL</a>
     <a href = "scrolldelete.html">DELETE SCROLLS</a>
     <a href = "scrollset.html">SCROLL SET REPLICATOR</a>
     <span id = "menubutton" class = "button">SHOW SCROLL LIST</span>
@@ -113,7 +113,7 @@ if(document.getElementById("scrolldiv").innerHTML.length > 0 && document.getElem
                 scroll = this.responseText;
                 document.getElementById("maintextarea").value = scroll;  
                 document.getElementById("currentfilename").innerHTML = currentfile;        
-                document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+                document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
             }
         };
         httpc.open("GET", "fileloader.php?filename=" + currentfile, true);
@@ -128,7 +128,7 @@ if(document.getElementById("scrolldiv").innerHTML.length > 0 && document.getElem
                 document.getElementById("maintextarea").value = scroll;  
                 currentfile = "scrolls/remote";
                 document.getElementById("currentfilename").innerHTML = currentfile;
-                document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+                document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
             }
         };
         httpc.open("GET", "fileloader.php?filename=" + currentfile, true);
@@ -147,7 +147,7 @@ if(document.getElementById("scrolldiv").innerHTML.length > 0 && document.getElem
             scroll = this.responseText;
             document.getElementById("maintextarea").value = scroll;  
             document.getElementById("currentfilename").innerHTML = currentfile;
-            document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+            document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
             
             data = encodeURIComponent(scroll);
             var httpc = new XMLHttpRequest();
@@ -211,7 +211,7 @@ var httpc7 = new XMLHttpRequest();
                     currentfile = this.innerHTML;
                     //console.log(scrollname);
                     document.getElementById("currentfilename").innerHTML = currentfile;       
-                    document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+                    document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
                     var httpc = new XMLHttpRequest();
                     httpc.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -250,7 +250,7 @@ if (this.readyState == 4 && this.status == 200) {
             document.getElementById("newscrollinput").value = "";
             currentfile = this.innerHTML;
             document.getElementById("currentfilename").innerHTML = currentfile;
-            document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;            
+            document.getElementById("userlink").href = "user.php?scroll=" + currentfile;            
             var httpc = new XMLHttpRequest();
             httpc.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -275,7 +275,7 @@ document.getElementById("newscrollinput").onchange = function(){
     name = this.value;
     currentfile = "scrolls/" + this.value;
     document.getElementById("currentfilename").innerHTML = currentfile; 
-    document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+    document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
     var httpc = new XMLHttpRequest();
     httpc.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -307,7 +307,7 @@ document.getElementById("newscrollinput").onchange = function(){
         currentfile = this.innerHTML;
         //console.log(scrollname);
         document.getElementById("currentfilename").innerHTML = currentfile;       
-        document.getElementById("userlink").href = "scroll.php?scroll=" + currentfile;
+        document.getElementById("userlink").href = "user.php?scroll=" + currentfile;
         var httpc = new XMLHttpRequest();
         httpc.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {

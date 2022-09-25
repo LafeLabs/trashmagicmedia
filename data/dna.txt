@@ -133,6 +133,7 @@
         "videos"
     ],
     "maps": [
+        "foo",
         "home"
     ],
     "web": [
