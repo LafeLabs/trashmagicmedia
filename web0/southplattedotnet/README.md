@@ -1,5 +1,7 @@
 # [TRASH MAGIC MEDIA NETWORK](https://github.com/LafeLabs/trashmagicmedia)
 
+# [southplattedotnet]
+
 ## [http://localhost/](http://localhost/)
 
 ## [web0](https://github.com/LafeLabs/trashmagicmedia/tree/main/web0)
@@ -50,3 +52,4 @@ Self-replicating web page.
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hypercube/iconsymbols/rulers.svg)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/qrcode.png)
