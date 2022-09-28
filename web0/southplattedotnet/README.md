@@ -20,7 +20,33 @@ Self-replicating web page.
  - [dnagenerator.php](dnagenerator.php)
  - [data/dna.txt](data/dna.txt)
  - [www.southbroadway.net](https://www.southbroadway.net)
+ - [www.southplatte.net](www.southplatte.net)
+ - [www.ponoko.com](https://www.ponoko.com)
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southbroadwaydotnet.png)
 
 ## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/php/replicator.txt)
+
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/square-factory.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/cube1.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/cube2.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/cube-factory.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/servers.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/tools.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/triangles.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/trashrobotdotorgflag.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/southplattedotnet/images/trashrobotflag.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/goldentriangle/images/golden-triangle-array.svg)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hypercube/iconsymbols/rulers.svg)
+
