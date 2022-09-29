@@ -12,16 +12,24 @@ hyperlink = {
             "text": "buy geometron magic book from Lulu press"
         },
         {
-            "href": "https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks",
-            "text": "other trash magic books"
+            "href": "https://www.lulu.com/shop/lafe-spietz/geometron/paperback/product-qqk98g.html",
+            "text": "buy first book of geometron from Lulu press"
+        },
+        {
+            "href": "https://www.trashrobot.org/bookofgeometron/",
+            "text": "read first book of Geometron online"
         },
         {
             "href": "https://www.trashrobot.org/geometronmagic/",
             "text": "geometron magic read online"
         },
         {
-            "href": "https://www.trashrobot.org/bookofgeometronfirst/",
-            "text": "first book of geometron read online"
+            "href": "https://github.com/LafeLabs/bookofgeometron/raw/main/main-bigpaper.pdf",
+            "text": "first book of geometron pdf"
+        },
+        {
+            "href": "https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks",
+            "text": "other trash magic books"
         },
         {
             "href": "https://www.tiktok.com/@trash_robot",
