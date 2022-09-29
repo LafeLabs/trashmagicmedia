@@ -176,7 +176,7 @@ Use the Editor built into the system to create a new file called replicator.php 
 
 # Trash Robot Books
  
- - [First Book of Geometron](https://www.trashrobot.org/bookofgeometronfirst/)
+ - [First Book of Geometron](https://www.trashrobot.org/bookofgeometron/)
  - [Geometron Magic](https://www.trashrobot.org/geometronmagic/)
  - [Trash Magic Books](https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks)
 
