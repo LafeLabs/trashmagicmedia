@@ -107,19 +107,19 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
 </p>
 
 
-<pre>
-    sudo apt update
-    sudo apt install apache2 -y
-    sudo apt install php libapache2-mod-php -y
-    cd /var/www/html
-    sudo rm index.html
-    sudo apt install curl
-    sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
-    cd ..
-    sudo chmod -R 0777 *
-    cd html
-    php replicator.php
-    sudo chmod -R 0777 *
+<pre style = "overflow-x:scroll">
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+cd /var/www/html
+sudo rm index.html
+sudo apt install curl
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
+cd ..
+sudo chmod -R 0777 *
+cd html
+php replicator.php
+sudo chmod -R 0777 *
 </pre>
 
 <p>After this is installed, open a browser on the new Ubuntu server and click on <a href = "http://localhost">http://localhost</a> to be on the server.  Click the little pink asterisk in the upper left corner to edit the link list.  Change the main IP address at the top of the link list to be http://[the ip address of your Ubuntu laptop].  You can find the ip address by hovering over the wifi symbol.  This will update the QR code so that people on the same wifi can scan onto that server and see the main Trash Magic Media page.  This will link to a "media" page which will show whatever media you put in the media directory.   Find this on the Ubuntu machine by looking in /var/www/html/media.  Create folders inside that media directory for collections of media.  Ask for media from your community and copy/paste onto the server with a thumb drive. Share.  You can use this for podcasts, songs, articles, books, games, classified ads, personals, tutorials, videos, images, just taking files from people, dropping them in folders, and sharing them via wifi and QR code.  
