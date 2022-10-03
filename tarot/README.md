@@ -1,5 +1,9 @@
+## [home](index.html)
+
 # [Trash Magic Tarot](https://github.com/LafeLabs/trashmagicmedia/tree/main/tarot)
 
+
+## [README on localhost](http://localhost/tarot/user.php?scroll=README.md)
 
 ### [Aleph](https://en.wikipedia.org/wiki/Aleph)
 
