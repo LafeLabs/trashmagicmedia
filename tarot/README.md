@@ -2,6 +2,7 @@
 
 # [Trash Magic Tarot](https://github.com/LafeLabs/trashmagicmedia/tree/main/tarot)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/qrcode-quantumartdotorg.png)
 
 ## [README on localhost](http://localhost/tarot/user.php?scroll=README.md)
 
