@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+</head>
+<body>
+<div id = "header">
+    <a href = "symbol.html">home</a>
+<!--
+    <a href = "keyboard.html">
+        <img src = "iconsymbols/keyboardicon.svg"/> 
+    </a>        
+    <a href = "hypercube.html">
+        <img src = "iconsymbols/hypercube.svg"/> 
+    </a>        
+    <a href = "font.html">
+        <img src = "iconsymbols/fonteditor.svg"/> 
+    </a>        
+    -->
+    
+</div>
+
+<div id = "controlbox">
+    <table id = "controltable">
+    </table>
+</div>
+<div id = "hypercubebox">
+    <table id = "hypercubetable">
+    </table>
+</div>
+
+<script>
+
+buttonindex = 0;
+buttons = [];
+
+row = 0;
+column = 0;
+gvmarray = [];
+
+controlbuttonsize = 40;
+function loadcontroltable(){
+    document.getElementById("controltable").innerHTML = "";
+    for(var index = 0;index < controls.length;index++){
+        var newtr = document.createElement("TR");
+        document.getElementById("controltable").appendChild(newtr);
+        rowarray = controls[index].split(",");
+        for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
+            if(rowarray[rowindex].length > 0){
+                var newtd = document.createElement("TD");
+                newtr.appendChild(newtd);
+                var newcan = document.createElement("CANVAS");
+                newtd.appendChild(newcan);
+                
+                var datadiv = document.createElement("div");
+                datadiv.innerHTML = index.toString();
+                datadiv.className = "data";
+                newtd.appendChild(datadiv);
+                var datadiv2 = document.createElement("div");
+                datadiv2.innerHTML = rowindex.toString();
+                datadiv2.className = "data";
+                newtd.appendChild(datadiv2);
+                
+                var newGVM = new GVM(newcan,controlbuttonsize,controlbuttonsize);
+                gvmarray.push(newGVM);
+                newGVM.unit = controlbuttonsize - 2;
+                newGVM.x0 = 1;
+                newGVM.y0 = controlbuttonsize-1;
+                newGVM.importbytecode(hypercube);
+                newGVM.action(0300);
+                if(parseInt(rowarray[rowindex],8) >= 040 && parseInt(rowarray[rowindex],8) < 0177){
+                    newGVM.drawGlyph("0300,0336,0336,0330,0333,0337,");
+                }
+                newGVM.action(parseInt(rowarray[rowindex],8)+01000);
+                buttons.push(newtd);
+                newtd.onclick = function(){
+                    row = parseInt(this.getElementsByClassName("data")[0].innerHTML);
+                    column = parseInt(this.getElementsByClassName("data")[1].innerHTML);            
+                    buttonindex = 8*row + column;
+                    for(var index = 0;index < buttons.length;index++){
+                        buttons[index].style.border = "none";
+                    }
+                    this.style.border = "solid";
+                }
+                newcan.classList.add("button");
+            }
+        }
+    }
+}
+
+
+function loadhypercube(){
+    for(var localrow = 0;localrow < 040;localrow++){
+        var newtr = document.createElement("TR");
+        document.getElementById("hypercubetable").appendChild(newtr);
+        for(var localcolumn = 0;localcolumn < 010;localcolumn++){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newcan = document.createElement("CANVAS");
+            newtd.appendChild(newcan);
+            var datadiv = document.createElement("div");
+            datadiv.innerHTML = "0" + (010*localrow + localcolumn).toString(8);
+            datadiv.className = "data";
+            newtd.appendChild(datadiv);
+            var newGVM = new GVM(newcan,controlbuttonsize,controlbuttonsize);
+            newGVM.unit = controlbuttonsize - 2;
+            newGVM.x0 = 1;
+            newGVM.y0 = controlbuttonsize-1;
+            newGVM.importbytecode(hypercube);
+            newGVM.action(0300);
+            newGVM.action(01000 + 010*localrow + localcolumn);    
+            newtd.classList.add("button");
+            newtd.onclick = function(){
+                var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                replacecontrol(row,column,localaction);
+                gvmarray[buttonindex].drawGlyph("0300,");
+                gvmarray[buttonindex].action(01000 + localaction);
+                savecontrols();
+            }
+        }    
+    }
+}
+
+hypercube = [];
+
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        loadhypercube();
+    
+        var httpccontrols = new XMLHttpRequest();
+        httpccontrols.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                controls = JSON.parse(this.responseText);
+                loadcontroltable();
+            }
+        };
+        httpccontrols.open("GET", "fileloader.php?filename=data/controls.txt", true);
+        httpccontrols.send();
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+function savecontrols(){
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(controls,null,"    "))+"&filename=data/controls.txt");//send text to filesaver.php
+}
+
+
+function replacecontrol(localrow,localcolumn,action){
+    //all three inputs are integers
+    
+    var rowarray = controls[localrow].split(",");
+    rowarray[localcolumn] = "0" + action.toString(8);//replace element
+    newrow = "";
+    for(var index = 0;index < rowarray.length;index++){
+        if(rowarray[index].length > 0){
+            newrow += rowarray[index] + ",";
+        }
+    }
+    controls[localrow] = newrow;
+}
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+#header{
+    height:40px;
+    position:absolute;
+    left:0px;
+    width:100%;
+    top:0px;
+}
+#header img{
+    width:36px;
+}
+#controlbox{
+    position:absolute;
+    top:40px;
+    left:0px;
+    width:50%;
+    overflow:scroll;
+    bottom:100px;
+    border-bottom:solid;
+    border-top:solid;
+    border-color:red;
+}
+#hypercubebox{
+    position:absolute;
+    top:40px;
+    right:0px;
+    width:50%;
+    overflow:scroll;
+    bottom:100px;
+    border-bottom:solid;
+    border-top:solid;
+    border-color:blue;
+}
+
+.uploadimage{
+    max-width:50%;
+}
+.deletebutton{
+    width:40px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#spellbox input{
+    font-size:12px;
+    font-family:courier;
+}
+#actioninput{
+    width:10px;
+}
+#spellinput{
+    width:40em;
+}
+#modeindicator{
+    width:25px;
+}
+@media only screen and (orientation: portrait) {
+    #header{
+        height:80px;
+        position:absolute;
+        left:0px;
+        width:100%;
+        top:0px;
+    }
+    #header img{
+        width:70px;
+    }
+    #mainbox{
+        position:absolute;
+        right:0px;
+        top:80px;
+        bottom:50%;
+        width:100%;
+        border-bottom:solid;
+        border-color:blue;
+        overflow:scroll;
+    }
+    #controlbox{
+        position:absolute;
+        top:50%;
+        left:0px;
+        width:100%;
+        overflow:scroll;
+        bottom:25%;
+        border-bottom:solid;
+        border-color:red;
+    }
+    #spellbox{
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        width:100%;
+        top:75%;
+        border:solid;
+        border-color:green;
+        overflow:scroll;
+    }
+}
+</style>
+</body>
+</html>

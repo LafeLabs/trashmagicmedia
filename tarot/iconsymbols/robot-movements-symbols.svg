@@ -1,0 +1,41 @@
+<svg width="600" height="100" viewbox = "0 0 600 100"  xmlns="http://www.w3.org/2000/svg">
+<!--<json>{
+  "glyph": "0321,01401,0321,01402,0321,01403,",
+  "x0": 25,
+  "y0": 95,
+  "unit": 90,
+  "width": 600,
+  "height": 100,
+  "style": {
+    "color0": "black",
+    "fill0": "black",
+    "line0": 1,
+    "color1": "black",
+    "fill1": "black",
+    "line1": 5,
+    "color2": "red",
+    "fill2": "red",
+    "line2": 1,
+    "color3": "#FF7900",
+    "fill3": "#FF7900",
+    "line3": 1,
+    "color4": "yellow",
+    "fill4": "yellow",
+    "line4": 1,
+    "color5": "green",
+    "fill5": "green",
+    "line5": 1,
+    "color6": "blue",
+    "fill6": "blue",
+    "line6": 1,
+    "color7": "purple",
+    "fill7": "purple",
+    "line7": 1
+  }
+}</json>-->	<path d = "M115 95 L115 5 L25 5 L25 95 L115 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />    <line x1="70" y1="50" x2="25" y2="50" style="stroke:#ff0000;stroke-width:1" />
+	<path d = "M25 50 L35 56 L35 44 L25 50 Z" stroke = "#ff0000" stroke-width = "1" fill = "#ff0000" /> M70,50 C25,50 <circle cx="70" cy = "50" r = "1" stroke = "#ff0000" stroke-width = "1" fill = "#ff0000" />
+	<path d = "M205 95 L205 5 L115 5 L115 95 L205 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" /><circle cx="160" cy = "50" r = "1" stroke = "#008000" stroke-width = "1" fill = "#008000" />
+    <line x1="160" y1="50" x2="199" y2="28" style="stroke:#008000;stroke-width:1" />
+	<path d = "M199 28 L188 28 L193 37 L199 28 Z" stroke = "#008000" stroke-width = "1" fill = "#008000" /> M160,50 C199,28 	<path d = "M295 95 L295 5 L205 5 L205 95 L295 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" /><circle cx="250" cy = "50" r = "1" stroke = "#008000" stroke-width = "1" fill = "#008000" />
+    <line x1="250" y1="50" x2="211" y2="73" style="stroke:#008000;stroke-width:1" />
+	<path d = "M211 73 L222 73 L217 63 L211 73 Z" stroke = "#008000" stroke-width = "1" fill = "#008000" /> M250,50 C211,73 </svg>

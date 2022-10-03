@@ -40,10 +40,6 @@ hyperlink = {
             "text": "iconfeed.html"
         },
         {
-            "href": "iconpage.html",
-            "text": "iconpage.html"
-        },
-        {
             "href": "https://www.trashrobot.org",
             "text": "www.trashrobot.org"
         },

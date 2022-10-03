@@ -1,0 +1,72 @@
+## [HOME](scrolls/home)
+
+# SlimeZistor
+
+
+ - [Voltage Vs. Time Curve](scrolls/voltagevstime)
+ - [schematic](scrolls/slimezistorschematic)
+ - slimezistor as synth and noise music tool, tool for digital music recording and playback
+ - slimezistor as device physics platform: tunneling, nanodevices, microfabrication, crystal growth tool
+ - slimezistor to study water and soil, environmental monitoring, lab on chip, soil probe
+ - Integrated slimezistor/geometron printer as write/read system, completing the Memex system
+ - [Adafruit's clone of the Arduino UNO, the METRO for $17](https://www.adafruit.com/product/2488)
+ - [Original UNO from Sparkfun for $17](https://www.sparkfun.com/products/11021)
+ - [link to buy slider potentiometer on digikey for $2](https://www.digikey.com/en/products/detail/bourns-inc/PTA6043-2015CPB103/3781230)
+ - [Original UNO from Digikey for $27](https://www.digikey.com/en/products/detail/arduino/A000066/2784006)
+ - [0.1 uF capacitors from Digikey](https://www.digikey.com/en/products/detail/tdk-corporation/FG18X7R1H104KNT06/5802879)
+ - [1 uF capacitors from Digikey](https://www.digikey.com/en/products/detail/kemet/C410C105K3R5TA/12701220)
+ - [10 uF capacitors from Digikey](https://www.digikey.com/en/products/detail/tdk-corporation/FG14X7R1A106KRT06/5802746)
+ - [100 uF capacitors from Digikey](https://www.digikey.com/en/products/detail/tdk-corporation/FK22X5R0J107M/1008928)
+ - [alligator clips from digikey](https://www.digikey.com/en/products/detail/keystone-electronics/5040/316339)
+ - [hook up wire from digikey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4735/13280273)
+ - [audio cable out to 1/8 plug](https://www.digikey.com/en/products/detail/tensility-international-corp/10-00344/2350247) 
+ - [Adafruit jumper kit from digikey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1955/6827088)
+ - [digikey shopping cart for one Slimezistor](https://www.digikey.com/short/j7mbvt05)
+ - [resistor kit from sparkfun for about 9 bucks](https://www.sparkfun.com/products/10969)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/slimezistor.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-setup.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-square-front.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-square-back.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-slimezistor-arduino.png)
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/trashmemex/images/photo-sliders.png)
+ 
+```
+
+int outpin = 12;
+int x0 = 0;//value of analog pin A0
+int x1 = 0;//value of analog pin A1
+int x2 = 0;//value of analog pin A2
+int vmin = 0;//upper voltage trigger to toggle digital LOW
+int vmax = 0;//lower voltage trigger to toggle digital HIGH
+
+void setup() {
+  
+    pinMode(outpin,OUTPUT);
+    digitalWrite(outpin,LOW);
+    Serial.begin(115200);
+    
+}
+
+void loop() {
+  x0 = analogRead(A0);
+  x1 = analogRead(A1);
+  x2 = analogRead(A2);
+  vmax = max(x1,x2);
+  vmin = min(x1,x2);
+  if(x0 > vmax){
+    digitalWrite(outpin,LOW);  
+  }
+  if(x0 < vmin){
+    digitalWrite(outpin,HIGH);
+  }
+  Serial.println(x0);
+   
+}
+
+``` 
