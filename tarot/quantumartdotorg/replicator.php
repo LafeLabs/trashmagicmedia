@@ -16,7 +16,7 @@ mkdir("php");
 mkdir("jscode");
 
 
-copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/tarot/quantumartdotorg/replicator.txt","replicator.php");
+copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/quantumartdotorg/php/replicator.txt","replicator.php");
 
 foreach($dna->html as $value){
     
