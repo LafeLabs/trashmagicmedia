@@ -5,469 +5,423 @@
 
     <!--
 
-        EVERYTHING IS PHYSICAL
-        EVERYTHING IS FRACTAL
-        EVERYTHING IS RECURSIVE
-        NO MONEY 
-        MO MINING 
-        NO PROPERTY
-        LOOK AT THE INSECTS
-        LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY
+Scroll Reader with links to editor
 
     -->
-
-    <title>TRASH MAGIC TAROT</title>
-    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
 
     <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-    <script src = "jscode/geometron.js"></script>
-    <script src = "jscode/tarot.js"></script>
-</head>
-<body>
-<img id = "reloadbutton" src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACRUlEQVRoge1ZMU7DQBAcU8EbEAUUFFRUNHkFIJQfmHQ8IFV4AhU9HSWKkFLlBWnpsPKASCkiIRRElsIHduxb+zbe+ER0u7KSKPLMzu367rwHBAsWLFiwnTPCPggnIByDsO87HHcjXIBwD8IEhBmo5DPz3z0IF77DLRvhFoTEEnidJyDEvsMHCNdmhCmSi8j7BIRrXyIGjULPeW4QBm2LeHIM8tOUT2K+u/iTNxGFsnoBIQbh0HLvofnvxa+Y6nIagtARYHXMPZxvqczSB5vLRb8Bbr9CzBYmADM7WfxBAfuBwZ42D3ydKGaINs9EmYPLTE+NA/bFbqhH8Mdje2bmUpAz5uoyI3UJwlHpaiakw3BdSYG+Kx68Oh83EpHF8G7B/paCPK8DOG88lioi0hi+GI6RFOhjg2w8Kol4reBYScHuhCJmSiLOHbimUtBFHWS0Sj/3tKZHwptjIZ9KQE8ds/GmJKInqICFFHzqAHquJMT2NmmtAON3UoJVBfirkohHQTZ+/UNKMmKAvlREpBzL2mzYl4FnKZFtkXxXEjHeIBu/Ll4krxgg93cPO+4NzLbmINviXDJcXXBbKCHp3ALe1qYx0STgpsc2tvHK7SJ+OlZ/sco93BOFyEtkllddhcwQ+lixa/qWel070XzIAqjrabm3g/jl1l9vi/HPqKZBZymqlkRkYgZR1QZmA99rvWWaiflrYku9MAgem9jrgmIUOi3FbJV+p0WVgHDrO/yy/fuDHs7So7djpMdv/+joLViwYMGCOdoPChPRTfl1TSoAAAAASUVORK5CYII=">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
+
+<!--       un comment to use math
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+    -->
+
     
-<div id = "slidebox"></div>    
+</head>
+<body>    
 
-<div class = "iconbox" id = "iconbox1">
-    <canvas id = "icon1canvas"></canvas>
-</div>
-<div class = "iconbox" id = "iconbox2">
-    <canvas id = "icon2canvas"></canvas>
-</div>
+<div id = "scrollscroll"></div>
 
-<div class = "hebrewbox" id = "hebrewbox1">
-    <canvas id = "hebrewcanvas1"></canvas>
-</div>
-<div class = "hebrewbox" id = "hebrewbox2">
-    <canvas id = "hebrewcanvas2"></canvas>
+<div id  = "scrollsbox">
+    <input id = "scrollinput"/>
 </div>
 
-<div class = "hebrewnamebox" id = "hebrewnamebox1"></div>
-<div class = "hebrewnamebox" id = "hebrewnamebox2"></div>
 
-
-<a id = "icon1namelink" href = ""></a>
-<a id = "icon1hebrewlink" href = ""></a>
-
-<input id = "jsonio"/>
-
-<a id = "icon2namelink" href = ""></a>
-<a id = "icon2hebrewlink" href = ""></a>
-
-
-<div class = "leftnamebox" id = "leftnamebox1"></div>
-<div class = "leftnamebox" id = "leftnamebox2"></div>
-<div class = "rightnamebox" id = "rightnamebox1"></div>
-<div class = "rightnamebox" id = "rightnamebox2"></div>
-
-<img class = "cardimg" id = "cardimg1"/>
-<img class = "cardimg" id = "cardimg2"/>
-
-
-<a id = "printerlink" href= "iconpage.html">ICON PAGE</a>
+<a id ="scrolleditorlink" href = "scrolleditor.php">EDIT</a>
+<span class = "button" id = "modebutton">MODE</span>
+<div class = "button" id = "hidebutton">SHOW SCROLL MENU</div>
+    
 
 <script>
 
-
-spread = [0,0];
-
-//spread[0] = Math.round(Math.random()*78);
-//spread[1] = Math.round(Math.random()*78);
-spread[0] = Math.round(Math.random()*21);
-spread[1] = Math.round(Math.random()*21);
-
-if(spread[1] == spread[0]){
-    spread[1] = Math.round(Math.random()*21);
-}
-
-icon1 = deck[spread[0]];
-icon2 = deck[spread[1]];
-
-document.getElementById("leftnamebox1").innerHTML = leftname[spread[0]];
-document.getElementById("rightnamebox1").innerHTML = rightname[spread[0]];
-
-document.getElementById("leftnamebox2").innerHTML = leftname[spread[1]];
-document.getElementById("rightnamebox2").innerHTML = rightname[spread[1]];
-
-if(spread[0] < 22){
-    document.getElementById("icon1namelink").innerHTML = rightname[spread[0]];    
-    document.getElementById("icon1namelink").href = cardlinks[spread[0]];    
-    document.getElementById("icon1hebrewlink").innerHTML = hebrewname[spread[0]];    
-    document.getElementById("icon1hebrewlink").href = hebrewlinks[spread[0]];        
-    
-}
-
-if(spread[1] < 22){
-    document.getElementById("icon2namelink").innerHTML = rightname[spread[1]];    
-    document.getElementById("icon2namelink").href = cardlinks[spread[1]];    
-    document.getElementById("icon2hebrewlink").innerHTML = hebrewname[spread[1]];    
-    document.getElementById("icon2hebrewlink").href = hebrewlinks[spread[1]];            
-    
-}
-document.getElementById("cardimg2").src = cardimages[spread[1]];
-document.getElementById("cardimg1").src = cardimages[spread[0]];
-
-document.getElementById("jsonio").value = JSON.stringify(spread);
-
-document.getElementById("jsonio").onchange = function(){
-    spread = JSON.parse(this.value);
-    document.getElementById("cardimg2").src = cardimages[spread[1]];
-    document.getElementById("cardimg1").src = cardimages[spread[0]];
-
-    icon1 = deck[spread[0]];
-    icon2 = deck[spread[1]];
-    icon1GVM.drawGlyph(icon1);
-    icon2GVM.drawGlyph(icon2);
-    document.getElementById("leftnamebox1").innerHTML = leftname[spread[0]];
-    document.getElementById("rightnamebox1").innerHTML = rightname[spread[0]];
-
-    document.getElementById("leftnamebox2").innerHTML = leftname[spread[1]];
-    document.getElementById("rightnamebox2").innerHTML = rightname[spread[1]];
-    
-
-
-    if(spread[0] < 22){
-        hebrewGVM1.drawGlyph(hebrewicons[spread[0]]);
-        document.getElementById("hebrewnamebox1").innerHTML = hebrewname[spread[0]];
-    }
-    else{
-        hebrewGVM1.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox1").innerHTML = "";
-    }
-    if(spread[1] < 22){
-        hebrewGVM2.drawGlyph(hebrewicons[spread[1]]);
-        document.getElementById("hebrewnamebox2").innerHTML = hebrewname[spread[1]];        
-    }
-    else{
-        hebrewGVM2.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox2").innerHTML = "";
-    }
-
-
-    if(spread[0] < 22){
-        document.getElementById("icon1namelink").innerHTML = rightname[spread[0]];    
-        document.getElementById("icon1namelink").href = cardlinks[spread[0]];    
-        document.getElementById("icon1hebrewlink").innerHTML = hebrewname[spread[0]];    
-        document.getElementById("icon1hebrewlink").href = hebrewlinks[spread[0]];        
-    }
-    else{
-        document.getElementById("icon1namelink").innerHTML = leftname[spread[0]] + " OF " + rightname[spread[0]];    
-        document.getElementById("icon1namelink").href = cardlinks[spread[0]];    
-        document.getElementById("icon1hebrewlink").innerHTML = "";    
-        document.getElementById("icon1hebrewlink").href = "";        
-    }
-    
-    if(spread[1] < 22){
-        document.getElementById("icon2namelink").innerHTML = rightname[spread[1]];    
-        document.getElementById("icon2namelink").href = cardlinks[spread[1]];    
-        document.getElementById("icon2hebrewlink").innerHTML = hebrewname[spread[1]];    
-        document.getElementById("icon2hebrewlink").href = hebrewlinks[spread[1]];            
-    }
-    else{
-        document.getElementById("icon2namelink").innerHTML = leftname[spread[1]] + " OF " + rightname[spread[1]];    
-        document.getElementById("icon2namelink").href = cardlinks[spread[1]];    
-        document.getElementById("icon2hebrewlink").innerHTML = "";    
-        document.getElementById("icon2hebrewlink").href = "";        
-    }
-    theta= 0;
-    redraw();
-
-
-}
-
-icon1canvas = document.getElementById("icon1canvas");
-icon2canvas = document.getElementById("icon2canvas");
-hebrewcanvas1 = document.getElementById("hebrewcanvas1");
-hebrewcanvas2 = document.getElementById("hebrewcanvas2");
-
 if(innerWidth > innerHeight){
-    square = innerHeight;
-    margin = Math.round(0.5*(innerWidth - square));
-    document.getElementById("iconbox1").style.left = margin.toString() + "px";
-    document.getElementById("iconbox2").style.left = margin.toString() + "px";    
+
+
+    document.getElementById("scrollscroll").style.width = (innerHeight - 35).toString() + "px";
+    
+    document.getElementById("scrollscroll").style.left = (0.5*(innerWidth - innerHeight) - 25).toString() + "px";    
+    
+    document.getElementById("scrollsbox").style.width = (0.5*(innerHeight - innerWidth)).toString() + "px";
+    
+    document.getElementById("scrollsbox").style.left = (innerHeight + 0.5*(innerWidth - innerHeight)).toString() + "px";    
+    document.getElementById("hidebutton").style.display = "none";
+    
+    
 }
 else{
-    square = innerWidth;
-    margin = Math.round(0.5*(innerHeight - square));
-    document.getElementById("iconbox1").style.top = margin.toString() + "px";
-    document.getElementById("iconbox2").style.top = margin.toString() + "px";    
+
+
 }
 
-document.getElementById("reloadbutton").style.width = (Math.round(0.3*margin)).toString() + "px";
+mode = "dark";
+//mode = "light";
 
-pixelcube = [
-    "0500:0406,0406,0403,0407,0405,0404,0407,0336,0336,0336,0336,0330,0330,0347,0200,0337,0337,0337,0337,0702,0711,",
-    "0501:0406,0406,0402,0407,0405,0404,0407,0336,0336,0336,0336,0331,0331,0347,0337,0337,0337,0337,0703,0711,",
-    "0502:0406,0406,0401,0407,0405,0404,0407,0336,0336,0336,0336,0332,0332,0347,0337,0337,0337,0337,0701,0711,",
-    "0503:0406,0406,0400,0407,0405,0404,0407,0336,0336,0336,0336,0333,0333,0347,0337,0337,0337,0337,0700,0711,",
-    "0504:0406,0406,0403,0407,0407,0336,0336,0336,0336,0330,0330,0337,0337,0337,0337,0702,",
-    "0505:0406,0406,0402,0407,0407,0336,0336,0336,0336,0331,0331,0337,0337,0337,0337,0703,",
-    "0506:0406,0406,0401,0407,0407,0336,0336,0336,0336,0332,0332,0337,0337,0337,0337,0701,",
-    "0507:0406,0406,0400,0407,0407,0336,0336,0336,0336,0333,0333,0337,0337,0337,0337,0700,"
-    ];
 
-var icon1GVM = new GVM(icon1canvas,square,square);
-var icon2GVM = new GVM(icon2canvas,square,square);
-var hebrewGVM1 = new GVM(hebrewcanvas1,0.5*margin,0.5*margin);
-var hebrewGVM2 = new GVM(hebrewcanvas2,0.5*margin,0.5*margin);
+scroll = "";
+rawhtml = "";
+var converter = new showdown.Converter();
+// for more on options see here:
+// https://github.com/showdownjs/showdown/wiki/Showdown-Options
+converter.setOption('literalMidWordUnderscores', 'true');
+converter.setOption('tables', 'true')
+    
+filename = "scrolls/home";
 
-icon1GVM.importbytecode(pixelcube);
-icon2GVM.importbytecode(pixelcube);
-hebrewGVM1.importbytecode(pixelcube);
-hebrewGVM2.importbytecode(pixelcube);
+//loadscroll("scrolls/home");
 
-icon1GVM.style.color0 = "#00ff00";
-icon2GVM.style.color0 = "#00ff00";
-hebrewGVM1.style.color0 = "#00ff00";
-hebrewGVM2.style.color0 = "#00ff00";
+loadscroll("scrolls/home");
 
-icon1GVM.style.fill0 = "#00ff00";
-icon2GVM.style.fill0 = "#00ff00";
-hebrewGVM1.style.fill0 = "#00ff00";
-hebrewGVM2.style.fill0 = "#00ff00";
 
-icon1GVM.style.line0 = 2;
-icon2GVM.style.line0 = 2;
-hebrewGVM1.style.line0 = 2;
-hebrewGVM2.style.line0 = 2;
+localfile = true;
 
-icon1GVM.drawGlyph(icon1);
-icon2GVM.drawGlyph(icon2);
 
-    if(spread[0] < 22){
-        hebrewGVM1.drawGlyph(hebrewicons[spread[0]]);
-        document.getElementById("hebrewnamebox1").innerHTML = hebrewname[spread[0]];
+function loadscroll(scrollname){
+    filename = scrollname;
+    if(filename.substring(0,8) == "scrolls/" || filename == "README.md"){
+        localfile = true;
     }
     else{
-        hebrewGVM1.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox1").innerHTML = "";
+        localfile = false;
     }
-    if(spread[1] < 22){
-        hebrewGVM2.drawGlyph(hebrewicons[spread[1]]);
-        document.getElementById("hebrewnamebox2").innerHTML = hebrewname[spread[1]];        
-    }
-    else{
-        hebrewGVM2.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox2").innerHTML = "";
-    }
+    document.getElementById("scrolleditorlink").href = "scrolleditor.php?scroll=" + filename;
 
 
-theta = 0;
 
-mc = new Hammer(document.getElementById("slidebox"));
-mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-mc.on("panleft panright panup pandown tap press", function(ev) {
 
-//    theta = Math.PI/4 +(ev.deltaX/200);
-    theta = (ev.deltaX/200);
-    redraw();
-
-});
-
-redraw();
-
-function redraw(){
-    alpha = Math.cos(theta)*Math.cos(theta);
-    beta = Math.sin(theta)*Math.sin(theta);
-    document.getElementById("icon1canvas").style.opacity = (alpha).toString();
-    document.getElementById("icon2canvas").style.opacity = (beta).toString();
-    
-    document.getElementById("cardimg1").style.opacity = (alpha).toString();
-    document.getElementById("cardimg2").style.opacity = (beta).toString();    
-    
-    document.getElementById("leftnamebox1").style.opacity = (alpha).toString();
-    document.getElementById("leftnamebox2").style.opacity = (beta).toString();
-
-    document.getElementById("rightnamebox1").style.opacity = (alpha).toString();
-    document.getElementById("rightnamebox2").style.opacity = (beta).toString();    
-    
-    document.getElementById("hebrewcanvas1").style.opacity = (alpha).toString();
-    document.getElementById("hebrewcanvas2").style.opacity = (beta).toString();        
-    document.getElementById("hebrewnamebox1").style.opacity = (alpha).toString();
-    document.getElementById("hebrewnamebox2").style.opacity = (beta).toString();            
-    
+    document.getElementById("scrollscroll").innerHTML = "";
+    document.getElementById("scrollscroll").style.display = "block";
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scroll = this.responseText;
+            rawhtml = converter.makeHtml(scroll);
+            document.getElementById("scrollscroll").innerHTML = rawhtml;
+            convertscrollinks();
+            //			MathJax.Hub.Typeset();//tell Mathjax to update the math
+    //			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=" + scrollname, true);
+    httpc666.send();
+    //MathJax.Hub.Typeset();//tell Mathjax to update the math
 }
 
-document.getElementById("reloadbutton").onclick = function(){
-    // location.reload(); 
 
-
-    //spread[0] = Math.round(Math.random()*78);
-    //spread[1] = Math.round(Math.random()*78);
-    spread[0] = Math.round(Math.random()*77);
-    spread[1] = Math.round(Math.random()*77);
-    document.getElementById("jsonio").value = JSON.stringify(spread);
-    
-    if(spread[1] == spread[0]){
-        spread[1] = Math.round(Math.random()*77);
+function convertscrollinks(){
+    links = document.getElementById("scrollscroll").getElementsByTagName("A");
+    for(var index = 0;index < links.length;index++){
+        if(links[index].href.includes("scrolls/") && !links[index].href.includes(".php")){
+            //console.log(links[index].href);
+            var newspan = document.createElement("SPAN");
+            newspan.innerHTML = links[index].innerHTML;
+            var dataspan = document.createElement("SPAN");
+            dataspan.className = "data";
+            dataspan.innerHTML  = "scrolls/" + links[index].href.split("scrolls/")[1];
+            newspan.appendChild(dataspan);
+            newspan.className = "scrolllink";
+            links[index].parentNode.insertBefore(newspan,links[index]);
+            links[index].style.display = "none";
+            
+            newspan.onclick = function(){
+                var localscroll = this.getElementsByClassName("data")[0].innerHTML;
+                loadscroll(localscroll);
+            }
+        }
+        if(links[index].href.includes("scroll(") && !links[index].href.includes(".php")){
+            //link format scroll(any url)
+            //console.log(links[index].href);
+            var newspan = document.createElement("SPAN");
+            newspan.innerHTML = links[index].innerHTML;
+            var dataspan = document.createElement("SPAN");
+            dataspan.className = "data";
+            dataspan.innerHTML  = links[index].href.split("scroll(")[1].split(")")[0];
+            newspan.appendChild(dataspan);
+            newspan.className = "scrolllink";
+            links[index].parentNode.insertBefore(newspan,links[index]);
+            links[index].style.display = "none";
+            
+            newspan.onclick = function(){
+                var localscroll = this.getElementsByClassName("data")[0].innerHTML;
+                loadscroll(localscroll);
+            }
+        }
+        
     }
-    
-    icon1 = deck[spread[0]];
-    icon2 = deck[spread[1]];
-
-
-    document.getElementById("cardimg2").src = cardimages[spread[1]];
-    document.getElementById("cardimg1").src = cardimages[spread[0]];
-
-    icon1GVM.drawGlyph(icon1);
-    icon2GVM.drawGlyph(icon2);
-    document.getElementById("leftnamebox1").innerHTML = leftname[spread[0]];
-    document.getElementById("rightnamebox1").innerHTML = rightname[spread[0]];
-
-    document.getElementById("leftnamebox2").innerHTML = leftname[spread[1]];
-    document.getElementById("rightnamebox2").innerHTML = rightname[spread[1]];
-    
-
-
-    if(spread[0] < 22){
-        hebrewGVM1.drawGlyph(hebrewicons[spread[0]]);
-        document.getElementById("hebrewnamebox1").innerHTML = hebrewname[spread[0]];
-    }
-    else{
-        hebrewGVM1.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox1").innerHTML = "";
-    }
-    if(spread[1] < 22){
-        hebrewGVM2.drawGlyph(hebrewicons[spread[1]]);
-        document.getElementById("hebrewnamebox2").innerHTML = hebrewname[spread[1]];        
-    }
-    else{
-        hebrewGVM2.drawGlyph("0300,");
-        document.getElementById("hebrewnamebox2").innerHTML = "";
-    }
-
-
-    if(spread[0] < 22){
-        document.getElementById("icon1namelink").innerHTML = rightname[spread[0]];    
-        document.getElementById("icon1namelink").href = cardlinks[spread[0]];    
-        document.getElementById("icon1hebrewlink").innerHTML = hebrewname[spread[0]];    
-        document.getElementById("icon1hebrewlink").href = hebrewlinks[spread[0]];        
-    }
-    else{
-        document.getElementById("icon1namelink").innerHTML = leftname[spread[0]] + " OF " + rightname[spread[0]];    
-        document.getElementById("icon1namelink").href = cardlinks[spread[0]];    
-        document.getElementById("icon1hebrewlink").innerHTML = "";    
-        document.getElementById("icon1hebrewlink").href = "";        
-    }
-    
-    if(spread[1] < 22){
-        document.getElementById("icon2namelink").innerHTML = rightname[spread[1]];    
-        document.getElementById("icon2namelink").href = cardlinks[spread[1]];    
-        document.getElementById("icon2hebrewlink").innerHTML = hebrewname[spread[1]];    
-        document.getElementById("icon2hebrewlink").href = hebrewlinks[spread[1]];            
-    }
-    else{
-        document.getElementById("icon2namelink").innerHTML = leftname[spread[1]] + " OF " + rightname[spread[1]];    
-        document.getElementById("icon2namelink").href = cardlinks[spread[1]];    
-        document.getElementById("icon2hebrewlink").innerHTML = "";    
-        document.getElementById("icon2hebrewlink").href = "";        
-    }
-    theta= 0;
-    redraw();
 }
 
+document.getElementById("modebutton").onclick = function(){
+    modeswitch();
+}
+
+
+modeswitch();
+modeswitch();
+
+function modeswitch(){
+    if(mode == "dark"){
+        mode = "light";
+        document.body.style.backgroundColor = "white";
+        document.getElementById("scrollscroll").style.backgroundColor = "#f0f0f0";
+        document.getElementById("scrollscroll").style.color = "black";
+
+        document.getElementById("scrollinput").style.color = "black";
+        document.getElementById("scrollinput").style.backgroundColor = "white";       
+        document.getElementById("scrollsbox").style.backgroundColor = "white";
+        document.getElementById("scrollsbox").style.color = "black";        
+    }
+    else{
+        mode = "dark";
+        document.body.style.backgroundColor = "#404040";
+        document.getElementById("scrollscroll").style.backgroundColor = "black";
+        document.getElementById("scrollscroll").style.color = "#00ff00";    
+        document.getElementById("scrollinput").style.color = "#303030";
+        document.getElementById("scrollinput").style.backgroundColor = "black";              
+  
+        document.getElementById("scrollsbox").style.backgroundColor = "#303030";
+        document.getElementById("scrollsbox").style.color = "#00ff00";  
+        
+        document.getElementById("hidebutton").style.color = "#ff2cb4";
+
+    }
+}
+
+
+
+scrolls = [];
+var httpc9 = new XMLHttpRequest();
+httpc9.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        scrolls = JSON.parse(this.responseText);
+        var newscrollbutton = document.createElement("P");
+        newscrollbutton.className = "boxlink";
+        newscrollbutton.innerHTML = "README.md";
+        document.getElementById("scrollsbox").appendChild(newscrollbutton);
+        newscrollbutton.onclick = function(){
+            currentFile = this.innerHTML;
+                loadscroll(currentFile);
+        }           
+        for(var index = 0;index < scrolls.length;index++) {
+            var newscrollbutton = document.createElement("P");
+            newscrollbutton.className = "boxlink";
+            newscrollbutton.innerHTML = "scrolls/" + scrolls[index];
+            document.getElementById("scrollsbox").appendChild(newscrollbutton);
+            newscrollbutton.onclick = function(){
+                currentFile = this.innerHTML;
+                loadscroll(currentFile);
+            }
+        }
+    };
+}
+
+httpc9.open("GET", "dir.php?filename=scrolls", true);
+httpc9.send();
+
+
+
+
+document.getElementById("scrollinput").value = "";
+
+document.getElementById("scrollinput").onchange = function(){
+    loadscroll(this.value);
+    this.value = "";
+}
+
+
+
+
+
+
+hideportraitlist = true;
+
+document.getElementById("hidebutton").onclick = function(){
+    hideportraitlist = !hideportraitlist;
+    if(hideportraitlist){
+        document.getElementById("scrollsbox").style.display = "none";
+        document.getElementById("hidebutton").innerHTML = "SHOW SCROLL MENU";
+    }
+    else{
+        document.getElementById("scrollsbox").style.display = "block";
+            document.getElementById("hidebutton").innerHTML = "HIDE SCROLL MENU";    
+    }
+
+}
 </script>
 <style>
-body{
-    background-color:black;
-    color:#00ff00;
-    overflow:hidden;
-    font-family:courier;
-    font-size:3em;
-}
-.iconbox{
-    position:absolute;
-    z-index:-1;
-}
-#printerlink{
-    left:50%;
-    bottom:20px;
-    font-size:20px;
-}
-#slidebox{
-    position:absolute;
-    left:0px;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    z-index:0;
-}
-#reloadbutton{
-    position:absolute;
-    left:0px;
-    top:0px;
-    z-index:4;
-    cursor:pointer;
-    border-color:#00ff00;
-    border:solid;
-}
-#reloadbutton:hover{
-    background-color:#00ff0080;
-}
 a{
     color:#ff2cb4;
+}
+.editlinks{
+/*    display:none;*/
+}
+pre{
+  overflow:scroll;
+}
+body{
+    overflow:hidden;
+    background-color:black
+}
+input{
+    display:block;
+    margin:auto;
+    width:90%;
     font-family:courier;
-    font-size:16px;
-    z-index:3;
-    position:absolute;
+    font-size:1.2em;
+    background-color:white;
+    color:black;
+    border-color:#ff2cb4;
+    border-width:8px;
 }
-#icon1namelink{
-    top:0px;
-    right:62%;
+.boxlink{
+    padding-left:1em;
+    cursor:pointer;
+    color:#ff2cb4;
 }
-#icon2namelink{
-    top:0px;
-    left:62%;
-}
-#icon1hebrewlink{
-    top:20px;
-    right:62%;
-}
-#icon2hebrewlink{
-    top:20px;
-    left:62%;
+.boxlink:hover{
+    background-color:#808080;
 }
 
-#jsonio{
+.scrolllink{
+    color:#ff2cb4;
+    cursor:pointer;
+}
+.scrolllink:hover{
+    background-color:#ff2cb490;
+}
+
+#scrollscroll{
+    text-align:justify;
+    padding-left:1em;
+    padding-right:1em;
     position:absolute;
-    top:0px;
-    left:40%;
-    width:20%;
-    border:solid;
-    border-color:#00ff00;
+    overflow:scroll;
     background-color:black;
     color:#00ff00;
-    font-family:courier;
-    font-size:24px;
+    font-size:2em;
 }
-.leftnamebox{
+#scrollscroll a{
+    color:#ff2cb4;
+}
+#modebutton{
+    color:#ff2cb4;
+    border:solid;
+    border-color:#ff2cb4;
+
+}
+#scrollscroll img{
+    max-width:80%;
+    display:block;
+    margin:auto;
+    background-color:#808080;
+}
+#mainmap{
     position:absolute;
     left:0px;
-    bottom:0px;
-}
-.rightnamebox{
-    position:absolute;
-    right:0px;
-    bottom:0px;
-}
-.hebrewbox{
-    position:absolute;
-    right:0px;
-    top:30px;
-}
-.hebrewnamebox{
-    position:absolute;
-    right:0px;
     top:0px;
-    font-size:24px;
+    overflow:hidden;
 }
-.cardimg{
+#mainmap a{
+    font-family:Helvetica;
+    color:#ff2cb4;
+}
+
+.data{
+    display:none;
+}
+h1,h2,h3,h4{
+    text-align:center;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+#scrollsbox{
     position:absolute;
-    right:0px;
-    bottom:3em;
+    background-color:#808080;
+    color:black;
+    overflow:scroll;
+}
+
+
+@media only screen and (orientation: landscape) {
+    
+    #scrollsbox{
+        right:0px;
+        top:0px;
+        bottom:0px;
+    }
+    #scrollscroll{
+        top:0px;
+        bottom:0px;
+    }   
+    #landscapelinks{
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
+    #portraitlinks{
+        display:none;
+    }
+    #hidebutton{
+        display:none;
+    }
+
+}
+
+@media only screen and (orientation: portrait) {
+    .button{
+        font-size:2em;
+    }
+    #scrollsbox{
+        height:30%;
+        right:0px;
+        left:0px;
+        bottom:0px;
+        display:none;
+    }
+    #scrollscroll{
+        top:70px;
+        left:10px;
+        right:10px;
+        bottom:10px;
+    }   
+    #landscapelinks{
+        display:none;
+    }
+    #portraitlinks{
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
+    table img{
+        max-width:60px;
+    }
+    #hidebutton{
+        position:absolute;
+        bottom:0px;
+        right:0px;
+    }
+    #scrolleditorlink{
+        font-size:2em;
+    }
 }
 </style>
 </body>

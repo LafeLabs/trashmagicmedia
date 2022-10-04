@@ -4,6 +4,7 @@
         "alignimage.html",
         "arduino.html",
         "controls.html",
+        "convert.html",
         "dumbscroll.html",
         "font.html",
         "fork.html",

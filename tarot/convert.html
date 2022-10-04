@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+
+    <title>TRASH MAGIC TAROT</title>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+    <script src = "jscode/geometron.js"></script>
+    <script src = "jscode/tarot.js"></script>
+</head>
+<body>
+<textarea id = "textio"></textarea>
+
+<script>
+
+textout = "";
+
+for(var index = 0;index < 22;index++){
+    textout += "[![](";
+    textout += cardimages[index]; 
+    textout += ")](";
+    textout += cardlinks[index];
+    textout += "\n\n";
+}
+
+document.getElementById("textio").value = textout;
+
+</script>
+<style>
+#textio{
+    width:40em;
+    height:40em;
+    font-family:courier;
+}
+</style>
+</body>
+</html>

@@ -1,3 +1,5 @@
+## [home scroll](scrolls/home)
+
 ## [home](index.html)
 
 # [Trash Magic Tarot](https://github.com/LafeLabs/trashmagicmedia/tree/main/tarot)
@@ -9,6 +11,10 @@
 ### [Aleph](https://en.wikipedia.org/wiki/Aleph)
 
  ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-aleph.svg)
+
+### Air
+
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-air.svg)
 
 ### [Bet](https://en.wikipedia.org/wiki/Bet_(letter))
 
