@@ -1,8 +1,13 @@
 # [Trash Magic Tarot](https://github.com/LafeLabs/trashmagicmedia/tree/main/tarot)
 
+## [index.html](index.html)
+
+Self-replicating quantum trash magic tarot.  Reload page to create a draw.  Print icons at 150% size, cut out and paste to cards.  Cards are 3"x4.5", divided into 6 1.5" squares on one side and with a pentagram on the other.  Slide sideways on touchscreen or with mouse drag to see the quantum superposition of the two cards.  
+
+Draw a quantum superposition pair and make a quantum duality card. 
+
 ### [www.quantumart.org](https://www.quantumart.org)
 
-### [tarot.html](tarot.html)
 
 [![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/RWS_Tarot_00_Fool.jpg/137px-RWS_Tarot_00_Fool.jpg)](https://en.wikipedia.org/wiki/The_Fool_(Tarot_card))
 
@@ -340,11 +345,7 @@
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-king-pentacles.svg)
 
+
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/qrcode-quantumartdotorg.png)
 
- - [home scroll](scrolls/home)
- - [home](index.html)
- - [tarot.html](tarot.html)
- - [editor.php](editor.php)
- - [www.quantumart.org](https://www.quantumart.org)
 

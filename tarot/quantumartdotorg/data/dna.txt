@@ -1,0 +1,30 @@
+{
+    "html": [
+        "README.md",
+        "index.html",
+        "scroll.html",
+        "tarot.html"
+    ],
+    "data": [
+        "dna.txt",
+        "hypercube.txt"
+    ],
+    "javascript": [
+        "geometron.js",
+        "tarot.js"
+    ],
+    "php": [
+        "copy.txt",
+        "deletefile.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "scrolleditor.txt",
+        "text2php.txt"
+    ]
+}
