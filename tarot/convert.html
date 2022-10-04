@@ -38,8 +38,27 @@ for(var index = 0;index < 22;index++){
     textout += cardimages[index]; 
     textout += ")](";
     textout += cardlinks[index];
-    textout += "\n\n";
+    textout += ")\n\n";
 }
+
+suits = ["wands","cups","swords","pentacles"];
+textout = "";
+
+for(var suitindex = 0;suitindex < suits.length;suitindex++){
+    textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-ace-" + suits[suitindex] + ".svg)\n\n";
+    for(var numberindex = 2;numberindex <= 10;numberindex++){
+        textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-" + numberindex.toString() + "-" + suits[suitindex] + ".svg)\n\n";
+    }
+    textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-page-" + suits[suitindex] + ".svg)\n\n";
+    textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-knight-" + suits[suitindex] + ".svg)\n\n";
+    textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-queen-" + suits[suitindex] + ".svg)\n\n";
+    textout += "![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/iconpage-king-" + suits[suitindex] + ".svg)\n\n";    
+    
+}
+
+
+
+
 
 document.getElementById("textio").value = textout;
 
