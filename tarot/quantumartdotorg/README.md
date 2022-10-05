@@ -348,4 +348,6 @@ Draw a quantum superposition pair and make a quantum duality card.
 
 ![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/qrcode-quantumartdotorg.png)
 
+![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/tarot/images/triangles.svg)
+
 
