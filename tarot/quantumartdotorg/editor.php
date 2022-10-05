@@ -28,7 +28,6 @@ EGO DEATH:
 <a href = "index.html">index.html</a>
 <a href = "dnagenerator.php">dnagenerator.php</a>
 <a href = "text2php.php">text2php.php</a>
-<a href = "user.php">user.php</a>
 
 <?php
     $topfiles = scandir(getcwd());

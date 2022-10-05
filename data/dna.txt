@@ -24,6 +24,7 @@
         "media.html",
         "mediadestroyer.html",
         "picrust.html",
+        "qrcode-page.html",
         "qrcode.html",
         "readme.html",
         "scroll.html",
