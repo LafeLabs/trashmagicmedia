@@ -1,1 +1,1 @@
-{"w":0.8068571428571428,"x":-0.4502857142857143,"y":0.6285714285714286,"angle":0,"src":"https://craftwarehouse.com/wp-content/uploads/ELE308.jpg"}
+{"w":0.9165714285714286,"x":0.045714285714285714,"y":0.10514285714285715,"angle":-29,"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hexagon.svg/800px-Hexagon.svg.png"}

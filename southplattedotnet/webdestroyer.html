@@ -4,15 +4,7 @@
     <meta charset="utf-8">
     <!--
 
-        EVERYTHING IS PHYSICAL
-        EVERYTHING IS FRACTAL
-        EVERYTHING IS RECURSIVE
-        NO MONEY
-        MO MINING
-        NO PROPERTY
-        LOOK AT THE INSECTS
-        LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY
+destroy files in the /web/ directory
 
     
     -->
@@ -26,8 +18,8 @@
 <table id = "linktable">
     <tr>
         <td>
-            <a href = "web/index.html">
-            WEB
+            <a href = "webeditor.html">
+            EDITOR
             </a>
         </td>
         </tr>
@@ -37,7 +29,8 @@
                 <span id ="uploadspan">UPLOAD:</span>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Media File" name="submit" id ="submitinput">
-    </form>        
+    </form>  
+    <h1>DESTROYER</h1>
 </div>
     
 <div id = "imagefeed"></div>
@@ -59,7 +52,7 @@ httpcUpload.send();
 
 function loadimagefeed(){
 
-    for(var index = uploadImages.length - 1;index >= 0;index--) {
+    for(var index = 0;index < uploadImages.length;index++) {
         if(uploadImages[index].includes(".") && uploadImages[index] != "index.html"){
             var newuploadbox = document.createElement("DIV");
             newuploadbox.classList.add("imagebox");
@@ -71,12 +64,13 @@ function loadimagefeed(){
             newdiv.className = "filelabel";
             newuploadbox.appendChild(newdiv);
         
-            var newimg = document.createElement("IMG");
-            newimg.src = "iconsymbols/delete.svg";
-            newuploadbox.appendChild(newimg);
-            newimg.classList.add("button");
-            newimg.classList.add("deletebutton");
-            newimg.onclick = function(){
+        
+            var newspan = document.createElement("SPAN");
+            newspan.innerHTML = "X";
+            newuploadbox.appendChild(newspan);
+            newspan.classList.add("button");
+            newspan.classList.add("deletebutton");
+            newspan.onclick = function(){
                 var filename = "web/" + this.parentElement.getElementsByClassName("filelabel")[0].innerHTML; 
                 var httpc = new XMLHttpRequest();
                 var url = "deletefile.php";         
@@ -84,7 +78,10 @@ function loadimagefeed(){
                 httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
                 httpc.send("filename=" + filename);//send text to deletefile.php
                 this.parentElement.parentElement.removeChild(this.parentElement);
-            }   
+            }           
+            
+            
+            
         }
     }    
 }
@@ -149,6 +146,9 @@ h1{
 .deletebutton{
     width:4em;
     background-color:#808080;
+    color:red;
+    border:solid;
+    border-color:red;
 }
 .button{
     cursor:pointer;

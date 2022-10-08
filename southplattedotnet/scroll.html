@@ -5,15 +5,7 @@
 
     <!--
 
-        EVERYTHING IS PHYSICAL 
-        EVERYTHING IS FRACTAL
-        EVERYTHING IS RECURSIVE
-        NO MONEY 
-        MO MINING 
-        NO PROPERTY
-        LOOK AT THE INSECTS
-        LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY 
+Scroll Reader with links to editor
 
     -->
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
@@ -21,6 +13,7 @@
     <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
 
 <!--       un comment to use math
 
@@ -37,40 +30,46 @@
         </script>
     -->
 
-
+    
 </head>
 <body>    
+
 <div id = "scrollscroll"></div>
+
+<div id  = "scrollsbox">
+    <input id = "scrollinput"/>
+</div>
+
+
+<a id ="scrolleditorlink" href = "scrolleditor.php">EDIT</a>
+<span class = "button" id = "modebutton">MODE</span>
+<div class = "button" id = "hidebutton">SHOW SCROLL MENU</div>
+    
+
 <script>
 
+if(innerWidth > innerHeight){
 
-if(innerWidth>innerHeight){
 
-    marginWidth = 0.5*(innerWidth - innerHeight);
-    feedwidth = marginWidth;
-    square = innerHeight;
-    document.getElementById("scrollscroll").style.left = marginWidth.toString() + "px";
-    document.getElementById("scrollscroll").style.right = marginWidth.toString() + "px";
+    document.getElementById("scrollscroll").style.width = (innerHeight - 35).toString() + "px";
+    
+    document.getElementById("scrollscroll").style.left = (0.5*(innerWidth - innerHeight) - 25).toString() + "px";    
+    
+    document.getElementById("scrollsbox").style.width = (0.5*(innerHeight - innerWidth)).toString() + "px";
+    
+    document.getElementById("scrollsbox").style.left = (innerHeight + 0.5*(innerWidth - innerHeight)).toString() + "px";    
+    document.getElementById("hidebutton").style.display = "none";
+    
     
 }
 else{
-    square = innerWidth;
-    
-    marginWidth = 0.5*(innerHeight - innerWidth);
-    document.getElementById("scrollscroll").style.top = "0px";
-    document.getElementById("scrollscroll").style.bottom = "0px";
-    document.getElementById("scrollscroll").style.left = "0px";
-    document.getElementById("scrollscroll").style.right = "0px";
+
 
 }
 
-
-
-
-
-
 mode = "dark";
 //mode = "light";
+
 
 scroll = "";
 rawhtml = "";
@@ -82,7 +81,10 @@ converter.setOption('tables', 'true')
     
 filename = "scrolls/home";
 
-loadscroll(filename);
+//loadscroll("scrolls/home");
+
+loadscroll("scrolls/home");
+
 
 localfile = true;
 
@@ -95,14 +97,13 @@ function loadscroll(scrollname){
     else{
         localfile = false;
     }
+    document.getElementById("scrolleditorlink").href = "scrolleditor.php?scroll=" + filename;
 
 
 
 
     document.getElementById("scrollscroll").innerHTML = "";
     document.getElementById("scrollscroll").style.display = "block";
-
-
     var httpc666 = new XMLHttpRequest();
     httpc666.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -158,15 +159,111 @@ function convertscrollinks(){
                 loadscroll(localscroll);
             }
         }
+        
+    }
+}
+
+document.getElementById("modebutton").onclick = function(){
+    modeswitch();
+}
+
+
+modeswitch();
+modeswitch();
+
+function modeswitch(){
+    if(mode == "dark"){
+        mode = "light";
+        document.body.style.backgroundColor = "white";
+        document.getElementById("scrollscroll").style.backgroundColor = "#f0f0f0";
+        document.getElementById("scrollscroll").style.color = "black";
+
+        document.getElementById("scrollinput").style.color = "black";
+        document.getElementById("scrollinput").style.backgroundColor = "white";       
+        document.getElementById("scrollsbox").style.backgroundColor = "white";
+        document.getElementById("scrollsbox").style.color = "black";        
+    }
+    else{
+        mode = "dark";
+        document.body.style.backgroundColor = "#404040";
+        document.getElementById("scrollscroll").style.backgroundColor = "black";
+        document.getElementById("scrollscroll").style.color = "#00ff00";    
+        document.getElementById("scrollinput").style.color = "#303030";
+        document.getElementById("scrollinput").style.backgroundColor = "black";              
+  
+        document.getElementById("scrollsbox").style.backgroundColor = "#303030";
+        document.getElementById("scrollsbox").style.color = "#00ff00";  
+        
+        document.getElementById("hidebutton").style.color = "#ff2cb4";
+
     }
 }
 
 
 
+scrolls = [];
+var httpc9 = new XMLHttpRequest();
+httpc9.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        scrolls = JSON.parse(this.responseText);
+        var newscrollbutton = document.createElement("P");
+        newscrollbutton.className = "boxlink";
+        newscrollbutton.innerHTML = "README.md";
+        document.getElementById("scrollsbox").appendChild(newscrollbutton);
+        newscrollbutton.onclick = function(){
+            currentFile = this.innerHTML;
+                loadscroll(currentFile);
+        }           
+        for(var index = 0;index < scrolls.length;index++) {
+            var newscrollbutton = document.createElement("P");
+            newscrollbutton.className = "boxlink";
+            newscrollbutton.innerHTML = "scrolls/" + scrolls[index];
+            document.getElementById("scrollsbox").appendChild(newscrollbutton);
+            newscrollbutton.onclick = function(){
+                currentFile = this.innerHTML;
+                loadscroll(currentFile);
+            }
+        }
+    };
+}
 
+httpc9.open("GET", "dir.php?filename=scrolls", true);
+httpc9.send();
+
+
+
+
+document.getElementById("scrollinput").value = "";
+
+document.getElementById("scrollinput").onchange = function(){
+    loadscroll(this.value);
+    this.value = "";
+}
+
+
+
+
+
+
+hideportraitlist = true;
+
+document.getElementById("hidebutton").onclick = function(){
+    hideportraitlist = !hideportraitlist;
+    if(hideportraitlist){
+        document.getElementById("scrollsbox").style.display = "none";
+        document.getElementById("hidebutton").innerHTML = "SHOW SCROLL MENU";
+    }
+    else{
+        document.getElementById("scrollsbox").style.display = "block";
+            document.getElementById("hidebutton").innerHTML = "HIDE SCROLL MENU";    
+    }
+
+}
 </script>
 <style>
-
+a{
+    color:#ff2cb4;
+}
 .editlinks{
 /*    display:none;*/
 }
@@ -188,20 +285,6 @@ input{
     border-color:#ff2cb4;
     border-width:8px;
 }
-
-#margin1{
-/*    background-color:#ff404080;*/
-    position:absolute;
-    left:0px;
-    top:0px;
-}
-#margin2{
-    background-color:#4040ff80;
-    position:absolute;
-    right:0px;
-    bottom:0px;
-}
-
 .boxlink{
     padding-left:1em;
     cursor:pointer;
@@ -225,15 +308,18 @@ input{
     padding-right:1em;
     position:absolute;
     overflow:scroll;
+    background-color:black;
     color:#00ff00;
     font-size:2em;
-    left:0px;
-    top:0px;
-    bottom:0px;
-    right:0px;
 }
 #scrollscroll a{
     color:#ff2cb4;
+}
+#modebutton{
+    color:#ff2cb4;
+    border:solid;
+    border-color:#ff2cb4;
+
 }
 #scrollscroll img{
     max-width:80%;
@@ -243,24 +329,15 @@ input{
 }
 #mainmap{
     position:absolute;
-    z-index:-1;
+    left:0px;
+    top:0px;
+    overflow:hidden;
 }
-#mainmap img{
-        background-color:#808080;
+#mainmap a{
+    font-family:Helvetica;
+    color:#ff2cb4;
 }
-#canbox{
-    position:absolute;
-    z-index:3;    
-}
-#mainimage{
-    position:absolute;
-    z-index:-3;
-    background-color:#808080;
-}
-#square3d{
-    position:absolute;
-    z-index:3;
-}
+
 .data{
     display:none;
 }
@@ -276,206 +353,76 @@ h1,h2,h3,h4{
 .button:active{
     background-color:yellow;
 }
-#imagescroll{
-    position:absolute;
-    overflow:scroll;
-    background-color:#c0c0c0;
-}
-#imagescroll img{
-    max-width:80%;
-    display:block;
-    margin:auto;
-
-}
 #scrollsbox{
     position:absolute;
-    overflow:scroll;
+    background-color:#808080;
     color:black;
-        border:solid;
-    border-color:#ff2cb4;
-
-}
-#mapsbox{
-    position:absolute;
     overflow:scroll;
-    color:black;
-    border:solid;
-    border-color:#ff2cb4;
-
-    
-}
-#iconsbox{
-    position:absolute;
-    background-color:#C0C0C0;
-    overflow:scroll;
-        border:solid;
-
-}
-#symbolsbox{
-    position:absolute;
-    background-color:#c0c0c0;
-    overflow:scroll;
-        border:solid;
-
-}
-#symbolsbox img{
-    max-width:50%;
-}
-#mediascroll{
-    color:#00ff00;
-    position:absolute;
-    overflow:scroll;
-    color:black;
 }
 
-#mainx3d{
-    position:absolute;
-    left:0px;
-    top:0px;
-    right:0px;
-    bottom:0px;
-}
 
 @media only screen and (orientation: landscape) {
-    #imagescroll{
+    
+    #scrollsbox{
+        right:0px;
+        top:0px;
+        bottom:0px;
+    }
+    #scrollscroll{
+        top:0px;
+        bottom:0px;
+    }   
+    #landscapelinks{
+        position:absolute;
         left:0px;
         top:0px;
-        right:0px;
-        height:25%;
     }
-    #scrollsbox{
-        left:0px;
-        top:25%;
-        right:0px;
-        height:25%;
-        
+    #portraitlinks{
+        display:none;
     }
-    #mapsbox{
-        left:0px;
-        top:50%;
-        right:0px;
-        height:25%;
-        
-    }    
-    #mediascroll{
-        left:0px;
-        bottom:0%;
-        right:0px;
-        height:25%;
-        
+    #hidebutton{
+        display:none;
     }
-    #iconsbox{
-        left:0px;
-        top:50%;
-        right:0px;
-        height:50%;
-    
-    }
-    #symbolsbox{
-        left:0px;
-        top:0%;
-        right:0px;
-        height:50%;
-        
-    }
+
 }
 
 @media only screen and (orientation: portrait) {
     .button{
         font-size:2em;
     }
+    #scrollsbox{
+        height:30%;
+        right:0px;
+        left:0px;
+        bottom:0px;
+        display:none;
+    }
+    #scrollscroll{
+        top:70px;
+        left:10px;
+        right:10px;
+        bottom:10px;
+    }   
+    #landscapelinks{
+        display:none;
+    }
+    #portraitlinks{
+        position:absolute;
+        left:0px;
+        top:0px;
+    }
     table img{
         max-width:60px;
     }
-    #imagescroll{
-        left:0px;
-        top:0px;
-        width:25%;
+    #hidebutton{
+        position:absolute;
         bottom:0px;
-    }
-    #scrollsbox{
-        left:25%;
-        width:25%;
-        top:0px;
-        bottom:0px;
-    }
-    #mapsbox{
-        left:50%;
-        width:25%;
-        top:0px;
-        bottom:0px;
-    }    
-    #mediascroll{
         right:0px;
-        width:25%;
-        top:0px;
-        bottom:0px;
-        
     }
-
-    #iconsbox{
-        left:0px;
-        top:0px;
-        right:0px;
-        width:50%;
-        bottom:0px;
+    #scrolleditorlink{
+        font-size:2em;
     }
-    #symbolsbox{
-        right:0px;
-        top:0px;
-        right:0px;
-        width:50%;
-        bottom:0px;
-
-    }
-  
-
 }
-
-
-#mediascroll h1{
-    color:#ff2cb4;
-    font-family:courier;
-    border:solid;
-    border-radius:5px;
-    border-color:#ff2cb4;
-    margin-top:2px;
-    margin-bottom:2px;
-    cursor:pointer;
-}
-#mediascroll{
-    border:solid;
-    border-color:#ff2cb4;
-    cursor:pointer;
-}
-#mediascroll div{
-    border:solid;
-    border-color:#ff2cb4;
-    margin: 0.5em 0.5em 0.5em 0.5em;
-}
-
-
-#mediascroll span{
-    display:block;
-    margin:auto;
-    margin-top:0.5em;
-    margin-bottom:0.5em;
-    color:#ff2cb4;
-    margin-left:1em;
-    font-family:courier;
-
-}
-#mediascroll a{
-    display:block;
-    margin:auto;
-    margin-top:0.5em;
-    margin-bottom:0.5em;
-    color:#ff2cb4;
-    margin-left:1em;
-    font-family:courier;
-
-}
-
 </style>
 </body>
 </html>

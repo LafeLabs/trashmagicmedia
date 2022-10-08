@@ -11,13 +11,19 @@
 <a href= "../webeditor.html" style = "position:Absolute;right:0px;top:0px;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">WEB EDITOR</a>
 <div id = "qrcode"></div>
     <div id = "linkbox">
-        <h1>PI CRUST WEB</h1>
-        <a href = "../webdestroyer.html">../webdestroyer.html</a>
-        <a href = "../images.html">image feed</a>
+        <h1>LOCAL WEB</h1>
+        
+        <h3><a href = "https://www.w3schools.com/">Learn HTML, CSS and JavaScript at W3Schools.com</a></h3>
+        
+        <h3><a href = "https://codepen.io/">Learn Web Development by Example and share code at codepen.io</a></h3>
+<iframe style = "display:block;margin:auto" width="560" height="315" src="https://www.youtube.com/embed/Y5BZkaWZAAA" title="YouTube video player" frameborder="0" ></iframe>
+
+    <A href=  "../dnagenerator.php">../dnagenerator.php</A>
+
+
 
     </div>
 <script>
-
 
 media = [];
 
@@ -31,8 +37,6 @@ httpcUpload.onreadystatechange = function() {
 httpcUpload.open("GET", "../dir.php?filename=web", true);
 httpcUpload.send();
 
-mediadir = [];
-dirname = "";
 
 function loadmediafeed(){
     for(var index = 0;index < media.length;index++) {
@@ -49,55 +53,6 @@ function loadmediafeed(){
 }
 
 
-/*
-mediaup = [];
-
-var httpcUploadup = new XMLHttpRequest();
-httpcUploadup.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        mediaup = JSON.parse(this.responseText);
-        loadmediafeedup();
-    }
-};
-httpcUploadup.open("GET", "../dir.php", true);
-httpcUploadup.send();
-
-function loadmediafeedup(){
-    for(var index = 0;index < mediaup.length;index++) {
-        
-        if(mediaup[index].substr(-5) == ".html"){
-            var newa = document.createElement("A");
-            newa.innerHTML = mediaup[index];
-            newa.href = "../" + mediaup[index];
-            document.getElementById("linkbox").appendChild(newa);
-            
-        }
-    }    
-
-}
-*/
-
-globalurl = window.location.href;
-
-//globalurl = "http://10.0.0.138/web/index.html";
-
-
-codesquaresize = 200;   
-
-drawqrcode();
-
-function drawqrcode(){
-    qrcode = new QRCode(document.getElementById("qrcode"), {
-    	text: globalurl,
-    	width: codesquaresize,
-    	height: codesquaresize,
-    	colorDark : "#000000",
-    	colorLight : "#ffffff",
-    	correctLevel : QRCode.CorrectLevel.H
-    });    
-    qrcode.makeCode(globalurl);
-
-}
 
 
 
@@ -138,16 +93,8 @@ function drawqrcode(){
         padding-left:1em;
         font-size:2em;
     }
-    #qrcode{
-        position:absolute;
-        border:solid;
-        border-color:#808080;
-        background-color:#808080;
-        border-width:10px;
-        z-index:1;
-        bottom:10px;
-        right:10px;
-    }
+    
+    
     
 </style>
 </html>

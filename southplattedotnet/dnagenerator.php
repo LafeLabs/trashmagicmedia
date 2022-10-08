@@ -13,14 +13,12 @@ dna.txt is a json formatted file which points to all the files in this system, w
     $files = scandir(getcwd());
     $phpfiles = scandir(getcwd()."/php");
     $datafiles = scandir(getcwd()."/data");
-    $iconfiles = scandir(getcwd()."/iconsymbols");
-    $jsfiles = scandir(getcwd()."/jscode");
+    $webfiles = scandir(getcwd()."/web");
     $scrollfiles = scandir(getcwd()."/scrolls");
     $mapfiles = scandir(getcwd()."/maps");
-    $webfiles = scandir(getcwd()."/web");
-
-
-
+    $iconfiles = scandir(getcwd()."/iconsymbols");    
+    $jsfiles = scandir(getcwd()."/jscode");
+    
     $htmlfiles = [];
     foreach($files as $value){
         if(substr($value,-5) == ".html" || substr($value,-3) == ".md" || substr($value,-3) == ".py" || substr($value,-3) == ".sh"){
@@ -43,6 +41,12 @@ dna.txt is a json formatted file which points to all the files in this system, w
         }
     }
 
+    $dna->javascript = [];
+    foreach($jsfiles as $value){
+        if($value[0] != "."){
+            array_push($dna->javascript,$value);
+        }
+    }
     
     $dna->php = [];
     foreach($phpfiles as $value){
@@ -50,21 +54,7 @@ dna.txt is a json formatted file which points to all the files in this system, w
             array_push($dna->php,$value);
         }
     }
-
-    $dna->javascript = [];
-    foreach($jsfiles as $value){
-        if($value[0] != "."){
-            array_push($dna->javascript,$value);
-        }
-    }
-
-    $dna->iconsymbols = [];
-    foreach($iconfiles as $value){
-        if($value[0] != "."){
-            array_push($dna->iconsymbols,$value);
-        }
-    }
-
+    
     $dna->scrolls = [];
     foreach($scrollfiles as $value){
         if($value[0] != "."){
@@ -85,8 +75,15 @@ dna.txt is a json formatted file which points to all the files in this system, w
             array_push($dna->web,$value);
         }
     }
-
-
+    
+    $dna->iconsymbols = [];
+    foreach($iconfiles as $value){
+        if($value[0] != "."){
+            array_push($dna->iconsymbols,$value);
+        }
+    }
+    
+    
     echo json_encode($dna,JSON_PRETTY_PRINT);
 
     $file = fopen("data/dna.txt","w");// create new file with this name

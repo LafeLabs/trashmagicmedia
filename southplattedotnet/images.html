@@ -15,8 +15,8 @@ images
 <body>
 <div id = "header">
     <div id = "deletemodebutton" class= "button">DELETE MODE OFF</div>
-    <a style = "position:absolute;right:0px;top:px;color:#ff2cb4;font-size:2em;font-family:courier;background-color:black" href = "index.html">HOME</a>
-    <form id = "uploadform" action="uploadimagefeed.php" method="post" enctype="multipart/form-data">
+    <a style = "position:absolute;right:0px;top:1.5em;color:#ff2cb4;font-size:2em;font-family:courier;background-color:black" href = "index.html">HOME</a>
+    <form id = "uploadform" action="uploadimage.php" method="post" enctype="multipart/form-data">
                 <span id ="uploadspan">UPLOAD:</span>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit" id ="submitinput">
@@ -38,7 +38,7 @@ httpcUpload.onreadystatechange = function() {
         loadimagefeed();
     }
 };
-httpcUpload.open("GET", "dir.php?filename=uploadimages", true);
+httpcUpload.open("GET", "dir.php?filename=images", true);
 httpcUpload.send();
 
 
@@ -51,7 +51,7 @@ function loadimagefeed(){
         var newuploadbox = document.createElement("DIV");
         newuploadbox.classList.add("imagebox");
         var newimg = document.createElement("IMG");
-        newimg.src = "uploadimages/" + uploadImages[index];
+        newimg.src = "images/" + uploadImages[index];
         newimg.classList.add("uploadimage");
         
         newuploadbox.appendChild(newimg);
@@ -111,14 +111,14 @@ input{
     right:0px;
     left:0px;
     top:0px;
-    height:4em;
+    height:6em;
 }
 #uploadspan{
     font-size:2em;
 }
 #imagefeed{
     position:absolute;
-    top:4em;
+    top:6em;
     left:0px;
     right:0px;
     bottom:0px;
@@ -126,8 +126,8 @@ input{
 }
 #deletemodebutton{
     position:absolute;
-    right:4em;
-    top:0px;
+    right:5em;
+    top:1.5em;
     font-family:courier;
     border:solid;
     border-radius:5px;

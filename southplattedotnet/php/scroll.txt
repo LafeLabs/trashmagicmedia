@@ -5,15 +5,7 @@
 
     <!--
 
-        EVERYTHING IS PHYSICAL 
-        EVERYTHING IS FRACTAL
-        EVERYTHING IS RECURSIVE
-        NO MONEY 
-        MO MINING 
-        NO PROPERTY
-        LOOK AT THE INSECTS
-        LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY 
+Scroll Reader with links to editor
 
     -->
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
@@ -21,7 +13,7 @@
     <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
-        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 
 <!--       un comment to use math
 
@@ -47,80 +39,14 @@
 <div id  = "scrollsbox">
     <input id = "scrollinput"/>
 </div>
-<table id = "landscapelinks">
-    <tr>
-        <td class = "editlinks">
-            <a  id ="scrolleditorlink2" href = "scrolleditor.php">
-                <img src = "iconsymbols/edit.svg"/>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td class = "editlinks">
-            <a href = "scrollset.html">
-                <img src = "iconsymbols/chaos.svg"/>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td class = "editlinks">
-            <a href = "scrolldelete.html">
-                <img src = "iconsymbols/delete.svg"/>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td class = "editlinks">
-            <a href = "fork.html">
-                <img src = "iconsymbols/fork.svg"/>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td id = "modebutton" class= "button">
-            <img src = "iconsymbols/lightdark.svg"/>
-        </td>
-    </tr>
-    <tr>
-        <td id = "qrcode"></td>
-    </tr>
-</table>
 
-<table id = "portraitlinks">
-    <tr>
-        <td class = "editlinks">
-            <a id ="scrolleditorlink" href = "scrolleditor.php">
-                <img src = "iconsymbols/edit.svg"/>
-            </a>
-        </td>
-        <td class = "editlinks">
-            <a href = "scrollset.html">
-                <img src = "iconsymbols/chaos.svg"/>
-            </a>
-        </td>
-        <td class = "editlinks">
-            <a href = "scrolldelete.html">
-                <img src = "iconsymbols/delete.svg"/>
-            </a>
-        </td>
-        <td class = "editlinks">
-            <a href = "fork.html">
-                <img src = "iconsymbols/fork.svg"/>
-            </a>
-        </td>
-        <td id = "modebutton2" class= "button">
-            <img src = "iconsymbols/lightdark.svg"/>
-        </td>
-        <td id = "hidebutton" class= "button">
-            <img id = "hideicon" src = "iconsymbols/showmenu.svg"/>
-        </td>
 
-        <td id = "qrcode2"></td>
-    </tr>
-</table>
-
-<div class = "data" id = "scrolldiv"><?php
+<a id ="scrolleditorlink" href = "scrolleditor.php">EDIT</a>
+<span class = "button" id = "modebutton">MODE</span>
+<div class = "button" id = "hidebutton">SHOW SCROLL MENU</div>
     
+<div class = "data" id = "scrolldiv"><?php
+
 if(isset($_GET["scroll"])){
     echo $_GET["scroll"];
 }
@@ -130,12 +56,18 @@ if(isset($_GET["scroll"])){
 <script>
 
 if(innerWidth > innerHeight){
-    
-    document.getElementById("scrollscroll").style.width = (innerHeight - 35).toString() + "px";
-    document.getElementById("scrollscroll").style.left = (0.5*(innerWidth - innerHeight) - 25).toString() + "px";    
-    document.getElementById("scrollsbox").style.width = (0.5*(innerHeight - innerWidth)).toString() + "px";
-    document.getElementById("scrollsbox").style.left = (innerHeight + 0.5*(innerWidth - innerHeight)).toString() + "px";    
 
+
+    document.getElementById("scrollscroll").style.width = (innerHeight - 35).toString() + "px";
+    
+    document.getElementById("scrollscroll").style.left = (0.5*(innerWidth - innerHeight) - 25).toString() + "px";    
+    
+    document.getElementById("scrollsbox").style.width = (0.5*(innerHeight - innerWidth)).toString() + "px";
+    
+    document.getElementById("scrollsbox").style.left = (innerHeight + 0.5*(innerWidth - innerHeight)).toString() + "px";    
+    document.getElementById("hidebutton").style.display = "none";
+    
+    
 }
 else{
 
@@ -169,7 +101,6 @@ else{
 localfile = true;
 
 
-
 function loadscroll(scrollname){
     filename = scrollname;
     if(filename.substring(0,8) == "scrolls/" || filename == "README.md"){
@@ -179,7 +110,8 @@ function loadscroll(scrollname){
         localfile = false;
     }
     document.getElementById("scrolleditorlink").href = "scrolleditor.php?scroll=" + filename;
-    document.getElementById("scrolleditorlink2").href = "scrolleditor.php?scroll=" + filename;
+
+
 
 
     document.getElementById("scrollscroll").innerHTML = "";
@@ -239,7 +171,7 @@ function convertscrollinks(){
                 loadscroll(localscroll);
             }
         }
-
+        
     }
 }
 
@@ -247,11 +179,10 @@ document.getElementById("modebutton").onclick = function(){
     modeswitch();
 }
 
-document.getElementById("modebutton2").onclick = function(){
-    modeswitch();
-}
 
 modeswitch();
+modeswitch();
+
 function modeswitch(){
     if(mode == "dark"){
         mode = "light";
@@ -274,6 +205,8 @@ function modeswitch(){
   
         document.getElementById("scrollsbox").style.backgroundColor = "#303030";
         document.getElementById("scrollsbox").style.color = "#00ff00";  
+        
+        document.getElementById("hidebutton").style.color = "#ff2cb4";
 
     }
 }
@@ -309,6 +242,9 @@ httpc9.onreadystatechange = function() {
 httpc9.open("GET", "dir.php?filename=scrolls", true);
 httpc9.send();
 
+
+
+
 document.getElementById("scrollinput").value = "";
 
 document.getElementById("scrollinput").onchange = function(){
@@ -319,39 +255,6 @@ document.getElementById("scrollinput").onchange = function(){
 
 
 
-if(innerWidth > innerHeight){
-    codesquaresize = 100;
-}
-else{
-    codesquaresize = 80;
-}
-
-
-//globalurl = "http://www.trashrobot.org/qrcode.html";
-globalurl = window.location.href;
-
-
-qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: globalurl,
-	width: codesquaresize,
-	height: codesquaresize,
-	colorDark : "#000000",
-	colorLight : "#ffffff",
-	correctLevel : QRCode.CorrectLevel.H
-});
-    
-qrcode.makeCode(globalurl);
-
-qrcode2 = new QRCode(document.getElementById("qrcode2"), {
-	text: globalurl,
-	width: codesquaresize,
-	height: codesquaresize,
-	colorDark : "#000000",
-	colorLight : "#ffffff",
-	correctLevel : QRCode.CorrectLevel.H
-});
-    
-qrcode2.makeCode(globalurl);
 
 
 hideportraitlist = true;
@@ -360,17 +263,19 @@ document.getElementById("hidebutton").onclick = function(){
     hideportraitlist = !hideportraitlist;
     if(hideportraitlist){
         document.getElementById("scrollsbox").style.display = "none";
-        document.getElementById("hideicon").src = "iconsymbols/showmenu.svg";
+        document.getElementById("hidebutton").innerHTML = "SHOW SCROLL MENU";
     }
     else{
         document.getElementById("scrollsbox").style.display = "block";
-        document.getElementById("hideicon").src = "iconsymbols/hidemenu.svg";
-
+            document.getElementById("hidebutton").innerHTML = "HIDE SCROLL MENU";    
     }
 
 }
 </script>
 <style>
+a{
+    color:#ff2cb4;
+}
 .editlinks{
 /*    display:none;*/
 }
@@ -422,12 +327,29 @@ input{
 #scrollscroll a{
     color:#ff2cb4;
 }
+#modebutton{
+    color:#ff2cb4;
+    border:solid;
+    border-color:#ff2cb4;
+
+}
 #scrollscroll img{
     max-width:80%;
     display:block;
     margin:auto;
-    background-color:none;
+    background-color:#808080;
 }
+#mainmap{
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+}
+#mainmap a{
+    font-family:Helvetica;
+    color:#ff2cb4;
+}
+
 .data{
     display:none;
 }
@@ -470,6 +392,9 @@ h1,h2,h3,h4{
     #portraitlinks{
         display:none;
     }
+    #hidebutton{
+        display:none;
+    }
 
 }
 
@@ -500,6 +425,14 @@ h1,h2,h3,h4{
     }
     table img{
         max-width:60px;
+    }
+    #hidebutton{
+        position:absolute;
+        bottom:0px;
+        right:0px;
+    }
+    #scrolleditorlink{
+        font-size:2em;
     }
 }
 </style>

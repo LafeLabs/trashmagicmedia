@@ -1,6 +1,6 @@
 <?php
 
-$dnaurl = "https://raw.githubusercontent.com/LafeLabs/hypercube/main/data/dna.txt";
+$dnaurl = "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/data/dna.txt";
 
 if(isset($_GET["dna"])){
     $dnaurl = $_GET["dna"];
@@ -13,34 +13,24 @@ $dna = json_decode($dnaraw);
 
 mkdir("data");
 mkdir("php");
-mkdir("jscode");
-mkdir("iconsymbols");
-mkdir("scrolls");
-mkdir("symbolfeed");
-mkdir("uploadimages");
-mkdir("maps");
+mkdir("images");
 mkdir("media");
-mkdir("cards");
 mkdir("web");
+mkdir("scrolls");
+mkdir("jscode");
+mkdir("hyperlink");
+mkdir("iconsymbols");
+mkdir("maps");
+mkdir("symbolfeed");
 
-copy("https://raw.githubusercontent.com/LafeLabs/hypercube/main/php/replicator.txt","replicator.php");
+copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt","hyperlink/replicator.php");
+
+
+copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt","replicator.php");
 
 foreach($dna->html as $value){
     
     copy($baseurl.$value,$value);
-
-}
-
-foreach($dna->javascript as $value){
-    
-    copy($baseurl."jscode/".$value,"jscode/".$value);
-
-    
-}
-
-foreach($dna->iconsymbols as $value){
-    
-    copy($baseurl."iconsymbols/".$value,"iconsymbols/".$value);
 
 }
 
@@ -51,6 +41,12 @@ foreach($dna->data as $value){
     
 }
 
+foreach($dna->scrolls as $value){
+        
+    copy($baseurl."scrolls/".$value,"scrolls/".$value);
+
+}
+
 foreach($dna->php as $value){
  
     copy($baseurl."php/".$value,"php/".$value);
@@ -58,23 +54,27 @@ foreach($dna->php as $value){
 
 }
 
-foreach($dna->scrolls as $value){
-        
-//    if($value == "home"){
-    copy($baseurl."scrolls/".$value,"scrolls/".$value);
-  //  }
+
+foreach($dna->web as $value){
+    
+    copy($baseurl."web/".$value,"web/".$value);
     
 }
-
+    
 foreach($dna->maps as $value){
         
     copy($baseurl."maps/".$value,"maps/".$value);
 
 }
+    
+    
+foreach($dna->javascript as $value){
+    copy($baseurl."jscode/".$value,"jscode/".$value);
+}
 
-foreach($dna->web as $value){
-        
-    copy($baseurl."web/".$value,"web/".$value);
+foreach($dna->iconsymbols as $value){
+    
+    copy($baseurl."iconsymbols/".$value,"iconsymbols/".$value);
 
 }
 

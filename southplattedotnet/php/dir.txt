@@ -16,7 +16,7 @@ if(isset($_GET["type"])){
     if($_GET["type"] == "dir"){
         $dirs = [];
         foreach($files as $value){
-            if($value[0] != "." && is_dir($value) && $value != "php" && $value != "jscode" && $value != "data" && $value != "html" && $value != "symbols" && $value != "fonts" && $value != "icons" && $value != "iconsymbols" && $value != "uploadimages" && $value != "symbol" && $value != "symbolfeed" && $value != "maps" && $value != "scrolls"  && $value != "media" && $value != "images" && $value != "cards"){
+            if($value[0] != "." && is_dir($value) && $value != "php" && $value != "jscode" && $value != "data" && $value != "html" && $value != "symbols" && $value != "fonts" && $value != "icons" && $value != "iconsymbols" && $value != "uploadimages" && $value != "symbol" && $value != "symbolfeed" && $value != "maps" && $value != "scrolls"  && $value != "media" && $value != "images" && $value != "cards" && $value != "web"){
                 array_push($dirs,$value);
             }
         }

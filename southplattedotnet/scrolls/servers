@@ -1,17 +1,71 @@
+## [home](scrolls/home)
 
-## [HOME](scrolls/home)
+# Servers
 
-# Geometron servers
+### Installing on a windows or mac private machine
 
-Make your own Geometron keyboard with a paint pen or other means of marking up keys:
+- [download XAMPP](https://www.apachefriends.org/index.html) and install, 
+- go to the directory xampp/htdocs and delete the file index.php
+- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/replicator.php)(right click, "save link as") and save it in the directory htdocs
+- start the xampp server either by searching for the program or manually starting it from the xampp directory on your hard drive
+- go to [http://localhost/replicator.php](http://localhost/replicator.php) to replicate the server, click the link to go to the local TRASH MAGIC MEDIA NETWORK
+- or navigate there with this link to [http://localhost/](http://localhost/)
+- create desktop shortcuts to media/ and images/ folders in the xampp/htdocs folder
+- put sub-folders in the media folder for different kinds of media, put media you want to share in those folders, make a "books" and "music" folder and put pdfs of books in the books folder and .mp3's of songs in the music folder
+- find your ip address from your wifi settings and put it in the input at the bottom of the screen as indicated(http://[your ip address]/) and hit "enter" to update the permanent value of the server url
+ - point [Web 1.0 hyperlink](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
+ - build your own public self replicating hyperlink by first creating a [hyperlink server here by clicking this link](http://localhost/hyperlink/replicator.php), then click through to see it or
+ - [click on https://localhost/hyperlink/ to see the hyperlink](https://localhost/hyperlink/) 
+ - click the little asterisk in the upper left corner to edit.  Copy and paste the [JSON code](http://localhost/jscode/hyperlink.js) from the bottom of the screen into any other hyperlink page to replicate your page.  [Fork down](http://localhost/hyperlink/fork.html) to make more hyperlink pages. 
+ - point cardboard signs to web 1.0 pages
+ - post ads in the form of images from the main page
+ - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
+ - [to make the page into the solar station page go to that README by clicking this link](https://github.com/LafeLabs/trashmagicmedia/tree/main/solarstation) and the links theirein.
 
-![](https://raw.githubusercontent.com/LafeLabs/geometronmagic/main/cube/uploadimages/keyboard-screenshot.png)
+This is local media.  We can install web servers on *everything*: mac and Windows laptops and desktops, Raspberry Pi, and Android and iOS Devices.  Any device can be a server, and we drop files on it to share with others on the same wireless network.  When every device is a server as well as a client, people who share wireless networks can media without the Cloud.  
 
-![](https://raw.githubusercontent.com/LafeLabs/geometronmagic/main/cube/uploadimages/keyboard-photo.jpg)
+Digital media content creators are supported by brick and mortar venues.  When a wireless network is the source of a constant stream of interesting and original media content, that brings people into that space.  Creators can both get sponsorships from venues and direct material support.  
 
- - [global hypercube replicator code](https://raw.githubusercontent.com/LafeLabs/hypercube/main/php/replicator.txt)
- - [symbol.html](symbol.html)
- - [http://localhost/](http://localhost/)
+This is a way to share media on the Web without the Internet, without the Cloud, without e-commerce, without algorithms or apps or the app store.  There is no user data because there are no users, just files in folders which everyone on the network can download.  The only information we ever put on the network is information we want to share freely.  
+
+The construction of this network represents the building of digital community that is always centered on physically shared spaces.  
+
+
+## Use Cases
+
+ - music and art publication/distribution in venues like bars, art galleries, and coffee shops(artists compensated by venues to produce content)
+ - medical literature .pdf's in medical waiting rooms
+ - local web pages shared from server to server of local organizations, people, places, businesses, artists, etc.(local web)
+ - local classifieds and personals ads
+ - media for exchange of physical goods: share, give away, buy, and sell crafts, technology, food, locally made goods and unwanted objects, facilitate upcycling 
+ - local financial markets, moderating deals between physically local business people
+ - music sharing in religious communities(record audio and post to wifi) 
+ - local plant, animal, fungus, soil, weather and water knowledge sharing 
+ - creating foundational documents for local organizations whose existence is primarily on these local wifi-based networks
+ - Documenting self-replicating things made from trash: trash magic
+ - Free sharing of books, local library infrastructure, extension of Public Library system
+ - free private library of banned books
+ - censorship-resistant news distribution, local news
+ - rapid creation of historical documents during historical events on location for replication to archives afterward
+ - immersive text-based games, mixed reality
+
+
+A very simple way to make a local media server on which people can share simple advertisements for literally anything is to host images of small screenshots and photographs.  We do this with the image feed, linked from the main page via the "Images" link.  The Image Feed has buttons to select an image to upload, then upload the image to the server.  Any image larger than about 1 megabyte won't upload.  For large images, either crop them or screen shot them and then crop the screenshot(this reduces the resolution and makes smaller files).
+
+![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images.png)
+
+Anyone can delete any image by turning "delete mode"  on, and then clicking the "DELETE" buttons.  Deletion is forever! Backup everything you care about!  Don't want to lose a thing? Copy it again and again.
+
+![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images-delete.png)
+
+In general, media files we want to share can be dropped into folders which are placed in the "media" folder on the servers.
+
+![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/media.png)
+
+The entire system is self-editing, self-replicating, and self-contained.  Each server contains a code editor which can edit the whole system including itself.  Among the set of files on each system is also a set of scripts which clone the whole system.  Files are cataloged using the script [dnagenerator.php](php/dnagenerator.txt), which creates a file called [data/dna.txt](data/dna.txt) which is finally used by [replicator.php](php/replicator.txt) to copy all the code in the system from one server to the next.  Because all this is free Public Domain code we can host it on Github for free and replicate from there, but once it's replicating out in the wild, we can replicate from one server to another without referencing back to Github if we want. At any time, any instance can then be cloned to a local directory which is pushed out to a public Github repository which can the replicate out globally.  Thus we can move smoothly between totally local private replication and public replication to potentially billions of devices using Github's free hosting of open source projects(or anyone's random personal home pages on the public World Wide Web).
+
+![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/editorphp.png)
+
 
 ### Install on Pi
 
@@ -35,12 +89,12 @@ sudo apt install apache2 -y
 sudo apt install php libapache2-mod-php -y
 ```
 
-## Install hypercube with this document for self-documentation and replication
+## Install TRASH MAGIC MEDIA server
 
 ```
 cd /var/www/html
 sudo rm index.html
-sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/hypercube/main/php/replicator.txt
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
 cd ..
 sudo chmod -R 0777 *
 cd html
@@ -50,119 +104,29 @@ sudo chmod -R 0777 *
 
 Check the IP address by hovering over the wifi icon, put that into the browser on another machine on the same local wifi network to see and edit the server.  Or open a browser on the pi and point it to [http://localhost](http://localhost)
 
-## Set up to have names for other servers
+### Ubuntu Install
 
-edit hosts file to have the IP address of the other servers and then the name you want to use, copying the format in the existing file.
+You will need a thumb drive.
 
-```
-sudo nano /etc/hosts
-```
-edit, and use control-x and say "yes" to save changes.
+[https://ubuntu.com instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
 
-## connect pi to outside internet over router
-
-Look up "set up port forwarding raspberry pi" and follow instructions to log onto your router and forward port 80 to the raspberry pi.  Use [whatismyipaddress.com](https://whatismyipaddress.com/) to get your global IP address.  Now your home Raspberry pi server will be visible on that IP address.  Take that address and make it a link on the remote raspberry pi terminal as well as a QR code on both.   
-
-edit the /etc/hosts file on the remote pi terminal so that home/ and remote/ point to home pi server either on the local network or on the public network.  So "home" will point to the local IP address on the wifi and "remote" will point to the global IP address of the home raspberry pi server(which everyone can see).  
-
-
-[link to pi my life up](https://pimylifeup.com/raspberry-pi-port-forwarding/)
-
-[link to setting up basic website with pi with external connection](http://unixetc.co.uk/2013/09/21/create-a-basic-website-on-a-raspberry-pi/)
-
-## Install Arduino
-
-the short but not as good way:
+open a command line and type:
 
 ```
-sudo apt-get install arduino
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+cd /var/www/html
+sudo rm index.html
+sudo apt install curl
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
+cd ..
+sudo chmod -R 0777 *
+cd html
+php replicator.php
+sudo chmod -R 0777 *
 ```
-
-this installs a old version which is missing some features, namely the serial plotter.  following more complicated instructions leads to non-working version which is impossible to uninstall.
-
-
-how to do the tar ball thing to get a later version of arduino which has the plotting
-
-[https://www.raspberrypi-spy.co.uk/2020/12/install-arduino-ide-on-raspberry-pi/](https://www.raspberrypi-spy.co.uk/2020/12/install-arduino-ide-on-raspberry-pi/)
-
-go get the Arduino software at:
-
-[https://www.arduino.cc/en/software](https://www.arduino.cc/en/software)
-
-and download "Linux ARM 32 bits".
-
-Open a terminal and go to the home directory:
-
-```
-cd ~
-```
-
-Go to downloads folder:
-```
-cd Downloads
-```
-list the files with 
-```
-ls
-```
-See the name of an archive with a name like "arduino-####-linuxarm.tar.xz", where #### is a version number.
-
-extract with 
-```
-tar -xf arduino-####-linuxarm.tar.xz
-```
-
-move the extracted information to opt directory(directory for package installation)
-
-```
-sudo mv arduino-#### /opt
-```
-
-then run the install script:
-```
-sudo /opt/arduino-####/install.sh
-```
-
-
-## Add python that we need for doing science
-
-[https://matplotlib.org/](https://matplotlib.org/)
-
-matplotlib install:
-
-```
-sudo apt install python3-matplotlib
-```
-
-[https://matplotlib.org/](https://matplotlib.org/)
-
-[https://www.instructables.com/Jupyter-Notebook-on-Raspberry-Pi/](https://www.instructables.com/Jupyter-Notebook-on-Raspberry-Pi/)
-
-```
-sudo apt-get update
-sudo apt-get install python3-scipy
-sudo pip3 install --upgrade pip
-reboot
-sudo pip3 install jupyter
-```
-
-### Install on Windows or Mac
-
-First, install XAMPP, a free open source web server for all platforms.  [Download from www.apachefriends.org](https://www.apachefriends.org/index.html).  Click on windows to download, and click through to install everything.
-
-![](https://i.imgur.com/G90zeyE.png)
-
-After you download and install it, run it and start Apache.  You should see a control panel like this:
-
-![](https://i.imgur.com/wgpIqfH.png)
-
-Click on "Explorer" to get access to where the files are.  From the main directory called xamp, you want the sub-directory "htdocs".  Open this, delete the index.php file, and create a new file called replicator.php which you copy and paste the replicator at [php/replicator.txt](php/replicator.txt) into, and save.  
-
-![](https://i.imgur.com/EpHYYOd.png)
-
-Point a web browser on the same computer to [http://localhost/](http://localhost), then click on replicator.php.  This should replicate the whole system into the directory.  When this is done, click the link to go to the main page.  
-
-
+ 
 ### Install on Android
 
 
@@ -196,4 +160,19 @@ Use the Editor built into the system to create a new file called replicator.php 
  - after you've edited the code, click [text2php.php](text2php.php) to convert that to php
  - push your code to your github repo
  - use the new replicator code on your github repo to replicate out that instance to all other servers(linux, windows, mac, android) and forks
- - when you figure this out, make youtube videos showing other people how to copy the whole system 
+ - when you figure this out, make youtube videos showing other people how to copy the whole system, tell someone about those videos so that we can all link to them
+
+
+### Socials
+
+ - [tiktok:@trash_robot](https://www.tiktok.com/@trash_robot)
+ - [instagram:@lafelabs](https://www.instagram.com/lafelabs/)
+ - [twitter:@trashrobot0](https://twitter.com/trashrobot0)
+ - [youtube:@trash_robot](https://www.youtube.com/channel/UCLyeOlfnEBCnRTAH8rppEFw)
+
+# Trash Robot Books
+ 
+ - [First Book of Geometron](https://www.trashrobot.org/bookofgeometronfirst/)
+ - [Geometron Magic](https://www.trashrobot.org/geometronmagic/)
+ - [Trash Magic Books](https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks)
+

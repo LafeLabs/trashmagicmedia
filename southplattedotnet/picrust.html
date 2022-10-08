@@ -7,15 +7,7 @@
         <!--
 
 
-        EVERYTHING IS PHYSICAL
-        EVERYTHING IS FRACTAL
-        EVERYTHING IS RECURSIVE
-        NO MONEY
-        MO MINING
-        NO PROPERTY
-        LOOK AT THE INSECTS
-        LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY
+old version of picrust in one page
 
     -->
     
@@ -33,9 +25,6 @@
 <textarea id  = "wall" spellcheck="false"></textarea>
 <div id = "qrcode"></div>
 <div id = "brandbox"><a style = "color:#ff2cb4;background-color:black" href = "index.html">HOME</a></div>
-
-<a style = "position:absolute;color:#ff2cb4;background-color:black;right:0px;top:0px;font-size:2em;font-family:courier;" href = "web/">WEB</a>
-
 <div id = "imagescroll">
             
             <a style = "position:absolute;right:0px;top:0px;display:none;" href= "imagefeed.html">DESTROYER</a>
@@ -49,6 +38,7 @@
 <div id = "mediascroll">
 
         <a style = "position:absolute;right:0px;top:0px;display:none;" href= "mediadestroyer.html">DESTROYER</a>
+            <a href = "webpages.html">WEB PAGE EDITOR</a>
     <form id = "uploadform" style = "margin-top:10px;color:#00ff00;display:none;" action="uploadmedia.php" method="post" enctype="multipart/form-data">
                 Select media file to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
@@ -104,32 +94,6 @@ function loadimagefeed(){
         document.getElementById("imagescroll").appendChild(newimg);
     }    
 }
-
-
-
-symbols = [];
-
-var httpcsymbols = new XMLHttpRequest();
-httpcsymbols.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        symbols = JSON.parse(this.responseText);
-        loadsymbolfeed();
-    }
-};
-httpcsymbols.open("GET", "dir.php?filename=symbolfeed", true);
-httpcsymbols.send();
-
-
-function loadsymbolfeed(){
-
-    for(var index = symbols.length - 1;index >= 0;index--) {
-        var newimg = document.createElement("IMG");
-        newimg.src = "symbolfeed/" + symbols[index];
-        document.getElementById("imagescroll").appendChild(newimg);
-    }    
-}
-
-
 
 media = [];
 

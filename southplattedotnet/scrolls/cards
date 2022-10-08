@@ -1,29 +1,12 @@
-
 ## [HOME](scrolls/home)
 
-# Geometron Card Magic
+# Trash Magic Cards
+ 
+Trash Magic Cards are used to represent *anything* we might wish to replicate or share.  They are cut from cardboard, out of rectangles 3 inches by 4.5 inches.  One side(the face side) is decorated in similar manner to the [Cubes of the Geometron Hypercube](scrolls/cubes), with geometric fractal patterns based on symmetries, drawn with magic markers and [the Shapes of Action Geometry](scrolls/shapes).  The other side is divided using a magic marker or pen into 6 squares, each 1.5x1.5 inches.  Each square has a [Geometron Icon](scrolls/icons) printed on it.  These can be printed by hand, printed using a Geometron server and a regular printer, or printed with a [Trash Robot Icon Printer](scrolls/printers).
 
-- [card.html](card.html)
-- [cardmaker.html](cardmaker.html)
+The Face side simply carries the idea of symmetry as a sort of brand for all Geometron-related communication.  The side with the 6 icons is used as a totally general philosophical language, which can be used to represent *any* set of 6 things of *any* kind.  These can be web pages, people, projects, things, documents, concept, places, groups, brands, companies, books, code repositories, languages, organisms, bodies of water, streets, game pieces, technologies, philosophies, systems, types of food, locally available resources, or any other concept we might wish to share.
 
-Cards are cut cardboard, 3x4.5 inches.  One side is divided into 6 1.5 inch squares. Each square has an [icon](scrolls/icons) on it, which can be printed with a [trash robot icon printer](scrolls/printers) or a cutout paper icon from [iconpage.html](iconpage.html) or hand printed with a pen or marker or any other art tool.  Icons can represent anything.  People, organizations, ideas, places, media, objects, hyperlinks, game pieces, elements of any human language, pictographs, or any other geometry with meaning.
-
-Cards are carried from one cube to another in the Geometron Hypercube, the set of all [Geometron Cubes](scrolls/cubes) built worldwide.  Using physical cards in conjunction with media we put on both local and global web servers we can point to any information of any kind.  A domain name can point to a web page which can point to a place which can have more physical media pointing to a server which can hold any media in any format of any size.  This represents an extension of the World Wide Web into the physical world, printed on trash.  Passerby bring us cardboard trash and we cut it up into cards, divide the cards, print on them, put them in cubes, and share them with the whole Hypercube. 
-
-Cards can be used to:
-
- - find people to connect with
- - spread messages, memes, philosophies
- - spread media 
- - replicate things in Trash Magic
- - promote a brand
- - advertise a product or service
- - build game boards in the physical world
- - represent business transactions
- - represent mutual aid 
- - represent philosophical concepts
- - direct to a place(park, corner, bridge, tunnel, shelter, house, business, rest stop, library, community center, makerspace, art gallery, coffee shop, garden, grove, warehouse, ford, dock, swamp, beach, etc.)
- - build a collaborative game board on flat surfaces. This is a form of physical social media entirely built on trash and geometry.
+The squares can be used to create game boards by tiling cards together.   Cards can be placed in public spaces to annotate physical things.  Because icons on cards can point to physical spaces, and cards are left in physical spaces, they form a physical hypertext layer.  Places can link to other places by way of the Cards, building mixed reality media without any digital layers at all, just cardboard, box cutters, and markers.
 
 
 ![](https://i.imgur.com/OR6pawN.jpg)
@@ -38,7 +21,6 @@ Fractals are drawn with [Action Geometry shapes](scrolls/shapes).
 
 ![](https://i.imgur.com/1JEozkm.jpg)
 
-
 ![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/symbolfeed/card.svg)
 
 ![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/uploadimages/cardmagic.jpg)
@@ -47,4 +29,4 @@ Fractals are drawn with [Action Geometry shapes](scrolls/shapes).
 
 ![](https://raw.githubusercontent.com/LafeLabs/hypercube/main/cardmagic/uploadimages/cubestack.jpg)
 
-
+[HOME](scrolls/home)

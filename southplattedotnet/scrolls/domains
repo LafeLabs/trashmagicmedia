@@ -1,0 +1,10 @@
+
+## [HOME](scrolls/home)
+
+# domains
+ 
+ - buy domains
+ - setup hosting
+ - put a file called replicator.php in the web directory with one of the replicators from this system, generally a hyperlink replicator
+ - [global hyperlink replicator](https://raw.githubusercontent.com/LafeLabs/hyperlink/main/php/replicator.txt)
+ - point browser to [your domain]/replicator.php

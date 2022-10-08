@@ -341,7 +341,7 @@ function loadfeed(){
         datadiv.className = "data";
         newdiv.appendChild(datadiv);
         newdiv.onclick = function(){
-            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            glyph = "0600," + this.getElementsByClassName("data")[0].innerHTML;
             mainGVM.glyph = glyph;
             redraw();
             //load glyph and print to examine prior to saving
