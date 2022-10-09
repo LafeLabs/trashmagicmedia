@@ -1,6 +1,1 @@
-[
-    {
-        "timestamp":1665287237,
-        "pressure":1000
-    }
-]
+{"Pressure":841.58,"Temperature":24.50}

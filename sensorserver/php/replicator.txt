@@ -14,7 +14,7 @@ $dna = json_decode($dnaraw);
 mkdir("data");
 mkdir("php");
 mkdir("media");
-
+mkdir("media/sensordata")
 
 
 copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/sensorserver/php/replicator.txt","replicator.php");

@@ -20,6 +20,9 @@
 <body>    
 <div id = "header">
     <a href = "editor.php">editor.php</a>
+    <a href = "readme.html">readme.html</a>
+    <a href = "media.html">media.html</a>
+
 </div>
 <div id = "box1">
     <h1>Arduino Code</h1>
@@ -51,18 +54,6 @@ httpc.onreadystatechange = function() {
 httpc.open("GET", "fileloader.php?filename=data/arduino-measure.txt", true);
 httpc.send();
     
-jsondata = "";
-
-//load data/arduinocode.txt
-var httpc2 = new XMLHttpRequest();
-httpc2.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        jsondata = this.responseText;
-        document.getElementById("jsondata").value = jsondata;
-    };
-}
-httpc2.open("GET", "fileloader.php?filename=data/sensordata.txt", true);
-httpc2.send();
 
 pythoncode1 = "";
 
@@ -85,12 +76,59 @@ var httpc4 = new XMLHttpRequest();
 httpc4.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         pythoncode2 = this.responseText;
-        document.getElementById("pythonplotcode").value = pythoncode1;
+        document.getElementById("pythonplotcode").value = pythoncode2;
     };
 }
 httpc4.open("GET", "fileloader.php?filename=plot.py", true);
 httpc4.send();
 
+
+datafilenames = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        datafilenames = JSON.parse(this.responseText);
+        loaddata();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=media/sensordata", true);
+httpcUpload.send();
+
+timestamp = 0;
+function loaddata(){
+    datajsonarray = []; 
+    
+    for(index = 0;index < datafilenames.length;index++){
+        timestamp = parseInt(datafilenames[index].split("data")[1].split(".txt")[0]);
+        var httpc666 = new XMLHttpRequest();
+        httpc666.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                localdata = JSON.parse(this.responseText);
+                console.log(index);
+//                localtimestamp = parseInt(datafilenames[index].split("data")[1].split(".txt")[0]);
+                localdata.timestamp = timestamp;
+                datajsonarray.push(localdata);           
+                document.getElementById("jsondata").value = JSON.stringify(datajsonarray,null,"    ");
+            };
+        }
+        httpc666.open("GET", "fileloader.php?filename=media/sensordata/" + datafilenames[index], true);
+        httpc666.send();
+    }
+
+}
+
+
+//get a list of files in media/sensordata
+//create a JSON data array
+//for loop:
+//  convert filename to timestamp
+//  convert timestamp to better JSON with month, day, year, time
+//  fetch JSON and turn it into an object
+//   append timestamp and time elements
+//   append to JSON array
+//put JSON into the textarea
+//save combined JSON in 
 </script>
 <style>
 textarea{
