@@ -2,9 +2,12 @@
 
 ## [http://localhost/](http://localhost/)
 
-![](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/replicator.jpg)
 
-### *self-replicating media*
+
+
+
+
+
 
 ### Installing on a windows or mac private machine
 

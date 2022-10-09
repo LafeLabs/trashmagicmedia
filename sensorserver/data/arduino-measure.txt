@@ -1,28 +1,47 @@
-#include <Wire.h>
-#include <Adafruit_MPL115A2.h>
+/**
+ * Async example for MPL3115A2
+ */
 
-Adafruit_MPL115A2 mpl115a2;
+#include <Adafruit_MPL3115A2.h>
 
-void setup(void) 
-{
+Adafruit_MPL3115A2 mpl;
+
+void setup() {
   Serial.begin(9600);
-  Serial.println("Hello!"); 
-  Serial.println("Getting barometric pressure ...");
-  mpl115a2.begin();
-  
+  while(!Serial);
+  Serial.println("Adafruit_MPL3115A2 test!");
+
+  if (!mpl.begin()) {
+    Serial.println("Could not find sensor. Check wiring.");
+    while(1);
+  }
+
+  // set mode before starting a conversion
+  Serial.println("Setting mode to barometer (pressure).");
+  mpl.setMode(MPL3115A2_BAROMETER);
 }
 
-void loop(void) 
-{
-  float pressureKPA = 0, temperatureC = 0;    
+void loop() {
+  // start a conversion
+  //Serial.println("Starting a conversion.");
+  mpl.startOneShot();
 
-  pressureKPA = mpl115a2.getPressure();  
-  //Serial.print("Pressure (kPa): "); 
-  Serial.println(pressureKPA, 4); 
-  //Serial.println(" kPa");
+  // do something else while waiting
+//  Serial.println("Counting number while waiting...");
+  int count = 0;
+  while (!mpl.conversionComplete()) {
+    count++;
+  }
+  //Serial.print("Done! Counted to "); Serial.println(count);
 
-//  temperatureC = mpl115a2.getTemperature();  
-  //Serial.print("Temp (*C): "); Serial.print(temperatureC, 1); Serial.println(" *C");
-  
-//  delay(1000);
+  // now get results
+  //Serial.print("Pressure = ");
+  Serial.print("{");
+  Serial.print("\"Pressure\":");
+  Serial.print(mpl.getLastConversionResults(MPL3115A2_PRESSURE));
+  Serial.print(",\"Temperature\":");
+  Serial.print(mpl.getLastConversionResults(MPL3115A2_TEMPERATURE));
+  Serial.println("}");
+
+  delay(100);
 }
