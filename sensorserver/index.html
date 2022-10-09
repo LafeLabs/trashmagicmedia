@@ -105,11 +105,15 @@ function loaddata(){
         httpc666.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 localdata = JSON.parse(this.responseText);
-                console.log(index);
-//                localtimestamp = parseInt(datafilenames[index].split("data")[1].split(".txt")[0]);
                 localdata.timestamp = timestamp;
                 datajsonarray.push(localdata);           
                 document.getElementById("jsondata").value = JSON.stringify(datajsonarray,null,"    ");
+                //this is very sloppy code but works
+                var httpc99 = new XMLHttpRequest();
+                httpc99.open("POST", "filesaver.php", true);
+                httpc99.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                httpc99.send("data="+encodeURIComponent(JSON.stringify(datajsonarray),null,"    ")+"&filename=data/sensordata.txt");//send text to filesaver.php
+
             };
         }
         httpc666.open("GET", "fileloader.php?filename=media/sensordata/" + datafilenames[index], true);

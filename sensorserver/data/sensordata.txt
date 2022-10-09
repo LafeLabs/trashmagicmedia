@@ -1,1 +1,1 @@
-{"Pressure":841.58,"Temperature":24.50}
+[{"Pressure":841.28,"Temperature":24.81,"timestamp":1665354611465},{"Pressure":841.12,"Temperature":25.12,"timestamp":1665354611465},{"Pressure":841.19,"Temperature":24.75,"timestamp":1665354611465}]
