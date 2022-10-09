@@ -41,9 +41,6 @@ foreach($dna->php as $value){
 
 
 
-    
-
-
 ?>
 <a href = "index.html">CLICK TO GO TO PAGE</a>
 <style>

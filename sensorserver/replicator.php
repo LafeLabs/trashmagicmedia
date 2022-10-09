@@ -1,6 +1,6 @@
 <?php
 
-$dnaurl = "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/mediabox/data/dna.txt";
+$dnaurl = "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/sensorserver/data/dna.txt";
 
 if(isset($_GET["dna"])){
     $dnaurl = $_GET["dna"];
@@ -17,7 +17,7 @@ mkdir("media");
 
 
 
-copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/mediabox/php/replicator.txt","replicator.php");
+copy("https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/sensorserver/php/replicator.txt","replicator.php");
 
 foreach($dna->html as $value){
     
@@ -39,9 +39,6 @@ foreach($dna->php as $value){
 
 }
 
-
-
-    
 
 
 ?>
