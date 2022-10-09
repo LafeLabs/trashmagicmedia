@@ -1,0 +1,32 @@
+{
+    "html": [
+        "README.md",
+        "fork.html",
+        "index.html",
+        "measure.py",
+        "media.html",
+        "mediadestroyer.html",
+        "plot.py",
+        "qrcode-page.html",
+        "qrcode.html",
+        "readme.html"
+    ],
+    "data": [
+        "arduino-measure.txt",
+        "dna.txt",
+        "sensordata.txt"
+    ],
+    "php": [
+        "copy.txt",
+        "deletefile.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "text2php.txt"
+    ]
+}

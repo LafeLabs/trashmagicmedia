@@ -1,0 +1,2 @@
+#plot
+print("hello world")

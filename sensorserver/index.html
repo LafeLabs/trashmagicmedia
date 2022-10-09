@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+        <!--
+
+    All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
+
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+
+   <title>TRASH MAGIC MEDIA</title>    
+          <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+</head>
+<body>    
+<div id = "header">
+    <a href = "editor.php">editor.php</a>
+</div>
+<div id = "box1">
+    <h1>Arduino Code</h1>
+    <textarea id = "arduinocode"></textarea>
+</div>
+<div id = "box2">
+    <h1>Python Measurement Code</h1>
+    <textarea id = "pythonmeasurecode"></textarea>
+</div>
+<div id = "box3">
+    <h1>JSON data</h1>
+    <textarea id = "jsondata"></textarea>
+</div>
+<div id = "box4"></div>
+    <h1>python visualization code</h1>
+    <textarea id = "pythonplotcode"></textarea>
+<script>
+
+arduinocode = "";
+
+//load data/arduinocode.txt
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        arduinocode = this.responseText;
+        document.getElementById("arduinocode").value = arduinocode;
+    };
+}
+httpc.open("GET", "fileloader.php?filename=data/arduino-measure.txt", true);
+httpc.send();
+    
+jsondata = "";
+
+//load data/arduinocode.txt
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        jsondata = this.responseText;
+        document.getElementById("jsondata").value = jsondata;
+    };
+}
+httpc2.open("GET", "fileloader.php?filename=data/sensordata.txt", true);
+httpc2.send();
+
+pythoncode1 = "";
+
+//load data/arduinocode.txt
+var httpc3 = new XMLHttpRequest();
+httpc3.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        pythoncode1 = this.responseText;
+        document.getElementById("pythonmeasurecode").value = pythoncode1;
+    };
+}
+httpc3.open("GET", "fileloader.php?filename=measure.py", true);
+httpc3.send();
+
+
+pythoncode2 = "";
+
+//load data/arduinocode.txt
+var httpc4 = new XMLHttpRequest();
+httpc4.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        pythoncode2 = this.responseText;
+        document.getElementById("pythonplotcode").value = pythoncode1;
+    };
+}
+httpc4.open("GET", "fileloader.php?filename=plot.py", true);
+httpc4.send();
+
+</script>
+<style>
+
+</style>
+</body>
+</html>
