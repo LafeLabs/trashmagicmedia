@@ -98,17 +98,20 @@ httpcUpload.send();
 timestamp = 0;
 function loaddata(){
     datajsonarray = []; 
-    
+    timestamparray = [];
     for(index = 0;index < datafilenames.length;index++){
         timestamp = parseInt(datafilenames[index].split("data")[1].split(".txt")[0]);
+        timestamparray.push(timestamp);
         var httpc666 = new XMLHttpRequest();
         httpc666.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 localdata = JSON.parse(this.responseText);
-                localdata.timestamp = timestamp;
-                datajsonarray.push(localdata);           
+                datajsonarray.push(localdata);
+                for(var badindex = 0;badindex < datajsonarray.length;badindex++){
+                    datajsonarray[badindex].timestamp = timestamparray[badindex];
+                }
                 document.getElementById("jsondata").value = JSON.stringify(datajsonarray,null,"    ");
-                //this is very sloppy code but works
+                //this very very bad code, but it works and solves some timing issues with the XMLHttpRequest object
                 var httpc99 = new XMLHttpRequest();
                 httpc99.open("POST", "filesaver.php", true);
                 httpc99.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -119,7 +122,6 @@ function loaddata(){
         httpc666.open("GET", "fileloader.php?filename=media/sensordata/" + datafilenames[index], true);
         httpc666.send();
     }
-
 }
 
 

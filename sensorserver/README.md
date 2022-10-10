@@ -10,6 +10,7 @@ COM 3, 9600 baud
 
 ## [http://localhost/](http://localhost/)
 
+## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/sensorserver/php/replicator.txt)
 
 Install this on a personal machine(windows, mac, linux), a donated old laptop, or a Raspberry Pi.  Create folders in the "media" folder for collections of media(topics, formats, authors, types, purposes, locations etc), and drop media in there to share.  Put the server on a shared wifi network, post a QR code to the IP address of the server, and share the link. Click the link to get a QR code, put http://[your ip address] into the text field and hit enter to update the QR code, then screen shot that, print it, share it etc. to get more people on the wifi to see the server. They can then all download all the books and other media. FREE BOOKS!
 

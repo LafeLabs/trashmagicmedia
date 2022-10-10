@@ -20,4 +20,4 @@ while True:
     file1 = open(filename,'w')
     file1.write(data)
     file1.close()    
-    sleep(60)# wait 60 seconds, so record a data point every minute until program break
+    time.sleep(60)# wait 60 seconds, so record a data point every minute until program break

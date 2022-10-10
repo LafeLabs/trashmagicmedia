@@ -1,0 +1,1 @@
+{"Pressure":840.92,"Temperature":25.00}

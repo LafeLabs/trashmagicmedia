@@ -37,9 +37,9 @@ void loop() {
   // now get results
   //Serial.print("Pressure = ");
   Serial.print("{");
-  Serial.print("\"Pressure\":");
+  Serial.print("\"Pressure\":");//units of 1 hPa =  100 Pa
   Serial.print(mpl.getLastConversionResults(MPL3115A2_PRESSURE));
-  Serial.print(",\"Temperature\":");
+  Serial.print(",\"Temperature\":");//degrees C
   Serial.print(mpl.getLastConversionResults(MPL3115A2_TEMPERATURE));
   Serial.println("}");
 
