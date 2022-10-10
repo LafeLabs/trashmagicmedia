@@ -12,6 +12,145 @@ COM 3, 9600 baud
 
 ## [global replicator code link](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/sensorserver/php/replicator.txt)
 
+Arduino Code:
+
+```
+/**
+ * Async example for MPL3115A2
+ */
+
+#include <Adafruit_MPL3115A2.h>
+
+Adafruit_MPL3115A2 mpl;
+
+void setup() {
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("Adafruit_MPL3115A2 test!");
+
+  if (!mpl.begin()) {
+    Serial.println("Could not find sensor. Check wiring.");
+    while(1);
+  }
+
+  // set mode before starting a conversion
+  Serial.println("Setting mode to barometer (pressure).");
+  mpl.setMode(MPL3115A2_BAROMETER);
+}
+
+void loop() {
+  // start a conversion
+  //Serial.println("Starting a conversion.");
+  mpl.startOneShot();
+
+  // do something else while waiting
+//  Serial.println("Counting number while waiting...");
+  int count = 0;
+  while (!mpl.conversionComplete()) {
+    count++;
+  }
+  //Serial.print("Done! Counted to "); Serial.println(count);
+
+  // now get results
+  //Serial.print("Pressure = ");
+  Serial.print("{");
+  Serial.print("\"Pressure\":");//units of 1 hPa =  100 Pa
+  Serial.print(mpl.getLastConversionResults(MPL3115A2_PRESSURE));
+  Serial.print(",\"Temperature\":");//degrees C
+  Serial.print(mpl.getLastConversionResults(MPL3115A2_TEMPERATURE));
+  Serial.println("}");
+
+  delay(100);
+}
+```
+
+### Python Measurement
+
+```
+# this measurement should be in a while(true) loop with a sleep(meastime) and be triggered to run in the background and it should run at boot so the server is always taking data when it's on
+import serial
+import time
+import datetime
+
+
+while True:
+    presentDate = datetime.datetime.now()
+    unix_timestamp = datetime.datetime.timestamp(presentDate)*1000
+    ser = serial.Serial('COM3', 9600, timeout=1)
+    ser.flush()
+    i = 0
+    data = ""
+    while i < 10:
+      i += 1
+      data += str(ser.readline())
+    ser.close()
+    data = data.split("\\r\\n\'b\'")[5]
+    filename = "media/sensordata/data" + str(unix_timestamp).split(".")[0] + ".txt"
+    file1 = open(filename,'w')
+    file1.write(data)
+    file1.close()    
+    time.sleep(60)# wait 60 seconds, so record a data point every minute until program break
+```
+
+### Python plotting 
+
+Do this from a notebook in the main web directory of the server
+
+```
+import json
+f = open("data/sensordata.txt", "r")
+textdata = f.read()
+data = json.loads(textdata)
+import matplotlib.pyplot as plt
+import numpy as np
+pressurewave = []
+temperaturewave = []
+timewave = []
+for x in data:
+    #print(x['Pressure'])
+    pressurewave.append(x['Pressure'])
+    temperaturewave.append(x['Temperature'])
+    timewave.append(x['timestamp'])
+plt.plot(timewave,pressurewave)
+```
+
+### Javascript make one JSON
+
+```
+timestamp = 0;
+function loaddata(){
+    datajsonarray = []; 
+    timestamparray = [];
+    for(index = 0;index < datafilenames.length;index++){
+        timestamp = parseInt(datafilenames[index].split("data")[1].split(".txt")[0]);
+        timestamparray.push(timestamp);
+        var httpc666 = new XMLHttpRequest();
+        httpc666.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                localdata = JSON.parse(this.responseText);
+                datajsonarray.push(localdata);
+                for(var badindex = 0;badindex < datajsonarray.length;badindex++){
+                    datajsonarray[badindex].timestamp = timestamparray[badindex];
+                }
+                document.getElementById("jsondata").value = JSON.stringify(datajsonarray,null,"    ");
+                //this very very bad code, but it works and solves some timing issues with the XMLHttpRequest object
+                var httpc99 = new XMLHttpRequest();
+                httpc99.open("POST", "filesaver.php", true);
+                httpc99.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                httpc99.send("data="+encodeURIComponent(JSON.stringify(datajsonarray),null,"    ")+"&filename=data/sensordata.txt");//send text to filesaver.php
+
+            };
+        }
+        httpc666.open("GET", "fileloader.php?filename=media/sensordata/" + datafilenames[index], true);
+        httpc666.send();
+    }
+}
+```
+
+
+
+### Installation
+
 Install this on a personal machine(windows, mac, linux), a donated old laptop, or a Raspberry Pi.  Create folders in the "media" folder for collections of media(topics, formats, authors, types, purposes, locations etc), and drop media in there to share.  Put the server on a shared wifi network, post a QR code to the IP address of the server, and share the link. Click the link to get a QR code, put http://[your ip address] into the text field and hit enter to update the QR code, then screen shot that, print it, share it etc. to get more people on the wifi to see the server. They can then all download all the books and other media. FREE BOOKS!
 
 
