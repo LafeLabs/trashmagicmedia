@@ -54,7 +54,8 @@ This is an architecture for a general node on a network which distributes energy
  - diesel generator from biodiesel
  - wind generator
  - solar-driven stirling engine, burning trash stirling, geothermal stirling
- 
+ - stationary bike pedalled by person 
+
 ## Power control
 
  - COTS
@@ -63,7 +64,7 @@ This is an architecture for a general node on a network which distributes energy
  
 ## power sense
 
- - all voltages 
+ - all voltages
  - all currents
  - temperatures of components
  - solar irradiance
@@ -83,6 +84,11 @@ This is an architecture for a general node on a network which distributes energy
  - cargo netting
  - shelves
  - cubes
+ - compost
+ - fungi
+ - plants
+ - rocks
+ - sticks
  - blankets
  - dry erase board
  - chalk board
@@ -101,6 +107,7 @@ This is an architecture for a general node on a network which distributes energy
  - clothes, bags, jewlery, accessories
  - food, water, drinks, medicine
  - tools and building materials
+ - skeletron elements
  
 ## digital media network
 
@@ -109,7 +116,10 @@ This is an architecture for a general node on a network which distributes energy
  - mesh network internal nodes
  - mesh network edge nodes
  - internet connections
- 
+ - hotspots
+ - shared domain names
+ - QR codes
+ - home servers on the real internet
 
 ## Media server
 
@@ -123,10 +133,23 @@ This is an architecture for a general node on a network which distributes energy
  - USB sensors to sense elements of power system, environment, EM spectrum
  - human interfaces: keyboards, mice, screens, touch screens, motion sensors, g control inputs, neural interfaces, cybernetic enhancements, projectors, headsets, haptic interfaces
  - printers and printer robots, printing technology, book printing, circuit printing, structure printing, 3d printing, laser printing/cutting, clay printing
+ - scientific computing packages with python
+ - arduino IDE
+ - save all data as human readable text in a folder in "media", all data are media 
 
 ## Environmental sensors
 
  - air: pressure, temperature, wind speed, humidity, particulates, CO2, O2, methane, contaminants
- - water: chemical impurities, conductivity, PH, e-coli count, overall microbiome,
+ - water: chemical impurities, conductivity, PH, e-coli count, overall microbiome, flow, temperature, opacity, viscosity, fecal coliform, oxygen, nitrogen, phosphates, etc etc etc
+ - soil: many things that do not yet exist. tap into information networks on plant roots, microbiome, and fungi
+ - sun
+ - electromagnetic spectrum
+ - seismic and vibration data
+ - accoustic noise
+ - wildlife data, images, tracking
+ - status of living things via sensors, ecosystem monitoring
+ - traffic flow
+
+
 
 
