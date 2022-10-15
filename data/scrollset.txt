@@ -37,6 +37,7 @@
         "trashicons",
         "trashmagic",
         "ubuntu",
-        "videos"
+        "videos",
+        "voltagemeasurement"
     ]
 }
