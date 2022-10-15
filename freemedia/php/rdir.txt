@@ -1,0 +1,23 @@
+<?php
+
+// list files and or directories in a directory, recursive
+
+
+function getFiles(string $directory, array $allFiles = []): array
+{
+    $files = array_diff(scandir($directory), ['.', '..']);
+
+    foreach ($files as $file) {
+        $fullPath = $directory. DIRECTORY_SEPARATOR .$file;
+
+        if( is_dir($fullPath) )
+            $allFiles += getFiles($fullPath, $allFiles);
+        else
+            $allFiles[] = $file;
+    }
+
+    return $allFiles;
+}
+
+
+?>

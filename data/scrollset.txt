@@ -25,6 +25,7 @@
         "podcasts",
         "rulers",
         "scrolls",
+        "server",
         "servers",
         "shapes",
         "signs",
