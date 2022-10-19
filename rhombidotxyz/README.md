@@ -7,5 +7,7 @@
  - [buy the book of geometron](https://www.lulu.com/shop/lafe-spietz/geometron/paperback/product-qqk98g.html)
  - [index.html](index.html)
  - [global replicator](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/rhombidotxyz/php/replicator.txt)
- - [www.trashrobot.org](https://www.trashrobot.org)
+ - [quantum trash magic tarot](https://www.quantumart.org)
+ - [TRASH ROBOT](https://www.trashrobot.org)
+ - [south platte dot net](https://www.southplatte.net)
  - [github](https://github.com/LafeLabs/trashmagicmedia/tree/main/rhombidotxyz)
