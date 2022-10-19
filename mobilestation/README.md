@@ -10,11 +10,12 @@
  - rechargeable battery, e.g. lead acid, deep cycle, niMh, lipo...
  - voltage dividers made with precision 10, and 100k resistors to divide down volages into the range of the arduino
  - [100k precision resistors on digikey](https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/MBB0207VD1003BC100/7350411)
- - [10k preicision resistors on digikey](https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/MBB0207VE1002BC100/7350421)
- - [an arduino mega](https://www.amazon.com/ELEGOO-ATmega2560-ATMEGA16U2-Projects-Compliant/dp/B01H4ZLZLQ/)
- - [a zener diode reference to calibrate the UNO ADCs](https://www.digikey.com/en/products/detail/rochester-electronics-llc/1N5223B/13450134)
- - [molex pairs from adafruit to make voltage taps unpluggable](https://www.adafruit.com/product/4720)
+ - [10k preicision resistors on digikey](https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/MBB0207VD1002BC100/7350410)
+ - [a 3.3 V zener diode reference to calibrate the UNO ADCs](https://www.digikey.com/en/products/detail/nexperia-usa-inc/BZX79-B3V3-133/2119578)
  - [thermisters](https://www.digikey.com/en/products/detail/tewa-sensors-llc/TTDO-100KC3-5/12372700)
+ - [digikey shopping cart of the above](https://www.digikey.com/short/n7ccvc34)
+ - [an arduino mega](https://www.amazon.com/ELEGOO-ATmega2560-ATMEGA16U2-Projects-Compliant/dp/B01H4ZLZLQ/)
+ - [molex pairs from adafruit to make voltage taps unpluggable](https://www.adafruit.com/product/4720)
  - [solderless breadboard and jumper(adafruit link) kit](https://www.adafruit.com/product/3314)
  - a vehicle or cart of some kind to carry the station around
  - shelter, tarp, awning, umbrella, enclosure

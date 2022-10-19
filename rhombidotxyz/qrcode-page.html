@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>    
+
+<a id= "toplink" href = "index.html">HOME</a>
+
+<table>
+    <tr>
+        <td>URL:</td>
+        <td><input id = "urlinput"/></td>
+    </tr>
+</table>
+<a id = "linklink"></a>
+<div id = "qrcode"></div>
+<table id = "pagetable"></table>
+<script>
+
+codesquaresize = 80;
+marginsize = 40;
+fontsize = 12;
+
+//globalurl = "http://www.trashrobot.org/qrcode.html";
+globalurl = window.location.href.split("qrcode.html")[0];
+
+
+document.getElementById("urlinput").value = "";
+
+document.getElementById("urlinput").select();
+
+table = document.getElementById("pagetable");
+
+document.getElementById("urlinput").onchange = function(){
+    globalurl= this.value;
+    qrcode.makeCode(globalurl);
+    pngcode = document.getElementById("qrcode").getElementsByTagName("IMG")[0].src;
+    document.getElementById("linklink").href = globalurl;
+    document.getElementById("linklink").innerHTML = globalurl;
+    table.innerHTML = "";
+    for(var row = 0;row < 8;row++){
+        var newtr = document.createElement("TR");
+        table.appendChild(newtr);
+        for(var col = 0;col < 8;col++){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newimg = document.createElement("img");
+            newimg.style.width = "80px";
+            newimg.src = pngcode;
+            newtd.appendChild(newimg);
+        }
+    }
+    
+}
+
+
+document.getElementById("linklink").href = globalurl;
+document.getElementById("linklink").innerHTML = globalurl;
+document.getElementById("urlinput").value = globalurl;
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+
+
+</script>
+<style>
+input{
+    border:solid;
+}
+body{
+    font-family:courier;
+}
+canvas,img{
+}
+#toplink{
+    position:absolute;
+    right:0px;
+    top:0px;
+    font-size:2em;
+}
+.button{
+    cursor:pointer;
+    text-align:center;
+    border:solid;
+    border-radius:3px;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+</style>
+</body>
+</html>

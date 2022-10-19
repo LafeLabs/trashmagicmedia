@@ -1,0 +1,50 @@
+{
+    "imgurl": "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/large/2800/Roy-Batty.Blade-Runner.webp",
+    "map": [
+        {
+            "x": 0.632,
+            "y": 0.10285714285714286,
+            "w": 0.19885714285714284,
+            "angle": 0,
+            "text": "the angels fell",
+            "href": "",
+            "src": ""
+        },
+        {
+            "x": 0.6811428571428572,
+            "y": 0.19085714285714286,
+            "w": 0.19885714285714284,
+            "angle": 0,
+            "text": "deep thunder",
+            "href": "",
+            "src": ""
+        },
+        {
+            "x": 0.6811428571428572,
+            "y": 0.30742857142857144,
+            "w": 0.19885714285714284,
+            "angle": 0,
+            "text": "rolled around their shores",
+            "href": "",
+            "src": ""
+        },
+        {
+            "x": 0.568,
+            "y": 0.44457142857142856,
+            "w": 0.19885714285714284,
+            "angle": 0,
+            "text": "burning with the fires of orc",
+            "href": "",
+            "src": ""
+        },
+        {
+            "x": 0.52,
+            "y": 0.026285714285714287,
+            "w": 0.19885714285714284,
+            "angle": 0,
+            "text": "Fiery",
+            "href": "",
+            "src": ""
+        }
+    ]
+}

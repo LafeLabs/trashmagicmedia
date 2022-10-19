@@ -1,0 +1,57 @@
+[
+    {
+        "x": 0.006857142857142857,
+        "y": -0.05942857142857143,
+        "w": 1.2468571428571429,
+        "h": 1.2468571428571429,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/KY0RGoI.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.7062857142857143,
+        "y": 0.2537142857142857,
+        "w": 0.17942857142857144,
+        "h": 0.17942857142857144,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/ZUVemiI.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.5988571428571429,
+        "y": -0.026285714285714287,
+        "w": 0.12685714285714286,
+        "h": 0.12685714285714286,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/ZUVemiI.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.72,
+        "y": 0.5405714285714286,
+        "w": 0.16114285714285714,
+        "h": 0.16114285714285714,
+        "angle": 0,
+        "text": "text",
+        "href": "",
+        "src": "https://i.imgur.com/ZUVemiI.png",
+        "maplinkmode": false
+    },
+    {
+        "x": 0.05714285714285714,
+        "y": 0.5862857142857143,
+        "w": 0.12,
+        "h": 0.12,
+        "angle": 0,
+        "text": "text",
+        "href": "maps/home",
+        "src": "iconsymbols/home.svg",
+        "maplinkmode": true
+    }
+]
