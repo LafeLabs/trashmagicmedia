@@ -136,7 +136,8 @@ function loadfeed(){
             glyph = this.getElementsByClassName("data")[0].innerHTML;
             document.getElementById("glyphinput").value = glyph;
         }
-        
+
+
         var newimg = document.createElement("IMG");
         newimg.src = "iconsymbols/delete.svg";
         newdiv.appendChild(newimg);
@@ -158,7 +159,6 @@ function loadfeed(){
             saverobotfeed();
             loadfeed();
         }
-        
         
     }    
 }

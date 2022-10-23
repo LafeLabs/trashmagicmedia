@@ -1,4 +1,13 @@
 [
   "https://upload.wikimedia.org/wikipedia/commons/4/43/Spinoza_Nicolas_Dings_Zwanenburgwal_Amsterdam.JPG",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hexagon.svg/800px-Hexagon.svg.png"
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hexagon.svg/800px-Hexagon.svg.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/arduino.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/arduino.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/battery.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/cart.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/charger.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solarmain.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solarmain-label.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solartest.png",
+  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solartest-label.png"
 ]

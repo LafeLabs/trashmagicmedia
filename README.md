@@ -108,6 +108,26 @@ sudo chmod -R 0777 *
 
 Check the IP address by hovering over the wifi icon, put that into the browser on another machine on the same local wifi network to see and edit the server.  Or open a browser on the pi and point it to [http://localhost](http://localhost)
 
+
+install Arduino on pi
+
+```
+sudo apt-get install arduino
+```
+ 
+install python scientific computing packages
+
+```
+sudo apt install python3-matplotlib
+sudo apt-get update
+sudo apt-get install python3-scipy
+sudo pip3 install --upgrade pip
+reboot
+sudo pip3 install jupyter
+```
+
+
+
 ### Ubuntu Install
 
 You will need a thumb drive.

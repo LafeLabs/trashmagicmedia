@@ -4,6 +4,14 @@ hyperlink = {
     "alt": "cardboard sign with trash magic logo",
     "list": [
         {
+            "href": "https://www.rhombi.xyz",
+            "text": "www.rhombi.xyz"
+        },
+        {
+            "href": "tarot.html",
+            "text": "TRASH MAGIC QUANTUM TAROT"
+        },
+        {
             "href": "user.php",
             "text": "TRASH MAGIC SCROLLS AND MAPS"
         },
