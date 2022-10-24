@@ -119,6 +119,7 @@
         "markets",
         "media",
         "music",
+        "node",
         "podcasts",
         "rulers",
         "scrolls",
