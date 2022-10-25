@@ -18,6 +18,8 @@
 
 The *teacher* trains the *operator* to build and maintain the node.  Vehicles are used to transport the node from place to place.  *Venues* are physical spaces where a *community* of people pass by and exchange *content*.  Electronic media content is shared on the *web server* over the *wireless network*.  Physical media is shared via the *Physical Media eXchange (PMX)*.  *Sponsors* pay for the time of *teachers*, *operators*, and direct material support of *content creators*.  All nodes are self-replicating: people in each node can other people to hold those roles in the next node, from sponsor to operator to content creator.
 
+The purpose of the network is replication.  We replicate trash magic.  We replicate the products of the community, replicate the products of the Operators, replicate the expertise of the teachers, and replicate the memes of the sponsors.  This is what drives the network.  It is what animates it, gives it purpose.
+
 ## vehicles/stations
 
  - car, truck, van, camper, bus
@@ -52,7 +54,33 @@ The *teacher* trains the *operator* to build and maintain the node.  Vehicles ar
  - downtown intersection on the street
  
 
-## Content
+## Content Creators
+
+ - musicians
+ - web developers
+ - teachers 
+ - revolutionaries
+ - mutual aid workers
+ - spiritual thinkers
+ - philosophers
+ - skateboarders
+ - off grid power engineers
+ - chemical engineers
+ - artists
+ - food growers
+ - medicine makers
+ - dancers
+ - mathematicians
+ - mechanics
+ - trash magicians
+ - applied physicists
+ - architects
+ - historians
+ - anthropologists
+ - writers
+ - journalists
+ 
+
 
 
 ### Electronic media 
@@ -107,6 +135,4 @@ The *teacher* trains the *operator* to build and maintain the node.  Vehicles ar
  - raspberry pi network devices: bridges, mesh nodes, gateways
  - other ubuntu machines running network software
  - bandwidth sponsors supporting gateways to mesh networks
-
-
 
