@@ -7,13 +7,16 @@
     "data": [
         "dna.txt"
     ],
-    "javascript": [],
+    "javascript": [
+        "images.js"
+    ],
     "php": [
         "dir.txt",
         "dnagenerator.txt",
         "editor.txt",
         "fileloader.txt",
         "filesaver.txt",
+        "listimages.txt",
         "mkdir.txt",
         "rdelete.txt",
         "replicator.txt",
