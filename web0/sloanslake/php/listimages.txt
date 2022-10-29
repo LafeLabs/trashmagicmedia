@@ -8,7 +8,7 @@ $files = scandir(getcwd()."/images");
 $dirs = [];
 foreach($files as $value){
     if($value[0] != "."){
-        array_push($dirs,$value);
+        array_push($dirs,"https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/sloanslake/images/".$value);
     }
 }
 

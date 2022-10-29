@@ -35,46 +35,18 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
    <title>TRASH MAGIC MEDIA</title>    
        <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
-
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
-    <script src = "jscode/images.js"></script>
+    <script src = "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/web0/sloanslake/jscode/images.js"></script>
 </head>
 <body>    
 <div id = "scroll"></div>
 <script>
-scroll = "";
-rawhtml = "";
-var converter = new showdown.Converter();
-// for more on options see here:
-// https://github.com/showdownjs/showdown/wiki/Showdown-Options
-converter.setOption('literalMidWordUnderscores', 'true');
-converter.setOption('tables', 'true')
-    
-filename = "README.md";
-loadscroll("README.md");
 
 
-function loadscroll(scrollname){
-    filename = scrollname;
-
-    document.getElementById("scroll").innerHTML = "";
-    document.getElementById("scroll").style.display = "block";
-    var httpc666 = new XMLHttpRequest();
-    httpc666.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            scroll = this.responseText;
-            rawhtml = converter.makeHtml(scroll);
-            document.getElementById("scroll").innerHTML = rawhtml;
-
-            //			MathJax.Hub.Typeset();//tell Mathjax to update the math
-    //			MathJax.Hub.Typeset();//tell Mathjax to update the math
-        }
-    };
-    httpc666.open("GET", "fileloader.php?filename=" + scrollname, true);
-    httpc666.send();
-    //MathJax.Hub.Typeset();//tell Mathjax to update the math
+for(var index = 0;index < images.length;index++){
+    var newimg = document.createElement("IMG");
+    newimg.src = images[index];
+    document.getElementById("scroll").appendChild(newimg);
 }
-
 
 </script>
 <style>
@@ -89,6 +61,8 @@ function loadscroll(scrollname){
 }
 img{
     max-width:80%;
+    display:block;
+    margin:auto;
 }
 body{
     font-size:2em;
