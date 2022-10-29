@@ -26,6 +26,7 @@
         "podcasts",
         "rulers",
         "scrolls",
+        "sensors",
         "server",
         "servers",
         "shapes",
