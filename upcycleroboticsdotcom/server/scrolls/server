@@ -1,0 +1,47 @@
+## [HOME](scrolls/home)
+
+# server
+
+## PI setup:
+ 
+Get a SD card with 8 GB or more storage and a SD card USB reader
+
+Download and install, then use the Raspberry Pi Imager:
+
+[https://www.raspberrypi.org/software/](https://www.raspberrypi.org/software/)
+
+Turn on the pi click through all the things, put it on the wifi network. 
+
+
+## Old laptop setup:
+
+You will need a thumb drive. Follow the instructions below to install Ubuntu
+
+[https://ubuntu.com instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
+
+
+## Server install:
+
+Open a terminal and type the following
+
+```
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php -y
+cd /var/www/html
+sudo rm index.html
+sudo apt-get install arduino
+sudo apt install python3-matplotlib
+sudo apt-get install python3-scipy
+sudo pip3 install --upgrade pip
+reboot
+sudo pip3 install jupyter
+sudo apt-get install gnuradio
+```
+
+Then locate the folder /var/www/html and put other folders in there and put all your media in there.  Put in *everything*.  To run a Jupyter notebook in a given folder, open the terminal and move to the correct folder before typing
+
+```
+jupyter notebook
+```
+and you will have a notebook which is in the proper web folder. Jupyter notebooks are JSON documents.

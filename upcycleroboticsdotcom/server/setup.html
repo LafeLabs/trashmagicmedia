@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">    
+<head>
+        <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+    <script src="jscode/geometron.js"></script>
+</head>
+<body> 
+<div id = "square">
+    <canvas id = "maincanvas"></canvas>
+</div>
+        
+        <a href = "symbol.html">
+            <img style = "width:50px;" src = "iconsymbols/home.svg"/>
+        </a>
+        <table id = "maintable">
+            <tr>
+                <td></td>
+                <td id = "resetbutton" class = "button" style = "text-align:center;border:solid;border-radius:5px;">
+                    RESET
+                </td>
+            </tr>        
+            <tr>
+                <td>x0:</td>
+                <td><input/></td>
+            </tr>
+            <tr>
+                <td>y0:</td>
+                <td><input/></td>
+            </tr>
+            <tr>
+                <td>unit:</td>
+                <td><input/></td>
+            </tr>        
+            <tr>
+                <td>width:</td>
+                <td><input/></td>
+            </tr>
+            <tr>
+                <td>height:</td>
+                <td><input/></td>
+            </tr>    
+        </table>
+    
+
+<script>
+currentjson = {};
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        currentjson = JSON.parse(this.responseText);
+        currentstyle = currentjson.style;
+        newGVM = new GVM(document.getElementById("maincanvas"),currentjson.width,currentjson.height);
+        newGVM.style = currentstyle;
+        newGVM.width = currentjson.width;
+        newGVM.height = currentjson.height;
+        newGVM.x0 = currentjson.x0;
+        newGVM.y0 = currentjson.y0;    
+        newGVM.unit = currentjson.unit;    
+        newGVM.glyph = currentjson.glyph;    
+        filltable();
+        redraw();
+
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/currentjson.txt", true);
+httpc.send();    
+
+inputs = document.getElementById("maintable").getElementsByTagName("INPUT");
+
+inputs[0].onchange = function(){
+    currentjson.x0 = parseFloat(this.value);
+    redraw();
+    savejson();    
+}
+inputs[1].onchange = function(){
+    currentjson.y0 = parseFloat(this.value);
+    redraw();
+    savejson();    
+}
+
+inputs[2].onchange = function(){
+    currentjson.unit = parseFloat(this.value);
+    redraw();
+    savejson();    
+}
+
+inputs[3].onchange = function(){
+    currentjson.width = parseInt(this.value);
+    redraw();
+    savejson();    
+}
+
+
+inputs[4].onchange = function(){
+    currentjson.height = parseInt(this.value);
+    redraw();
+    savejson();    
+}
+
+
+
+
+function filltable(){
+    inputs[0].value = currentjson.x0;
+    inputs[1].value = currentjson.y0;
+    inputs[2].value = currentjson.unit;
+    inputs[3].value = currentjson.width;
+    inputs[4].value = currentjson.height;
+    
+}
+
+function redraw(){
+    document.getElementById("maincanvas").width = currentjson.width;
+    document.getElementById("maincanvas").height = currentjson.height;
+    document.getElementById("square").style.width = currentjson.width.toString() + "px";
+    document.getElementById("square").style.height = currentjson.height.toString() + "px";
+    newGVM.width = currentjson.width;
+    newGVM.height = currentjson.height;
+    newGVM.x0 = currentjson.x0;
+    newGVM.y0 = currentjson.y0;    
+    newGVM.unit = currentjson.unit;    
+    newGVM.drawGlyph("0300,0340,0341,0342,0335,0342,0335,0342,0335,0342,0337,0341,0337,");
+}
+
+
+
+function savejson(){
+    
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(currentjson,null,"  "))+"&filename=data/currentjson.txt");//send text to filesaver.php
+}
+
+
+document.getElementById("resetbutton").onclick = function() {
+    reset();
+}
+
+function reset(){
+    currentjson.x0 = 200;
+    currentjson.y0 = 200;
+    currentjson.unit = 50;
+    currentjson.width = 400;
+    currentjson.height = 400;
+    redraw();
+    savejson();
+}
+
+
+
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+#square{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+#maincanvas{
+    border:solid;
+}
+input,textarea{
+    font-family:courier;
+    font-size:16px
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color: green;
+}
+.button:active{
+    background-color:yellow;
+}
+
+</style>
+</body>
+</html>

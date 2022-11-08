@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY 
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+    <script src="jscode/mapfactory.js"></script>
+
+
+<!--       un comment to use math
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+    -->
+
+    
+</head>
+<body>    
+<div id = "mainmap"></div>
+
+
+<script>
+
+mode = "dark";
+//mode = "light";
+
+square = 1;
+
+
+
+
+
+if(innerWidth > innerHeight){
+    menuhide = false;
+
+    
+    
+    document.getElementById("mainmap").style.left = (0.5*(innerWidth - innerHeight)).toString() + "px"; 
+    mainmap = new Map(innerHeight,innerHeight,document.getElementById("mainmap"));
+
+
+}
+else{
+    menuhide = true;
+
+    mainmap = new Map(innerWidth,innerWidth,document.getElementById("mainmap"));    
+
+
+    document.getElementById("mainmap").style.top = (0.5*(innerHeight - innerWidth)).toString() + "px"; 
+
+
+
+    
+}
+
+
+
+
+//mainmap.math = true;
+
+
+filename = "maps/artist";
+mapname = "maps/artist";
+loadmap(mapname);
+
+
+ismap = false;
+localfile = true;
+
+function loadmap(mapname){
+    ismap = true;
+    filename = mapname;
+    if(filename.substring(0,5) == "maps/"){
+        localfile = true;
+    }
+    else{
+        localfile = false;
+    }
+
+    document.getElementById("mainmap").style.display = "block";
+
+        
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            
+            var raw = this.responseText;
+            if(raw.charAt(0) != "["){
+                raw = raw.substring(raw.indexOf("["))
+            }
+            mainmap.array = JSON.parse(raw);
+    
+
+            N = mainmap.array.length;
+
+            for(var index = 0;index < mainmap.array.length;index++){
+                
+            }
+            
+            mainmap.draw();
+            //			MathJax.Hub.Typeset();//tell Mathjax to update the math
+            for(var index = 0;index < mainmap.linkArray.length;index++){
+                if(mainmap.array[index].maplinkmode == true){
+                    mainmap.linkArray[index].style.color  = "#ff2cb4";
+                    mainmap.linkArray[index].onclick = function(){
+                        var localmap = this.getElementsByClassName("maplink")[0].innerHTML;
+
+
+                    }                    
+
+                }
+            }
+
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=" + mapname, true);
+    httpc.send();
+}
+
+
+</script>
+<style>
+#scrolleditorlink img{
+    background-color:#808080;
+}
+#mapeditorlink img{
+    background-color:#808080;
+}
+body{
+    overflow:hidden;
+}
+input{
+    display:block;
+    margin:auto;
+    width:90%;
+    font-family:courier;
+    font-size:1.2em;
+    background-color:white;
+    color:black;
+    border-color:#ff2cb4;
+    border-width:8px;
+}
+.boxlink{
+    padding-left:1em;
+    cursor:pointer;
+    
+}
+.boxlink:hover{
+    background-color:#808080;
+}
+.scrolllink{
+    color:#ff2cb4;
+    cursor:pointer;
+}
+.scrolllink:hover{
+    background-color:#ff2cb490;
+}
+
+#mainmap{
+    position:absolute;
+    left:0px;
+    top:0px;
+    overflow:hidden;
+}
+#mainmap a{
+    font-family:Helvetica;
+    color:#ff2cb4;
+}
+
+.data{
+    display:none;
+}
+h1,h2,h3,h4{
+    text-align:center;
+}
+
+
+
+
+@media only screen and (orientation: landscape) {
+
+    
+}
+
+@media only screen and (orientation: portrait) {
+
+
+
+}
+
+</style>
+</body>
+</html>
