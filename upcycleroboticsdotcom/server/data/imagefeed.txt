@@ -1,13 +1,4 @@
 [
-  "https://upload.wikimedia.org/wikipedia/commons/4/43/Spinoza_Nicolas_Dings_Zwanenburgwal_Amsterdam.JPG",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hexagon.svg/800px-Hexagon.svg.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/arduino.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/arduino.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/battery.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/cart.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/charger.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solarmain.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solarmain-label.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solartest.png",
-  "https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/images/solartest-label.png"
+  "https://i0.wp.com/lordlibidan.com/wp-content/uploads/2017/08/free-adventure-time-lumpy-space-princess-cross-stitch-pattern.png?w=250&ssl=1",
+  "https://upload.wikimedia.org/wikipedia/en/0/05/Hello_kitty_character_portrait.png"
 ]

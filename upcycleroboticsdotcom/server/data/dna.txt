@@ -74,6 +74,7 @@
         "trashrobotfont.js"
     ],
     "php": [
+        "artistupload.txt",
         "copy.txt",
         "deletefile.txt",
         "dir.txt",

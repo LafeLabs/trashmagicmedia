@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <!--
 
         EVERYTHING IS PHYSICAL 
@@ -13,205 +12,602 @@
         NO PROPERTY
         LOOK AT THE INSECTS
         LOOK AT THE FUNGI
-        LANGUAGE IS HOW THE MIND PARSES REALITY 
-
-    -->
-    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
-
-    <!--Stop Google:-->
-    <META NAME="robots" CONTENT="noindex,nofollow">
-
-    <script src="jscode/mapfactory.js"></script>
-
-
-<!--       un comment to use math
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script>
-            MathJax.Hub.Config({
-                tex2jax: {
-                inlineMath: [['$','$'], ['\\(','\\)']],
-                processEscapes: true,
-                processClass: "mathjax",
-                ignoreClass: "no-mathjax"
-                }
-            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
-        </script>
-    -->
+        LANGUAGE IS HOW THE MIND PARSES REALITY
 
     
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 </head>
-<body>    
-<div id = "mainmap"></div>
+<body>
+    <table id = "linktable">
+        <tr>
+            <td>
+                <a href = "index.html">HOME</a>
+            </td>
+        </tr>    
+    </table>
 
+<div id = "mainbox">
+    <div id ="mainboxbackground"></div>
+    <canvas id = "gridcanvas"></canvas>
+    <canvas id = "maincanvas"></canvas>
+    <img id = "mainimage"/>
+    <div id = "hammerxy"></div>
+</div>
+
+<div id = "zoomrotatebox">
+        <table id = "rotatezoomtable">
+            <tr id = "rotatezoombuttons1">
+                <td>
+                    <img id = "zoomoutbutton" src= "iconsymbols/shrink.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "littlezoomoutbutton" src= "iconsymbols/shrinksmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "littlezoominbutton" src= "iconsymbols/expandsmall.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "zoominbutton" src= "iconsymbols/expand.svg" class = "button"/> 
+                </td>
+            </tr>
+            <tr id = "rotatezoombuttons2">
+                <td>
+                    <img id = "rotateleftbutton" src= "iconsymbols/left.svg" class = "button" /> 
+                </td>
+                <td>
+                    <img id = "littlerotateleftbutton" src= "iconsymbols/leftsmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "littlerotaterightbutton" src= "iconsymbols/rightsmall.svg" class = "button"/> 
+                </td>
+                <td>
+                    <img id = "rotaterightbutton" src= "iconsymbols/right.svg" class = "button" /> 
+                </td>
+            </tr>
+        </table>
+
+        <img src = "iconsymbols/scale.svg" id = "scalebar"/>
+        <img src = "iconsymbols/rotate.svg" id = "rotatebar"/>
+        
+</div>
+
+    <table  id  = "imagecontroltable">
+        <tr>
+            <td>Input Image URL from Web:</td>
+        </tr>
+        <tr>
+            <td>
+                <input id = "imageurlinput"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+<form id = "uploadform" action="artistupload.php" method="post" enctype="multipart/form-data">
+                <span id ="uploadspan">UPLOAD:</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit" id ="submitinput">
+</form>        
+
+            </td>
+        </tr>
+    </table>
+    
+<div id = "imagefeed">
+
+</div>
+
+<div id = "iobox">
+    <table id ="iotable">
+        <tr>
+            <td id = "savebutton" class=  "button">SAVE</td>
+            <td id = "loadbutton" class = "button">LOAD</td>
+        </tr>
+    </table>
+    <textarea id = "textio"></textarea>
+
+</div>
 
 <script>
 
-mode = "dark";
-//mode = "light";
 
-square = 1;
-
+//deletemode = false;
+deletemode = true;
 
 
-
-
+mainboxsize = 500;
 if(innerWidth > innerHeight){
-    menuhide = false;
-
-    
-    
-    document.getElementById("mainmap").style.left = (0.5*(innerWidth - innerHeight)).toString() + "px"; 
-    mainmap = new Map(innerHeight,innerHeight,document.getElementById("mainmap"));
-
-
+    //computer
+    mainboxsize = 0.5*innerHeight;
+    //put link table in left side separate from mainbox
+    document.getElementById("linktable").style.width = "50%";
+    document.getElementById("mainbox").style.top = "0px";
 }
 else{
-    menuhide = true;
-
-    mainmap = new Map(innerWidth,innerWidth,document.getElementById("mainmap"));    
-
-
-    document.getElementById("mainmap").style.top = (0.5*(innerHeight - innerWidth)).toString() + "px"; 
-
-
-
-    
+    //mobile
+    mainboxsize = 0.5*innerWidth;
+    document.getElementById("zoomrotatebox").style.top = (mainboxsize + 100).toString() + "px";
+    document.getElementById("imagefeed").style.width = (mainboxsize).toString()  + "px";
+    document.getElementById("imagefeed").style.top = "100px";
+    document.getElementById("imagefeed").style.bottom = "0px";
 }
 
+document.getElementById("zoomrotatebox").style.width = mainboxsize.toString() + "px";    
+document.getElementById("zoomrotatebox").style.height = mainboxsize.toString() + "px";    
+
+maincanvas = document.getElementById("maincanvas");
+//var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
+var mainGVM = new GVM(maincanvas,mainboxsize,mainboxsize);
+
+mainGVM.drawGlyph("0337,0337,0342,0334,0342,0334,0342,0334,0342,0341,");
+
+
+image = {
+    "w":1.0,
+    "x":0.0,
+    "y":0.0,
+    "angle":0,
+    "src":""
+};
+
+
+var httpcimage = new XMLHttpRequest();
+httpcimage.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        image = JSON.parse(this.responseText);
+        loadimage();
+    };
+};
+
+httpcimage.open("GET", "fileloader.php?filename=data/alignimage.txt", true);
+httpcimage.send();
 
 
 
-//mainmap.math = true;
+//uploadImages = [];
+imagefeed = [];
+var httpcImagefeed = new XMLHttpRequest();
+httpcImagefeed.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        imagefeed = JSON.parse(this.responseText);
+        loadimagefeed();
+    };
+};
 
+httpcImagefeed.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpcImagefeed.send();
 
-filename = "maps/artist";
-mapname = "maps/artist";
-loadmap(mapname);
+function loadimagefeed(){
+//    document.getElementById("imagefeed").innerHTML = "";
+    for(var index = imagefeed.length - 1;index >= 0;index--){
+        var newbox = document.createElement("DIV");
+        newbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = imagefeed[index];
+        newimg.classList.add("uploadimage");
+        newimg.classList.add("button");
+        newbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newbox);
+        newimg.onclick = function() {
+            var localsrc = this.src;
+            document.getElementById("mainimage").src = localsrc;
+            image.x = 0;
+            image.y = 0;
+            image.w = 1.0;
+            image.angle = 0;
+            image.src = localsrc;
+            loadimage();
+        }
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newbox.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
 
-
-ismap = false;
-localfile = true;
-
-function loadmap(mapname){
-    ismap = true;
-    filename = mapname;
-    if(filename.substring(0,5) == "maps/"){
-        localfile = true;
-    }
-    else{
-        localfile = false;
-    }
-
-    document.getElementById("mainmap").style.display = "block";
-
-        
-    var httpc = new XMLHttpRequest();
-    httpc.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-            
-            var raw = this.responseText;
-            if(raw.charAt(0) != "["){
-                raw = raw.substring(raw.indexOf("["))
-            }
-            mainmap.array = JSON.parse(raw);
-    
-
-            N = mainmap.array.length;
-
-            for(var index = 0;index < mainmap.array.length;index++){
-                
-            }
-            
-            mainmap.draw();
-            //			MathJax.Hub.Typeset();//tell Mathjax to update the math
-            for(var index = 0;index < mainmap.linkArray.length;index++){
-                if(mainmap.array[index].maplinkmode == true){
-                    mainmap.linkArray[index].style.color  = "#ff2cb4";
-                    mainmap.linkArray[index].onclick = function(){
-                        var localmap = this.getElementsByClassName("maplink")[0].innerHTML;
-
-
-                    }                    
-
+        newimg.id = "src" + index.toString();
+        newimg.onclick = function(){
+            var thisindex = this.id.substring(3);
+            var localimagefeed = imagefeed;
+            imagefeed = [];
+            for(var srcindex = 0;srcindex < localimagefeed.length;srcindex++){
+                if(srcindex != thisindex){
+                    imagefeed.push(localimagefeed[srcindex]);
                 }
             }
-
+            document.getElementById("imagefeed").innerHTML = "";
+            
+            saveimagefeed();
+            loadimagefeed();
+            loadlocalimagefeed();
+            
         }
-    };
-    httpc.open("GET", "fileloader.php?filename=" + mapname, true);
-    httpc.send();
+
+    }    
 }
+
+
+mc = new Hammer(document.getElementById("hammerxy"));
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mc.on("panleft panright panup pandown tap press rotate", function(ev) {
+    
+    document.getElementById("mainimage").style.left = (ev.deltaX + image.x*mainGVM.width).toString() +  "px";
+    document.getElementById("mainimage").style.top = (ev.deltaY + image.y*mainGVM.width).toString() +  "px";
+
+});    
+
+mczoom = new Hammer(document.getElementById("scalebar"));
+mczoom.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mczoom.on("panleft panright panup pandown tap press", function(ev) {
+
+    document.getElementById("mainimage").style.width = (2*ev.deltaX + image.w*mainGVM.width).toString() +  "px";
+
+});    
+
+mcrotate = new Hammer(document.getElementById("rotatebar"));
+mcrotate.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+mcrotate.on("panleft panright panup pandown tap press", function(ev) {
+
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle + ev.deltaX*Math.PI/5).toString() + "deg)";
+
+});    
+
+
+function loadimage(){
+    document.getElementById("mainimage").src = image.src;
+    document.getElementById("mainimage").style.left = (image.x*mainGVM.width).toString() + "px";
+    document.getElementById("mainimage").style.top = (image.y*mainGVM.width).toString() + "px";    
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() + "px";    
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";
+    
+    document.getElementById("textio").value = JSON.stringify(image,null,"    ");
+    
+}
+
+document.getElementById("loadbutton").onclick = function(){
+    image = JSON.parse(document.getElementById("textio").value);
+    loadimage();
+    saveimage();
+}
+
+document.getElementById("savebutton").onclick = function(){
+    
+    if(document.getElementById("mainimage").style.left.length > 0){
+        image.x = parseInt(document.getElementById("mainimage").style.left.substring(0,document.getElementById("mainimage").style.left.length-2))/mainGVM.width;        
+        image.y = parseInt(document.getElementById("mainimage").style.top.substring(0,document.getElementById("mainimage").style.top.length-2))/mainGVM.width;
+        image.w = parseInt(document.getElementById("mainimage").style.width.substring(0,document.getElementById("mainimage").style.width.length-2))/mainGVM.width;
+
+        image.angle = parseInt(document.getElementById("mainimage").style.transform.substring(7,document.getElementById("mainimage").style.transform.length - 4));
+
+    
+    }
+    saveimage();
+}
+
+
+
+
+document.getElementById("zoomoutbutton").onclick = function() {
+    image.w /= 1.25;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("zoominbutton").onclick = function() {
+    image.w *= 1.25;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("littlezoomoutbutton").onclick = function() {
+    image.w /= 1.01;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("littlezoominbutton").onclick = function() {
+    image.w *= 1.01;
+    document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() +  "px";    
+}
+
+document.getElementById("rotateleftbutton").onclick = function() {
+    image.angle -= 5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("rotaterightbutton").onclick = function() {
+    image.angle += 5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("littlerotateleftbutton").onclick = function() {
+    image.angle -= 0.5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+document.getElementById("littlerotaterightbutton").onclick = function() {
+    image.angle += 0.5;
+    document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";    
+}
+
+function saveimage(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(image),null,"    ")+"&filename=data/alignimage.txt");//send text to filesaver.php
+    document.getElementById("textio").value = JSON.stringify(image,null,"    ");    
+}
+
+
+function saveimagefeed(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(imagefeed,null,"  "))+"&filename=data/imagefeed.txt");//send text to filesaver.php   
+    document.getElementById("imageurlinput").value = "";
+    document.getElementById("textio").value = JSON.stringify(imagefeed,null,"  ");    
+
+}
+
+document.getElementById("imageurlinput").value = "";
+
+//document.getElementById("imageurlinput").select();
+document.getElementById("imageurlinput").onchange  = function(){
+    document.getElementById("imagefeed").innerHTML = "";
+    imagefeed.push(this.value);
+    saveimagefeed();
+    loadimagefeed();
+    loadlocalimagefeed();
+}
+
+uploadImages = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        uploadImages = JSON.parse(this.responseText);
+        loadlocalimagefeed();
+    }
+};
+httpcUpload.open("GET", "dir.php?filename=images", true);
+httpcUpload.send();
+
+
+function loadlocalimagefeed(){
+
+        for(var index = uploadImages.length - 1;index >= 0;index--) {
+            var newuploadbox = document.createElement("DIV");
+            newuploadbox.classList.add("uploadbox");
+            var newimg = document.createElement("IMG");
+            newimg.src = "images/" + uploadImages[index];
+            newimg.classList.add("uploadimage");
+            newimg.classList.add("button");
+            newuploadbox.appendChild(newimg);
+            document.getElementById("imagefeed").appendChild(newuploadbox);
+            newimg.onclick = function() {
+                var localsrc = this.src;
+                document.getElementById("mainimage").src = localsrc;
+                image.x = 0;
+                image.y = 0;
+                image.w = 1.0;
+                image.angle = 0;
+                image.src = localsrc;
+                loadimage();
+    
+            }
+            var newimg = document.createElement("IMG");
+            newimg.src = "iconsymbols/delete.svg";
+            newuploadbox.appendChild(newimg);
+            newimg.classList.add("button");
+            newimg.classList.add("deletebutton");
+            newimg.onclick = function(){
+                var imageurl =this.parentElement.getElementsByClassName("uploadimage")[0].src; 
+                var imagename = "images/" + imageurl.split("images/")[1];
+                var httpc = new XMLHttpRequest();
+                var url = "deletefile.php";         
+                httpc.open("POST", url, true);
+                httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+                httpc.send("filename=" + imagename);//send text to deletefile.php
+                this.parentElement.parentElement.removeChild(this.parentElement);
+            }
+        }
+
+                
+}
+
+
+
+
+
+
 
 
 </script>
 <style>
-#scrolleditorlink img{
-    background-color:#808080;
-}
-#mapeditorlink img{
-    background-color:#808080;
-}
 body{
     overflow:hidden;
+    background-color:#0000ff80;
 }
-input{
-    display:block;
-    margin:auto;
-    width:90%;
-    font-family:courier;
-    font-size:1.2em;
+#linktable a{
+    text-align:center;
+    font-size:1em;
+}
+#linktable{
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+#linktable td{
+    text-align:center;
+    font-size:2em;
+}
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:40px;
+    width:250px;
+    height:250px;
+    border:solid;
+    border-color:blue;
+    overflow:hidden;
+}
+#mainboxbackground{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    z-index:-5;
     background-color:white;
-    color:black;
-    border-color:#ff2cb4;
-    border-width:8px;
 }
-.boxlink{
-    padding-left:1em;
-    cursor:pointer;
-    
-}
-.boxlink:hover{
-    background-color:#808080;
-}
-.scrolllink{
-    color:#ff2cb4;
-    cursor:pointer;
-}
-.scrolllink:hover{
-    background-color:#ff2cb490;
-}
-
-#mainmap{
+#mainimage{
     position:absolute;
     left:0px;
     top:0px;
-    overflow:hidden;
+    width:100%;
+    z-index:-3;
 }
-#mainmap a{
-    font-family:Helvetica;
-    color:#ff2cb4;
-}
-
-.data{
-    display:none;
-}
-h1,h2,h3,h4{
-    text-align:center;
-}
-
-
-
-
-@media only screen and (orientation: landscape) {
-
+#gridcanvas{
+    z-index:-2;
+    position:absolute;
+    left:0px;
+    top:0px;
     
 }
+#hammerxy{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    z-index:2;
+}
+#textio{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    height:300px;
+    border:solid;
+    border-width:5px;
+    border-color:orange;
+}
+#iotable td{
+    border:solid;
+    border-radius:5px;
+    font-family:courier;
+    text-align:center;
+    font-size:2em;
+    background-color:black;
+    color:#00ff00;
+}
+#imagecontroltable{
+    position:absolute;
+    top:50px;
+    right:510px;
+    width:20%;
+}
+#imagefeed{
+    position:absolute;
+    top:200px;
+    right:510px;
+    width:20%;
+    bottom:0px;
+    overflow:scroll;
+    background-color:#808080;
+}
+.uploadimage{
+    max-width:75%;
+    display:block;
+    margin:auto;
+    margin-bottom:2em;
+    margin-top:2em;
+}
+#zoomrotatebox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:400px;
+    height:400px;
+    z-index:2;
+    background-color:white;
+}
+#scalebar{
+    width:100%;
+    height:25%;
+    position:absolute;
+    left:0px;
+    bottom:25%;
+    right:0px;
+}
+#rotatebar{
+    width:100%;
+    height:25%;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    
+}
+#rotatezoomtable{
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:98%;
+    height:50%;
+}
+#rotatezoomtable tr{
+    height:50%;
+    border:solid;
+    border-color:blue;
+    background-clor:green;
+    margin:auto;
+}
+#rotatezoomtable td{
+    height:100%;
+    borer:solid;
+}
+#rotatezoomtable img{
+    width:100%;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:#008000;
+}
+.button:active{
+    background-color:yellow;
+}
 
+
+.deletebutton{
+    width:2em;
+    background-color:#808080;
+    border:solid;
+    border-radius:5px;
+    border-width:5px;
+    border-color:red;
+    font-family:helvetica;
+    font-size:2em;
+    color:red;
+    z-index:1;
+
+}
 @media only screen and (orientation: portrait) {
-
-
-
+#iobox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+    
+}
+@media only screen and (orientation: landscape) {
+#iobox{
+    position:absolute;
+    left:30px;
+    bottom:30px;
+}
+    
 }
 
 </style>
