@@ -26,6 +26,7 @@
         "mapset.html",
         "media.html",
         "mediadestroyer.html",
+        "operator.html",
         "picrust.html",
         "qrcode-page.html",
         "qrcode.html",
