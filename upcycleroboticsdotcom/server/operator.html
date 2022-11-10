@@ -32,7 +32,160 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
    <title>TRASH MAGIC MEDIA</title>    
 <script src="https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/x3dom@1.7.2/x3dom.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+<script>
+THREE.STLExporter = function () {};
+THREE.STLExporter.prototype = {
 
+	constructor: THREE.STLExporter,
+
+	parse: ( function () {
+
+		var vector = new THREE.Vector3();
+		var normalMatrixWorld = new THREE.Matrix3();
+
+		return function parse( scene, options ) {
+
+			if ( options === undefined ) options = {};
+
+			var binary = options.binary !== undefined ? options.binary : false;
+
+			//
+
+			var objects = [];
+			var triangles = 0;
+
+			scene.traverse( function ( object ) {
+
+				if ( object.isMesh ) {
+
+					var geometry = object.geometry;
+
+					if ( geometry.isBufferGeometry ) {
+
+						geometry = new THREE.Geometry().fromBufferGeometry( geometry );
+
+					}
+
+					if ( geometry.isGeometry ) {
+
+						triangles += geometry.faces.length;
+
+						objects.push( {
+
+							geometry: geometry,
+							matrixWorld: object.matrixWorld
+
+						} );
+
+					}
+
+				}
+
+			} );
+
+			if ( binary ) {
+
+				var offset = 80; // skip header
+				var bufferLength = triangles * 2 + triangles * 3 * 4 * 4 + 80 + 4;
+				var arrayBuffer = new ArrayBuffer( bufferLength );
+				var output = new DataView( arrayBuffer );
+				output.setUint32( offset, triangles, true ); offset += 4;
+
+				for ( var i = 0, il = objects.length; i < il; i ++ ) {
+
+					var object = objects[ i ];
+
+					var vertices = object.geometry.vertices;
+					var faces = object.geometry.faces;
+					var matrixWorld = object.matrixWorld;
+
+					normalMatrixWorld.getNormalMatrix( matrixWorld );
+
+					for ( var j = 0, jl = faces.length; j < jl; j ++ ) {
+
+						var face = faces[ j ];
+
+						vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+
+						output.setFloat32( offset, vector.x, true ); offset += 4; // normal
+						output.setFloat32( offset, vector.y, true ); offset += 4;
+						output.setFloat32( offset, vector.z, true ); offset += 4;
+
+						var indices = [ face.a, face.b, face.c ];
+
+						for ( var k = 0; k < 3; k ++ ) {
+
+							vector.copy( vertices[ indices[ k ] ] ).applyMatrix4( matrixWorld );
+
+							output.setFloat32( offset, vector.x, true ); offset += 4; // vertices
+							output.setFloat32( offset, vector.y, true ); offset += 4;
+							output.setFloat32( offset, vector.z, true ); offset += 4;
+
+						}
+
+						output.setUint16( offset, 0, true ); offset += 2; // attribute byte count
+
+					}
+
+				}
+
+				return output;
+
+			} else {
+
+				var output = '';
+
+				output += 'solid exported\n';
+
+				for ( var i = 0, il = objects.length; i < il; i ++ ) {
+
+					var object = objects[ i ];
+
+					var vertices = object.geometry.vertices;
+					var faces = object.geometry.faces;
+					var matrixWorld = object.matrixWorld;
+
+					normalMatrixWorld.getNormalMatrix( matrixWorld );
+
+					for ( var j = 0, jl = faces.length; j < jl; j ++ ) {
+
+						var face = faces[ j ];
+
+						vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+
+						output += '\tfacet normal ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+						output += '\t\touter loop\n';
+
+						var indices = [ face.a, face.b, face.c ];
+
+						for ( var k = 0; k < 3; k ++ ) {
+
+							vector.copy( vertices[ indices[ k ] ] ).applyMatrix4( matrixWorld );
+
+							output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+
+						}
+
+						output += '\t\tendloop\n';
+						output += '\tendfacet\n';
+
+					}
+
+				}
+
+				output += 'endsolid exported\n';
+
+				return output;
+
+			}
+
+		};
+
+	}() )
+
+};
+</script>
     <script src="jscode/geometron.js"></script>
 
 </head>
@@ -97,6 +250,32 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
 <textarea id = "textio"></textarea>
 
 <script>
+
+var camera, scene, renderer;
+var geometry, material, mesh;
+init();
+
+function drawcubethreejs(){
+    var newcube = new THREE.CubeGeometry( side,side,side );
+    newcube.translate(x,y,z);
+    var newcubemesh = new THREE.Mesh( newcube, material );
+    scene.add(newcubemesh);
+
+}
+
+function init(){
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10 );
+    camera.position.z = 3;
+    camera.position.x = 2;
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xffffff );
+    material = new THREE.MeshNormalMaterial( { color: 0x000000, wireframe: false } );
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement ); 
+    
+}
 main = document.getElementById("main");
 
 function redraw(){
@@ -108,6 +287,8 @@ function redraw(){
     solidColor = "1 0 0";
     currentTrans = 0.0;
     drawGlyph("0600," + glyph);
+    renderer.render( scene, camera );
+
 }
 
 function drawGlyph(localString){
@@ -159,6 +340,7 @@ function action(localCommand){
     }
     if(localCommand == 0711){
         drawcube();
+        drawcubethreejs();
     }
     
     if(localCommand == 0720){
@@ -407,8 +589,19 @@ document.getElementById("savebutton").onclick = function(){
     savepage();
     savestencil();
     save3d();
+    savestl();
 }
 
+function savestl(){
+    var exporter = new THREE.STLExporter();
+    var str = exporter.parse(scene);
+    var httpc = new XMLHttpRequest();
+    console.log(str);
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(str)+"&filename=icon.stl");//send text to filesaver.php   
+
+}
 
 function savepng(){
 
@@ -534,6 +727,15 @@ function drawcube(){
 }
 </script>
 <style>
+canvas{
+    display:none;
+}
+#maincanvas{
+    display:inline;
+}
+#feed canvas{
+    display:inline;
+}
 #arduinocode{
     border:solid;
     border-width:10px;
