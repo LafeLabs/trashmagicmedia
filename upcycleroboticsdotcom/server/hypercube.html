@@ -1,4 +1,558 @@
-[
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+
+<!--un-comment to add math: -->
+<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                processEscapes: true,
+                processClass: "mathjax",
+                ignoreClass: "no-mathjax"
+                }
+            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+        </script>
+
+-->
+<!-- 
+
+showdown is a javascript library which converts markdown to html.
+it lives here on the internet:
+http://showdownjs.com/
+
+Markdown is a lightweight language for creating formatted text on a computer, see the wikipedia entry here
+
+https://en.wikipedia.org/wiki/Markdown
+
+bootstrap is whole big thing that does lots of things, but what we use it for here is just to make things look good on a mobile device. 
+
+-->
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<body>    
+<a href = "symbol.html" id = "indexlink">home</a>
+<div id = "savebutton" class = "button">SAVE</div>
+
+<img id = "modeindicator" class = "button" src = "iconsymbols/cursor.svg"/>
+<div id = "importbutton" class = "button">IMPORT</div>
+<div id = "tabletexportbutton" class = "button">EXPORT RANGE</div>
+<div id = "exportbutton" class = "button">EXPORT</div>
+<div id = "resetbutton" class = "button">RESET</div>
+
+<div id = "displaybox">
+    <canvas id=  "maincanvas"></canvas>
+</div>
+
+<div id = "spellbox">
+    <canvas id = "spellcanvas"></canvas>
+</div>
+
+<table id = "shapetable"></table>
+
+<table id = "selecttable">
+    <tr><td></td><td class = "button">01700</td></tr>
+    <tr><td class = "button">0600</td><td class = "button">01600</td></tr>
+    <tr><td class = "button">0500</td><td class = "button">01500</td></tr>
+    <tr><td></td><td class = "button">01400</td></tr>
+    <tr><td></td><td class = "button">01300</td></tr>
+    <tr><td class = "button">0200</td><td class = "button">01200</td></tr>
+    <tr><td></td><td class = "button">01100</td></tr>
+    <tr><td></td><td class = "button">01000</td></tr>
+</table>
+
+<textarea id = "textio"></textarea>
+
+
+<table id = "controltable"></table>
+    
+    <input id = "actioninput"/>
+    <input id = "addressinput"/>
+    <input id = "spellinput"/>
+
+<script>
+
+
+controls  = [
+    "020,010,021,0340,",
+    "0500,0501,0502,0503,",
+    "0504,0505,0506,0507,"
+];
+
+
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,200,200);
+mainGVM.x0 = 10;
+mainGVM.y0 = 190;
+mainGVM.unit = 180;
+var spellGVM = new GVM(document.getElementById("spellcanvas"),500,500);
+
+spellglyphsize = 26;
+spellGVM.x0 = 2;
+spellGVM.y0 = spellglyphsize - 1;
+spellGVM.unit = spellglyphsize - 2;
+
+
+function loadcontrols(){
+    for(var index = 0;index < controls.length;index++){
+        var newtr = document.createElement("TR");
+        document.getElementById("controltable").appendChild(newtr);
+        rowarray = controls[index].split(",");
+        for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
+            if(rowarray[rowindex].length > 0){
+                var newtd = document.createElement("TD");
+                newtr.appendChild(newtd);
+                var newcan = document.createElement("CANVAS");
+                newtd.appendChild(newcan);
+                var datadiv = document.createElement("div");
+                datadiv.innerHTML = rowarray[rowindex];
+                datadiv.className = "data";
+                newtd.appendChild(datadiv);
+                var newGVM = new GVM(newcan,spellglyphsize,spellglyphsize);
+                newGVM.hypercube = mainGVM.hypercube;
+                newGVM.x0 = 1;
+                newGVM.y0 = spellglyphsize-1;
+                newGVM.unit = spellglyphsize-2;
+                newGVM.action(0300);
+                newGVM.action(parseInt(rowarray[rowindex],8)+01000);
+                newtd.onclick = function(){
+                    var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                    mainGVM.cursorAction(localaction);
+                    mainGVM.clean();
+                    spellGVM.spellGlyph(mainGVM.glyph);
+                }
+            }
+        }
+        
+    }
+    
+}
+
+base = 0200;
+cansize = 36;
+symbolMode = true;
+
+function loadtablet(){
+    document.getElementById("shapetable").innerHTML = "";
+    gvmArray = [];
+    if(symbolMode){
+        address = base;
+    }
+    else{
+        address = base + 01000;
+    }
+    for(var row = 0;row < 8;row++){
+        var newtr = document.createElement("TR");
+        document.getElementById("shapetable").appendChild(newtr);
+        for(var col = 0;col < 8;col++){
+            var newtd = document.createElement("TD");
+            newtr.appendChild(newtd);
+            var newcan = document.createElement("CANVAS");
+            newtd.appendChild(newcan);
+            var newGVM = new GVM(newcan,cansize,cansize);
+            newGVM.hypercube = mainGVM.hypercube;
+            newGVM.x0 = 1;
+            newGVM.y0 = cansize - 1;
+            newGVM.unit = cansize-2;
+            newGVM.action(0300);
+            newGVM.action(address);
+            gvmArray.push(newGVM);
+            var datadiv = document.createElement("div");
+            if(symbolMode){
+                datadiv.innerHTML = "0" + address.toString(8);
+            }
+            else{
+                datadiv.innerHTML = "0" + (address - 01000).toString(8);
+
+            }
+            
+            datadiv.className = "data";
+            newtd.appendChild(datadiv);
+            var datadiv2 = document.createElement("div");
+            datadiv2.innerHTML = "0" + (8*row + col).toString(8);
+            datadiv2.className = "data";
+            newtd.appendChild(datadiv2);
+    
+            newtd.onclick = function(){
+                
+                gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "white";            
+                var thisaddress = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
+                var thisindex = parseInt(this.getElementsByClassName("data")[1].innerHTML,8); 
+                if(thisaddress < 01000){
+                    symbolMode = false;
+                }
+                else{
+                    symbolMode = true;
+                }
+                mainGVM.address = thisaddress;
+                mainGVM.glyph = mainGVM.hypercube[thisaddress] + "0207,";
+
+                mainGVM.drawGlyph(mainGVM.glyph);
+                
+                gvmArray[thisindex].canvas2d.style.backgroundColor = "#a0a0a0";
+                mainGVM.clean();
+
+                gvmArray[thisindex].drawGlyph(mainGVM.cleanGlyph);
+
+                redraw();
+                document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+                spellGVM.spellGlyph(mainGVM.glyph);
+                
+            }
+            address++;
+        }
+    }    
+}
+
+selectbuttons = document.getElementById("selecttable").getElementsByClassName("button");
+
+
+
+for(var index = 0;index < selectbuttons.length;index++){
+    selectbuttons[index].id = selectbuttons[index].innerHTML;
+    selectbuttons[index].onclick = function(){
+        base = parseInt(this.innerHTML,8);
+        if(base<01000){
+            symbolMode = false;
+        }
+        else{
+            symbolMode = true;
+        }
+        loadtablet();
+        if(innerWidth>innerHeight){
+            document.getElementById("actioninput").select();
+        }
+        mainGVM.address = base;
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.clean();
+        mainGVM.drawGlyph(mainGVM.glyph);
+        redraw();       
+        for(var index = 0;index < selectbuttons.length;index++){
+            selectbuttons[index].style.backgroundColor = "white";
+        }
+        this.style.backgroundColor = "#a0a0a0";
+    }
+}
+
+selectbuttons[7].style.backgroundColor = "#a0a0a0";
+
+//mainGVM.address = 01060;
+//mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+//mainGVM.drawGlyph(mainGVM.glyph);
+
+
+var httpc = new XMLHttpRequest();
+httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);
+        spellGVM.hypercube = mainGVM.hypercube;
+        loadtablet();
+        loadcontrols();
+        mainGVM.address = 0220;
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.clean();
+        mainGVM.drawGlyph(mainGVM.glyph);
+        redraw();
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpc.send();    
+
+
+
+function savecube(){
+        
+    hypercube = mainGVM.bytecode(0,01777);
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(hypercube)+"&filename=data/hypercube.txt");//send text to filesaver.php
+
+}
+
+
+function exportcube(){
+    jsonarray = [];
+    for(var index = 00;index < 02000;index++) {
+        if(mainGVM.hypercube[index].length > 1) {
+                var bytecodestring = "0" + index.toString(8) + ":" + mainGVM.hypercube[index];
+                jsonarray.push(bytecodestring); 
+        }
+    }
+    
+    document.getElementById("textio").value = JSON.stringify(jsonarray,null,"    ");
+}
+
+function redraw(){
+    if(base >= 01000){
+        for(var index = 0;index < gvmArray.length;index++){
+            gvmArray[index].drawGlyph(mainGVM.hypercube[base + index]);
+        }
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "#a0a0a0";
+        mainGVM.x0 = 10;
+        mainGVM.y0 = 190;
+        mainGVM.unit = 180;
+    }
+    else{
+        for(var index = 0;index < gvmArray.length;index++){
+            gvmArray[index].drawGlyph(mainGVM.hypercube[base + index + 01000]);
+        }
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "#a0a0a0";
+        mainGVM.x0 = 100;
+        mainGVM.y0 = 100;
+        mainGVM.unit = 25;
+        
+    }
+    
+    
+    spellGVM.spellGlyph(mainGVM.glyph);
+    document.getElementById("addressinput").value  =  "0" + mainGVM.address.toString(8);
+}
+
+document.getElementById("addressinput").onchange = function(){
+        
+
+        mainGVM.address = parseInt(this.value,8);
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "#a0a0a0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.clean();
+        gvmArray[mainGVM.address - base].drawGlyph(mainGVM.cleanGlyph);
+        redraw();
+
+    
+}
+
+document.getElementById("savebutton").onclick  = function(){
+    savecube();
+    
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 040){
+        document.getElementById("0" + base.toString(8)).style.backgroundColor = "white";
+
+        var done = false;//i still refuse to learn how to use case/switch
+        if(base >= 01000){
+            base += 0100;
+            if(base > 01700){
+                base = 0200;
+            }
+            done = true;
+        }
+        if(!done && base == 0200){
+            base = 0500;
+            done = true;
+        }
+        if(!done && base == 0500){
+            base = 0600;
+            done = true;
+        }
+        if(!done && base == 0600){
+            base = 01000;
+        }
+
+        
+
+        if(base < 01000){
+            symbolMode = false;
+        }
+        else{
+            symbolMode = true;
+        }
+        loadtablet();
+        if(innerWidth>innerHeight){
+            document.getElementById("actioninput").select();
+        }
+        mainGVM.address = base;
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.clean();
+        mainGVM.drawGlyph(mainGVM.glyph);
+        redraw();       
+        for(var index = 0;index < selectbuttons.length;index++){
+            selectbuttons[index].style.backgroundColor = "white";
+        }
+        
+        document.getElementById("0" + base.toString(8)).style.backgroundColor = "#a0a0a0";        
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        mainGVM.clean();    
+        gvmArray[mainGVM.address - base].drawGlyph(mainGVM.hypercube[mainGVM.address]);            
+        mainGVM.clean();
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "white";        
+        mainGVM.address--;
+        if(mainGVM.address < base){
+            mainGVM.address = base + 077;
+        }
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "#a0a0a0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.clean();
+        gvmArray[mainGVM.address - base].drawGlyph(mainGVM.cleanGlyph);
+        redraw();
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        
+        mainGVM.clean();    
+        gvmArray[mainGVM.address - base].drawGlyph(mainGVM.hypercube[mainGVM.address]);            
+        mainGVM.clean();
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "white";        
+        mainGVM.address++;
+        if(mainGVM.address > base + 077){
+            mainGVM.address = base;
+        }
+        gvmArray[mainGVM.address - base].canvas2d.style.backgroundColor = "#a0a0a0";        
+        mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+        mainGVM.clean();
+        gvmArray[mainGVM.address - base].drawGlyph(mainGVM.cleanGlyph);
+        redraw();
+    }
+
+
+  //  savejson();//
+    mainGVM.clean();
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+ //   document.getElementById("spellinput").style.width = 0.8*currentjson.glyph.length.toString() + "em";
+
+    spellGVM.spellGlyph(mainGVM.glyph);
+
+}
+
+if(innerWidth > innerHeight){
+    document.getElementById("actioninput").select();
+}
+
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode != 015){
+        
+        if(mode == 0 || mode == 3){
+            localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+        
+
+        mainGVM.cursorAction(localCursorAction);   
+        this.value = "";
+        mainGVM.clean();
+        mainGVM.hypercube[mainGVM.address] = mainGVM.cleanGlyph;
+        document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+        spellGVM.spellGlyph(mainGVM.glyph);
+     
+     
+    }
+
+
+}
+
+
+document.getElementById("textio").value = "";
+document.getElementById("importbutton").onclick =  function(){
+    var importcode = JSON.parse(document.getElementById("textio").value);
+    mainGVM.importbytecode(importcode);
+    mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+    mainGVM.clean();
+    mainGVM.drawGlyph(mainGVM.glyph);
+    redraw();
+}
+
+document.getElementById("spellinput").onchange = function(){
+    mainGVM.hypercube[mainGVM.address] = this.value;
+    mainGVM.glyph = this.value + "0207,"; 
+    mainGVM.clean();
+    spellGVM.spellGlyph(mainGVM.glyph);
+    mainGVM.drawGlyph(mainGVM.glyph);
+    
+}
+
+
+mode = 0;
+function modeswitch(){
+    mode++;
+    mode = mode%3;
+    if(mode == 0){
+        document.getElementById("modeindicator").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+        document.getElementById("modeindicator").src = "iconsymbols/abcfont.svg";
+    }
+    if(mode == 2){
+        document.getElementById("modeindicator").src = "iconsymbols/abcstack.svg";
+    }
+    document.getElementById("actioninput").select();   
+}
+
+
+document.getElementById("exportbutton").onclick = function(){
+    exportcube();
+}
+
+document.getElementById("tabletexportbutton").onclick = function(){
+    jsonarray = [];
+    for(var index = base;index < base + 0100;index++) {
+        if(mainGVM.hypercube[index].length > 1) {
+                var bytecodestring = "0" + index.toString(8) + ":" + mainGVM.hypercube[index];
+                jsonarray.push(bytecodestring); 
+        }
+    }
+    document.getElementById("textio").value = JSON.stringify(jsonarray,null,"    ");
+}
+
+resetcube = [
     "041:0321,",
     "042:0236,",
     "043:0323,",
@@ -109,22 +663,22 @@
     "0215:0304,0313,0342,0330,0335,0335,0336,0336,0306,0350,0335,0362,0203,0334,0334,0334,0334,0203,0334,0334,0334,0334,0203,0363,0335,0337,0337,0331,0304,0313,0360,0313,",
     "0216:0336,0333,0336,0333,0337,0337,0336,0330,0332,0336,0336,0333,0331,0331,0347,0330,0330,0330,0330,0347,0331,0331,0337,0337,0331,0333,0336,0336,0332,0337,0337,0337,",
     "0217:0332,0332,0332,0332,0331,0331,0331,0362,0203,0203,0203,0203,0203,0203,0364,0333,0350,0334,0343,0335,0330,0335,0335,0362,0203,0203,0203,0203,0203,0203,0364,0335,0333,0334,0334,0343,0335,0330,0335,0335,0362,0203,0203,0203,0203,0203,0203,0364,0335,0333,0334,0334,0343,0335,0330,0335,0335,0362,0203,0203,0203,0203,0203,0203,0364,0335,0333,0334,0334,0343,0335,0335,0335,0331,0304,0333,0333,0333,0330,0330,0330,0330,",
-    "0220:0304,0313,0320,0200,0322,0336,0332,0337,0342,0336,0330,0333,0334,0337,0342,0336,0335,0331,0336,0332,0337,0342,0336,0333,0330,0334,0337,0342,0335,0336,0331,0336,0332,0337,0342,0336,0333,0330,0334,0337,0342,0335,0336,0331,0336,0332,0337,0342,0336,0333,0330,0334,0337,0342,0335,0336,0331,0337,0337,0337,0337,",
-    "0221:0304,0320,0362,0203,0334,0350,0334,0310,0337,0203,0334,0334,0334,0336,0203,0354,0334,0334,0334,0336,0322,0201,0335,0335,0335,0336,0201,0334,0334,0334,0336,0201,0335,0335,0335,0336,0201,0334,0334,0334,0336,0201,0335,0335,0335,0336,0201,0334,0334,0334,0336,0201,0335,0335,0335,0336,0201,0334,0334,0330,0337,0337,0337,0337,0337,0337,0337,0337,0331,0313,0304,0320,",
-    "0222:0306,0320,0362,0203,0334,0334,0203,0334,0334,0203,0354,0334,0334,0313,0336,0322,0330,0334,0201,0334,0334,0201,0334,0334,0201,0334,0331,0337,0320,",
-    "0223:0304,0335,0335,0331,0306,0350,0362,0203,0335,0335,0335,0335,0335,0312,0336,0203,0335,0335,0203,0354,0335,0335,0335,0335,0335,0337,0322,0335,0336,0330,0334,0334,0334,0334,0313,0336,0342,0337,0312,0335,0336,0342,0334,0334,0342,0330,0335,0335,0335,0335,0335,0336,0201,0334,0334,0342,0335,0335,0334,0334,0334,0336,0342,0334,0334,0342,0335,0335,0335,0335,0335,0337,0331,0335,0337,0330,0334,0337,0331,0334,0337,0320,0330,0304,0335,0335,0306,0350,",
-    "0224:0305,0311,0362,0203,0334,0334,0203,0334,0350,0334,0336,0203,0354,0334,0334,0334,0337,0322,0336,0334,0201,0335,0335,0335,0335,0336,0201,0334,0334,0334,0334,0201,0335,0335,0335,0336,0335,0201,0334,0334,0334,0334,0201,0335,0335,0335,0335,0336,0201,0334,0334,0334,0334,0201,0335,0335,0335,0335,0336,0201,0334,0334,0334,0334,0201,0335,0335,0335,0335,0336,0201,0334,0334,0334,0337,0330,0337,0337,0337,0337,0337,0331,0320,",
-    "0225:0304,0330,0335,0335,0305,0350,0311,0362,0203,0335,0335,0335,0335,0336,0203,0335,0335,0203,0354,0335,0335,0335,0322,0335,0335,0330,0334,0334,0334,0336,0334,0342,0335,0342,0330,0335,0335,0335,0336,0335,0201,0334,0334,0334,0334,0201,0335,0335,0335,0335,0336,0201,0334,0334,0334,0334,0201,0335,0335,0335,0336,0335,0201,0334,0334,0334,0334,0342,0335,0331,0337,0331,0337,0331,0335,0335,0337,0335,0331,0335,0336,0201,0335,0335,0335,0335,0201,0334,0334,0334,0334,0336,0201,0335,0335,0335,0335,0201,0334,0334,0334,0334,0336,0201,0335,0335,0335,0335,0201,0335,0335,0335,0331,0337,0337,0337,0337,0337,0320,0304,0335,0335,0331,0305,0350,",
-    "0226:0313,0333,0342,0336,0332,0342,0336,0333,0342,0332,0332,0342,0336,0332,0342,0333,0333,0342,0333,0333,0342,0333,0333,0342,0333,0337,0337,0337,",
-    "0227:0313,0336,0333,0337,0316,0336,0342,0313,0336,0332,0342,0332,0342,0332,0342,0332,0342,0333,0333,0333,0333,0333,0342,0333,0342,0333,0342,0333,0342,0333,0337,0316,0337,0313,",
-    "0230:0322,0226,0226,0226,0226,0226,0226,0334,0226,0334,0227,0227,0227,0227,0227,0227,0334,0227,0334,0320,0362,0203,0335,0203,0203,0203,0203,0203,0203,0335,0203,0335,0203,0203,0203,0203,0203,0203,0335,0354,0313,",
-    "0231:0222,0334,0223,0334,0336,0330,0335,0335,0362,0203,0334,0334,0334,0337,0203,0334,0334,0334,0334,0334,0336,0313,0337,0203,0354,0334,0334,0334,0334,0313,0336,0334,0334,0337,0312,0336,0322,0335,0201,0335,0335,0335,0335,0335,0336,0201,0334,0334,0334,0334,0334,0336,0201,0335,0335,0335,0335,0336,0335,0201,0334,0334,0334,0334,0334,0336,0201,0331,0334,0337,0330,0335,0337,0331,0334,0337,0330,0335,0337,0331,0334,0337,0335,0335,0313,0336,0335,0335,0335,0335,0330,0334,0334,0334,0312,0337,0306,",
-    "0232:0231,0330,0220,0332,0221,0335,0331,0335,0335,0331,0224,0330,0335,0331,0225,0335,0335,0336,0330,0334,0334,0334,0337,0304,0335,0333,0331,0331,0332,0332,0330,0314,0336,0331,0313,0230,0333,0333,0333,0333,0333,0333,0330,0314,0337,0313,",
-    "0233:0313,0304,0336,0332,0336,0336,0330,0334,0362,0203,0334,0203,0335,0203,0203,0203,0335,0203,0203,0203,0335,0203,0334,0203,0203,0334,0203,0335,0203,0203,0203,0335,0203,0203,0203,0335,0203,0334,0203,0203,0334,0203,0335,0203,0203,0203,0335,0203,0203,0203,0335,0203,0334,0203,0203,0334,0203,0335,0203,0203,0203,0335,0203,0203,0203,0335,0203,0334,0203,0354,0335,0331,0333,0333,0333,0333,0337,0337,0337,",
-    "0234:0322,0336,0336,0330,0332,0362,0203,0203,0203,0334,0203,0203,0203,0334,0203,0203,0203,0334,0203,0203,0203,0354,0335,0335,0335,0331,0342,0332,0332,0332,0342,0335,0337,0337,0201,0334,0201,0334,0336,0336,0342,0335,0336,0332,0334,0335,0335,0335,0337,0337,0337,0342,0335,0335,0336,0336,0331,0331,0331,0336,0333,0334,0337,0342,0336,0332,0337,0337,0337,0342,0335,0336,0336,0336,0331,0337,0332,0332,0342,0333,0333,0337,0337,0321,0200,0336,0332,0333,0337,0320,",
-    "0235:0312,0336,0330,0306,0335,0335,0350,0335,0337,0362,0203,0335,0335,0335,0335,0203,0335,0335,0335,0335,0203,0354,0334,0336,0331,0337,0304,0313,",
-    "0236:0313,0336,0316,0336,0332,0336,0347,0337,0333,0333,0336,0347,0337,0332,0337,0313,0337,",
-    "0237:0200,0336,0330,0332,0336,0330,0325,0235,0331,0331,0335,0335,0235,0331,0322,0335,0330,0235,0331,0335,0335,0330,0235,0334,0326,0330,0235,0331,0331,0335,0335,0235,0333,0333,0325,0336,0341,0335,0335,0330,0330,0330,0330,0322,0341,0320,0337,0350,0335,0304,0236,0350,0335,0304,0330,0236,0330,0350,0335,0304,0236,0350,0335,0304,0330,0236,0330,0350,0335,0304,0236,0350,0335,0304,0330,0236,0330,0350,0335,0304,0236,0350,0335,0330,0304,0236,0333,0331,0333,0336,0331,0333,0337,0314,0337,0200,0336,0313,0336,0331,0333,0337,0337,0337,0336,0336,0330,0332,0327,0336,0330,0332,0336,0336,0332,0332,0332,0332,0331,0331,0331,0332,0332,0332,0333,0333,070,040,0147,0162,0145,0145,0156,0365,0332,0332,0332,0332,0332,0332,0332,0332,061,061,040,0147,0162,0145,0171,0365,061,060,040,0160,0165,0162,0160,0154,0145,0330,0330,0330,0330,0330,0330,0332,0332,0365,061,062,040,0167,0150,0151,0164,0145,0330,0330,0330,0330,0330,0330,0330,0365,071,040,0142,0154,0165,0145,0333,0333,0333,0333,0333,0333,0333,0333,0333,0365,065,040,0162,0145,0144,0333,0333,0333,0333,0333,0333,0333,0333,0333,0365,067,040,0171,0145,0154,0154,0157,0167,0331,0331,0331,0331,0331,0332,0365,066,040,0157,0162,0141,0156,0147,0145,0331,0331,0331,0331,0331,0331,0331,0331,0365,0331,0331,0331,0331,0331,0331,0333,0333,0333,0333,0333,0331,0331,0333,0333,0331,0333,0333,0333,0337,0337,0337,0337,0337,0320,",
+    "0220:0520,",
+    "0221:0521,",
+    "0222:0522,",
+    "0223:0523,",
+    "0224:0524,",
+    "0225:0525,",
+    "0226:0526,",
+    "0227:0527,",
+    "0230:0530,",
+    "0231:0531,",
+    "0232:0532,",
+    "0233:0533,",
+    "0234:0331,0534,",
+    "0235:0535,",
+    "0236:0536,",
+    "0237:0220,0336,0331,0332,0336,0321,0342,0335,0342,0335,0342,0335,0342,0335,0330,0330,0333,0333,0337,0337,",
     "0240:0220,0336,0331,0333,0336,0321,0335,0342,0335,0335,0342,0335,0330,0330,0332,0332,0337,0337,",
     "0241:0220,0336,0321,0343,0332,0350,0335,0336,0342,0334,0334,0342,0335,0304,0337,0333,0337,",
     "0242:0220,0321,0336,0343,0333,0336,0350,0335,0342,0334,0334,0342,0335,0337,0304,0332,0337,",
@@ -149,6 +703,20 @@
     "0515:0406,0406,0406,0401,0402,0401,0402,0401,0402,0401,0402,0401,0402,0401,0402,0401,0402,0401,0402,0407,0407,0407,0336,0336,0336,0350,0310,0337,0335,0335,0335,0201,0334,0336,0313,0304,0334,0337,0337,0337,",
     "0516:0406,0406,0406,0400,0402,0400,0402,0400,0402,0400,0402,0400,0402,0400,0402,0400,0402,0400,0402,0407,0407,0407,0336,0336,0336,0350,0310,0337,0335,0335,0335,0335,0335,0201,0334,0336,0313,0304,0335,0335,0337,0337,0337,",
     "0517:0406,0406,0406,0400,0403,0400,0403,0400,0403,0400,0403,0400,0403,0400,0403,0400,0403,0400,0403,0407,0407,0407,0336,0336,0336,0350,0310,0337,0335,0335,0335,0335,0335,0335,0335,0201,0334,0336,0313,0304,0335,0335,0337,0337,0337,0335,0335,0335,",
+    "0520:0331,",
+    "0521:0331,0336,0330,0332,0347,0331,0333,0337,",
+    "0522:0331,0332,0336,0330,0332,0347,0331,0333,0337,0333,",
+    "0523:0331,0336,0330,0332,0347,0332,0332,0347,0333,0333,0333,0331,0337,",
+    "0524:0331,0332,0332,0336,0330,0332,0347,0331,0333,0337,0333,0333,",
+    "0525:0331,0332,0332,0336,0330,0332,0347,0331,0333,0337,0333,0333,0336,0330,0332,0347,0331,0333,0337,",
+    "0526:0331,0332,0332,0336,0330,0332,0347,0333,0333,0347,0331,0333,0337,0333,",
+    "0527:0331,0332,0332,0336,0330,0332,0347,0333,0333,0347,0333,0333,0347,0331,0333,0337,",
+    "0530:0342,0332,0332,0332,0342,0333,0333,0333,0335,0336,0342,0334,0337,",
+    "0531:0332,0332,0332,0334,0336,0342,0335,0335,0337,0201,0201,0201,0334,0332,0336,0336,0331,0337,0342,0332,0332,0342,0333,0333,0333,0333,0336,0330,0337,0337,",
+    "0532:0362,0203,0334,0310,0350,0334,0337,0203,0334,0334,0334,0336,0203,0363,0331,0331,0331,0334,0334,0362,0203,0335,0335,0335,0337,0203,0335,0335,0335,0336,0203,0363,0331,0331,0313,0304,0335,0336,0332,0337,0310,0350,0335,0337,0362,0203,0334,0334,0334,0337,0203,0334,0334,0334,0336,0203,0363,0334,0334,0334,0336,0304,0313,0333,0336,0333,0337,",
+    "0533:0331,0204,0332,0332,0204,0333,0333,0332,0331,0204,0333,0331,",
+    "0534:0334,0201,0201,0201,0335,0201,0335,0201,0201,0201,0334,0331,0342,0332,0204,0332,0332,0335,0336,0314,0337,0350,0335,0321,0343,0335,0330,0336,0313,0337,0304,0320,0335,0310,0335,0335,0331,0350,0335,0310,0337,0362,0203,0334,0334,0334,0337,0203,0334,0334,0334,0336,0203,0363,0334,0334,0334,0336,0330,0334,0334,0313,0304,0336,0314,0337,0330,0336,0313,0337,0310,0350,0362,0203,0334,0334,0334,0337,0203,0334,0334,0334,0336,0203,0363,0334,0334,0330,0313,0304,0332,",
+    "0535:0330,0334,0362,0203,0334,0203,0334,0310,0350,0334,0337,0203,0363,0335,0336,0331,0304,0334,0331,0334,0201,0201,0201,0335,0201,0335,0201,0201,0201,0313,0334,0331,0332,0336,0332,0337,0350,0310,0335,0337,0362,0203,0334,0334,0334,0337,0203,0334,0334,0334,0336,0203,0363,0334,0334,0334,0336,0313,0304,0330,0336,0333,0337,0333,0336,0314,0337,0350,0334,0321,0343,0335,0320,0313,0304,0314,0336,0313,0337,0331,",
     "0600:0711,0701,0711,0701,0711,0701,0711,0700,0700,0700,0700,0711,0700,0711,0700,0711,0700,0711,0702,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0702,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0702,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0703,0703,0703,0703,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0703,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0703,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0700,0711,0703,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0701,0711,0702,0702,0702,0702,0700,0700,0700,0700,0706,0701,0703,0706,0704,0704,0724,0706,",
     "0601:0711,0703,0711,0703,0711,0703,0711,0703,0711,0703,0711,0703,0711,0703,0711,0703,0711,0703,0711,0700,0702,0702,0702,0702,0702,0702,0702,0702,0702,",
     "0602:0601,0601,0601,0601,0601,0601,0601,0601,0601,0601,0701,0701,0701,0701,0701,0706,0701,0707,0703,0703,0703,0703,0706,0703,0707,0706,0706,0704,0706,0704,0704,0724,",
@@ -284,22 +852,22 @@
     "01215:0333,0200,0336,0330,0332,0336,0331,0337,0215,0333,0336,0331,0337,0337,",
     "01216:0333,0200,0336,0332,0330,0336,0331,0332,0337,0216,0336,0333,0336,0331,0331,0333,0337,0337,0337,",
     "01217:0333,0200,",
-    "01220:0333,0220,",
-    "01221:0333,0221,",
-    "01222:0333,0222,0304,",
-    "01223:0333,0223,0314,0304,0313,",
-    "01224:0333,0224,0313,0304,",
-    "01225:0333,0225,0313,0304,",
-    "01226:0226,0200,",
-    "01227:0227,0200,",
-    "01230:0230,0333,0333,0333,0333,0333,0333,",
-    "01231:0333,0231,",
-    "01232:0333,0232,",
-    "01233:0333,0233,",
-    "01234:0333,0234,",
-    "01235:0333,0200,0336,0330,0332,0235,0331,0333,0337,",
-    "01236:0333,0200,0336,0330,0332,0236,0331,0333,0337,",
-    "01237:0333,0237,",
+    "01220:0333,0200,",
+    "01221:0333,0200,0336,0336,0330,0221,0337,0337,",
+    "01222:0333,0200,0336,0336,0330,0222,0337,0337,",
+    "01223:0333,0200,0336,0336,0330,0223,0337,0337,",
+    "01224:0333,0200,0336,0336,0330,0224,0337,0337,",
+    "01225:0333,0200,0336,0336,0330,0225,0337,0337,",
+    "01226:0333,0200,0336,0336,0330,0226,0337,0337,",
+    "01227:0333,0200,0336,0336,0330,0227,0337,0337,",
+    "01230:0333,0200,0336,0336,0330,0230,0331,0337,0337,",
+    "01231:0333,0200,0336,0336,0330,0231,0331,0337,0337,",
+    "01232:0333,0200,0336,0336,0232,0337,0337,",
+    "01233:0333,0200,0336,0336,0330,0233,0331,0330,0337,0337,",
+    "01234:0333,0200,0336,0336,0330,0330,0330,0234,0331,0331,0333,0333,0331,0331,0333,0333,0337,0337,0333,0333,0333,",
+    "01235:0333,0200,0336,0336,0330,0235,0331,0333,0337,0337,",
+    "01236:0333,0200,",
+    "01237:0333,0200,",
     "01240:0333,0200,0336,0330,0332,0210,0240,0211,0333,0331,0337,",
     "01241:0333,0200,0336,0332,0330,0210,0241,0211,0333,0331,0337,",
     "01242:0333,0200,0336,0330,0332,0210,0242,0211,0333,0331,0337,",
@@ -405,14 +973,14 @@
     "01406:0333,0200,0336,0330,0332,0336,0336,0336,0330,0334,0337,0337,0362,0203,0336,0334,0203,0334,0337,0203,0203,0334,0336,0203,0334,0337,0203,0354,0335,0336,0336,0331,0337,0337,0337,0331,0333,0337,",
     "01407:0333,0200,0336,0330,0332,0336,0336,0336,0330,0334,0330,0335,0337,0337,0362,0203,0335,0336,0203,0335,0337,0203,0334,0203,0335,0336,0203,0335,0337,0203,0334,0203,0335,0336,0203,0335,0337,0203,0334,0203,0335,0336,0203,0335,0337,0203,0354,0334,0336,0336,0331,0333,0337,0337,0337,0331,0333,0337,",
     "01477:0520,0336,0330,0332,0336,0331,0332,0330,0336,0332,0337,0335,0362,0203,0334,0203,0335,0203,0335,0203,0334,0203,0364,0336,0334,0334,0350,0335,0310,0337,0342,0334,0334,0342,0336,0335,0335,0335,0304,0313,0333,0337,0337,0331,0337,",
-    "01500:0333,0200,0336,0330,0332,0336,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0336,0347,0337,0331,0304,0313,0337,0331,0333,0337,",
-    "01501:0333,0200,0336,0330,0332,0336,0335,0335,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0336,0347,0337,0331,0304,0335,0335,0313,0337,0331,0333,0337,",
-    "01502:0333,0200,0336,0330,0332,0336,0334,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0336,0347,0337,0331,0304,0313,0335,0337,0331,0333,0337,",
-    "01503:0333,0200,0336,0330,0332,0336,0335,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0336,0347,0337,0331,0304,0313,0334,0337,0331,0333,0337,",
-    "01504:0333,0200,0336,0330,0332,0336,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0331,0304,0313,0337,0331,0333,0337,",
-    "01505:0333,0200,0336,0330,0332,0336,0335,0335,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0331,0304,0335,0335,0313,0337,0331,0333,0337,",
-    "01506:0333,0200,0336,0330,0332,0336,0334,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0331,0304,0313,0335,0337,0331,0333,0337,",
-    "01507:0333,0200,0336,0330,0332,0336,0335,0306,0312,0330,0335,0335,0350,0335,0306,0337,0201,0335,0335,0201,0335,0335,0201,0350,0334,0336,0331,0304,0313,0334,0337,0331,0333,0337,",
+    "01500:0333,0200,0336,0330,0332,0336,0336,0336,0347,0330,0330,0330,0347,0331,0331,0331,0337,0337,0337,0331,0333,0337,",
+    "01501:0333,0200,0336,0330,0332,0336,0336,0336,0347,0331,0331,0331,0347,0330,0330,0330,0337,0337,0337,0331,0333,0337,",
+    "01502:0333,0200,0336,0330,0332,0336,0336,0336,0347,0332,0332,0332,0347,0333,0333,0333,0337,0337,0337,0331,0333,0337,",
+    "01503:0333,0200,0336,0330,0332,0336,0336,0336,0347,0333,0333,0333,0347,0332,0332,0332,0337,0337,0337,0331,0333,0337,",
+    "01504:0333,0200,0336,0330,0332,0336,0336,0336,0341,0337,0337,0330,0336,0336,0341,0337,0337,0330,0337,0331,0333,0331,0337,",
+    "01505:0333,0200,0336,0330,0332,0336,0336,0336,0341,0331,0331,0331,0331,0341,0331,0331,0331,0331,0337,0337,0337,0333,0337,",
+    "01506:0333,0200,0336,0330,0332,0336,0336,0336,0341,0332,0332,0332,0332,0341,0332,0332,0332,0332,0337,0337,0337,0331,0337,0333,",
+    "01507:0333,0200,0336,0330,0332,0336,0336,0336,0341,0333,0333,0333,0341,0333,0333,0333,0333,0333,0337,0337,0337,0331,0337,",
     "01510:0333,0200,0336,0330,0332,0336,0342,0330,0335,0335,0350,0335,0336,0342,0334,0334,0342,0335,0304,0335,0335,0337,0330,0337,0333,0337,0331,",
     "01511:0333,0200,0336,0330,0332,0335,0335,0336,0342,0330,0335,0335,0350,0334,0336,0342,0335,0335,0342,0334,0337,0304,0331,0337,0333,0337,",
     "01512:0333,0200,0336,0330,0332,0336,0334,0342,0330,0335,0350,0335,0336,0342,0335,0335,0342,0334,0337,0304,0334,0332,0337,0331,0337,0333,",
@@ -429,6 +997,12 @@
     "01525:0333,0200,0336,0336,0330,0332,0332,0332,0337,065,0365,0333,0336,0331,0333,0337,0337,",
     "01526:0333,0200,0336,0336,0330,0332,0332,0332,0337,066,0365,0333,0336,0331,0333,0337,0337,",
     "01527:0333,0200,0336,0336,0330,0332,0332,0332,0337,067,0365,0333,0336,0331,0333,0337,0337,",
+    "01530:0333,0200,0336,0330,0332,0336,0336,0333,0530,0331,0530,0331,0530,0331,0333,0333,0331,0333,0337,0337,0337,",
+    "01531:0333,0200,0336,0330,0332,0336,0331,0333,0336,0330,0530,0331,0530,0331,0530,0531,0331,0333,0333,0337,0337,0337,",
+    "01532:0333,0200,0336,0336,0330,0330,0336,0331,0332,0337,0532,0336,0333,0337,0331,0336,0331,0337,0337,0337,",
+    "01533:0333,0200,0336,0336,0330,0330,0336,0332,0337,0533,0336,0333,0331,0331,0337,0337,0337,",
+    "01534:0333,0200,0336,0330,0336,0332,0336,0534,0331,0333,0333,0333,0333,0333,0333,0331,0331,0331,0331,0337,0337,0337,",
+    "01535:0333,0200,0336,0336,0330,0336,0330,0332,0332,0535,0331,0333,0333,0333,0331,0331,0337,0337,0337,",
     "01600:0333,0200,0336,0330,0332,0336,0331,0333,0337,0200,0350,0335,0336,0336,0336,0201,0334,0337,0337,0337,0201,0334,0334,0334,0336,0336,0336,0342,0335,0337,0337,0337,0201,0334,0336,0336,0336,0342,0330,0334,0337,0337,0337,0335,0335,0335,0335,0304,0336,0330,0332,0337,0337,0331,0333,",
     "01601:0333,0200,0336,0330,0332,0336,0331,0332,0337,061,0365,0333,0336,0331,0333,0337,0337,",
     "01602:0333,0200,0336,0330,0332,0336,0331,0332,0337,062,0365,0333,0336,0333,0331,0337,0337,",
@@ -453,4 +1027,167 @@
     "01723:0333,0200,0336,0330,0332,0336,0331,0333,0337,0325,0204,0320,0336,0331,0333,0337,0337,",
     "01724:0333,0200,0336,0336,0330,0332,0337,0326,0204,0336,0331,0333,0337,0337,0320,",
     "01725:0333,0200,0336,0336,0330,0332,0337,0327,0204,0336,0331,0333,0337,0337,0320,"
-]
+];
+
+document.getElementById("resetbutton").onclick = function(){
+    mainGVM.importbytecode(resetcube);
+    mainGVM.glyph = mainGVM.hypercube[mainGVM.address] + "0207,";
+    mainGVM.clean();
+    mainGVM.drawGlyph(mainGVM.glyph);
+    redraw();
+}
+</script>
+<style>
+body{
+    background-color:#afafff;
+}
+#address{
+    position:absolute;
+    left:10px;
+    bottom:100px;
+}
+#spellbox{
+    position:absolute;
+    left:10px;
+    top:50px;
+    width:500px;
+    height:500px;
+    background-color:white;
+}
+#controltable{
+    position:absolute;
+    top:300px;
+    right:50px;
+    background-color:white;
+}
+#controltable td{
+    cursor:pointer;
+}
+#shapetable{
+    position:absolute;
+    right:400px;
+    top:50px;
+    background-color:#f0f0f0;
+}
+#shapetable td{
+    cursor:pointer;
+}
+#shapetable canvas{
+    background-color:white;
+}
+#actioninput{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    width:1em;
+}
+#addressinput{
+    position:absolute;
+    top:50px;
+    width:40px;
+    font-family:courier;
+    font-size:12px;
+    right:0px;
+}
+#modeindicator{
+    position:absolute;
+    right:2em;
+    bottom:0px;
+    width:30px;
+}
+#spellinput{
+    font-family:courier;
+    width:90%;
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:12px;
+}
+#displaybox{
+    position:absolute;
+    right:3em;
+    top:3em;
+    width:300px;
+    height:300px;
+    background-color:white;
+}
+#maincanvas{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+.data{
+    display:none;
+}
+#savebutton{
+    position:absolute;
+    left:50px;
+    bottom:50px;
+    width:50px;
+}
+#indexlink{
+    position:absolute;
+    left:150px;
+    bottom:50px;
+    width:50px;
+    
+}
+#resetbutton{
+    position:absolute;
+    left:150px;
+    bottom:50px;
+    width:50px;
+}
+#textio{
+    position:absolute;
+    bottom:1em;
+    left:50%;
+    width:300px;
+    height:100px;
+}
+#importbutton{
+    position:absolute;
+    bottom:1em;
+    width:6em;
+    left:40%;
+}
+#exportbutton{
+    position:absolute;
+    bottom:3em;
+    width:6em;
+    left:40%;
+}
+#resetbutton{
+    position:absolute;
+    bottom:7em;
+    width:6em;
+    left:40%;
+}
+#tabletexportbutton{
+    position:absolute;
+    bottom:5em;
+    width:8em;
+    left:35%;
+}
+
+.button{
+    cursor:pointer;
+    background-color:white;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+#selecttable{
+    position:absolute;
+    right:50px;
+    bottom:50px;
+    border:solid;
+}
+
+
+</style>
+</body>
+</html>

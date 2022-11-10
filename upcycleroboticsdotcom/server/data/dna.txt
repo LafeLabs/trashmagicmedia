@@ -9,6 +9,7 @@
         "font.html",
         "fork.html",
         "globalimagefeed.html",
+        "hypercube.html",
         "hyperlinkeditor.html",
         "icon3d.html",
         "icon64.html",

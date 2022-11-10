@@ -27,6 +27,7 @@
 </head>
 <body>
 
+
 <div id = "mainbox">
     <div id ="mainboxbackground"></div>
     <canvas id = "gridcanvas"></canvas>
@@ -35,6 +36,16 @@
     <div id = "hammerxy"></div>
 </div>
 
+<table id = "linktable">
+    <tr>
+        <td>
+            <a href = "index.html">HOME</a>
+        </td>
+        <td>
+            <a href = "artisthelp.html">HELP</a>
+        </td>
+    </tr>
+</table>
 
 <div id = "zoomrotatebox">
         <table id = "rotatezoomtable">
@@ -141,24 +152,38 @@
     
 </div>
 <script>
-controlbuttonsize = 20;
+controlbuttonsize = 80;
 
 controls  = [
-    "0500,0501,0502,0503,0504,0505,0506,0507,",
+    "0500,0501,0502,0503,",
+    "0504,0505,0506,0507,",
     "011,020,010,021,",
-    "0320,0321,0322,0323,0324,0325,0326,0327,",
-    "040,041,042,043,044,045,046,050,",
-    "051,052,053,054,055,056,057,060,",
-    "061,062,063,064,065,066,067,070,",
-    "071,072,073,074,075,076,077,0100,",
-    "0101,0102,0103,0104,0105,0106,0107,0110,",
-    "0111,0112,0113,0114,0115,0116,0117,0120,",
-    "0121,0122,0123,0124,0125,0126,0127,0130,",
-    "0131,0132,0133,0134,0135,0136,0137,0140,",
-    "0141,0142,0143,0144,0145,0146,0147,0150,",
-    "0151,0152,0153,0154,0155,0156,0157,0160,",
-    "0161,0162,0163,0164,0165,0166,0167,0170,",
-    "0171,0172,0173,0174,0175,0176,"
+    "0320,0321,0322,0323,",
+    "0324,0325,0326,0327,",
+    "040,041,042,043,",
+    "044,045,046,050,",
+    "051,052,053,054,",
+    "055,056,057,060,",
+    "061,062,063,064,",
+    "065,066,067,070,",
+    "071,072,073,074,",
+    "075,076,077,0100,",
+    "0101,0102,0103,0104,",
+    "0105,0106,0107,0110,",
+    "0111,0112,0113,0114,",
+    "0115,0116,0117,0120,",
+    "0121,0122,0123,0124,",
+    "0125,0126,0127,0130,",
+    "0131,0132,0133,0134,",
+    "0135,0136,0137,0140,",
+    "0141,0142,0143,0144,",
+    "0145,0146,0147,0150,",
+    "0151,0152,0153,0154,",
+    "0155,0156,0157,0160,",
+    "0161,0162,0163,0164,",
+    "0165,0166,0167,0170,",
+    "0171,0172,0173,0174,",
+    "0175,0176,"
 ];
 
 robotkeys = [
@@ -170,8 +195,7 @@ robotkeys = [
     "0123:0501,",
     "0104:0503,",
     "0127:0500,",
-    "0140:0320,",
-    "061:0321,",
+    "061:0320,",
     "062:0322,",
     "063:0323,",
     "064:0324,",
@@ -400,7 +424,7 @@ function saveimage(){
     httpc.open("POST", "filesaver.php", true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     httpc.send("data="+encodeURIComponent(JSON.stringify(image),null,"    ")+"&filename=data/alignimage.txt");//send text to filesaver.php
-    document.getElementById("textio").value = JSON.stringify(image,null,"    ");    
+
 }
 
 
@@ -410,7 +434,7 @@ function saveimagefeed(){
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     httpc.send("data="+encodeURIComponent(JSON.stringify(imagefeed,null,"  "))+"&filename=data/imagefeed.txt");//send text to filesaver.php   
     document.getElementById("imageurlinput").value = "";
-    document.getElementById("textio").value = JSON.stringify(imagefeed,null,"  ");    
+     
 
 }
 
@@ -818,7 +842,7 @@ body{
     background-color:#0000ff80;
 }
 .feedelement{
-    border:solid;
+
 }
 #savebutton{
     border:Solid;
@@ -1001,6 +1025,15 @@ body{
     color:red;
     z-index:1;
 
+}
+#iconfeed .deletebutton{
+    margin-left:-15px;
+}
+#imagefeed .deletebutton{
+    width:50px;
+}
+.imagebox{
+    border-bottom:solid;
 }
 @media only screen and (orientation: portrait) {
 #iobox{
