@@ -191,27 +191,8 @@ THREE.STLExporter.prototype = {
 </head>
 <body>    
 
-<div id  = "mainbox"><canvas id = "maincanvas"></canvas></div>
-
-<div style = "display:none" id = "square">
-    <x3d id = "mainx3d">
-        <scene id = "main">
-        </scene>
-    </x3d>
-</div>
-
-<div style = "display:none" id  = "pagebox"><canvas id = "pagecanvas"></canvas></div>
-
-<div style = "display:none" id  = "steniclbox"><canvas id = "stencilcanvas"></canvas></div>
-
-<textarea id = "arduinocode"></textarea>
-
-
+        
 <table id = "linktable">
-    <tr>
-        <td>input new glyph:</td>
-        <td><input id = "glyphinput"/></td>
-    </tr>
     <tr>
         <td rowspan = "4" class= "button" id = "savebutton">SAVE ICON TO FILES</td>
     </tr>
@@ -235,9 +216,31 @@ THREE.STLExporter.prototype = {
             <a href = "iconpage.svg">iconpage.svg</a>
         </td>
     </tr>
+</table>
+
+<div id  = "mainbox"><canvas id = "maincanvas"></canvas></div>
+
+<div style = "display:none" id = "square">
+    <x3d id = "mainx3d">
+        <scene id = "main">
+        </scene>
+    </x3d>
+</div>
+
+<div style = "display:none" id  = "pagebox"><canvas id = "pagecanvas"></canvas></div>
+
+<div style = "display:none" id  = "steniclbox"><canvas id = "stencilcanvas"></canvas></div>
+
+<textarea id = "arduinocode"></textarea>
+
+
+<table id = "glyphinputtable">
     <tr>
-        <td id = "importbutton" class= "button">IMPORT</td>
+        <td>geometron glyph:</td>
+        <td><input id = "glyphinput"/></td>
     </tr>
+</table>
+<table id = "htmlinputtable">
     <tr>
         <td>HTML embed code:</td>
         <td>
@@ -245,8 +248,12 @@ THREE.STLExporter.prototype = {
         </td>
     </tr>
 </table>
+        
+        
+
 <div id = "feed"></div>
 
+<div id = "importbutton" class= "button">IMPORT</div>
 <textarea id = "textio"></textarea>
 
 <script>
@@ -432,10 +439,22 @@ function save3d(){
 glyph = "";
 feedwidth = 100;
 feedlinkwidth  = feedwidth;
-mainsize = 0.5*innerWidth - 10;
-
 maincanvas = document.getElementById("maincanvas");
-var mainGVM = new GVM(maincanvas,300,300);
+mainsize = 300;
+if(innerWidth > innerHeight){
+    mainsize = innerHeight*0.5 - 50;
+    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
+    document.getElementById("feed").style.width = (mainsize).toString() + "px";
+    document.getElementById("arduinocode").style.right = (mainsize + 20).toString() + "px";
+    document.getElementById("arduinocode").style.height = (innerHeight - 200).toString() + "px";
+    document.getElementById("arduinocode").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
+    document.getElementById("glyphinputtable").style.top = (mainsize + 5).toString() + "px";
+    
+}
+else{
+    mainsize = innerWidth;
+}
+var mainGVM = new GVM(maincanvas,mainsize,mainsize);
 mainGVM.unit = 30;
 mainGVM.style.fill1 = "white";
 mainGVM.style.color1 = "black";
@@ -553,7 +572,7 @@ function loadfeed(){
                         
             pageGVM.hypercube[0220] = glyph;
             pageGVM.drawGlyph("0300,0223,");
-            redraw();
+            
             
         }
         var newimg = document.createElement("IMG");
@@ -585,6 +604,7 @@ document.getElementById("glyphinput").value = "";
 
 
 document.getElementById("savebutton").onclick = function(){
+    redraw();
     savepng();
     savepage();
     savestencil();
@@ -730,6 +750,14 @@ function drawcube(){
 canvas{
     display:none;
 }
+table .button{
+    border:solid;
+}
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
 #maincanvas{
     display:inline;
 }
@@ -737,15 +765,37 @@ canvas{
     display:inline;
 }
 #arduinocode{
+    position:absolute;
     border:solid;
     border-width:10px;
     border-color:#00878F;
     font-family:courier;
+    top:100px;
+    width:400px;
+    height:30em;
+}
+#glyphinputtable{
+    position:absolute;
+    right:10px;
+}
+#importbutton{
+    position:Absolute;
+    left:10px;
+    bottom:0px;
+    border:solid;
+    border-radius:5px;
+    text-align:center;
+    width:20em;
 }
 #textio{
     font-family:courier;
     color:#00ff00;
     background-color:black;
+    position:Absolute;
+    left:0px;
+    bottom:50px;
+    height:15em;
+    width:20em;
 }
 #square{
     position:absolute;
@@ -758,16 +808,30 @@ canvas{
     width:500px;
     height:500px;
 }
+#mainbox{
+    border:solid;
+}
+#feed{
+    position:absolute;
+    right:0px;
+    overflow:scroll;
+    border:solid;
+}
 @media only screen and (orientation: portrait) {
 
     
 }
 @media only screen and (orientation: landscape) {
-
-    
+    #feed{
+        bottom:0px;
+        
+    }
+}
+.deletebutton{
+    width:20px;
+    margin-left:-20px;
 }
 .button{
-    border:solid;
     cursor:pointer;
 }
 .button:hover{
