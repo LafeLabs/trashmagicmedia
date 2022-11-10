@@ -35,6 +35,7 @@
     <div id = "hammerxy"></div>
 </div>
 
+
 <div id = "zoomrotatebox">
         <table id = "rotatezoomtable">
             <tr id = "rotatezoombuttons1">
@@ -102,15 +103,37 @@
     </table>    
 </div>
 
-    
+
 <div id = "iobox">
     <table id ="iotable">
         <tr>
-            <td id = "savebutton" class=  "button">SAVE</td>
+
             <td id = "loadbutton" class = "button">LOAD</td>
         </tr>
     </table>
     <textarea id = "textio"></textarea>
+
+</div>
+
+
+<div id = "spellbox">
+    <div id = "savebutton" class=  "button">SAVE ICON</div>
+    <table>
+        <tr>   
+            <td>
+                <img style = "width:30px" id = "modeindicator" class = "button" src = "iconsymbols/cursor.svg"/>
+            </td>
+            <td>
+                <input id = "actioninput"/>
+            </td>
+            <td>
+                <input id = "spellinput"/>
+            </td>
+        </tr>
+    </table>
+    <div id = "spellcanvasbox">
+        <canvas id = "spellcanvas"></canvas>
+    </div>
 
 </div>
 
@@ -158,7 +181,12 @@ robotkeys = [
     "0152:0502,",
     "0153:0501,",
     "0154:0503,",
-    "0151:0500",
+    "0151:0500,",
+    "0134:011,",
+    "0152:0502,",
+    "0154:0503,",
+    "0163:0501,",
+    "0151:0500,"
 ];
 
 
@@ -190,6 +218,11 @@ maincanvas = document.getElementById("maincanvas");
 var mainGVM = new GVM(maincanvas,mainboxsize,mainboxsize);
 
 mainGVM.drawGlyph("0337,0337,0342,0334,0342,0334,0342,0334,0342,0341,");
+var spellGVM = new GVM(document.getElementById("spellcanvas"),420,800);
+
+spellGVM.x0 = 5;
+spellGVM.y0 = 35;
+spellGVM.unit = 20;
 
 
 image = {
@@ -309,28 +342,17 @@ function loadimage(){
     document.getElementById("mainimage").style.width = (image.w*mainGVM.width).toString() + "px";    
     document.getElementById("mainimage").style.transform = "rotate(" + (image.angle).toString() + "deg)";
     
-    document.getElementById("textio").value = JSON.stringify(image,null,"    ");
+
     
 }
 
 document.getElementById("loadbutton").onclick = function(){
-    image = JSON.parse(document.getElementById("textio").value);
-    loadimage();
-    saveimage();
+    robotfeed = JSON.parse(document.getElementById("textio").value);
+    loadfeed();
 }
 
 document.getElementById("savebutton").onclick = function(){
-    
-    if(document.getElementById("mainimage").style.left.length > 0){
-        image.x = parseInt(document.getElementById("mainimage").style.left.substring(0,document.getElementById("mainimage").style.left.length-2))/mainGVM.width;        
-        image.y = parseInt(document.getElementById("mainimage").style.top.substring(0,document.getElementById("mainimage").style.top.length-2))/mainGVM.width;
-        image.w = parseInt(document.getElementById("mainimage").style.width.substring(0,document.getElementById("mainimage").style.width.length-2))/mainGVM.width;
-
-        image.angle = parseInt(document.getElementById("mainimage").style.transform.substring(7,document.getElementById("mainimage").style.transform.length - 4));
-
-    
-    }
-    saveimage();
+    pushcoin();
 }
 
 
@@ -476,13 +498,16 @@ function pushcoin(){
     httpcrobotfeed.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
             robotfeed = JSON.parse(this.responseText);
-            
+            document.getElementById("textio").value = JSON.stringify(robotfeed,null,"    ");
+                
             mainGVM.clean();
             robotfeed.unshift(mainGVM.cleanGlyph);
             var httpc = new XMLHttpRequest();
             httpc.open("POST", "filesaver.php", true);
             httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             httpc.send("data="+encodeURIComponent(JSON.stringify(robotfeed,null,"  "))+"&filename=data/robotfeed.txt");//send text to filesaver.php
+            
+            loadfeed();            
 
         }
         
@@ -496,8 +521,11 @@ var httpcHypercube = new XMLHttpRequest();
 httpcHypercube.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200) {
         hypercube = JSON.parse(this.responseText);
-//        spellGVM.importbytecode(hypercube);
+        spellGVM.importbytecode(hypercube);
         mainGVM.importbytecode(hypercube);    
+        for(var index = 040;index < 0177;index++){
+            mainGVM.hypercube[index] = "0177,";
+        }
         mainGVM.importbytecode(robotkeys);
         loadcontroltable();
         var httpcCoin = new XMLHttpRequest();
@@ -533,8 +561,8 @@ function drawmain(){
     mainGVM.drawGlyph(mainGVM.glyph);
     mainGVM.actionSequence("0300,0337,0337,0342,0334,0342,0334,343,0334,0342,0341,");    
     
-//    spellGVM.spellGlyph(mainGVM.glyph);
-  //  document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    spellGVM.spellGlyph(mainGVM.glyph);
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
 }
 
 
@@ -576,8 +604,8 @@ function loadcontroltable(){
                     }
 
                     mainGVM.clean();
-                    //spellGVM.spellGlyph(mainGVM.glyph);
-                    //document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+                    spellGVM.spellGlyph(mainGVM.glyph);
+                    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
                     coin = mainGVM.cleanGlyph;
                     savecoin();
                     mainGVM.actionSequence("0300,0337,0337,0342,0334,0342,0334,343,0334,0342,0341,"); 
@@ -590,7 +618,7 @@ function loadcontroltable(){
 }
 
 feedwidth = 300;
-feedlinkwidth = 240;
+feedlinkwidth = 80;
 
 function loadfeed(){
     gvmArray = [];
@@ -608,7 +636,7 @@ function loadfeed(){
             neworder();
         }
         newcan.classList.add("button");
-        newdiv.style.height = "100px";
+//        newdiv.style.height = "200px";
         document.getElementById("iconfeed").appendChild(newdiv);
         var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
         newGVM.hypercube = mainGVM.hypercube;
@@ -621,8 +649,16 @@ function loadfeed(){
         datadiv.className = "data";
         newdiv.appendChild(datadiv);
         newdiv.onclick = function(){
-            glyph = this.getElementsByClassName("data")[0].innerHTML;
-            document.getElementById("glyphinput").value = glyph;
+            glyph = this.getElementsByClassName("data")[0].innerHTML + "0207,";
+            mainGVM.glyph = glyph;
+            mainGVM.drawGlyph(glyph);
+            mainGVM.actionSequence("0300,0337,0337,0342,0334,0342,0334,343,0334,0342,0341,");    
+            spellGVM.spellGlyph(mainGVM.glyph);    
+            mainGVM.clean();
+            document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+            coin = mainGVM.cleanGlyph;
+            savecoin();
+            
         }
         
         
@@ -662,6 +698,117 @@ function saverobotfeed(){
     document.getElementById("textio").value = JSON.stringify(robotfeed,null,"  ");    
 }
 
+document.getElementById("actioninput").onkeypress = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode != 015){
+        if(mode == 0 || mode == 3){
+            localCursorAction = parseInt(mainGVM.hypercube[charCode],8);   
+        }    
+        if(mode == 1){
+            localCursorAction = charCode + 01000;     
+        }    
+        if(mode == 2){
+            localCursorAction = charCode;     
+        }    
+        
+        mainGVM.cursorAction(localCursorAction);   
+        mainGVM.actionSequence("0300,0337,0337,0342,0334,0342,0334,343,0334,0342,0341,");    
+        spellGVM.spellGlyph(mainGVM.glyph);    
+        this.value = "";
+        mainGVM.clean();
+        document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+        coin = mainGVM.cleanGlyph;
+        savecoin();
+    }
+
+}
+
+
+document.getElementById("actioninput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+
+    if(charCode == 015) {
+        modeswitch();
+    }
+
+    if(charCode == 010) {
+        mainGVM.cursorAction(010);
+    }
+    if(charCode == 045){
+        mainGVM.cursorAction(020);             
+    }
+    if(charCode == 047){
+        mainGVM.cursorAction(021);   
+    }
+
+    if(charCode == 046){
+        //up arrow: prev symbol
+        mainGVM.clean();
+        mainGVM.glyph = "0207," + mainGVM.cleanGlyph;
+        mainGVM.drawGlyph(mainGVM.glyph);
+    }
+    if(charCode == 050){
+        //down arrow: next symbol
+        mainGVM.clean();
+        mainGVM.glyph = mainGVM.cleanGlyph + "0207,";
+        mainGVM.drawGlyph(mainGVM.glyph);
+
+    }
+
+    spellGVM.spellGlyph(mainGVM.glyph);
+    document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    mainGVM.clean();
+        mainGVM.actionSequence("0300,0337,0337,0342,0334,0342,0334,343,0334,0342,0341,");    
+    coin = mainGVM.cleanGlyph;
+    savecoin();
+    
+}
+
+
+mode =0;
+function modeswitch(){
+    mode++;
+    mode = mode%2;
+    if(mode == 0){
+        document.getElementById("modeindicator").src = "iconsymbols/cursor.svg";
+    }
+    if(mode == 1){
+        document.getElementById("modeindicator").src = "iconsymbols/abcfont.svg";
+    }
+
+    document.getElementById("actioninput").select();   
+}
+
+if(innerWidth > innerHeight){
+    document.getElementById("actioninput").select();
+}
+
+document.getElementById("spellinput").onchange = function(){
+    
+    coin = this.value;
+    savecoin();
+    drawmain();
+}
+
+document.getElementById("modeindicator").onclick = function(){
+    modeswitch();
+}
+
+
+function neworder(){
+    
+    var datafeed = document.getElementById("iconfeed").getElementsByClassName("data");
+    newrobotfeed = [];
+    
+    for(var index = 0;index < datafeed.length;index++){
+        newrobotfeed.push(datafeed[index].innerHTML);
+    }
+    robotfeed  = newrobotfeed;
+    loadfeed();
+    saverobotfeed();
+
+}
+
 
 </script>
 <style>
@@ -670,11 +817,30 @@ body{
     overflow:hidden;
     background-color:#0000ff80;
 }
+.feedelement{
+    border:solid;
+}
+#savebutton{
+    border:Solid;
+    text-align:center;
+}
+#spellbox{
+    border:solid;
+    position:absolute;
+    left:300px;
+    top:10px;
+    width:300px;
+    height:300px;
+    overflow:scroll;
+}
+#actioninput{
+    width:1em;
+}
 #iconfeed{
     background-color:#b0b0b0;
     position:absolute;
     left:300px;
-    top:100px;
+    top:330px;
     bottom:20px;
     width:300px;
     overflow:scroll;
@@ -825,14 +991,12 @@ body{
 .data{
     display:none;
 }
+.icondata{
+    display:none;
+}
 .deletebutton{
-    width:2em;
+    width:20px;
     background-color:#808080;
-    border:solid;
-    border-radius:5px;
-    border-width:5px;
-    border-color:red;
-    font-family:helvetica;
     font-size:2em;
     color:red;
     z-index:1;
