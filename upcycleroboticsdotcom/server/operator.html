@@ -449,10 +449,15 @@ if(innerWidth > innerHeight){
     document.getElementById("arduinocode").style.height = (innerHeight - 200).toString() + "px";
     document.getElementById("arduinocode").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
     document.getElementById("glyphinputtable").style.top = (mainsize + 5).toString() + "px";
+    document.getElementById("textio").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
+    document.getElementById("importbutton").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";    
     
 }
 else{
-    mainsize = innerWidth;
+    mainsize = 0.5*innerWidth;
+    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
+    document.getElementById("mainbox").style.right = (0.25*innerWidth).toString() + "px";    
+    
 }
 var mainGVM = new GVM(maincanvas,mainsize,mainsize);
 mainGVM.unit = 30;
@@ -747,6 +752,9 @@ function drawcube(){
 }
 </script>
 <style>
+body{
+    background-color:#8080ff;
+}
 canvas{
     display:none;
 }
@@ -757,6 +765,7 @@ table .button{
     position:absolute;
     right:0px;
     top:0px;
+    background-color:white;
 }
 #maincanvas{
     display:inline;
@@ -770,9 +779,6 @@ table .button{
     border-width:10px;
     border-color:#00878F;
     font-family:courier;
-    top:100px;
-    width:400px;
-    height:30em;
 }
 #glyphinputtable{
     position:absolute;
@@ -792,7 +798,7 @@ table .button{
     color:#00ff00;
     background-color:black;
     position:Absolute;
-    left:0px;
+    left:10px;
     bottom:50px;
     height:15em;
     width:20em;
@@ -816,15 +822,35 @@ table .button{
     right:0px;
     overflow:scroll;
     border:solid;
+    background-color:#e0e0e0;
 }
 @media only screen and (orientation: portrait) {
-
-    
+    #mainbox{
+        top:100px;
+    }
+    #textio{
+        height:10em;
+    }
+    #feed{
+        right:1em;
+        left:1em;
+        bottom:14em;
+    }
+    #arduinocode{
+        right:10px;
+        bottom:10px;
+        height:10em;
+    }
 }
 @media only screen and (orientation: landscape) {
     #feed{
         bottom:0px;
-        
+    }
+    #arduinocode{
+        top:100px;
+        width:400px;
+        height:30em;
+
     }
 }
 .deletebutton{
