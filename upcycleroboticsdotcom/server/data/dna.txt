@@ -4,6 +4,7 @@
         "alignimage.html",
         "arduino.html",
         "artist.html",
+        "artistmobile.html",
         "controls.html",
         "dumbscroll.html",
         "font.html",
