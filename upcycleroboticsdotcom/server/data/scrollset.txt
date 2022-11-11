@@ -20,6 +20,7 @@
         "links",
         "localweb",
         "maker",
+        "makers",
         "maps",
         "markets",
         "media",
