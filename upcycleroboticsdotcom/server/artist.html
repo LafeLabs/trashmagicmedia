@@ -34,7 +34,6 @@
     <img id = "mainimage"/>
     <div id = "hammerxy"></div>
 </div>
-<div id = "utilitybox">
     <div id = "selectorbox">
         <a href = "index.html">HOME</a>➞
         <span id = "imagesbutton" class = "button">IMAGES</span>➞
@@ -42,6 +41,8 @@
         <span id = "tracebutton" class = "button">TRACE</span>➞
         <span id = "sharebutton" class = "button">SHARE</span>
     </div>
+
+<div id = "utilitybox">
     <div id = "imagesbox">
             <table  id  = "imagecontroltable">
         <tr>
@@ -229,7 +230,7 @@ if(innerWidth > innerHeight){
 else{
     //mobile
     mainboxsize = innerWidth;
-
+    document.getElementById("utilitybox").style.top = (mainboxsize - 10).toString() + "px";
 }
 
 
@@ -833,18 +834,39 @@ function neworder(){
 
 }
 
+
+selectorbuttons = document.getElementById("selectorbox").getElementsByClassName("button");
+
 document.getElementById("imagesbutton").onclick = function(){
+    for(var index = 0;index < 4;index++){
+        if(index == 0){
+            selectorbuttons[index].style.backgroundColor = "green";
+            selectorbuttons[index].style.borderColor = "black";
+        }
+        else{
+            selectorbuttons[index].style.backgroundColor = "#00000000";
+            selectorbuttons[index].style.borderColor = "white";
+        }
+    }
     document.getElementById("imagesbox").style.display = "block";
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "none";
     document.getElementById("sharebox").style.display = "none";
 }
-    document.getElementById("imagesbox").style.display = "block";
-    document.getElementById("alignbox").style.display = "none";
-    document.getElementById("tracebox").style.display = "none";
-    document.getElementById("sharebox").style.display = "none";
+
 
 document.getElementById("alignbutton").onclick = function(){
+    for(var index = 0;index < 4;index++){
+
+        if(index == 1){
+            selectorbuttons[index].style.backgroundColor = "green";
+            selectorbuttons[index].style.borderColor = "black";
+        }
+        else{
+            selectorbuttons[index].style.backgroundColor = "#00000000";
+            selectorbuttons[index].style.borderColor = "white";
+        }
+    }
     document.getElementById("imagesbox").style.display = "none";
     document.getElementById("alignbox").style.display = "block";
     document.getElementById("tracebox").style.display = "none";
@@ -852,18 +874,50 @@ document.getElementById("alignbutton").onclick = function(){
 }
 
 document.getElementById("tracebutton").onclick = function(){
+    for(var index = 0;index < 4;index++){
+
+        if(index == 2){
+            selectorbuttons[index].style.backgroundColor = "green";
+            selectorbuttons[index].style.borderColor = "black";
+        }
+        else{
+            selectorbuttons[index].style.backgroundColor = "#00000000";
+            selectorbuttons[index].style.borderColor = "white";
+        }
+    }
     document.getElementById("imagesbox").style.display = "none";
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "block";
     document.getElementById("sharebox").style.display = "none";
 }
 document.getElementById("sharebutton").onclick = function(){
+    for(var index = 0;index < 4;index++){
+
+        if(index == 3){
+            selectorbuttons[index].style.backgroundColor = "green";
+            selectorbuttons[index].style.borderColor = "black";
+        }
+        else{
+            selectorbuttons[index].style.backgroundColor = "#00000000";
+            selectorbuttons[index].style.borderColor = "white";
+        }
+    }
     document.getElementById("imagesbox").style.display = "none";
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "none";
     document.getElementById("sharebox").style.display = "block";
 }
 
+document.getElementById("imagesbox").style.display = "none";
+document.getElementById("alignbox").style.display = "none";
+document.getElementById("tracebox").style.display = "block";
+document.getElementById("sharebox").style.display = "none";
+selectorbuttons[2].style.backgroundColor = "green";
+selectorbuttons[2].style.borderColor = "black";
+
+if(innerWidth> innerHeight){
+    document.getElementById("actioninput").select();
+}
 </script>
 <style>
 body{
@@ -934,11 +988,46 @@ body{
     width:1em;
 }
 
+#iconfeed{
+    background-color:#b0b0b0;
+    position:absolute;
+    overflow:scroll;
+}
 
-
+#textio{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    border:solid;
+    border-width:5px;
+    border-color:orange;
+    position:absolute;
+}
 @media only screen and (orientation: portrait) {
     #actioninput{
         display:none;
+    }
+    #utilitybox{
+        left:0px;
+        bottom:0px;
+        right:0px;
+    }
+    #iconfeed{
+        left:0px;
+        top:10px;
+        bottom:110px;
+        right:0px;
+    }    
+    #textio{
+        bottom:0px;
+        height:90px;
+        left:0px;
+        width:50%;
+    }
+    #loadbutton{
+        position:absolute;
+        right:0px;
+        bottom:0px;
     }
 
 }
@@ -950,6 +1039,19 @@ body{
         bottom:0px;
         top:0px;
         background-color:yellow;
+    }
+    #iconfeed{
+        left:0px;
+        top:3em;
+        bottom:240px;
+        right:0px;
+    }    
+    #textio{
+        bottom:0px;
+        height:200px;
+        left:0px;
+        right:0px;
+        width:95%;
     }
 
 }
@@ -978,29 +1080,7 @@ body{
     top:1em;
     height:40%;
 }
-#iconfeed{
-    background-color:#b0b0b0;
-    position:absolute;
-    left:0px;
-    top:3em;
-    bottom:240px;
-    right:0px;
-    overflow:scroll;
-}
-#textio{
-    background-color:black;
-    color:#00ff00;
-    font-family:courier;
-    height:200px;
-    border:solid;
-    border-width:5px;
-    border-color:orange;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    width:95%;
-    position:absolute;
-}
+
 
 #mainbox{
     position:absolute;
