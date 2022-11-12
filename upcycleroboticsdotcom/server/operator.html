@@ -194,7 +194,8 @@ THREE.STLExporter.prototype = {
 <a id = "homelink" href = "index.html">HOME</a>
         
 <div id = "linkbox">
-    <div class= "button" id = "savebutton">SAVE ICON TO FILES</div>
+    
+    <div class= "button" id = "savebutton"> ⬇️ SAVE ICON TO FILES ⬇️</div>
             <a href = "icon.stl">icon.stl</a>
             <a href = "icon-vr.html">icon-vr.html</a>
             <a href = "icon.png">icon.png</a>
@@ -430,23 +431,21 @@ glyph = "";
 feedwidth = 100;
 feedlinkwidth  = feedwidth;
 maincanvas = document.getElementById("maincanvas");
-mainsize = 300;
+mainsize = 400;
 if(innerWidth > innerHeight){
-    mainsize = innerHeight*0.5 - 50;
-    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
-    document.getElementById("feed").style.width = (innerWidth).toString() + "px";
-    document.getElementById("arduinocode").style.right = (mainsize + 20).toString() + "px";
-    document.getElementById("arduinocode").style.height = (200).toString() + "px";
-    document.getElementById("arduinocode").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
-    document.getElementById("glyphinputtable").style.top = (mainsize + 5).toString() + "px";
-    document.getElementById("textio").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
-    document.getElementById("importbutton").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";    
-    
+//    mainsize = innerHeight*0.5 - 50;
+//    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
+  //  document.getElementById("feed").style.width = (innerWidth).toString() + "px";
+//    document.getElementById("arduinocode").style.right = (mainsize + 20).toString() + "px";
+ //   document.getElementById("arduinocode").style.height = (200).toString() + "px";
+ //   document.getElementById("arduinocode").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
+
+
 }
 else{
     mainsize = 0.5*innerWidth;
-    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
-    document.getElementById("mainbox").style.right = (0.25*innerWidth).toString() + "px";    
+//    document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
+  //  document.getElementById("mainbox").style.right = (0.25*innerWidth).toString() + "px";    
     
 }
 var mainGVM = new GVM(maincanvas,mainsize,mainsize);
@@ -753,6 +752,26 @@ a{
     color:#0000ff;
 
 }
+#savebutton{
+    border:solid;
+    border-radius:5px;
+    
+}
+#homelink{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:5em;
+    font-size:1em;
+    text-align:center;
+    z-index:2;
+}
+#linkbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:2;
+}
 canvas{
     display:none;
 }
@@ -777,30 +796,40 @@ table .button{
     border-width:10px;
     border-color:#00878F;
     font-family:courier;
+    right:0px;
+    bottom:0px;
+    width:40%;
+    height:95px;
 }
 #textio{
     font-family:courier;
     position:Absolute;
-    left:10px;
-    bottom:10px;
-    height:100px;
-    width:20em;
+    left:5px;
+    bottom:5px;
+    height:95px;
+    width:45%;
+    background-color:black;
+    color:#00ff00;
+    z-index:2;
 }
 
 #glyphinputtable{
     position:absolute;
-    right:10px;
+    left:10px;
+    top:2em;
 }
 #importbutton{
     position:Absolute;
-    left:0px;
-    bottom:0px;
+    left:5px;
+    bottom:5px;
     border:solid;
     border-radius:5px;
     text-align:center;
-    width:10em;
+    width:4em;
     height:1em;
     font-size:1em;
+    z-index:20;
+    background-color:white;
 }
 #square{
     position:absolute;
@@ -822,37 +851,39 @@ table .button{
     overflow:scroll;
     border:solid;
     background-color:#e0e0e0;
+    z-index:-1;
 }
 @media only screen and (orientation: portrait) {
     #mainbox{
         top:100px;
     }
     #textio{
-        height:10em;
-        width:45%;
-        left:0px;
-        bottom:1em;
+
     }
     #feed{
-        right:1em;
-        left:1em;
-        bottom:14em;
+        right:0em;
+        left:0em;
+        bottom:110px;
+        top:320px;
     }
     #arduinocode{
-        right:10px;
-        bottom:10px;
-        height:10em;
+
+    }
+    #glyphinputtable{
+        top:4em;
     }
 }
 @media only screen and (orientation: landscape) {
     #feed{
+        top:400px;
         bottom:0px;
+        bottom:120px;
     }
     #arduinocode{
-        top:100px;
-        width:400px;
-        height:30em;
-
+        
+    }
+    #textio{
+        
     }
 }
 .deletebutton{
