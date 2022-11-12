@@ -191,32 +191,19 @@ THREE.STLExporter.prototype = {
 </head>
 <body>    
 
+<a id = "homelink" href = "index.html">HOME</a>
         
-<table id = "linktable">
-    <tr>
-        <td rowspan = "4" class= "button" id = "savebutton">SAVE ICON TO FILES</td>
-    </tr>
-    <tr>
-        <td>
-            <a href = "index.html">HOME</a>
-        </td>
-        <td>
+<div id = "linkbox">
+    <div class= "button" id = "savebutton">SAVE ICON TO FILES</div>
             <a href = "icon.stl">icon.stl</a>
-        </td>
-        <td>
             <a href = "icon-vr.html">icon-vr.html</a>
-        </td>
-        <td>
             <a href = "icon.png">icon.png</a>
-        </td>
-        <td>
             <a href = "icon-stencil.svg">icon-stencil.svg</a>
-        </td>
-        <td>
             <a href = "iconpage.svg">iconpage.svg</a>
-        </td>
-    </tr>
-</table>
+            
+</div>
+        
+        
 
 <div id  = "mainbox"><canvas id = "maincanvas"></canvas></div>
 
@@ -235,10 +222,15 @@ THREE.STLExporter.prototype = {
 
 
 <table id = "glyphinputtable">
-    <tr>
+    <tr style = "display:none">
         <td>geometron glyph:</td>
         <td><input id = "glyphinput"/></td>
     </tr>
+    <tr>
+        <td>letter code:</td>
+        <td><input id = "letterinput"/></td>
+    </tr>
+
 </table>
 <table id = "htmlinputtable">
     <tr>
@@ -253,10 +245,11 @@ THREE.STLExporter.prototype = {
 
 <div id = "feed"></div>
 
-<div id = "importbutton" class= "button">IMPORT</div>
-<textarea id = "textio"></textarea>
+<div  id = "importbutton" class= "button">IMPORT</div>
+<textarea id = "textio" ></textarea>
 
 <script>
+document.getElementById("letterinput").value = "";
 
 var camera, scene, renderer;
 var geometry, material, mesh;
@@ -444,9 +437,9 @@ mainsize = 300;
 if(innerWidth > innerHeight){
     mainsize = innerHeight*0.5 - 50;
     document.getElementById("feed").style.top = (innerHeight*0.5).toString() + "px";
-    document.getElementById("feed").style.width = (mainsize).toString() + "px";
+    document.getElementById("feed").style.width = (innerWidth).toString() + "px";
     document.getElementById("arduinocode").style.right = (mainsize + 20).toString() + "px";
-    document.getElementById("arduinocode").style.height = (innerHeight - 200).toString() + "px";
+    document.getElementById("arduinocode").style.height = (200).toString() + "px";
     document.getElementById("arduinocode").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
     document.getElementById("glyphinputtable").style.top = (mainsize + 5).toString() + "px";
     document.getElementById("textio").style.width = (0.5*(innerWidth - mainsize - 100)).toString() + "px";
@@ -567,11 +560,11 @@ function loadfeed(){
         newdiv.appendChild(datadiv);
         newdiv.onclick = function(){
             glyph = this.getElementsByClassName("data")[0].innerHTML;
-            document.getElementById("glyphinput").value = glyph;
+//            document.getElementById("glyphinput").value = glyph;
             mainGVM.drawGlyph("0321,0337,0337,0347,0336,0336,0320," + glyph);
             //make this the coin for coin studio
             coin = glyph;
-            
+            document.getElementById("letterinput").value = bytecode2ascii(glyph);
             document.getElementById("htmlinput").value = "<img src = \"" + mainGVM.pngcode() + "\"/>";
             document.getElementById("arduinocode").value = "char coin[] = \"" + bytecode2ascii(glyph) + "\";\n\n" + arduinocode;
                         
@@ -605,7 +598,7 @@ function loadfeed(){
     }    
 }
 
-document.getElementById("glyphinput").value = "";
+//document.getElementById("glyphinput").value = "";
 
 
 document.getElementById("savebutton").onclick = function(){
@@ -686,17 +679,20 @@ function saveiconfeed(){
         
 }
 
+
 document.getElementById("importbutton").onclick = function(){
     robotfeed = JSON.parse(document.getElementById("textio").value);
     loadfeed();
     saveiconfeed();
 }
 
+/*
 document.getElementById("glyphinput").onchange = function(){
     robotfeed.unshift(this.value);
     loadfeed();
     saveiconfeed();
 }
+*/
 
 function savepage(){
     var httpc2 = new XMLHttpRequest();
@@ -755,6 +751,11 @@ function drawcube(){
 body{
     background-color:#8080ff;
 }
+a{
+/*        color:#ff2cb4;*/
+    color:#0000ff;
+
+}
 canvas{
     display:none;
 }
@@ -780,28 +781,29 @@ table .button{
     border-color:#00878F;
     font-family:courier;
 }
+#textio{
+    font-family:courier;
+    position:Absolute;
+    left:10px;
+    bottom:10px;
+    height:100px;
+    width:20em;
+}
+
 #glyphinputtable{
     position:absolute;
     right:10px;
 }
 #importbutton{
     position:Absolute;
-    left:10px;
+    left:0px;
     bottom:0px;
     border:solid;
     border-radius:5px;
     text-align:center;
-    width:20em;
-}
-#textio{
-    font-family:courier;
-    color:#00ff00;
-    background-color:black;
-    position:Absolute;
-    left:10px;
-    bottom:50px;
-    height:15em;
-    width:20em;
+    width:10em;
+    height:1em;
+    font-size:1em;
 }
 #square{
     position:absolute;
@@ -830,6 +832,9 @@ table .button{
     }
     #textio{
         height:10em;
+        width:45%;
+        left:0px;
+        bottom:1em;
     }
     #feed{
         right:1em;
@@ -860,6 +865,8 @@ table .button{
 }
 .button{
     cursor:pointer;
+    border:solid;
+    text-align:center;
 }
 .button:hover{
     background-color:yellow;

@@ -376,6 +376,7 @@ function loadimage(){
 document.getElementById("loadbutton").onclick = function(){
     robotfeed = JSON.parse(document.getElementById("textio").value);
     loadfeed();
+    saverobotfeed();
 }
 
 document.getElementById("savebutton").onclick = function(){
@@ -942,7 +943,7 @@ if(innerWidth> innerHeight){
 <style>
 body{
     overflow:hidden;
-    background-color:#0000ff80;
+    background-color:#ffdf0040;
 }
 #mainbox{
     position:absolute;
@@ -957,7 +958,6 @@ body{
 
 #selectorbox{
     position:absolute;
-    color:white;
     z-index:100;
     font-size:25px;   
     height:30px;
@@ -967,10 +967,9 @@ body{
 }
 #selectorbox span,a{
     border:solid;
-    color:white;
-    border-color:white;
     text-align:center;
     margin:auto;
+    color:black;
 }
 #utilitybox{
     position:absolute;
