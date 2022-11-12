@@ -222,22 +222,19 @@ THREE.STLExporter.prototype = {
 
 
 <table id = "glyphinputtable">
-    <tr style = "display:none">
+    <tr>
         <td>geometron glyph:</td>
         <td><input id = "glyphinput"/></td>
     </tr>
-    <tr>
-        <td>letter code:</td>
-        <td><input id = "letterinput"/></td>
-    </tr>
-
-</table>
-<table id = "htmlinputtable">
     <tr>
         <td>HTML embed code:</td>
         <td>
             <input id = "htmlinput"/>
         </td>
+    </tr>
+    <tr>
+        <td>letter code:</td>
+        <td><input id = "letterinput"/></td>
     </tr>
 </table>
         
@@ -560,7 +557,7 @@ function loadfeed(){
         newdiv.appendChild(datadiv);
         newdiv.onclick = function(){
             glyph = this.getElementsByClassName("data")[0].innerHTML;
-//            document.getElementById("glyphinput").value = glyph;
+            document.getElementById("glyphinput").value = glyph;
             mainGVM.drawGlyph("0321,0337,0337,0347,0336,0336,0320," + glyph);
             //make this the coin for coin studio
             coin = glyph;
@@ -598,7 +595,7 @@ function loadfeed(){
     }    
 }
 
-//document.getElementById("glyphinput").value = "";
+document.getElementById("glyphinput").value = "";
 
 
 document.getElementById("savebutton").onclick = function(){
@@ -865,7 +862,6 @@ table .button{
 }
 .button{
     cursor:pointer;
-    border:solid;
     text-align:center;
 }
 .button:hover{
