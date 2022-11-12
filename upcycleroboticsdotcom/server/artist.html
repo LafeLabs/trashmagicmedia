@@ -26,6 +26,13 @@
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 </head>
 <body>
+<div id = "selectorbox">
+    <a href = "index.html">HOME</a>➞
+    <span id = "imagesbutton" class = "button">IMAGES</span>➞
+    <span id = "alignbutton" class = "button">ALIGN</span>➞
+    <span id = "tracebutton" class = "button">TRACE</span>➞
+    <span id = "sharebutton" class = "button">SHARE</span>
+</div>
 
 <div id = "mainbox">
     <div id ="mainboxbackground"></div>
@@ -34,13 +41,7 @@
     <img id = "mainimage"/>
     <div id = "hammerxy"></div>
 </div>
-    <div id = "selectorbox">
-        <a href = "index.html">HOME</a>➞
-        <span id = "imagesbutton" class = "button">IMAGES</span>➞
-        <span id = "alignbutton" class = "button">ALIGN</span>➞
-        <span id = "tracebutton" class = "button">TRACE</span>➞
-        <span id = "sharebutton" class = "button">SHARE</span>
-    </div>
+
 
 <div id = "utilitybox">
     <div id = "imagesbox">
@@ -108,6 +109,10 @@
 
     </div>
     <div id = "tracebox">
+        <div id = "controltablebox">
+            <table id = "controltable">
+            </table>    
+        </div>    
         <div id = "spellbox">
             <div id = "savebutton" class=  "button">SAVE ICON</div>
             <table>
@@ -129,10 +134,7 @@
                 <canvas id = "spellcanvas"></canvas>
             </div>
         </div>
-        <div id = "controltablebox">
-            <table id = "controltable">
-            </table>    
-        </div>
+
     </div>
     <div id = "sharebox">
         <div id = "iobox">
@@ -885,10 +887,16 @@ document.getElementById("tracebutton").onclick = function(){
             selectorbuttons[index].style.borderColor = "white";
         }
     }
+
     document.getElementById("imagesbox").style.display = "none";
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "block";
     document.getElementById("sharebox").style.display = "none";
+    if(innerWidth > innerHeight){
+        document.getElementById("actioninput").select();
+    }
+
+    
 }
 document.getElementById("sharebutton").onclick = function(){
     for(var index = 0;index < 4;index++){
@@ -902,6 +910,7 @@ document.getElementById("sharebutton").onclick = function(){
             selectorbuttons[index].style.borderColor = "white";
         }
     }
+
     document.getElementById("imagesbox").style.display = "none";
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "none";
@@ -1069,7 +1078,7 @@ body{
     left:0px;
     bottom:0px;
     right:0px;
-    height:40%;
+    height:48%;
     overflow:scroll;
 }
 #controltablebox{
@@ -1078,7 +1087,7 @@ body{
     left:0px;
     right:0px;
     top:1em;
-    height:40%;
+    height:48%;
 }
 
 
