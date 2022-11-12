@@ -26,11 +26,12 @@
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 </head>
 <body>
+    <!--➞-->
 <div id = "selectorbox">
-    <a href = "index.html">HOME</a>➞
-    <span id = "imagesbutton" class = "button">IMAGES</span>➞
-    <span id = "alignbutton" class = "button">ALIGN</span>➞
-    <span id = "tracebutton" class = "button">TRACE</span>➞
+    <a href = "index.html">HOME</a>
+    <span id = "imagesbutton" class = "button">IMAGES</span>
+    <span id = "alignbutton" class = "button">ALIGN</span>
+    <span id = "tracebutton" class = "button">TRACE</span>
     <span id = "sharebutton" class = "button">SHARE</span>
 </div>
 
@@ -233,6 +234,7 @@ else{
     //mobile
     mainboxsize = innerWidth;
     document.getElementById("utilitybox").style.top = (mainboxsize - 10).toString() + "px";
+    controlbuttonsize = (innerWidth)*0.24;    
 }
 
 
@@ -854,8 +856,12 @@ document.getElementById("imagesbutton").onclick = function(){
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "none";
     document.getElementById("sharebox").style.display = "none";
+    document.getElementById("hammerxy").style.display = "none";
+    
+    
 }
 
+document.getElementById("hammerxy").style.display = "none";
 
 document.getElementById("alignbutton").onclick = function(){
     for(var index = 0;index < 4;index++){
@@ -873,6 +879,8 @@ document.getElementById("alignbutton").onclick = function(){
     document.getElementById("alignbox").style.display = "block";
     document.getElementById("tracebox").style.display = "none";
     document.getElementById("sharebox").style.display = "none";
+    document.getElementById("hammerxy").style.display = "block";
+    
 }
 
 document.getElementById("tracebutton").onclick = function(){
@@ -895,6 +903,7 @@ document.getElementById("tracebutton").onclick = function(){
     if(innerWidth > innerHeight){
         document.getElementById("actioninput").select();
     }
+    document.getElementById("hammerxy").style.display = "none";
 
     
 }
@@ -915,6 +924,8 @@ document.getElementById("sharebutton").onclick = function(){
     document.getElementById("alignbox").style.display = "none";
     document.getElementById("tracebox").style.display = "none";
     document.getElementById("sharebox").style.display = "block";
+    document.getElementById("hammerxy").style.display = "none";
+
 }
 
 document.getElementById("imagesbox").style.display = "none";
@@ -933,13 +944,23 @@ body{
     overflow:hidden;
     background-color:#0000ff80;
 }
+#mainbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:250px;
+    height:250px;
+    border:solid;
+    border-color:blue;
+    overflow:hidden;
+}
+
 #selectorbox{
     position:absolute;
-    background-color:blue;
     color:white;
     z-index:100;
-    font-size:1em;   
-    height:2em;
+    font-size:25px;   
+    height:30px;
     left:0px;
     top:0px;
     right:0px;
@@ -949,7 +970,6 @@ body{
     color:white;
     border-color:white;
     text-align:center;
-    width:20%;
     margin:auto;
 }
 #utilitybox{
@@ -991,8 +1011,6 @@ body{
     overflow:hidden;
 
 }
-
-
 #actioninput{
     width:1em;
 }
@@ -1012,7 +1030,65 @@ body{
     border-color:orange;
     position:absolute;
 }
+
+#zoomrotatebox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    top:2em;
+    z-index:2;
+    background-color:#a0a0ff;
+}
+#scalebar{
+    width:100%;
+    position:absolute;
+    left:0px;
+    right:0px;
+}
+#rotatebar{
+    width:100%;
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    
+}
+#rotatezoomtable{
+    position:absolute;
+    top:0px;
+    right:0px;
+    width:98%;
+    height:50%;
+}
+#rotatezoomtable tr{
+    height:50%;
+    border:solid;
+    border-color:blue;
+    background-clor:green;
+    margin:auto;
+}
+#rotatezoomtable td{
+    height:100%;
+    borer:solid;
+}
+#rotatezoomtable img{
+    width:100%;
+}
+
+
 @media only screen and (orientation: portrait) {
+    #mainbox{
+        top:40px;
+    }
+    #scalebar{
+        height:50%;
+        bottom:50%;
+    }
+    #rotatebar{
+        height:50%;
+    }
+
     #actioninput{
         display:none;
     }
@@ -1038,16 +1114,30 @@ body{
         right:0px;
         bottom:0px;
     }
+    #rotatezoombuttons1{
+        display:none;
+    }
+    #rotatezoombuttons2{
+        display:none;
+    }
 
+    
 }
 @media only screen and (orientation: landscape) {
+    #scalebar{
+        height:25%;
+        bottom:25%;
+    }
+    #rotatebar{
+        height:25%;
+    }
+    
     #selectorbox{
     }
     #utilitybox{
         left:0px;
         bottom:0px;
         top:0px;
-        background-color:yellow;
     }
     #iconfeed{
         left:0px;
@@ -1088,18 +1178,6 @@ body{
     right:0px;
     top:1em;
     height:48%;
-}
-
-
-#mainbox{
-    position:absolute;
-    right:0px;
-    top:40px;
-    width:250px;
-    height:250px;
-    border:solid;
-    border-color:blue;
-    overflow:hidden;
 }
 #mainboxbackground{
     position:absolute;
@@ -1160,53 +1238,7 @@ body{
     margin-bottom:2em;
     margin-top:2em;
 }
-#zoomrotatebox{
-    position:absolute;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    top:2em;
-    z-index:2;
-    background-color:#a0a0ff;
-}
-#scalebar{
-    width:100%;
-    height:25%;
-    position:absolute;
-    left:0px;
-    bottom:25%;
-    right:0px;
-}
-#rotatebar{
-    width:100%;
-    height:25%;
-    position:absolute;
-    left:0px;
-    bottom:0px;
-    right:0px;
-    
-}
-#rotatezoomtable{
-    position:absolute;
-    top:0px;
-    right:0px;
-    width:98%;
-    height:50%;
-}
-#rotatezoomtable tr{
-    height:50%;
-    border:solid;
-    border-color:blue;
-    background-clor:green;
-    margin:auto;
-}
-#rotatezoomtable td{
-    height:100%;
-    borer:solid;
-}
-#rotatezoomtable img{
-    width:100%;
-}
+
 .button{
     cursor:pointer;
 }
