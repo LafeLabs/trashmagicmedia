@@ -27,18 +27,125 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
 
     -->
     
-<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
 
-
-   <title>TRASH MAGIC MEDIA</title>    
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        
+   <title>TRASH MAGIC SERVER</title>    
 </head>
 <body>    
-<h1>TRASH MAGIC SERVER</h1>
+<h1 id = "title">TRASH MAGIC SERVER</h1>
 <a id = "artist" href = "artist.html">ARTIST</a>
 <a id = "operator" href = "operator.html">OPERATOR</a>
 <a id = "sponsor" href = "sponsor.html">SPONSOR</a>
 <a id = "maker" href = "maker.html">MAKER</a>
+<a id= "media" href = "media/">MEDIA</a>
+<a href = "https://venmo.com/u/upcyclerobotics">VENMO</a>
+<a href = "https://discord.gg/HwKkdv8929">DISCORD</a>
+<a href = "https://www.tiktok.com/@trash_robot">TIKTOK</a>
+<a href = "https://github.com/LafeLabs/">GITHUB</a>
+<a href = "https://mastodon.lol/@lafelabs">MASTODON</a>
+<a href = "https://www.lulu.com/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html">BUY GEOMETRON MAGIC</a>
+<a href = "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/main-large.pdf">DOWNLOAD GEOMETRON MAGIC</a>
+<a href = "https://www.lulu.com/shop/lafe-spietz/geometron/paperback/product-qqk98g.html">BUY GEOMETRON I</a>
+<a href = "https://github.com/LafeLabs/bookofgeometron/raw/main/main-bigpaper.pdf">DOWNLOAD GEOMETRON I</a>
+<a href = "https://www.lulu.com/en/us/shop/lafe-spietz/trash-magic-manifesto-and-action-coloring-book/paperback/product-1km4deev.html?page=1&pageSize=4">BUY TRASH MAGIC MANIFESTO</a>
+<a href = "https://lafelabs.github.io/Trash_Magic_Manifesto.pdf">DOWNLOAD TRASH MAGIC MANIFESTO</a>
+<a href = "web/">THE INNERNETTE(TM)</a>
+<div id = "qrcode"></div>
+<script>
+links = document.getElementsByTagName("A");
+n = links.length;
+theta = 0;
+for(var index = 0;index < links.length;index++){
+    theta = index*2*Math.PI/n;
+    red = Math.round(255*Math.cos(theta));
+    if(red < 0){
+        red = 0;
+    }
+    green = Math.round(255*Math.cos(theta + 2*Math.PI/3));
+    if(green < 0){
+        green = 0;
+    }
+    
+    blue = Math.round(255*Math.cos(theta + 4*Math.PI/3));
+    if(blue < 0){
+        blue = 0;
+    }
+    redstring = red.toString(16);
+    if(redstring.length < 2){
+        redstring = "0" + redstring;    
+    }
+    greenstring = green.toString(16);
+    if(greenstring.length < 2){
+        greenstring = "0" + greenstring; 
+    }
+    bluestring = blue.toString(16);
+    if(bluestring.length < 2){
+        bluestring = "0" + bluestring; 
+    }
+    color = "#" + redstring + greenstring + bluestring;
+    //console.log(color);
+    links[index].style.backgroundColor = color + "80";
+    links[index].style.borderColor = color;
+}
 
+title = document.getElementById("title");
+text = title.innerHTML;
+title.innerHTML = "";
+n = text.length;
+for(var index = 0; index < n; index++){
+    var newspan = document.createElement("SPAN");    
+    newspan.innerHTML = text.charAt(index);
+    theta = index*2*Math.PI/(n);
+    red = Math.round(255*Math.cos(theta));
+    if(red < 0){
+        red = 0;
+    }
+    green = Math.round(255*Math.cos(theta + 2*Math.PI/3));
+    if(green < 0){
+        green = 0;
+    }
+    
+    blue = Math.round(255*Math.cos(theta + 4*Math.PI/3));
+    if(blue < 0){
+        blue = 0;
+    }
+    redstring = red.toString(16);
+    if(redstring.length < 2){
+        redstring = "0" + redstring;    
+    }
+    greenstring = green.toString(16);
+    if(greenstring.length < 2){
+        greenstring = "0" + greenstring; 
+    }
+    bluestring = blue.toString(16);
+    if(bluestring.length < 2){
+        bluestring = "0" + bluestring; 
+    }
+    color = "#" + redstring + greenstring + bluestring;   
+    newspan.style.color = color;
+    title.appendChild(newspan);
+}
+
+
+globalurl = window.location.href;
+codesquaresize = 0.4*innerWidth;
+
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+    
+
+</script>
 <style>
 h1{
     text-align:center;
@@ -54,20 +161,18 @@ a{
     display:block;
     border:solid;
     border-radius:0.5em;
+    border-width:0.5em;
     color:black;
     margin-top:1em;
 }
-#artist{
-    background-color:#ffdf0080;   
-}
-#operator{
-    background-color:#0000ff80;
-}
-#sponsor{
-    background-color:#ff000080;
-}
-#maker{
-    background-color:#00ff0080;
+#qrcode{
+    display:block;
+    margin:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:30%;
+    text-align:center;
+    
 }
 @media only screen and (orientation: portrait) {
 
