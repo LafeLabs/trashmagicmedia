@@ -126,7 +126,7 @@ reboot
 sudo pip3 install jupyter
 ```
 
-
+Set this up on a headless pi, forward port 80 of your home router, and point a domain to your home IP address to put this free server on the Internet.  Then you replicate that domain name on cardboard, which replicates the servers and media as well.
 
 ### Ubuntu Install
 

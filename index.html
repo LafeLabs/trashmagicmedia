@@ -20,120 +20,212 @@ LOOK AT THE INSECTS
 LANGUAGE IS HOW THE MIND PARSES REALITY
 
 
-    github.com/lafelabs/trashmagicmedia
-    
+
     All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
 
 
 
     -->
     
-<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
 
-
-   <title>TRASH MAGIC MEDIA</title>    
        <!--Stop Google:-->
     <META NAME="robots" CONTENT="noindex,nofollow">
-
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src = "jscode/hyperlink.js"></script>
-
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        
+   <title>TRASH MAGIC</title>    
 </head>
 <body>    
-<a href = "hyperlinkeditor.html" id = "linkeditorlink">*</a>
-<img id = "mainimage"/>
-
-<h1><a id=  "serverlink"></a></h1>
-
+<h1 id = "title">TRASH MAGIC</h1>
+<a id = "artist" href = "artist.html">ARTIST</a>
+<a id = "operator" href = "operator.html">OPERATOR</a>
+<a id = "sponsor" href = "sponsor.html">SPONSOR</a>
+<a id = "maker" href = "maker.html">MAKER</a>
+<a id= "media" href = "media.html">MEDIA</a>
+<a href = "https://venmo.com/u/upcyclerobotics">VENMO</a>
+<a href = "https://discord.gg/HwKkdv8929">DISCORD</a>
+<a href = "https://www.tiktok.com/@trash_robot">TIKTOK</a>
+<a href = "https://github.com/LafeLabs/">GITHUB</a>
+<a href = "https://mastodon.lol/@lafelabs">MASTODON</a>
+<a href = "https://www.lulu.com/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html">BUY GEOMETRON MAGIC</a>
+<a href = "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/main-large.pdf">DOWNLOAD GEOMETRON MAGIC</a>
+<a href = "https://www.lulu.com/shop/lafe-spietz/geometron/paperback/product-qqk98g.html">BUY GEOMETRON I</a>
+<a href = "https://github.com/LafeLabs/bookofgeometron/raw/main/main-bigpaper.pdf">DOWNLOAD GEOMETRON I</a>
+<a href = "https://www.lulu.com/en/us/shop/lafe-spietz/trash-magic-manifesto-and-action-coloring-book/paperback/product-1km4deev.html?page=1&pageSize=4">BUY TRASH MAGIC MANIFESTO</a>
+<a href = "https://lafelabs.github.io/Trash_Magic_Manifesto.pdf">DOWNLOAD TRASH MAGIC MANIFESTO</a>
+<a href = "web/">THE INNERNETTE(TM)</a>
+<a href = "readme.html">README</a>
 <div id = "qrcode"></div>
-
-<ul id = "linklist">
-</ul>
-
 <script>
 
 
-codesquaresize = 200;
-document.getElementById("qrcode").style.width = codesquaresize.toString()  + "px";
+links = document.getElementsByTagName("A");
+n = links.length;
+theta = 0;
+for(var index = 0;index < n;index++){
+
+    H = index*360/n;
+    z = 255*(1 - Math.abs((H/60)%2 - 1));
+
+    if(H < 60){
+        red = 255;
+        green = Math.round(z);
+        blue = 0;
+    }
+    if(H >= 60 && H < 120){
+        red = Math.round(z);
+        green = 255;
+        blue = 0;
+    }
+    if(H >= 120 && H < 180){
+        red = 0;
+        green = 255;
+        blue = Math.round(z);
+    }
+    if(H >= 180 && H < 240){
+        red = 0;    
+        green = Math.round(z);
+        blue = 255;
+    }
+    if(H >= 240 && H < 300){
+        red = Math.round(z);    
+        green = 0;
+        blue = 255;
+    }
+    if(H >= 300 && H < 360){
+        red = 255;    
+        green = 0;
+        blue = Math.round(z);
+    }
+    
+    redstring = red.toString(16);
+    if(redstring.length < 2){
+        redstring = "0" + redstring;    
+    }
+    greenstring = green.toString(16);
+    if(greenstring.length < 2){
+        greenstring = "0" + greenstring; 
+    }
+    bluestring = blue.toString(16);
+    if(bluestring.length < 2){
+        bluestring = "0" + bluestring; 
+    }
+    color = "#" + redstring + greenstring + bluestring;
+    //console.log(color);
+    links[index].style.backgroundColor = color + "80";
+    links[index].style.borderColor = color;
+}
+
+title = document.getElementById("title");
+text = title.innerHTML;
+title.innerHTML = "";
+n = text.length;
+for(var index = 0; index < n; index++){
+    var newspan = document.createElement("SPAN");    
+    newspan.innerHTML = text.charAt(index);
+
+    H = index*360/n;
+    z = 255*(1 - Math.abs((H/60)%2 - 1));
+
+    if(H < 60){
+        red = 255;
+        green = Math.round(z);
+        blue = 0;
+    }
+    if(H >= 60 && H < 120){
+        red = Math.round(z);
+        green = 255;
+        blue = 0;
+    }
+    if(H >= 120 && H < 180){
+        red = 0;
+        green = 255;
+        blue = Math.round(z);
+    }
+    if(H >= 180 && H < 240){
+        red = 0;    
+        green = Math.round(z);
+        blue = 255;
+    }
+    if(H >= 240 && H < 300){
+        red = Math.round(z);    
+        green = 0;
+        blue = 255;
+    }
+    if(H >= 300 && H < 360){
+        red = 255;    
+        green = 0;
+        blue = Math.round(z);
+    }
+    
+    redstring = red.toString(16);
+    if(redstring.length < 2){
+        redstring = "0" + redstring;    
+    }
+    greenstring = green.toString(16);
+    if(greenstring.length < 2){
+        greenstring = "0" + greenstring; 
+    }
+    bluestring = blue.toString(16);
+    if(bluestring.length < 2){
+        bluestring = "0" + bluestring; 
+    }
+    color = "#" + redstring + greenstring + bluestring;   
+    newspan.style.color = color;
+    title.appendChild(newspan);
+}
+
+
+globalurl = window.location.href;
+codesquaresize = 0.4*innerWidth;
+
 
 qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: hyperlink.url,
+	text: globalurl,
 	width: codesquaresize,
 	height: codesquaresize,
 	colorDark : "#000000",
 	colorLight : "#ffffff",
 	correctLevel : QRCode.CorrectLevel.H
 });
-
-
-
-qrcode.makeCode(hyperlink.url);
-document.getElementById("serverlink").href = hyperlink.url;
-document.getElementById("serverlink").innerHTML = hyperlink.url;
-document.getElementById("mainimage").src = hyperlink.src;
-document.getElementById("mainimage").alt = hyperlink.alt;
-
-for(var index = 0;index < hyperlink.list.length;index++){
-    var newli = document.createElement("LI");
-    document.getElementById("linklist").appendChild(newli);
-    var newa = document.createElement("A");
-    newli.appendChild(newa);
-    newa.href = hyperlink.list[index].href;
-    newa.innerHTML = hyperlink.list[index].text;
-}
-
+    
 
 </script>
 <style>
-#linkeditorlink{
-    position:absolute;
-    left:0px;
-    top:0px;
-}
-input{
-    background-color:black;
-    color:#00ff00;
-    font-family:courier;
-    border-color:#00ff00;
-    width:40em;
-}
-table{
-    font-family:courier;
-    font-size:14px;
-    display:block;
-    margin:auto;
-    border:solid;
-    border-color:#00ff00;
-}
-td{
-    text-align:right;
-}
-body{
-    font-size:2em;
-    padding:0em 4em 4em 4em;
-    overflow:scroll;
-    background-color:black;
-    color:#00ff00;
-}
-#mainimage{
-    max-width:90%;
-    display:block;
-    margin:auto;
-    background-color:#808080;
-}
-#qrcode{
-    border:solid;
-    border-width:20px;
-    border-color:#808080;
-    margin:auto;
-    margin-top:1em;
-    margin-bottom:1em;
-}
-h1,h2,h3{
+h1{
     text-align:center;
+    font-size:4em;
+    font-family:helvetica;
 }
 a{
-    color:#ff2cb4;
+    text-align:center;
+    font-family:helvetica;
+    font-size:3em;
+    width:80%;
+    margin:auto;
+    display:block;
+    border:solid;
+    border-radius:0.5em;
+    border-width:0.5em;
+    color:black;
+    margin-top:1em;
+}
+#qrcode{
+    display:block;
+    margin:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:30%;
+    text-align:center;
+    
+}
+@media only screen and (orientation: portrait) {
+
+    
+}
+@media only screen and (orientation: landscape) {
+
+    
 }
 </style>
 </body>

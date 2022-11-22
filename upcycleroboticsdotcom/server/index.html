@@ -59,21 +59,42 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
 links = document.getElementsByTagName("A");
 n = links.length;
 theta = 0;
-for(var index = 0;index < links.length;index++){
-    theta = index*2*Math.PI/n;
-    red = Math.round(255*Math.cos(theta));
-    if(red < 0){
-        red = 0;
-    }
-    green = Math.round(255*Math.cos(theta + 2*Math.PI/3));
-    if(green < 0){
-        green = 0;
-    }
-    
-    blue = Math.round(255*Math.cos(theta + 4*Math.PI/3));
-    if(blue < 0){
+for(var index = 0;index < n;index++){
+
+    H = index*360/n;
+    z = 255*(1 - Math.abs((H/60)%2 - 1));
+
+    if(H < 60){
+        red = 255;
+        green = Math.round(z);
         blue = 0;
     }
+    if(H >= 60 && H < 120){
+        red = Math.round(z);
+        green = 255;
+        blue = 0;
+    }
+    if(H >= 120 && H < 180){
+        red = 0;
+        green = 255;
+        blue = Math.round(z);
+    }
+    if(H >= 180 && H < 240){
+        red = 0;    
+        green = Math.round(z);
+        blue = 255;
+    }
+    if(H >= 240 && H < 300){
+        red = Math.round(z);    
+        green = 0;
+        blue = 255;
+    }
+    if(H >= 300 && H < 360){
+        red = 255;    
+        green = 0;
+        blue = Math.round(z);
+    }
+    
     redstring = red.toString(16);
     if(redstring.length < 2){
         redstring = "0" + redstring;    
@@ -99,20 +120,41 @@ n = text.length;
 for(var index = 0; index < n; index++){
     var newspan = document.createElement("SPAN");    
     newspan.innerHTML = text.charAt(index);
-    theta = index*2*Math.PI/(n);
-    red = Math.round(255*Math.cos(theta));
-    if(red < 0){
-        red = 0;
-    }
-    green = Math.round(255*Math.cos(theta + 2*Math.PI/3));
-    if(green < 0){
-        green = 0;
-    }
-    
-    blue = Math.round(255*Math.cos(theta + 4*Math.PI/3));
-    if(blue < 0){
+
+    H = index*360/n;
+    z = 255*(1 - Math.abs((H/60)%2 - 1));
+
+    if(H < 60){
+        red = 255;
+        green = Math.round(z);
         blue = 0;
     }
+    if(H >= 60 && H < 120){
+        red = Math.round(z);
+        green = 255;
+        blue = 0;
+    }
+    if(H >= 120 && H < 180){
+        red = 0;
+        green = 255;
+        blue = Math.round(z);
+    }
+    if(H >= 180 && H < 240){
+        red = 0;    
+        green = Math.round(z);
+        blue = 255;
+    }
+    if(H >= 240 && H < 300){
+        red = Math.round(z);    
+        green = 0;
+        blue = 255;
+    }
+    if(H >= 300 && H < 360){
+        red = 255;    
+        green = 0;
+        blue = Math.round(z);
+    }
+    
     redstring = red.toString(16);
     if(redstring.length < 2){
         redstring = "0" + redstring;    
