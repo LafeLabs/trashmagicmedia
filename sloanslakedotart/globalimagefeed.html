@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+    <table id = "linktable">
+        <tr>
+            <td id  = "help">?</td>
+            <td>
+                <a href = "index.html">HOME</a>
+            </td>
+            <td>
+                <a href = "imagefeed.html">LOCAL IMAGES</a>
+            </td>
+            <td>
+                <a href = "alignimage.html">ALIGN</a>
+            </td>
+        </tr>    
+    </table>
+    <table  id  = "imagecontroltable">
+        <tr>
+            <td>Input Image URL from Web:</td>
+            <td>
+                <input id = "imageurlinput"/>
+            </td>
+        </tr>
+    </table>
+
+<div id = "header">
+        
+    <h1>global image URL feed</h1>
+    
+    <p>
+        Enter URLs of images found on web in green input box to add them to Feed. To share an Image Feed, copy code at bottom of screen in orange box, save, send to other people or post on Web. Red "X" deletes an image.  Click an image to load URL into green input.
+    </p>
+
+</div>
+    
+<div id = "imagefeed"></div>
+    
+<table id = "iotable">
+    <tr>
+        <td id = "importbutton" class = "button">
+IMPORT FEED:        </td>
+        <td>
+            <textarea id = "textio"></textarea>
+        </td>
+    </tr>
+</table>
+
+<script>
+
+document.getElementById("imageurlinput").value = "";
+
+document.getElementById("imageurlinput").select();
+document.getElementById("imageurlinput").onchange  = function(){
+    imagefeed.push(this.value);
+    saveimagefeed();
+    loadimagefeed();
+}
+
+
+imagefeed = [];
+
+var httpcImagefeed = new XMLHttpRequest();
+httpcImagefeed.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+    
+        imagefeed = JSON.parse(this.responseText);
+        loadimagefeed();        
+        
+    }    
+
+};
+
+httpcImagefeed.open("GET", "fileloader.php?filename=data/imagefeed.txt", true);
+httpcImagefeed.send();
+
+function loadimagefeed(){
+    document.getElementById("imagefeed").innerHTML = "";
+    for(var index = imagefeed.length - 1;index >= 0;index--){
+        var newbox = document.createElement("DIV");
+        newbox.classList.add("imagebox");
+        var newimg = document.createElement("IMG");
+        newimg.src = imagefeed[index];
+        newimg.classList.add("uploadimage");
+        newimg.classList.add("button");
+        newbox.appendChild(newimg);
+        document.getElementById("imagefeed").appendChild(newbox);
+        newimg.onclick = function() {
+            var localsrc = this.src;
+            document.getElementById("imageurlinput").value = localsrc;
+        }
+        var newimg = document.createElement("IMG");
+        newimg.src = "iconsymbols/delete.svg";
+        newbox.appendChild(newimg);
+        newimg.classList.add("button");
+        newimg.classList.add("deletebutton");
+        newimg.id = "if" + index.toString();
+        newimg.onclick = function(){
+            //find the index and remove that from the feed 
+            var thisindex = parseInt(this.id.substring(2));
+            var tempimagefeed = [];
+            for(var imageindex=0;imageindex<imagefeed.length;imageindex++){
+                if(imageindex != thisindex){
+                    tempimagefeed.push(imagefeed[imageindex]);
+                }
+            }
+            imagefeed = tempimagefeed;
+            this.parentElement.parentElement.removeChild(this.parentElement);
+            saveimagefeed();
+        }
+    }    
+    document.getElementById("textio").value = JSON.stringify(imagefeed,null,"  ");    
+}
+
+function saveimagefeed(){
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", "filesaver.php", true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(imagefeed,null,"  "))+"&filename=data/imagefeed.txt");//send text to filesaver.php   
+    document.getElementById("imageurlinput").value = "";
+    document.getElementById("textio").value = JSON.stringify(imagefeed,null,"  ");    
+
+}
+
+document.getElementById("textio").value = "";
+
+
+document.getElementById("importbutton").onclick = function(){
+    imagefeed = JSON.parse(document.getElementById("textio").value);
+    saveimagefeed();
+    loadimagefeed();
+}
+
+document.getElementById("help").onmouseover = function(){
+    document.getElementById("header").style.display = "block";
+}
+document.getElementById("help").onmouseout = function(){
+    document.getElementById("header").style.display = "none";
+}
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    font-size:1em;
+    font-family:courier;
+    color:#00ff00;
+    background-color:black;
+}
+a{
+    color:black;
+    background-color:#00c000;
+    
+    font-family:courier;
+    font-size:1em;
+}
+h1{
+    text-align:center;
+}
+#help{
+    cursor:pointer;
+}
+#help:hover{
+    background-color:#008000;
+}
+#header{
+    position:absolute;
+    z-index:3;
+    top:2.5em;
+    left:0px;
+    right:0px;
+    bottom:75%;
+    border-bottom:solid;
+    border-color:#00ff00;
+    overflow:scroll;
+    padding-left:1em;
+    padding-right:1em;
+    background-color:black;
+    display:none;
+}
+#linktable{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    width:100%;
+}
+#linktable td{
+    text-align:center;
+    font-size:2em;
+    font-family:courier;
+    background-color:black;
+}
+#imagefeed{
+    position:absolute;
+    top:10em;
+    left:0px;
+    right:0px;
+    bottom:100px;
+    overflow:scroll;
+    background-color:black;
+    border-bottom:solid;
+    border-top:solid;
+    border-color:#00ff00;
+}
+#imageurlinput{
+    border:solid;
+    border-color:#00ff00;
+    width:20em;
+    size:1em;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+#imagecontroltable{
+    position:absolute;
+    top:3.5em;
+    font-size:1.5em;
+    border:solid;
+    border-color:#00ff00;
+    border-radius:10px;
+    border-width:5px;
+}
+#textio{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    font-size:12px;
+    border:solid;
+    border-width:5px;
+    border-color:orange;
+    width:90%;
+    height:90%;
+}
+#importbutton{
+    width:50%;
+    font-size:1em;
+    border:solid;
+    border-radius:0.5em;
+    border-width:3px;
+    border-color:orange;
+}
+#iotable{
+    position:absolute;
+    bottom:0px;
+}
+.imagebox{
+    border-top:solid;
+    padding-bottom:1em;
+    padding-top:1em;
+    padding-left:1em;
+    border-bottom:solid;
+    border-width:0.2px;
+    border-color:#00ff00;
+}
+
+.uploadimage{
+    max-width:25%;
+    margin:auto;
+    display:block;
+    background-color:#A0A0A0;
+}
+.deletebutton{
+    width:4em;
+    background-color:#808080;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+</style>
+</body>
+</html>

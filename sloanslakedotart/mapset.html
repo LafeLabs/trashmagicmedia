@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABEAERABEAAAEQABAAEQAAAAEAEAEAAAAAABAQEAAAAAEAAREAEAAAERERERERAAABAAERABAAAAAAEBAQAAAAAAEAEAEAAAABEAAQABEAAAEQABAAEQAAAAABEQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+</head>
+<body>
+<table id = "toptable">
+    <tr>
+        <td>
+            <a href = "user.php">
+                <img src = "iconsymbols/home.svg"/>
+            </a>
+        </td>
+        <td>
+            <a href = "mapeditor.php">
+                <img src = "iconsymbols/edit.svg"/>
+            </a>
+        </td>
+
+    </tr>
+</table>
+<table>
+    <tr>
+        <td style = "text-align:right">SOURCE SERVER:</td>
+        <td>
+            <input id = "sourceinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td style = "text-align:right">THIS SERVER HERE:</td>
+        <td>
+            <input id = "hereinput"/>
+        </td>
+    </tr>
+
+</table>
+
+
+<a href = "mapsetreplicator.php" id = "fetchlink">
+(!)CLICK TO FETCH SET FROM SOURCE TO HERE(!)
+</a>
+
+<textarea id  = "textio"></textarea>
+<script>
+
+var localurl = window.location.href.split("mapset.html")[0];
+document.getElementById("hereinput").value = localurl;
+
+mapset = {};
+
+var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        mapset = JSON.parse(this.responseText);
+        if(mapset.server.charAt(mapset.server.length-1) != "/"){
+            mapset.server = mapset.server + "/"; 
+        }
+        document.getElementById("sourceinput").value = mapset.server;
+        var httpc9 = new XMLHttpRequest();
+        httpc9.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                maps = JSON.parse(this.responseText);
+                mapset.maps = maps;
+                
+                var httpc11 = new XMLHttpRequest();
+                httpc11.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+        
+                        images = JSON.parse(this.responseText);
+                        mapset.images = images;
+                        
+                        
+                        var httpc13 = new XMLHttpRequest();
+                        httpc13.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                
+                                scrolls = JSON.parse(this.responseText);
+                                mapset.scrolls = scrolls;
+                                
+                        
+                                document.getElementById("textio").value = JSON.stringify(mapset,null,"    ");
+                                savejson();
+                                
+                                
+                            };
+                        }
+                        
+                        httpc13.open("GET", "dir.php?filename=scrolls", true);
+                        httpc13.send();
+
+                        
+                        
+                    };
+                }
+                
+                httpc11.open("GET", "dir.php?filename=uploadimages", true);
+                httpc11.send();
+
+                
+                
+                document.getElementById("textio").value = JSON.stringify(mapset.maps,null,"    ");
+                savejson();
+
+            };
+        }
+        
+        httpc9.open("GET", "dir.php?filename=maps", true);
+        httpc9.send();
+        
+    }
+};
+httpc.open("GET", "fileloader.php?filename=data/mapset.txt", true);
+httpc.send();
+
+document.getElementById("sourceinput").onchange = function(){
+    mapset.server = this.value;
+    if(mapset.server.charAt(mapset.server.length-1) != "/"){
+        mapset.server = mapset.server + "/"; 
+    }
+    savejson();
+}
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(mapset,null,"    "))+"&filename=data/mapset.txt");//send text to filesaver.php
+}
+
+
+
+</script>
+<style>
+#buttontable{
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+#buttontable td{
+    width:12em;
+    text-align:center;
+}
+#inputtable{
+    position:absolute;
+    bottom:1em;
+    left:1em;
+}
+#inputtable table{
+    width:80%;
+}
+#inputtable tr{
+    width:100%;
+}
+
+#textio{
+    position:absolute;
+    right:1px;
+    top:2em;
+    height:80%;
+    width:40%;
+}
+#feed{
+    position:absolute;
+    top:50%;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:scroll;
+}
+#serverinput{
+    width:100%;
+}
+body,div,textarea,input{
+    font-family:courier;
+    font-size:24px;
+}
+a{
+    font-family:courier;
+    font-size:24px;
+    color:#ff2cb4;
+}
+
+.button{
+    cursor:pointer;
+    border:solid;
+}
+.button:hover{
+    background-color:#00ff0080;
+}
+.button:active{
+    background-color:#ffff0080;
+}
+.box img{
+    width:3em;
+}
+</style>
+</body>
+</html>

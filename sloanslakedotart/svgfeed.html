@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD/AAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAREAAAAAAiAAEAAAAAACIAAQAAAAAAACABAAAAAAAAAgEAAAAAAwAAIQAAADAzMzMwMzMzMwMAAAEgAAAwAAAAAQIAAAAAAAABACAAAAAAAAEAAgAAAAAAAQAAIgAAAAABAAAiAAAAABEQAAAAAAAAAQAAAAD+/wAA/H8AAM7/AADO/wAA9v8AAPr/AAC8/QAAAAAAAL59AAD+vwAA/t8AAP7vAAD+8wAA/vMAAPx/AAD+/wAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+</head>
+<body>
+    
+    
+<div id  = "mainbox"><canvas id = "maincanvas"></canvas></div>
+    
+    
+<div class = "button" id = "savebutton">SAVE</div>
+
+<div id = "header">
+
+    <input id = "glyphinput"/>
+
+</div>
+<div id = "feed"></div>
+
+<table id = "linktable">
+    <tr>
+        <td>
+            <a href = "index.html">HOME</a>
+        </td>
+        <td>
+            <a href = "laser.svg">laser.svg</a>
+        </td>
+
+    </tr>
+</table>
+<p id = "helpbox">click an icon.</p>
+<script>
+
+glyph = "";
+feedwidth = 100;
+feedlinkwidth  = feedwidth;
+mainsize = 0.5*innerWidth - 10;
+
+maincanvas = document.getElementById("maincanvas");
+var mainGVM = new GVM(maincanvas,300,300);
+
+mainGVM.unit = 30;
+mainGVM.drawGlyph("0336,0332,0337,0341,0333,0341,");
+
+gvmArray = [];
+
+robotfeed = [];
+var httpcHypercube = new XMLHttpRequest();
+httpcHypercube.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        hypercube = JSON.parse(this.responseText);
+        mainGVM.importbytecode(hypercube);    
+        
+
+mainGVM.hypercube[0500] = "0406,0406,0403,0407,0405,0404,0407,0336,0336,0336,0336,0330,0330,0336,0210,0210,0347,0211,0211,0337,0337,0337,0337,0337,0702,0711,";
+mainGVM.hypercube[0501] = "0406,0406,0402,0407,0405,0404,0407,0336,0336,0336,0336,0331,0331,0336,0210,0210,0347,0211,0211,0337,0337,0337,0337,0337,0703,0711,";
+mainGVM.hypercube[0502] = "0406,0406,0401,0407,0405,0404,0407,0336,0336,0336,0336,0332,0332,0336,0210,0210,0347,0211,0211,0337,0337,0337,0337,0337,0701,0711,";
+mainGVM.hypercube[0503] = "0406,0406,0400,0407,0405,0404,0407,0336,0336,0336,0336,0333,0333,0336,0210,0210,0347,0211,0211,0337,0337,0337,0337,0337,0700,0711,";
+
+        var httpcFeed = new XMLHttpRequest();
+        httpcFeed.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                robotfeed = JSON.parse(this.responseText);
+                loadfeed();
+            }
+        };
+        httpcFeed.open("GET", "fileloader.php?filename=data/robotfeed.txt", true);
+        httpcFeed.send();
+
+    }
+};
+httpcHypercube.open("GET", "fileloader.php?filename=data/hypercube.txt", true);
+httpcHypercube.send();
+
+
+
+
+function loadfeed(){
+    gvmArray = [];
+    document.getElementById("feed").innerHTML = "";
+    for(var index = 0;index < robotfeed.length;index++){
+        var newdiv = document.createElement("span");
+        var newcan = document.createElement("CANVAS");
+        newcan.className = "feedcan";
+        newdiv.style.marginTop = 0.05*feedwidth + "px";
+        newdiv.style.marginBottom = 0.05*feedwidth + "px";
+        newdiv.appendChild(newcan);
+        newdiv.className = "feedelement";
+        newcan.classList.add("button");
+        document.getElementById("feed").appendChild(newdiv);
+        var newGVM = new GVM(newcan,feedlinkwidth,feedlinkwidth);
+        newGVM.hypercube = mainGVM.hypercube;
+        gvmArray.push(newGVM);
+        newGVM.drawGlyph(robotfeed[index]);    
+        
+        var datadiv = document.createElement("DIV");
+        datadiv.innerHTML = robotfeed[index];
+        datadiv.className = "data";
+        newdiv.appendChild(datadiv);
+        newdiv.onclick = function(){
+            glyph = this.getElementsByClassName("data")[0].innerHTML;
+            document.getElementById("glyphinput").value = glyph;
+            mainGVM.drawGlyph(glyph);
+            //make this the coin for coin studio
+            coin = glyph;
+            
+        }
+        
+        
+    }    
+}
+
+document.getElementById("glyphinput").value = "";
+
+document.getElementById("savebutton").onclick = function(){
+    savesymbolfile();
+}
+
+
+function savesymbolfile(){
+    mainGVM.glyph = glyph;
+            mainGVM.drawGlyph(glyph);
+
+    var timestamp = Math.round((new Date().getTime())/1000).toString();
+    currentjson = {};
+    currentjson.shapes = [];
+    currentjson.glyph = glyph;
+    currentjson.x0 = mainGVM.x0;
+    currentjson.y0 = mainGVM.y0;
+    currentjson.unit = mainGVM.unit;
+    currentjson.width = mainGVM.width;
+    currentjson.height = mainGVM.height;
+    currentjson.style = mainGVM.style;
+    
+    mainGVM.svgString = mainGVM.svgString.split("<json>")[0] + "<json>" + JSON.stringify(currentjson,null,"  ") + "</json>" + mainGVM.svgString.split("</json>")[1];
+
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST","filesaver.php", true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(mainGVM.svgString) +"&filename=laser.svg");//send text to filesaver.php
+    
+    
+}
+</script>
+<style>
+body{
+    overflow:hidden;
+}
+#linktable{
+    position:absolute;
+    right:0px;
+    top:3em;
+}
+.deletebutton{
+    width:20px;
+    z-index:2;
+    position:relative;
+    left:-100px;
+    top:-80px;
+}
+.feedelement{
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:100px;
+}
+#footer{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:150px;
+}
+#textio{
+    position:absolute;
+    left:0px;
+    width:100%;
+    bottom:0px;
+    height:100px;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:50%;
+    top:100px;
+    bottom:0px;
+    overflow:scroll;
+    padding: 50px 50px 50px 50px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#glyphinput{
+    width:90%;
+    font-family:courier;
+    font-size:12px;
+}
+#helpbox{
+    position:absolute;
+    right:10px;
+    top:100px;
+    width:300px;
+    font-size:12px;
+    overflow:scroll;
+    height:100px;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+#mainbox{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+    border:solid;
+}
+#savebutton{
+    position:absolute;
+    right:2px;
+    bottom:320px;
+    text-align:center;
+    border:solid;
+}
+</style>
+</body>
+</html>

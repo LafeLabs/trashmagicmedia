@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+TRASH MAGIC MEDIA NETWORK
+
+EVERYTHING IS PHYSICAL
+EVERYTHING IS FRACTAL
+EVERYTHING IS RECURSIVE
+
+NO MONEY
+NO MINING
+NO PROPERTY
+
+LOOK AT THE FUNGI
+LOOK AT THE INSECTS
+LANGUAGE IS HOW THE MIND PARSES REALITY
+
+
+
+    All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
+
+
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        
+   <title>TRASH MAGIC SERVER</title>    
+   <script src = "jscode/trashmagic.js"></script>
+</head>
+<body>    
+<h1 id = "title">WWW.SLOANSLAKE.ART</h1>
+<H1>TRASH MAGIC MEDIA</H1>
+
+<p>Share books and zines, and create a personal home page to share your art</p>
+
+<a href = "media.html">ZINES AND BOOKS</a>
+<a href = "homepages.html">PERSONAL HOME PAGES</a>
+<a href = "web/trashrobot.html">TRASH ROBOT PERSONAL HOME PAGE</a> 
+<a href = "mailto:operator@sloanslake.art">EMAIL OPERATOR@SLOANSLAKE.ART</a>
+
+<div id = "qrcode"></div>
+
+<script>
+
+titles = document.getElementsByTagName("H1");
+for(var index = 0;index < titles.length;index++){
+    rainbowstring(titles[index]);    
+}
+
+
+//ps = document.getElementsByTagName("p");
+//for(var index = 0;index < ps.length;index++){
+  //  rainbowstring(ps[index]);    
+//}
+
+rainbow(document.getElementsByTagName("A"));
+
+globalurl = window.location.href;
+codesquaresize = 0.4*innerWidth;
+
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: globalurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+    
+
+
+
+</script>
+<style>
+h1{
+    text-align:center;
+    font-size:4em;
+    font-family:helvetica;
+}
+p{
+    
+}
+a{
+    text-align:center;
+    font-family:helvetica;
+    font-size:3em;
+    width:80%;
+    margin:auto;
+    display:block;
+    border:solid;
+    border-radius:0.5em;
+    border-width:0.5em;
+    color:black;
+    margin-top:1em;
+}
+img{
+    display:block;
+    max-width:50%;
+    margin:auto;
+    margin-top:2em;
+}
+#qrcode{
+    display:block;
+    margin:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:30%;
+    text-align:center;
+    
+}
+@media only screen and (orientation: portrait) {
+
+    
+}
+@media only screen and (orientation: landscape) {
+
+    
+}
+</style>
+</body>
+</html>
+
+

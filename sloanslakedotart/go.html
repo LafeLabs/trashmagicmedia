@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY 
+
+    -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+</head>
+<body>    
+<img src="https://trashrobot.org/uploadimages/image8.PNG" alt="map background">
+<div id = "board">
+</div>
+<script>
+go = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,1,0,0,0,0,-1,1,-1,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+];
+
+spacing = 40;
+board = document.getElementById("board");
+for(var row = 0;row < go.length;row++){
+    for(var col = 0;col < go[row].length;col++){
+
+        var newdiv = document.createElement("div");
+        board.appendChild(newdiv)
+        newdiv.style.left = (spacing*col).toString() + "px";
+        newdiv.style.top = (spacing*row).toString() + "px";
+        
+        if(go[row][col] == -1){
+            newdiv.classList.add("black");
+        }
+        if(go[row][col] == 1){
+            newdiv.classList.add("white");
+        }
+        if(go[row][col] == 0){
+            newdiv.classList.add("none");
+        }
+        newdiv.onclick = function(){
+            var done = false;
+            if(this.className == "none"){
+                this.className = "black";
+                done = true;
+            }
+            if(this.className == "black" & !done){
+                this.className = "white";
+                done = true
+            }
+            if(this.className == "white" & !done){
+                this.className = "none";
+            }
+        }
+    }
+}
+</script>
+<style>
+img { 
+    position:absolute;
+    z-index:-2;
+    width:760px;
+    height:760px;
+}  
+#board{
+    position:Absolute;
+    left:0px;
+    top:0px;
+    width:760px;
+    height:760px;
+}
+
+#board td{
+    border-width:3px;
+    border-radius:50%;
+    width:30px;
+    height:30px;
+    border:Solid;
+    border-color:purple;    
+}
+.none:hover{
+    background-color:black;
+    cursor:pointer;
+}
+.black:hover{
+    background-color:white;
+}
+.white:hover{
+    background-color:red;
+}
+#board div{
+    position:absolute;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+.black{
+    border:solid;
+    background-color:black;
+    display:block;
+}
+.white{
+    border:solid;
+    background-color:white;
+    display:block;
+    border-color:black;
+}
+.none{
+    border:solid;
+    border-width:0.1px;
+}
+</style>
+<img src="http://trashrobot.org/uploadimages/image8.PNG">
+</body>
+</html>

@@ -1,0 +1,41 @@
+<svg width="600" height="100" viewbox = "0 0 600 100"  xmlns="http://www.w3.org/2000/svg">
+<!--<json>{
+  "glyph": "0321,01330,01331,01332,01333,01334,01335,",
+  "x0": 25,
+  "y0": 95,
+  "unit": 90,
+  "width": 600,
+  "height": 100,
+  "style": {
+    "color0": "black",
+    "fill0": "black",
+    "line0": 1,
+    "color1": "black",
+    "fill1": "black",
+    "line1": 5,
+    "color2": "red",
+    "fill2": "red",
+    "line2": 1,
+    "color3": "#FF7900",
+    "fill3": "#FF7900",
+    "line3": 1,
+    "color4": "yellow",
+    "fill4": "yellow",
+    "line4": 1,
+    "color5": "green",
+    "fill5": "green",
+    "line5": 1,
+    "color6": "blue",
+    "fill6": "blue",
+    "line6": 1,
+    "color7": "purple",
+    "fill7": "purple",
+    "line7": 1
+  }
+}</json>-->	<path d = "M115 95 L115 5 L25 5 L25 95 L115 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M81 72 L59 72 L59 50 L48 50 L59 39 L70 27 L81 39 L93 50 L81 50 L81 72 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M205 95 L205 5 L115 5 L115 95 L205 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M149 27 L171 27 L171 50 L183 50 L171 61 L160 72 L149 61 L138 50 L149 50 L149 27 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M295 95 L295 5 L205 5 L205 95 L295 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M273 39 L273 61 L250 61 L250 72 L239 61 L228 50 L239 39 L250 27 L250 39 L273 39 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M385 95 L385 5 L295 5 L295 95 L385 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M318 61 L318 39 L340 39 L340 27 L351 39 L363 50 L351 61 L340 72 L340 61 L318 61 Z" stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M475 95 L475 5 L385 5 L385 95 L475 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />  <path d="M414.09009742330284 34.09009742330262           A22.500000000000014 22.500000000000014 0 0 1 445.90990257669756 34.09009742330255" fill = "none" stroke = "#000000" stroke-width = "5" />
+  <path d="M414.09009742330295 65.9099025766973           A22.500000000000014 22.500000000000014 0 0 1 414.09009742330284 34.09009742330262" fill = "none" stroke = "#000000" stroke-width = "5" />
+  <path d="M445.9099025766976 65.90990257669715           A22.500000000000014 22.500000000000014 0 0 1 414.09009742330295 65.9099025766973" fill = "none" stroke = "#000000" stroke-width = "5" />
+	<path d = "M437 87 L446 66 L425 57 " stroke = "#000000" stroke-width = "5" fill = "none" />	<path d = "M565 95 L565 5 L475 5 L475 95 L565 95 Z" stroke = "#000000" stroke-width = "5" fill = "none" />  <path d="M535.9099025766977 65.90990257669715           A22.500000000000014 22.500000000000014 0 0 1 504.0900974233031 65.90990257669716" fill = "none" stroke = "#000000" stroke-width = "5" />
+  <path d="M504.0900974233031 65.90990257669716           A22.500000000000014 22.500000000000014 0 0 1 504.0900974233031 34.09009742330248" fill = "none" stroke = "#000000" stroke-width = "5" />
+  <path d="M504.0900974233031 34.09009742330248           A22.500000000000014 22.500000000000014 0 0 1 535.9099025766978 34.09009742330253" fill = "none" stroke = "#000000" stroke-width = "5" />
+	<path d = "M515 43 L536 34 L527 13 " stroke = "#000000" stroke-width = "5" fill = "none" /></svg>

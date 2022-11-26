@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+        <!--
+
+public domain
+
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+
+   <title>TRASH MAGIC MEDIA</title>    
+</head>
+<body>    
+<a style = "position:absolute;right:0px;top:0px;font-size:2em;" href = "index.html">HOME</a>
+
+    <form id = "uploadform" style = "margin-top:10px;color:#00ff00;display:none;" action="uploadmedia.php" method="post" enctype="multipart/form-data">
+                Select media file to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Media File" name="submit">
+    </form>    
+    
+    
+<div id = "mediascroll">
+
+    
+</div>
+<script>
+
+media = [];
+
+var httpcUpload = new XMLHttpRequest();
+httpcUpload.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        media = JSON.parse(this.responseText);
+        loadmediafeed();
+        links = document.getElementsByClassName("link");
+        divs = document.getElementsByClassName("new");
+        rainbow(divs);
+        rainbow(links);
+
+    }
+};
+httpcUpload.open("GET", "../dir.php?filename=media", true);
+httpcUpload.send();
+
+mediadir = [];
+dirname = "";
+
+function loadmediafeed(){
+    for(var index = 0;index < media.length;index++) {
+        
+        if(media[index].includes(".")){
+            var newa = document.createElement("A");
+            newa.className = "link";
+            newa.innerHTML = media[index];
+            newa.href = "media/" + media[index];
+            document.getElementById("mediascroll").appendChild(newa);
+        }
+        else{
+            //directory
+            var newdiv = document.createElement("DIV");
+            newdiv.className = "new";
+            var newh1 = document.createElement("H1");
+            newh1.innerHTML = media[index] + "/";
+            newdiv.id = "dir" + media[index];
+            newdiv.appendChild(newh1);
+            document.getElementById("mediascroll").appendChild(newdiv);
+            newh1.onclick = function(){
+                if(this.parentNode.className == "new"){
+                    this.parentNode.className = "visible";
+                    dirname = this.innerHTML.substring(0,this.innerHTML.length-1);
+                    
+                    var httpcUpload2 = new XMLHttpRequest();
+                    httpcUpload2.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            dirmedia = JSON.parse(this.responseText);
+                            theselinks = [];
+                            for(var dirindex = 0;dirindex < dirmedia.length;dirindex++){
+                                var newa = document.createElement("A");
+                                theselinks.push(newa);
+                                newa.innerHTML = dirmedia[dirindex];
+                                newa.href =  "media/" + dirname + "/"  +dirmedia[dirindex];
+                                document.getElementById("dir" + dirname).appendChild(newa);
+                            }
+                            rainbow(theselinks);
+                        }
+                    };
+                    httpcUpload2.open("GET", "../dir.php?filename=media/" + dirname, true);
+                    httpcUpload2.send();                    
+                }
+                else{
+                    if(this.parentNode.className == "visible"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "none";
+                        }
+                    }                       
+                    if(this.parentNode.className == "hidden"){
+                        var filelist = this.parentNode.getElementsByTagName("A");
+                        for(fileindex = 0;fileindex < filelist.length;fileindex++){
+                            filelist[fileindex].style.display = "block";
+                        }
+                    }         
+                    
+                    if(this.parentNode.className == "visible"){
+                        this.parentNode.className = "hidden";
+                    }
+                    else{
+                        this.parentNode.className = "visible";
+                    }   
+                }
+            }
+        }
+    }    
+
+}
+
+function rainbow(localarray){
+    n = localarray.length;
+    theta = 0;
+    for(var index = 0;index < n;index++){
+    
+        H = index*360/n;
+        z = 255*(1 - Math.abs((H/60)%2 - 1));
+    
+        if(H < 60){
+            red = 255;
+            green = Math.round(z);
+            blue = 0;
+        }
+        if(H >= 60 && H < 120){
+            red = Math.round(z);
+            green = 255;
+            blue = 0;
+        }
+        if(H >= 120 && H < 180){
+            red = 0;
+            green = 255;
+            blue = Math.round(z);
+        }
+        if(H >= 180 && H < 240){
+            red = 0;    
+            green = Math.round(z);
+            blue = 255;
+        }
+        if(H >= 240 && H < 300){
+            red = Math.round(z);    
+            green = 0;
+            blue = 255;
+        }
+        if(H >= 300 && H < 360){
+            red = 255;    
+            green = 0;
+            blue = Math.round(z);
+        }
+        
+        redstring = red.toString(16);
+        if(redstring.length < 2){
+            redstring = "0" + redstring;    
+        }
+        greenstring = green.toString(16);
+        if(greenstring.length < 2){
+            greenstring = "0" + greenstring; 
+        }
+        bluestring = blue.toString(16);
+        if(bluestring.length < 2){
+            bluestring = "0" + bluestring; 
+        }
+        color = "#" + redstring + greenstring + bluestring;
+        //console.log(color);
+        localarray[index].style.backgroundColor = color;// + "80";
+        localarray[index].style.borderColor = color;
+    }
+}
+
+
+</script>
+<style>
+body{
+}
+
+#mediascroll{
+    position:absolute;
+    right:0px;
+    left:0px;
+    top:2em;
+    bottom:0px;
+    overflow:scroll;
+}
+#mediascroll a,span{
+    display:block;
+    margin:auto;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+    margin-left:1em;
+    color:black;
+}
+#mediascroll h1{
+    border:solid;
+    border-radius:5px;
+    margin-top:2px;
+    margin-bottom:2px;
+    cursor:pointer;
+}
+#mediascroll span{
+    border:solid;
+    cursor:pointer;
+}
+#mediascroll div{
+    border:solid;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+}
+
+
+</style>
+</body>
+</html>
