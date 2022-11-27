@@ -35,22 +35,31 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
         
    <title>TRASH MAGIC SERVER</title>    
    <script src = "jscode/trashmagic.js"></script>
+   <script src = "jscode/geometron.js"></script>
 </head>
 <body>    
-<h1 id = "title">WWW.SLOANSLAKE.ART</h1>
-<H1>TRASH MAGIC MEDIA</H1>
+<div id = "mainscroll">
+    
+    <h1 id = "title">WWW.SLOANSLAKE.ART</h1>
+    
+    <H1>TRASH MAGIC MEDIA</H1>
+    
+    <p>Share books and zines, and create a personal home page to share your art</p>
 
-<p>Share books and zines, and create a personal home page to share your art</p>
+    <a href = "media.html">ZINES AND BOOKS</a>
+    <a href = "homepages.html">PERSONAL HOME PAGES</a>
+    <a href = "web/trashrobot.html">TRASH ROBOT PERSONAL HOME PAGE</a> 
+    <a href = "mailto:operator@sloanslake.art">EMAIL OPERATOR@SLOANSLAKE.ART</a>
 
-<a href = "media.html">ZINES AND BOOKS</a>
-<a href = "homepages.html">PERSONAL HOME PAGES</a>
-<a href = "web/trashrobot.html">TRASH ROBOT PERSONAL HOME PAGE</a> 
-<a href = "mailto:operator@sloanslake.art">EMAIL OPERATOR@SLOANSLAKE.ART</a>
+    <div id = "qrcode"></div>
 
-<div id = "qrcode"></div>
+</div>
 
+
+<div id = "imagesbox"></div>
 <script>
 
+    
 titles = document.getElementsByTagName("H1");
 for(var index = 0;index < titles.length;index++){
     rainbowstring(titles[index]);    
@@ -65,8 +74,7 @@ for(var index = 0;index < titles.length;index++){
 rainbow(document.getElementsByTagName("A"));
 
 globalurl = window.location.href;
-codesquaresize = 0.4*innerWidth;
-
+codesquaresize = 0.2*innerWidth;
 
 qrcode = new QRCode(document.getElementById("qrcode"), {
 	text: globalurl,
@@ -76,19 +84,35 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 	colorLight : "#ffffff",
 	correctLevel : QRCode.CorrectLevel.H
 });
-    
+
+document.getElementById("qrcode").style.width = codesquaresize.toString() + "px";
+document.getElementById("qrcode").style.height = codesquaresize.toString() + "px";
 
 
+//listimages(document.getElementById("mainscroll"),"images");
+//listfiles(document.getElementById("mainscroll"),"media/austin-library-zines/");
 
 </script>
 <style>
+#mainscroll{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:0px;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
 h1{
     text-align:center;
     font-size:4em;
     font-family:helvetica;
 }
 p{
-    
+    text-align:justify;
+    padding:1em 1em 1em 1em;
 }
 a{
     text-align:center;
@@ -116,7 +140,9 @@ img{
     margin-bottom:2em;
     margin-left:30%;
     text-align:center;
-    
+    background-color:white;
+    border-color:white;
+    border:solid;
 }
 @media only screen and (orientation: portrait) {
 

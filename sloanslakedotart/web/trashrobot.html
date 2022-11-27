@@ -33,12 +33,15 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
     <META NAME="robots" CONTENT="noindex,nofollow">
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         
-   <title>TRASH ROBOT</title>    
+   <title>TRASH MAGIC SERVER</title>    
+   <script src = "../jscode/trashmagic.js"></script>
 </head>
 <body>    
-<a href= "../index.html" style = "position:Absolute;right:0px;top:1em;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">HOME</a>
-<a href= "../webeditor.html" style = "position:Absolute;right:0px;top:0px;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">WEB EDITOR</a>
+<div id = "mainscroll">
+    
 <h1 id = "title">TRASH ROBOT</h1>
+
+<a href = "../index.html">HOME</a>
 <a href = "https://venmo.com/u/upcyclerobotics">VENMO</a>
 <a href = "https://discord.gg/HwKkdv8929">DISCORD</a>
 <a href = "https://www.tiktok.com/@trash_robot">TIKTOK</a>
@@ -51,158 +54,74 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
 <a href = "https://www.lulu.com/en/us/shop/lafe-spietz/trash-magic-manifesto-and-action-coloring-book/paperback/product-1km4deev.html?page=1&pageSize=4">BUY TRASH MAGIC MANIFESTO</a>
 <a href = "https://lafelabs.github.io/Trash_Magic_Manifesto.pdf">DOWNLOAD TRASH MAGIC MANIFESTO</a>
 <a href = "http://sloanslake.art/web/">THE INNERNETTE(TM)</a>
-<div id = "qrcode"></div>
+
+    <div id = "qrcode"></div>
+
+</div>
+
+
+<div id = "imagesbox"></div>
 <script>
-links = document.getElementsByTagName("A");
-n = links.length;
-theta = 0;
-for(var index = 0;index < n;index++){
 
-    H = index*360/n;
-    z = 255*(1 - Math.abs((H/60)%2 - 1));
-
-    if(H < 60){
-        red = 255;
-        green = Math.round(z);
-        blue = 0;
-    }
-    if(H >= 60 && H < 120){
-        red = Math.round(z);
-        green = 255;
-        blue = 0;
-    }
-    if(H >= 120 && H < 180){
-        red = 0;
-        green = 255;
-        blue = Math.round(z);
-    }
-    if(H >= 180 && H < 240){
-        red = 0;    
-        green = Math.round(z);
-        blue = 255;
-    }
-    if(H >= 240 && H < 300){
-        red = Math.round(z);    
-        green = 0;
-        blue = 255;
-    }
-    if(H >= 300 && H < 360){
-        red = 255;    
-        green = 0;
-        blue = Math.round(z);
-    }
     
-    redstring = red.toString(16);
-    if(redstring.length < 2){
-        redstring = "0" + redstring;    
-    }
-    greenstring = green.toString(16);
-    if(greenstring.length < 2){
-        greenstring = "0" + greenstring; 
-    }
-    bluestring = blue.toString(16);
-    if(bluestring.length < 2){
-        bluestring = "0" + bluestring; 
-    }
-    color = "#" + redstring + greenstring + bluestring;
-    //console.log(color);
-    links[index].style.backgroundColor = color + "80";
-    links[index].style.borderColor = color;
-}
-
-title = document.getElementById("title");
-text = title.innerHTML;
-title.innerHTML = "";
-n = text.length;
-for(var index = 0; index < n; index++){
-    var newspan = document.createElement("SPAN");    
-    newspan.innerHTML = text.charAt(index);
-
-    H = index*360/n;
-    z = 255*(1 - Math.abs((H/60)%2 - 1));
-
-    if(H < 60){
-        red = 255;
-        green = Math.round(z);
-        blue = 0;
-    }
-    if(H >= 60 && H < 120){
-        red = Math.round(z);
-        green = 255;
-        blue = 0;
-    }
-    if(H >= 120 && H < 180){
-        red = 0;
-        green = 255;
-        blue = Math.round(z);
-    }
-    if(H >= 180 && H < 240){
-        red = 0;    
-        green = Math.round(z);
-        blue = 255;
-    }
-    if(H >= 240 && H < 300){
-        red = Math.round(z);    
-        green = 0;
-        blue = 255;
-    }
-    if(H >= 300 && H < 360){
-        red = 255;    
-        green = 0;
-        blue = Math.round(z);
-    }
-    
-    redstring = red.toString(16);
-    if(redstring.length < 2){
-        redstring = "0" + redstring;    
-    }
-    greenstring = green.toString(16);
-    if(greenstring.length < 2){
-        greenstring = "0" + greenstring; 
-    }
-    bluestring = blue.toString(16);
-    if(bluestring.length < 2){
-        bluestring = "0" + bluestring; 
-    }
-    color = "#" + redstring + greenstring + bluestring;   
-    newspan.style.color = color;
-    title.appendChild(newspan);
+titles = document.getElementsByTagName("H1");
+for(var index = 0;index < titles.length;index++){
+    rainbowstring(titles[index]);    
 }
 
 
-globalurl = window.location.href;
-codesquaresize = 0.4*innerWidth;
+//ps = document.getElementsByTagName("p");
+//for(var index = 0;index < ps.length;index++){
+  //  rainbowstring(ps[index]);    
+//}
+
+rainbow(document.getElementsByTagName("A"));
 
 
-qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: globalurl,
-	width: codesquaresize,
-	height: codesquaresize,
-	colorDark : "#000000",
-	colorLight : "#ffffff",
-	correctLevel : QRCode.CorrectLevel.H
-});
 
+//listimages(document.getElementById("mainscroll"),"images");
+//listfiles(document.getElementById("mainscroll"),"media/austin-library-zines/");
 
 </script>
 <style>
+#mainscroll{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:0px;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
 h1{
     text-align:center;
     font-size:4em;
     font-family:helvetica;
+}
+p{
+    text-align:justify;
+    padding:1em 1em 1em 1em;
 }
 a{
     text-align:center;
     font-family:helvetica;
     font-size:3em;
     width:80%;
-    margin:auto;
+    margin:auto;    
     display:block;
     border:solid;
     border-radius:0.5em;
     border-width:0.5em;
     color:black;
     margin-top:1em;
+}
+img{
+    display:block;
+    max-width:50%;
+    margin:auto;
+    margin-top:2em;
 }
 #qrcode{
     display:block;
@@ -211,7 +130,9 @@ a{
     margin-bottom:2em;
     margin-left:30%;
     text-align:center;
-    
+    background-color:white;
+    border-color:white;
+    border:solid;
 }
 @media only screen and (orientation: portrait) {
 

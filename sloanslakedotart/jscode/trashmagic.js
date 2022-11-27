@@ -1,3 +1,45 @@
+function listfiles(domelement,folder){
+    files = [];
+    var httpcimages = new XMLHttpRequest();
+    httpcimages.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            files = JSON.parse(this.responseText);
+            var locallinks = [];
+            for(var index = 0;index < files.length;index++){
+                var newa = document.createElement("A");
+                newa.href = folder + "/" + files[index];
+                newa.innerHTML = folder + "/" + files[index];
+                domelement.appendChild(newa);
+                locallinks.push(newa);
+            }
+            rainbow(locallinks);
+        }
+    };
+    httpcimages.open("GET", "dir.php?filename=" + folder, true);
+    httpcimages.send();
+    
+}
+
+function listimages(domelement,folder){
+
+    images = [];
+    var httpcimages = new XMLHttpRequest();
+    httpcimages.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        images = JSON.parse(this.responseText);
+            for(var index = 0;index < images.length;index++){
+                var newimg = document.createElement("IMG");
+                newimg.src = folder + "/" + images[index];
+                domelement.appendChild(newimg);   
+            }
+        }
+    };
+    httpcimages.open("GET", "dir.php?filename=" + folder, true);
+    httpcimages.send();
+    
+}
+
+
 function rainbowstring(localelement){
     text = localelement.innerHTML;
     localelement.innerHTML = "";
