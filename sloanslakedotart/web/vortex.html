@@ -135,13 +135,21 @@ function spiral(localarray){
     
     for(var index = 0;index < n;index++){
         theta = 90 + index*360/n;//angle in degrees, starting at vertical
-        x = x0 + r*Math.exp(-theta/360)*Math.cos(theta*Math.PI*2/360);
-        y = y0 - r*Math.exp(-theta/360)*Math.sin(theta*Math.PI*2/360);
+        x = x0 + Math.round(r*Math.exp(-theta/360)*Math.cos(theta*Math.PI*2/360));
+        y = y0 - Math.round(r*Math.exp(-theta/360)*Math.sin(theta*Math.PI*2/360));
         localarray[index].style.position = "absolute";
-        localarray[index].style.transform = "rotate(" + (-theta).toString()  +"deg)";
-        localarray[index].style.left = x.toString() + "px";
+        
+                localarray[index].style.left = x.toString() + "px";
         localarray[index].style.top = y.toString() + "px";
-        localarray[index].style.fontSize =  0.1*r*Math.exp(-theta/360) + "px";
+
+//        localarray[index].style.transform = "translate(" + (-0.5*localarray[index].offsetWidth).toString() + "px,0px)";
+  //      localarray[index].style.transform += "rotate(" + (-theta).toString()  +"deg)";
+    //    localarray[index].style.transform += "translate(" + (0.5*localarray[index].offsetWidth).toString() + "px,0px)";
+
+    
+        
+        localarray[index].style.fontSize =  (0.1*r*Math.exp(-theta/360)).toString() + "px";
+        console.log(localarray[index].offsetWidth);
     }
 }
 

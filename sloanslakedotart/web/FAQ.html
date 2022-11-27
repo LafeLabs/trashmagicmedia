@@ -3,11 +3,16 @@
 <head>
 <title>FAQ</title>
     <meta charset="utf-8">
+    <script src = "../jscode/trashmagic.js"></script>
 </head>
 <body>
-<a id = "homelink" href = "../index.html">HOME</a>
 
-<h1>FAQ</h1>
+
+<h1 id = "title">FAQ</h1>
+
+<p>
+    <a href = "../index.html">HOME</a>
+</p>
 
 <p>
 <em>What is trash magic?</em>  Trash magic is self-replicating art/technology made from trash.  
@@ -50,64 +55,16 @@
 <script>
 
 links = document.getElementsByTagName("P");
-n = links.length;
-theta = 0;
-for(var index = 0;index < n;index++){
+rainbow(links);
+rainbowstring(document.getElementById("title"));
 
-    H = index*360/n;
-    z = 255*(1 - Math.abs((H/60)%2 - 1));
 
-    if(H < 60){
-        red = 255;
-        green = Math.round(z);
-        blue = 0;
-    }
-    if(H >= 60 && H < 120){
-        red = Math.round(z);
-        green = 255;
-        blue = 0;
-    }
-    if(H >= 120 && H < 180){
-        red = 0;
-        green = 255;
-        blue = Math.round(z);
-    }
-    if(H >= 180 && H < 240){
-        red = 0;    
-        green = Math.round(z);
-        blue = 255;
-    }
-    if(H >= 240 && H < 300){
-        red = Math.round(z);    
-        green = 0;
-        blue = 255;
-    }
-    if(H >= 300 && H < 360){
-        red = 255;    
-        green = 0;
-        blue = Math.round(z);
-    }
-    
-    redstring = red.toString(16);
-    if(redstring.length < 2){
-        redstring = "0" + redstring;    
-    }
-    greenstring = green.toString(16);
-    if(greenstring.length < 2){
-        greenstring = "0" + greenstring; 
-    }
-    bluestring = blue.toString(16);
-    if(bluestring.length < 2){
-        bluestring = "0" + bluestring; 
-    }
-    color = "#" + redstring + greenstring + bluestring;
-    //console.log(color);
-    links[index].style.backgroundColor = color + "80";
-    links[index].style.borderColor = color;
-}
 </script>
 </body>
 <style>
+body{
+    background-color:black;
+}
 h1{
     text-align:center;
     font-size:4em;

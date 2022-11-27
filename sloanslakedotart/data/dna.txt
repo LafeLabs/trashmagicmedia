@@ -167,6 +167,7 @@
     "web": [
         "FAQ.html",
         "artists.html",
+        "bridges.html",
         "chaosfeed.html",
         "chaosfeed.txt",
         "civilizations.html",
