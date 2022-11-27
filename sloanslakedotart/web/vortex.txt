@@ -1,0 +1,10 @@
+[
+    "<a href = \"index.html\">home</a>",
+    "<a href = \"chaosfeed.html\">chaos feed</a>",
+    "this",
+    "is",
+    "a",
+    "vortex",
+    "of",
+    "words"
+]

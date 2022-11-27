@@ -178,7 +178,9 @@
         "media.html",
         "rainbow.html",
         "rainbow.js",
-        "trashrobot.html"
+        "trashrobot.html",
+        "vortex.html",
+        "vortex.txt"
     ],
     "iconsymbols": [
         "abcfont.svg",

@@ -1,4 +1,7 @@
 [
+    "<a href=\"vortex.html\">vortex.html</a>",
+    "links are blue text is black, backgrounds are a journey of exactly one turn around the Color Wheel",
+    "type and hit enter",
     "<button>hey</button>",
     "<a href = \"index.html\">home</a></end>",
     "Chaos Feed!! Type in box and hit enter to post. Red x's delete.💥 button resets feed.  Let the chaos ensue. 🔄 or enter refreshes feed to see what other people have posted.",

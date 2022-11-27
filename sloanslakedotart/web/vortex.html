@@ -60,7 +60,7 @@ var httpc = new XMLHttpRequest();
         redraw();
     }
 };
-httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+httpc.open("GET", "../fileloader.php?filename=web/vortex.txt", true);
 httpc.send();
 
 
@@ -78,7 +78,7 @@ document.getElementById("textinput").onchange = function(){
             document.getElementById("textinput").value = "";    
         }
     };
-    httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+    httpc.open("GET", "../fileloader.php?filename=web/vortex.txt", true);
     httpc.send();   
 }
 
@@ -89,7 +89,7 @@ function savejson(){
     var httpc2 = new XMLHttpRequest();
     httpc2.open("POST", url, true);
     httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc2.send("data="+encodeURIComponent(JSON.stringify(feed,null,"    "))+"&filename=web/chaosfeed.txt");//send text to filesaver.php
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(feed,null,"    "))+"&filename=web/vortex.txt");//send text to filesaver.php
 }
 
 boxindex = 0;
@@ -119,6 +119,30 @@ function redraw(){
     }
     document.getElementById("textinput").select();
     rainbow(boxes);
+    spiral(boxes);
+}
+
+function spiral(localarray){
+    n = localarray.length;
+    if(innerWidth > innerHeight){
+        r = 0.5*innerHeight;
+    }
+    else{
+        r = 0.5*innerWidth;
+    }
+    x0 = 0.5*innerWidth;
+    y0 = 0.5*innerHeight;
+    
+    for(var index = 0;index < n;index++){
+        theta = 90 + index*360/n;//angle in degrees, starting at vertical
+        x = x0 + r*Math.exp(-theta/360)*Math.cos(theta*Math.PI*2/360);
+        y = y0 - r*Math.exp(-theta/360)*Math.sin(theta*Math.PI*2/360);
+        localarray[index].style.position = "absolute";
+        localarray[index].style.transform = "rotate(" + (-theta).toString()  +"deg)";
+        localarray[index].style.left = x.toString() + "px";
+        localarray[index].style.top = y.toString() + "px";
+        localarray[index].style.fontSize =  0.1*r*Math.exp(-theta/360) + "px";
+    }
 }
 
 oldfeed =[];
@@ -139,7 +163,7 @@ function deletetext(){
             savejson();
         }
     };
-    httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+    httpc.open("GET", "../fileloader.php?filename=web/vortex.txt", true);
     httpc.send();            
 }
 
@@ -151,14 +175,21 @@ function loadfeed(){
                 redraw();
             }
         };
-        httpc.open("GET", "../fileloader.php?filename=web/chaosfeed.txt", true);
+        httpc.open("GET", "../fileloader.php?filename=web/vortex.txt", true);
         httpc.send();            
 
 }
 
 resetfeed = [
     "Chaos Feed!! Type in box and hit enter to post. Red x's delete.💥 button resets feed.  Let the chaos ensue. 🔄 or enter refreshes feed to see what other people have posted.",
-    "<a href = \"index.html\">home</a>"
+    "<a href = \"index.html\">home</a>",
+    "<a href = \"chaosfeed.html\">chaos feed</a>",
+    "this",
+    "is",
+    "a",
+    "vortex",
+    "of",
+    "words"
 ];
 
 document.getElementById("nuke").onclick = function(){
@@ -222,8 +253,6 @@ a{
 }
 .box{
     border:solid;
-    margin-top:1em;
-    border-width:0.1px;
 }
 #header{
     position:absolute;
