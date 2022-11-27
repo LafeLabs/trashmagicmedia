@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+TRASH MAGIC MEDIA NETWORK
+
+EVERYTHING IS PHYSICAL
+EVERYTHING IS FRACTAL
+EVERYTHING IS RECURSIVE
+
+NO MONEY
+NO MINING
+NO PROPERTY
+
+LOOK AT THE FUNGI
+LOOK AT THE INSECTS
+LANGUAGE IS HOW THE MIND PARSES REALITY
+
+
+
+    All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
+
+
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        
+   <title>TRASH MAGIC SERVER</title>    
+   <script src = "jscode/trashmagic.js"></script>
+   <script src = "jscode/geometron.js"></script>
+</head>
+<body>    
+<div id = "mainscroll">
+    
+    <H1>TRASH MAGIC HOME PAGES</H1>
+
+    <a id=  "homelink" href = "../index.html">HOME</a>
+
+
+</div>
+<script>
+
+
+    
+titles = document.getElementsByTagName("H1");
+for(var index = 0;index < titles.length;index++){
+    rainbowstring(titles[index]);    
+}
+
+
+//ps = document.getElementsByTagName("p");
+//for(var index = 0;index < ps.length;index++){
+  //  rainbowstring(ps[index]);    
+//}
+
+
+
+//listimages(document.getElementById("mainscroll"),"images");
+mainscroll = document.getElementById("mainscroll");
+    files = [];
+    var httpcimages = new XMLHttpRequest();
+    httpcimages.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            files = JSON.parse(this.responseText);
+            var locallinks = [];
+            locallinks.push(document.getElementById("homelink"));
+            for(var index = 0;index < files.length;index++){
+                if(files[index].substring(files[index].length-5) == ".html"){
+                    var newa = document.createElement("A");
+                    newa.href = "web/" + files[index];
+                    newa.innerHTML = files[index];
+                    mainscroll.appendChild(newa);
+                    locallinks.push(newa);
+                    
+                }
+            }
+            rainbow(locallinks);
+        }
+    };
+    httpcimages.open("GET", "dir.php?filename=web", true);
+    httpcimages.send();
+
+
+</script>
+<style>
+#mainscroll{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:0px;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+mainscroll div{
+    margin:auto;
+    display:block;
+}
+h1{
+    text-align:center;
+    font-size:4em;
+    font-family:helvetica;
+}
+p{
+    text-align:justify;
+    padding:1em 1em 1em 1em;
+}
+a{
+    text-align:center;
+    font-family:helvetica;
+    font-size:3em;
+    width:80%;
+    margin:auto;
+    display:block;
+    border:solid;
+    border-radius:0.5em;
+    border-width:0.5em;
+    color:black;
+    margin-top:1em;
+}
+img{
+    display:block;
+    max-width:50%;
+    margin:auto;
+    margin-top:2em;
+}
+#qrcode{
+    display:block;
+    margin:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:30%;
+    text-align:center;
+    background-color:white;
+    border-color:white;
+    border:solid;
+}
+@media only screen and (orientation: portrait) {
+
+    
+}
+@media only screen and (orientation: landscape) {
+
+    
+}
+</style>
+</body>
+</html>
+
+

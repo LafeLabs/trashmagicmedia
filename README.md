@@ -6,71 +6,6 @@
 
 ### *self-replicating media*
 
-### Installing on a windows or mac private machine
-
-- [download XAMPP](https://www.apachefriends.org/index.html) and install, 
-- go to the directory xampp/htdocs and delete the file index.php
-- download [replicator.php](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/replicator.php)(right click, "save link as") and save it in the directory htdocs
-- start the xampp server either by searching for the program or manually starting it from the xampp directory on your hard drive
-- go to [http://localhost/replicator.php](http://localhost/replicator.php) to replicate the server, click the link to go to the local TRASH MAGIC MEDIA NETWORK
-- or navigate there with this link to [http://localhost/](http://localhost/)
-- create desktop shortcuts to media/ and images/ folders in the xampp/htdocs folder
-- put sub-folders in the media folder for different kinds of media, put media you want to share in those folders, make a "books" and "music" folder and put pdfs of books in the books folder and .mp3's of songs in the music folder
-- find your ip address from your wifi settings and put it in the input at the bottom of the screen as indicated(http://[your ip address]/) and hit "enter" to update the permanent value of the server url
- - point [Web 1.0 hyperlink](https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/hyperlink/php/replicator.txt) pages to your physical location and wifi logon instructions and a live hyperlink to the ip address of your server
- - build your own public self replicating hyperlink by first creating a [hyperlink server here by clicking this link](http://localhost/hyperlink/replicator.php), then click through to see it or
- - [click on https://localhost/hyperlink/ to see the hyperlink](https://localhost/hyperlink/) 
- - click the little asterisk in the upper left corner to edit.  Copy and paste the [JSON code](http://localhost/jscode/hyperlink.js) from the bottom of the screen into any other hyperlink page to replicate your page.  [Fork down](http://localhost/hyperlink/fork.html) to make more hyperlink pages. 
- - point cardboard signs to web 1.0 pages
- - post ads in the form of images from the main page
- - collect PUBLIC DOMAIN media from content creators, organize into folders, put folders in media folder, distribute to your community in your spaces. content creators share all media PUBLIC DOMAIN but with links to cash app, venmo, paypal, patreon, ko-fi or some other way readers can donate to support creators
- - [to make the page into the solar station page go to that README by clicking this link](https://github.com/LafeLabs/trashmagicmedia/tree/main/solarstation) and the links theirein.
-
-This is local media.  We can install web servers on *everything*: mac and Windows laptops and desktops, Raspberry Pi, and Android and iOS Devices.  Any device can be a server, and we drop files on it to share with others on the same wireless network.  When every device is a server as well as a client, people who share wireless networks can media without the Cloud.  
-
-Digital media content creators are supported by brick and mortar venues.  When a wireless network is the source of a constant stream of interesting and original media content, that brings people into that space.  Creators can both get sponsorships from venues and direct material support.  
-
-This is a way to share media on the Web without the Internet, without the Cloud, without e-commerce, without algorithms or apps or the app store.  There is no user data because there are no users, just files in folders which everyone on the network can download.  The only information we ever put on the network is information we want to share freely.  
-
-The construction of this network represents the building of digital community that is always centered on physically shared spaces.  
-
-
-## Use Cases
-
- - music and art publication/distribution in venues like bars, art galleries, and coffee shops(artists compensated by venues to produce content)
- - medical literature .pdf's in medical waiting rooms
- - local web pages shared from server to server of local organizations, people, places, businesses, artists, etc.(local web)
- - local classifieds and personals ads
- - media for exchange of physical goods: share, give away, buy, and sell crafts, technology, food, locally made goods and unwanted objects, facilitate upcycling 
- - local financial markets, moderating deals between physically local business people
- - music sharing in religious communities(record audio and post to wifi) 
- - local plant, animal, fungus, soil, weather and water knowledge sharing 
- - creating foundational documents for local organizations whose existence is primarily on these local wifi-based networks
- - Documenting self-replicating things made from trash: trash magic
- - Free sharing of books, local library infrastructure, extension of Public Library system
- - free private library of banned books
- - censorship-resistant news distribution, local news
- - rapid creation of historical documents during historical events on location for replication to archives afterward
- - immersive text-based games, mixed reality
-
-
-A very simple way to make a local media server on which people can share simple advertisements for literally anything is to host images of small screenshots and photographs.  We do this with the image feed, linked from the main page via the "Images" link.  The Image Feed has buttons to select an image to upload, then upload the image to the server.  Any image larger than about 1 megabyte won't upload.  For large images, either crop them or screen shot them and then crop the screenshot(this reduces the resolution and makes smaller files).
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images.png)
-
-Anyone can delete any image by turning "delete mode"  on, and then clicking the "DELETE" buttons.  Deletion is forever! Backup everything you care about!  Don't want to lose a thing? Copy it again and again.
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/images-delete.png)
-
-In general, media files we want to share can be dropped into folders which are placed in the "media" folder on the servers.
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/media.png)
-
-The entire system is self-editing, self-replicating, and self-contained.  Each server contains a code editor which can edit the whole system including itself.  Among the set of files on each system is also a set of scripts which clone the whole system.  Files are cataloged using the script [dnagenerator.php](php/dnagenerator.txt), which creates a file called [data/dna.txt](data/dna.txt) which is finally used by [replicator.php](php/replicator.txt) to copy all the code in the system from one server to the next.  Because all this is free Public Domain code we can host it on Github for free and replicate from there, but once it's replicating out in the wild, we can replicate from one server to another without referencing back to Github if we want. At any time, any instance can then be cloned to a local directory which is pushed out to a public Github repository which can the replicate out globally.  Thus we can move smoothly between totally local private replication and public replication to potentially billions of devices using Github's free hosting of open source projects(or anyone's random personal home pages on the public World Wide Web).
-
-![](https://raw.githubusercontent.com/LafeLabs/picrust/main/readme-images/editorphp.png)
-
-
 ### Install on Pi
 
 Raspberry Pi is now impossible to buy.  Find them donated from someone. Most people who have them don't use them or used them once and stopped due to lack of interest/time/need. Ask around!  Someone will be able to donate a Pi, keyboard, mouse, screen, power supply and whatever other random things you need to get set up.
@@ -83,19 +18,12 @@ Download and install, then use the Raspberry Pi Imager:
 
 Turn on the pi click through all the things, put it on the wifi network.
 
-## Install Apache and PHP so that geometron can run
-
-Open a command prompt(black link on menu bar) and type:
+Open a command prompt(black link on menu bar) and copy/paste these commands line by line(you can use right-click with the mouse to both copy and paste):
 
 ```
 sudo apt update
 sudo apt install apache2 -y
 sudo apt install php libapache2-mod-php -y
-```
-
-## Install TRASH MAGIC MEDIA server
-
-```
 cd /var/www/html
 sudo rm index.html
 sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/trashmagicmedia/main/php/replicator.txt
@@ -106,35 +34,22 @@ php replicator.php
 sudo chmod -R 0777 *
 ```
 
-Check the IP address by hovering over the wifi icon, put that into the browser on another machine on the same local wifi network to see and edit the server.  Or open a browser on the pi and point it to [http://localhost](http://localhost)
+Check the IP address by hovering over the wifi icon, put that into the browser on another machine on the same local wifi network to see and edit the server.  Or open a browser on the pi and point it to [http://localhost](http://localhost).
 
+Now to connect this pi to the outside world you want to forward port 80 traffic to your router to the pi.  To do that, look at your router and see if there is information on how to log on, including login and password and the router IP address. If you can't find that information, try looking up your router make and model in a search and trying to figure out how to log on from there. Then click around and find the port forwarding or do a search for port forwarding and your router type, and forward port 80 traffic.  
 
-install Arduino on pi
+Next, you want to buy a domain name linked to a physical location near where your server is, ending in something other than .com like .net, .org, .xyz or .art.  Edit the DNS entry for your domain to have an "A record" which points to your home IP address which you can get from [www.whatismyip.com](https://www.whatismyip.com/).
 
-```
-sudo apt-get install arduino
-```
- 
-install python scientific computing packages
-
-```
-sudo apt install python3-matplotlib
-sudo apt-get update
-sudo apt-get install python3-scipy
-sudo pip3 install --upgrade pip
-reboot
-sudo pip3 install jupyter
-```
-
-Set this up on a headless pi, forward port 80 of your home router, and point a domain to your home IP address to put this free server on the Internet.  Then you replicate that domain name on cardboard, which replicates the servers and media as well.
 
 ### Ubuntu Install
 
-You will need a thumb drive.
+Find any computer that anyone is getting rid of.  
+
+You will need a thumb drive.  Follow the instructions below to install Ubuntu and wipe all the old data on the hard drive.
 
 [https://ubuntu.com instructions](https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview)
 
-open a command line and type:
+Once Ubuntu is installed, open a command line and type:
 
 ```
 sudo apt update
@@ -150,6 +65,8 @@ cd html
 php replicator.php
 sudo chmod -R 0777 *
 ```
+
+This can be linked to the outside world with port 80 forwarding as in the instructions above with the Raspberry Pi.
  
 ### Install on Android
 
@@ -191,12 +108,16 @@ Use the Editor built into the system to create a new file called replicator.php 
 
  - [tiktok:@trash_robot](https://www.tiktok.com/@trash_robot)
  - [instagram:@lafelabs](https://www.instagram.com/lafelabs/)
- - [twitter:@trashrobot0](https://twitter.com/trashrobot0)
- - [youtube:@trash_robot](https://www.youtube.com/channel/UCLyeOlfnEBCnRTAH8rppEFw)
+ - [mastodon:@lafelabs@mastodon.lol](https://mastodon.lol/@lafelabs)
+ - [github:@lafelabs](https://github.com/LafeLabs/)
 
 # Trash Robot Books
  
  - [First Book of Geometron](https://www.trashrobot.org/bookofgeometron/)
  - [Geometron Magic](https://www.trashrobot.org/geometronmagic/)
  - [Trash Magic Books](https://www.trashrobot.org/user.php?scroll=scrolls/trashmagicbooks)
+
+# Live Trash Magic Servers
+
+ - [www.sloanslake.art](http://www.sloanslake.art)
 

@@ -1,0 +1,194 @@
+
+## [HOME](scrolls/home)
+
+# network node
+ 
+ - sponsor
+ - teacher
+ - operator
+ - content creator
+ - community
+ - vehicle/station
+ - venue
+ - web server
+ - content
+ - power
+ - local wireless network 
+ - Physical Media eXchange (PMX)
+
+The *teacher* trains the *operator* to build and maintain the node.  Vehicles are used to transport the node from place to place.  *Venues* are physical spaces where a *community* of people pass by and freely exchange *content*.  Electronic media content is shared on the *web server* over the *wireless network*.  Physical media is shared via the *Physical Media eXchange (PMX)*.  *Sponsors* pay for the time of *teachers*, *operators*, and direct material support of *content creators*.  All nodes are self-replicating: people in each node can other people to hold those roles in the next node, from sponsor to operator to content creator.
+
+The purpose of the network is replication.  We replicate trash magic.  We replicate the products of the community, replicate the products of the Operators, replicate the expertise of the teachers, and replicate the memes of the sponsors.  This is what drives the network.  It is what animates it, gives it purpose.
+
+## vehicles/stations
+
+ - car, truck, van, camper, bus
+ - bike with basket and/or panniers, bike trailer
+ - vendor push cart, grocery cart, wheelie cart, scientific instrument rack
+ - tripod
+ - trees and tree houses
+ - tunnels
+ - kayaks, canoes, sailboats, rowboats, trash rafts, pontoon boats, yachts
+ - hand carry: backpacks, suitcases, pelican cases
+
+## Venues
+
+ - park
+ - college campus quad
+ - bus stop
+ - train station or light rail stop
+ - music venue
+ - bookstores
+ - coffee shop
+ - skate shops
+ - skate parks
+ - boat harbor
+ - boat launch
+ - ferry terminal
+ - ferry
+ - donut shop
+ - library
+ - maker space
+ - art gallery
+ - dog park
+ - squat
+ - downtown intersection on the street
+ 
+
+## Content Creators
+
+ - musicians
+ - web developers
+ - teachers 
+ - revolutionaries
+ - mutual aid workers
+ - spiritual thinkers
+ - philosophers
+ - skateboarders
+ - off grid power engineers
+ - chemical engineers
+ - artists
+ - food growers
+ - medicine makers
+ - dancers
+ - mathematicians
+ - mechanics
+ - trash magicians
+ - applied physicists
+ - architects
+ - historians
+ - anthropologists
+ - writers
+ - journalists
+ 
+## Sponsors
+ 
+ - government agencies via SBIR grants 
+ - NSF for STEAM education
+ - government agencies via contractors like APL
+ - grants through non profits which pay teachers, operators to build
+ - all brand sponsors who currently support content creators through the big platforms like Instagram, Youtube, Tiktok, etc.
+ - local shops supporting local creators, the same companies who support local softball teams etc.
+ 
+## Teachers
+ 
+ - operators are all trained to be teachers to train the next operators, making the system self-replicating
+ - employees of small companies with grant money to train people
+ - employees of small companies doing paid gigs training people in organizations with money
+ - teachers in existing school system trained to teach their students in existing programs
+ - volunteers at libraries in technology training classes
+
+
+### Electronic media 
+
+ - e-books
+ - songs
+ - personal web pages
+ - self-replicating web code via Cybermagic
+ - articles
+ - podcasts
+ - instructional videos on how to replicate things
+ - jupyter notebooks
+ - markdown README.md files
+ - HTML games
+ 
+### Physical Media 
+
+ - cardboard cubes 
+ - cardboard cards
+ - geometric tools
+ - cardboard working tools(box cutters, sharpies, Elmer's glue, laser cutters
+ - food
+ - water
+ - water purification technology
+ - environmental sensors for water, air, soil
+ - temperature and voltage measurement sensors for batteries and power systems
+ - medicine
+ - toiletries and sanitary/hygiene products
+ - gasoline and diesel
+ - batteries
+ - solar panels
+ - power controllers for charging batteries
+ - geometron printer robots
+ - arduino accessories: shields, sensors, motor controllers, jumpers, breadboards
+ - electronics supplies
+ - cardboard trash, piles and piles of the stuff
+ - waste-to-petrochemicals infrastructure
+
+
+## Power
+
+ - solar
+ - wind
+ - water
+ - gas or diesel generator
+ - grid
+ - ad-hoc micro grid
+ - batteries
+ - pump water uphill
+ - battery research, diy batteries
+ - trash to fuel technology: biodiesel, pyrolysis, etc
+
+## Wireless Networking
+
+ - off the shelf mesh routers and bridges, wireless access points
+ - raspberry pi network devices: bridges, mesh nodes, gateways
+ - other ubuntu machines running network software
+ - bandwidth sponsors supporting gateways to mesh networks
+
+
+## Computer Technologies
+
+ - Linux Apache PHP
+ - Jupyter/matplotlib/scipy/numpy/pandas open source science in python
+ - Raspberry Pi
+ - Arduino
+ - Adafruit sensors, microcontrollers, accessories, software
+ - Markdown
+ - MathJax + LaTeX
+ - HTML/CSS/JS/PHP/JSON
+ - Github 
+ - Geometron and Trash Robot
+ - any non-DRM format, be it .pdf, .mp3, .svg etc
+ - photographs of physical media in a folder
+
+## Roles
+
+ - LLC owner/operators, principal investigators
+ - battery and solar power technicians
+ - data analysis
+ - sensor deployment and programming
+ - network technicians(build servers and network infrastructure)
+ - web developers
+ - sponsors
+ - trainers/teachers/replicators
+ - street performers/operators/speakers/activists/outreach/workers/artists/musicians/creators
+ - content creators of all kinds
+
+## Node Elements
+
+ - LLC with a single owner and a bank account which can be  a contractor on grants and pay everyone else
+ - mobile server on vehicle of some kind(could be hand carry) with power source(could be a USB battery pack) and network(could be local  phone hotspot)
+ - physical media exchange(PMX) where physical media is exchanged with people in a public space
+ - public web pages with replication of content published from local servers and links back to the server
+ - sponsor(s) supporting the construction of infrastructure, training of new node members and direct material support of content creators of all kinds

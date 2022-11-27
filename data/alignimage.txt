@@ -1,1 +1,1 @@
-{"w":0.9165714285714286,"x":-0.4342857142857143,"y":0.8708571428571429,"angle":-29,"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hexagon.svg/800px-Hexagon.svg.png"}
+{"w":0.688,"x":0.13942857142857143,"y":0.05714285714285714,"angle":0,"src":"https://upload.wikimedia.org/wikipedia/en/0/05/Hello_kitty_character_portrait.png"}

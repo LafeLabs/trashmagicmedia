@@ -33,152 +33,50 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
     <META NAME="robots" CONTENT="noindex,nofollow">
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         
-   <title>TRASH MAGIC</title>    
+   <title>TRASH MAGIC SERVER</title>    
+   <script src = "jscode/trashmagic.js"></script>
+   <script src = "jscode/geometron.js"></script>
 </head>
 <body>    
-<h1 id = "title">TRASH MAGIC</h1>
-<a id = "artist" href = "artist.html">ARTIST</a>
-<a id = "operator" href = "operator.html">OPERATOR</a>
-<a id = "sponsor" href = "sponsor.html">SPONSOR</a>
-<a id = "maker" href = "maker.html">MAKER</a>
-<a id= "media" href = "media.html">MEDIA</a>
-<a href = "https://venmo.com/u/upcyclerobotics">VENMO</a>
-<a href = "https://discord.gg/HwKkdv8929">DISCORD</a>
-<a href = "https://www.tiktok.com/@trash_robot">TIKTOK</a>
-<a href = "https://github.com/LafeLabs/">GITHUB</a>
-<a href = "https://mastodon.lol/@lafelabs">MASTODON</a>
-<a href = "https://www.lulu.com/shop/trash-robot/geometron-magic/paperback/product-y6p96w.html">BUY GEOMETRON MAGIC</a>
-<a href = "https://raw.githubusercontent.com/LafeLabs/pibrary/main/geometronmagic/main-large.pdf">DOWNLOAD GEOMETRON MAGIC</a>
-<a href = "https://www.lulu.com/shop/lafe-spietz/geometron/paperback/product-qqk98g.html">BUY GEOMETRON I</a>
-<a href = "https://github.com/LafeLabs/bookofgeometron/raw/main/main-bigpaper.pdf">DOWNLOAD GEOMETRON I</a>
-<a href = "https://www.lulu.com/en/us/shop/lafe-spietz/trash-magic-manifesto-and-action-coloring-book/paperback/product-1km4deev.html?page=1&pageSize=4">BUY TRASH MAGIC MANIFESTO</a>
-<a href = "https://lafelabs.github.io/Trash_Magic_Manifesto.pdf">DOWNLOAD TRASH MAGIC MANIFESTO</a>
-<a href = "web/">THE INNERNETTE(TM)</a>
-<a href = "readme.html">README</a>
-<div id = "qrcode"></div>
+<div id = "mainscroll">
+    
+    <h1 id = "title">TRASH MAGIC SERVER</h1>
+    
+    <p>Share books and zines, and create a personal home page to share your art.  Create sub-folders in the "media" folder to put different collections of media in.  Learn HTML and make your own home pages to share media on the web.</p>
+
+    <a href = "media.html">ZINES AND BOOKS</a>
+    <a href = "web/">WEB PAGES</a>
+    <a href = "web/trashrobot.html">TRASH ROBOT</a> 
+    <a href = "https://github.com/LafeLabs/trashmagicmedia">REPLICATE SERVER</a>
+
+    <div id = "qrcode"></div>
+    <a href = "symbol.html" style = "border:solid;border-color:red" id = "geometronbox"><canvas id = "geometronmain"></canvas></a>
+    
+    
+
+</div>
 <script>
 
+mainGVM = new GVM(document.getElementById("geometronmain"),200,200);
+mainGVM.importbytecode(hypercube);
+mainGVM.drawGlyph("0305,0306,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0350,0335,0312,0337,0201,0335,0335,0335,0335,0201,0335,0335,0335,0335,0201,0335,0335,0335,0336,0330,0335,0335,0335,0337,0201,0335,0335,0335,0335,0201,0335,0335,0335,0335,0201,0336,0336,0331,0335,0335,0335,0337,0341,0201,0335,0341,0335,0335,0341,0335,0201,0341,0335,0335,0341,0335,0341,0335,0341,0201,0341,0335,0335,0335,0336,0330,0335,0335,0335,0337,0201,0335,0335,0335,0341,0335,0201,0341,0335,0335,0335,0335,0201,0341,");    
 
-links = document.getElementsByTagName("A");
-n = links.length;
-theta = 0;
-for(var index = 0;index < n;index++){
-
-    H = index*360/n;
-    z = 255*(1 - Math.abs((H/60)%2 - 1));
-
-    if(H < 60){
-        red = 255;
-        green = Math.round(z);
-        blue = 0;
-    }
-    if(H >= 60 && H < 120){
-        red = Math.round(z);
-        green = 255;
-        blue = 0;
-    }
-    if(H >= 120 && H < 180){
-        red = 0;
-        green = 255;
-        blue = Math.round(z);
-    }
-    if(H >= 180 && H < 240){
-        red = 0;    
-        green = Math.round(z);
-        blue = 255;
-    }
-    if(H >= 240 && H < 300){
-        red = Math.round(z);    
-        green = 0;
-        blue = 255;
-    }
-    if(H >= 300 && H < 360){
-        red = 255;    
-        green = 0;
-        blue = Math.round(z);
-    }
     
-    redstring = red.toString(16);
-    if(redstring.length < 2){
-        redstring = "0" + redstring;    
-    }
-    greenstring = green.toString(16);
-    if(greenstring.length < 2){
-        greenstring = "0" + greenstring; 
-    }
-    bluestring = blue.toString(16);
-    if(bluestring.length < 2){
-        bluestring = "0" + bluestring; 
-    }
-    color = "#" + redstring + greenstring + bluestring;
-    //console.log(color);
-    links[index].style.backgroundColor = color + "80";
-    links[index].style.borderColor = color;
+titles = document.getElementsByTagName("H1");
+for(var index = 0;index < titles.length;index++){
+    rainbowstring(titles[index]);    
 }
 
-title = document.getElementById("title");
-text = title.innerHTML;
-title.innerHTML = "";
-n = text.length;
-for(var index = 0; index < n; index++){
-    var newspan = document.createElement("SPAN");    
-    newspan.innerHTML = text.charAt(index);
 
-    H = index*360/n;
-    z = 255*(1 - Math.abs((H/60)%2 - 1));
+//ps = document.getElementsByTagName("p");
+//for(var index = 0;index < ps.length;index++){
+  //  rainbowstring(ps[index]);    
+//}
 
-    if(H < 60){
-        red = 255;
-        green = Math.round(z);
-        blue = 0;
-    }
-    if(H >= 60 && H < 120){
-        red = Math.round(z);
-        green = 255;
-        blue = 0;
-    }
-    if(H >= 120 && H < 180){
-        red = 0;
-        green = 255;
-        blue = Math.round(z);
-    }
-    if(H >= 180 && H < 240){
-        red = 0;    
-        green = Math.round(z);
-        blue = 255;
-    }
-    if(H >= 240 && H < 300){
-        red = Math.round(z);    
-        green = 0;
-        blue = 255;
-    }
-    if(H >= 300 && H < 360){
-        red = 255;    
-        green = 0;
-        blue = Math.round(z);
-    }
-    
-    redstring = red.toString(16);
-    if(redstring.length < 2){
-        redstring = "0" + redstring;    
-    }
-    greenstring = green.toString(16);
-    if(greenstring.length < 2){
-        greenstring = "0" + greenstring; 
-    }
-    bluestring = blue.toString(16);
-    if(bluestring.length < 2){
-        bluestring = "0" + bluestring; 
-    }
-    color = "#" + redstring + greenstring + bluestring;   
-    newspan.style.color = color;
-    title.appendChild(newspan);
-}
-
+rainbow(document.getElementsByTagName("A"));
 
 globalurl = window.location.href;
-codesquaresize = 0.4*innerWidth;
-
+codesquaresize = 0.2*innerWidth;
 
 qrcode = new QRCode(document.getElementById("qrcode"), {
 	text: globalurl,
@@ -188,14 +86,39 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
 	colorLight : "#ffffff",
 	correctLevel : QRCode.CorrectLevel.H
 });
-    
+
+document.getElementById("qrcode").style.width = codesquaresize.toString() + "px";
+document.getElementById("qrcode").style.height = codesquaresize.toString() + "px";
+
+
+//listimages(document.getElementById("mainscroll"),"images");
+//listfiles(document.getElementById("mainscroll"),"media/austin-library-zines/");
 
 </script>
 <style>
+#mainscroll{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:0px;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+}
+mainscroll div{
+    margin:auto;
+    display:block;
+}
 h1{
     text-align:center;
     font-size:4em;
     font-family:helvetica;
+}
+p{
+    text-align:justify;
+    padding:1em 1em 1em 1em;
 }
 a{
     text-align:center;
@@ -210,6 +133,12 @@ a{
     color:black;
     margin-top:1em;
 }
+img{
+    display:block;
+    max-width:50%;
+    margin:auto;
+    margin-top:2em;
+}
 #qrcode{
     display:block;
     margin:auto;
@@ -217,7 +146,9 @@ a{
     margin-bottom:2em;
     margin-left:30%;
     text-align:center;
-    
+    background-color:white;
+    border-color:white;
+    border:solid;
 }
 @media only screen and (orientation: portrait) {
 

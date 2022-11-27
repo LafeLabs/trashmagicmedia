@@ -1,0 +1,57 @@
+[
+    {
+        "x": -0.016,
+        "y": -0.011428571428571429,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "scrolls/home",
+        "src": "iconsymbols/scroll.svg",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.648,
+        "y": 0.6445714285714286,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "scrolls/home",
+        "src": "iconsymbols/scroll.svg",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.5417142857142857,
+        "y": 0.176,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "maps/foo",
+        "src": "https://i.imgur.com/ZUVemiI.png",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.06971428571428571,
+        "y": 0.49942857142857144,
+        "w": 0.3668571428571429,
+        "h": 0.3668571428571429,
+        "angle": 0,
+        "text": "index.html",
+        "href": "scrolls/home",
+        "src": "https://i.imgur.com/punvNNF.png",
+        "maplinkmode": true
+    },
+    {
+        "x": 0.11771428571428572,
+        "y": 0.8651428571428571,
+        "w": 0.584,
+        "h": 0.584,
+        "angle": 0,
+        "text": "<span style=\"color:red\">Γ</span>     <span style=\"color:orange\">ε</span>     <span style=\"color:yellow\">ω</span>     <span style=\"color:green\">μ</span>     <span style=\"color:blue\">ε</span>     <span style=\"color:purple\">τ</span>     <span style=\"color:red\">ρ</span>     <span style=\"color:orange\">ο</span>     <span style=\"color:yellow\">ν</span>",
+        "href": "scrolls/home",
+        "src": "",
+        "maplinkmode": true
+    }
+]

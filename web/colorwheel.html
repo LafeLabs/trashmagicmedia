@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+TRASH MAGIC MEDIA NETWORK
+
+EVERYTHING IS PHYSICAL
+EVERYTHING IS FRACTAL
+EVERYTHING IS RECURSIVE
+
+NO MONEY
+NO MINING
+NO PROPERTY
+
+LOOK AT THE FUNGI
+LOOK AT THE INSECTS
+LANGUAGE IS HOW THE MIND PARSES REALITY
+
+
+
+    All Code, text, art, media, technology, and ideas CC0 PUBLIC DOMAIN
+
+
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAP//AP///wANAP8A5Dz6ABueRwAAt/8A6BonABo86AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREREREREAAAEREREREQCIgREREd3dwAAB3d3d3d3d3d3d3d3d3d3d3d3d3VVVVVVVQAFVVAAVVVQIiBRAiIBEQIAIBECAAERAgAgFgIABmYCIiBmAiIGZgIiIGYCIgZmYCIAaIAAMzMzAAiIiIiIiIiIiIiIiIiIiIiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        
+   <title>TRASH MAGIC SERVER</title>    
+</head>
+<body>    
+<h1 id = "title">TRASH MAGIC COLOR WHEEL</h1>
+
+
+<script>
+n = 100;
+H = 0;//hue in hsv
+//https://www.had2know.org/technology/hsv-rgb-conversion-formula-calculator.html
+
+for(var index = 0;index < n;index++){
+    var newdiv = document.createElement("DIV");
+    H = index*360/n;
+    z = 255*(1 - Math.abs((H/60)%2 - 1));
+    if(H < 60){
+        red = 255;
+        green = Math.round(z);
+        blue = 0;
+    }
+    if(H >= 60 && H < 120){
+        red = Math.round(z);
+        green = 255;
+        blue = 0;
+    }
+    if(H >= 120 && H < 180){
+        red = 0;
+        green = 255;
+        blue = Math.round(z);
+    }
+    if(H >= 180 && H < 240){
+        red = 0;    
+        green = Math.round(z);
+        blue = 255;
+    }
+    if(H >= 240 && H < 300){
+        red = Math.round(z);    
+        green = 0;
+        blue = 255;
+    }
+    if(H >= 300 && H < 360){
+        red = 255;    
+        green = 0;
+        blue = Math.round(z);
+    }
+
+
+    redstring = red.toString(16);
+    if(redstring.length < 2){
+        redstring = "0" + redstring;    
+    }
+    greenstring = green.toString(16);
+    if(greenstring.length < 2){
+        greenstring = "0" + greenstring; 
+    }
+    bluestring = blue.toString(16);
+    if(bluestring.length < 2){
+        bluestring = "0" + bluestring; 
+    }
+    color = "#" + redstring + greenstring + bluestring;
+    //console.log(color);
+    newdiv.style.backgroundColor = color + "80";
+    newdiv.style.borderColor = color;
+    newdiv.innerHTML = color;
+    document.body.appendChild(newdiv);
+}
+
+
+
+
+</script>
+<style>
+h1{
+    text-align:center;
+    font-size:4em;
+    font-family:helvetica;
+}
+div{
+    text-align:center;
+    font-family:helvetica;
+    font-size:3em;
+    width:80%;
+    margin:auto;
+    display:block;
+    border:solid;
+    border-radius:0.5em;
+    border-width:0.5em;
+    color:black;
+    margin-top:1em;
+}
+#qrcode{
+    display:block;
+    margin:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+    margin-left:30%;
+    text-align:center;
+    
+}
+@media only screen and (orientation: portrait) {
+
+    
+}
+@media only screen and (orientation: landscape) {
+
+    
+}
+</style>
+</body>
+</html>
+
+

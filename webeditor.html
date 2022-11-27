@@ -29,7 +29,7 @@ https://cloud9-sdk.readme.io/docs/language-mode
 <body>
 <a href=  "web/" style = "position:absolute;right:5px;top:5px;font-size:2em">WEB</a>
 <a href=  "index.html" style = "position:absolute;right:5px;top:1.5em;font-size:2em">HOME</a>
-<a href = "webdestroyer.html" style = "position:absolute;right:5px;top:3em;font-size:2em">DESTROYER</a>
+<a  href = "webdestroyer.html" style = "display:none;position:absolute;right:5px;top:3em;font-size:2em">DESTROYER</a>
 
 <table id = "inputtable">
     <tr>
@@ -87,7 +87,7 @@ httpcprototype.onreadystatechange = function() {
         htmlprototype = this.responseText;
     }
 };
-httpcprototype.open("GET", "fileloader.php?filename=web/index.html", true);
+httpcprototype.open("GET", "fileloader.php?filename=web/example.html", true);
 httpcprototype.send();
 
 

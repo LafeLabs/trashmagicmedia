@@ -1,0 +1,8 @@
+
+## [HOME](scrolls/home)
+
+# sensors
+ 
+ - [precision i2c temperature sensor from adafruit](https://www.adafruit.com/product/1782) 
+ - [voltage i2c controller](https://store.ncd.io/product/mcp3426-16-bit-2-channel-analog-to-digital-converter-i2c-mini-module/)
+ - [lipo battery monitoring kit from adafruit](https://www.adafruit.com/product/5580)
