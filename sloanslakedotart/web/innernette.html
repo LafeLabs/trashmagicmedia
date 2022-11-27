@@ -1,31 +1,28 @@
 <!doctype html>
 <html>
 <head>
-<title>innernette</title>
+<title>The Web</title>
     <meta charset="utf-8">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
-    
 </head>
 <body>
-    <div id = "page">
-        <h1>Innernette</h1>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y5BZkaWZAAA" title="YouTube video player" frameborder="0" ></iframe>
 
-        <p>
-            Say goodbye to e-worms!
-        </p>
-        <ul>
-            <li>
-                <a href = "index.html">home page</a>
-            </li>               
-            <li>
-                <a href = "../webeditor.html">Web Page Editor</a>
-            </li>               
-        </ul>
+<a href= "../index.html" style = "position:Absolute;right:0px;top:1em;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">HOME</a>
+<a href= "../webeditor.html" style = "position:Absolute;right:0px;top:0px;color:#ff2cb4;background-color:#404040;font-size:2em;z-index:2">WEB EDITOR</a>
+<div id = "qrcode"></div>
+    <div id = "linkbox">
+        <h1>THE INNERNETTE(TM)</h1>
+        
+
+<iframe style = "display:block;margin:auto;width:80%;height:80%" src="https://www.youtube.com/embed/Y5BZkaWZAAA" title="YouTube video player" frameborder="0" ></iframe>
+
+
+        <h3><a href = "https://www.w3schools.com/">Learn HTML, CSS and JavaScript at W3Schools.com</a></h3>
+        
+        <h3><a href = "https://codepen.io/">Learn Web Development by Example and share code at codepen.io</a></h3>
+
     </div>
-    <div id = "linkbox"></div>
 <script>
-
 
 media = [];
 
@@ -36,11 +33,9 @@ httpcUpload.onreadystatechange = function() {
         loadmediafeed();
     }
 };
-httpcUpload.open("GET", "../dir.php?filename=media", true);
+httpcUpload.open("GET", "../dir.php?filename=web", true);
 httpcUpload.send();
 
-mediadir = [];
-dirname = "";
 
 function loadmediafeed(){
     for(var index = 0;index < media.length;index++) {
@@ -57,13 +52,16 @@ function loadmediafeed(){
 }
 
 
+
+
+
 </script>
 </body>
 <style>
     body{
         background-color:black;
-        color:#00ff00;
-        font-family:courier;
+        color:#ffffff;
+        font-family:Comic Sans MS;
     }
     h1,h2,h3,h4{
         text-align:center;
@@ -76,17 +74,15 @@ function loadmediafeed(){
         display:block;
         margin:auto;
     }
-    #page{
-        position:absolute;
-        left:10px;
-        top:10px;
-        overflow:scroll;
-    }
+    
     #linkbox{
         position:absolute;
         right:10px;
         bottom:10px;
+        left:10px;
+        top:10px;
         background-color:#4040ff80;
+        overflow:scroll;
     }
     #linkbox a{
         font-family:Comic Sans MS;
@@ -96,34 +92,8 @@ function loadmediafeed(){
         padding-left:1em;
         font-size:2em;
     }
-    #qrcode{
-        border:solid;
-        border-color:#808080;
-        background-color:#808080;
-        border-width:10px;
-    }
-    @media only screen and (orientation: portrait) {
-        #linkbox{
-            width:90%;
-            bottom:10px;
-            height:40%;
-        }   
-        #page{
-            height:48%;
-            width:100%;
-        }
-    }
-    @media only screen and (orientation: landscape) {
-        #linkbox{
-            top:10px;
-            width:40%;
-            bottom:10px;
-            height:90%;
-        }   
-        #page{
-            bottom:10px;
-            right:50%;
-        }
-    }
+    
+    
+    
 </style>
 </html>
