@@ -52,12 +52,13 @@ LANGUAGE IS HOW THE MIND PARSES REALITY
     <a href = "mailto:operator@sloanslake.art">EMAIL OPERATOR@SLOANSLAKE.ART</a>
 
     <div id = "qrcode"></div>
-
+    <a href = "symbol.html" style = "border:solid;border-color:red" id = "geometronbox"><canvas id = "geometronmain"></canvas></a>
 </div>
-
-
-<div id = "imagesbox"></div>
 <script>
+
+mainGVM = new GVM(document.getElementById("geometronmain"),200,200);
+mainGVM.importbytecode(hypercube);
+mainGVM.drawGlyph("0305,0306,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0341,0201,0335,0350,0335,0312,0337,0201,0335,0335,0335,0335,0201,0335,0335,0335,0335,0201,0335,0335,0335,0336,0330,0335,0335,0335,0337,0201,0335,0335,0335,0335,0201,0335,0335,0335,0335,0201,0336,0336,0331,0335,0335,0335,0337,0341,0201,0335,0341,0335,0335,0341,0335,0201,0341,0335,0335,0341,0335,0341,0335,0341,0201,0341,0335,0335,0335,0336,0330,0335,0335,0335,0337,0201,0335,0335,0335,0341,0335,0201,0341,0335,0335,0335,0335,0201,0341,");    
 
     
 titles = document.getElementsByTagName("H1");
@@ -104,6 +105,10 @@ document.getElementById("qrcode").style.height = codesquaresize.toString() + "px
     background-color:black;
     color:#00ff00;
     font-family:courier;
+}
+mainscroll div{
+    margin:auto;
+    display:block;
 }
 h1{
     text-align:center;

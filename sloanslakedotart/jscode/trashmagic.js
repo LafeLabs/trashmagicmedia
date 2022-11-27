@@ -8,7 +8,7 @@ function listfiles(domelement,folder){
             for(var index = 0;index < files.length;index++){
                 var newa = document.createElement("A");
                 newa.href = folder + "/" + files[index];
-                newa.innerHTML = folder + "/" + files[index];
+                newa.innerHTML = files[index];
                 domelement.appendChild(newa);
                 locallinks.push(newa);
             }
