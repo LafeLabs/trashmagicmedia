@@ -1,4 +1,6 @@
 [
+    " B",
+    "!!!",
     "<a href=\"vortex.html\">vortex.html</a>",
     "links are blue text is black, backgrounds are a journey of exactly one turn around the Color Wheel",
     "type and hit enter",

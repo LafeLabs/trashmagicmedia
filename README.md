@@ -120,4 +120,5 @@ Use the Editor built into the system to create a new file called replicator.php 
 # Live Trash Magic Servers
 
  - [www.sloanslake.art](http://www.sloanslake.art)
+ - [zinez.xyz](http://zinez.xyz/)
 

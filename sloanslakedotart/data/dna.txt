@@ -179,6 +179,7 @@
         "media.html",
         "rainbow.html",
         "rainbow.js",
+        "sheridanstation.html",
         "trashrobot.html",
         "vortex.html",
         "vortex.txt"

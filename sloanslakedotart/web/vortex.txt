@@ -1,4 +1,5 @@
 [
+    "you just type in the pink box and hit enter to post, click red x's to delete, pow icon to reset.",
     "test",
     "offsets and rotations of each element are in javascript and clearly need some work!",
     "new line",
@@ -7,12 +8,10 @@
     "all from trash",
     "every toilet",
     "every machine",
-    "every robot",
     "every radio",
     "every wireless access point",
     "every antenna",
     "every keyboard",
-    "every web server",
     "every screen",
     "everything"
 ]
